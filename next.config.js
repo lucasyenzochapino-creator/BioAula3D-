@@ -1,12 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: [
-    'three',
-    '@react-three/fiber',
-    '@react-three/drei',
-    '@react-three/postprocessing',
-    'postprocessing',
-  ],
+  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
   env: { NEXT_TELEMETRY_DISABLED: '1' },
 };
 

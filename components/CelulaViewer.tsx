@@ -2,7 +2,6 @@
 import { useRef, useState, Suspense } from "react";
 import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
 import { OrbitControls, Html, Environment, Float, ContactShadows, Sparkles } from "@react-three/drei";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 interface Org {
@@ -67,7 +66,7 @@ export default function CelulaViewer() {
     <div className="flex flex-col lg:flex-row gap-4 h-[calc(100vh-3.5rem)]">
       <div className="relative flex-1 min-h-[350px]">
         <Canvas camera={{position:[0,2,10],fov:50}} dpr={[1,2]}
-          gl={{toneMapping:THREE.ACESFilmicToneMapping,toneMappingExposure:1.1,antialias:true}}>
+          gl={{toneMapping:THREE.ACESFilmicToneMapping,toneMappingExposure:1.4,antialias:true}}>
           <Suspense fallback={null}>
             <color attach="background" args={["#020617"]}/>
             <fog attach="fog" args={["#020617",18,30]}/>
@@ -79,9 +78,6 @@ export default function CelulaViewer() {
             <NucleusComp selected={selected==="nucleo"} onSelect={setSelected}/>
             {organelles.map(org=><OrgMesh key={org.id} org={org} selected={selected===org.id} onSelect={setSelected}/>)}
             <ContactShadows position={[0,-4.2,0]} opacity={0.12} scale={20} blur={2.5}/>
-            <EffectComposer>
-              <Bloom luminanceThreshold={0.15} intensity={2.4} mipmapBlur levels={8}/>
-            </EffectComposer>
             <OrbitControls enablePan={false} minDistance={5} maxDistance={14}/>
           </Suspense>
         </Canvas>

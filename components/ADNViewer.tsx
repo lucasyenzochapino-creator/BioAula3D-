@@ -2,7 +2,6 @@
 import { useRef, useMemo, useState, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Html, Environment, Stars } from "@react-three/drei";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 const BASES = [
@@ -34,7 +33,6 @@ function DNAHelix({selected,onSelect}:{selected:string|null;onSelect:(b:string)=
     const x2=Math.cos(angle+Math.PI)*1.4,z2=Math.sin(angle+Math.PI)*1.4;
     return {base,pair:COMPLEMENT[base],y,x1,z1,x2,z2};
   }),[]);
-
   return (
     <group ref={groupRef}>
       <HelixStrand angleOffset={0} color="#94a3b8"/>
@@ -48,11 +46,11 @@ function DNAHelix({selected,onSelect}:{selected:string|null;onSelect:(b:string)=
           <group key={i}>
             <mesh position={[p.x1,p.y,p.z1]} onClick={(e)=>{e.stopPropagation();onSelect(p.base);}}>
               <sphereGeometry args={[0.21,16,16]}/>
-              <meshPhysicalMaterial color={BASE_COLORS[p.base]} emissive={BASE_COLORS[p.base]} emissiveIntensity={selected===p.base?4.0:1.8} roughness={0.1} metalness={0.1}/>
+              <meshPhysicalMaterial color={BASE_COLORS[p.base]} emissive={BASE_COLORS[p.base]} emissiveIntensity={selected===p.base?3.5:1.8} roughness={0.1} metalness={0.1}/>
             </mesh>
             <mesh position={[p.x2,p.y,p.z2]} onClick={(e)=>{e.stopPropagation();onSelect(p.pair);}}>
               <sphereGeometry args={[0.21,16,16]}/>
-              <meshPhysicalMaterial color={BASE_COLORS[p.pair]} emissive={BASE_COLORS[p.pair]} emissiveIntensity={selected===p.pair?4.0:1.8} roughness={0.1} metalness={0.1}/>
+              <meshPhysicalMaterial color={BASE_COLORS[p.pair]} emissive={BASE_COLORS[p.pair]} emissiveIntensity={selected===p.pair?3.5:1.8} roughness={0.1} metalness={0.1}/>
             </mesh>
             <mesh position={[mid.x,mid.y,mid.z]} quaternion={[q.x,q.y,q.z,q.w]}>
               <cylinderGeometry args={[0.035,0.035,len,6]}/>
@@ -72,7 +70,7 @@ export default function ADNViewer() {
     <div className="flex flex-col lg:flex-row gap-4 h-[calc(100vh-3.5rem)]">
       <div className="relative flex-1 min-h-[350px]">
         <Canvas camera={{position:[0,0,9],fov:50}} dpr={[1,2]}
-          gl={{toneMapping:THREE.ACESFilmicToneMapping,toneMappingExposure:1.0,antialias:true}}>
+          gl={{toneMapping:THREE.ACESFilmicToneMapping,toneMappingExposure:1.3,antialias:true}}>
           <Suspense fallback={null}>
             <color attach="background" args={["#020617"]}/>
             <fog attach="fog" args={["#020617",12,25]}/>
@@ -80,9 +78,6 @@ export default function ADNViewer() {
             <ambientLight intensity={0.12}/>
             <Environment preset="warehouse"/>
             <DNAHelix selected={selected} onSelect={setSelected}/>
-            <EffectComposer>
-              <Bloom luminanceThreshold={0.12} intensity={2.8} mipmapBlur levels={9}/>
-            </EffectComposer>
             <OrbitControls enablePan={false} minDistance={4} maxDistance={15}/>
           </Suspense>
         </Canvas>

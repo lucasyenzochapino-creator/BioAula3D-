@@ -2,7 +2,6 @@
 import { useRef, useState, Suspense, useMemo } from "react";
 import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
 import { OrbitControls, Html, Environment, Float, Stars } from "@react-three/drei";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 const partsInfo = [
@@ -29,12 +28,12 @@ function SynapticPulse() {
     const t = (clock.elapsedTime * 0.38) % 1;
     const pos = curve.getPoint(t);
     ref.current.position.copy(pos);
-    (ref.current.material as THREE.MeshPhysicalMaterial).emissiveIntensity = 4.0 + Math.sin(clock.elapsedTime * 28) * 0.8;
+    (ref.current.material as THREE.MeshPhysicalMaterial).emissiveIntensity = 3.5 + Math.sin(clock.elapsedTime * 28) * 0.8;
   });
   return (
     <mesh ref={ref}>
       <sphereGeometry args={[0.11, 12, 12]}/>
-      <meshPhysicalMaterial color="#22c55e" emissive="#22c55e" emissiveIntensity={4.0} roughness={0.05}/>
+      <meshPhysicalMaterial color="#22c55e" emissive="#22c55e" emissiveIntensity={3.5} roughness={0.05}/>
     </mesh>
   );
 }
@@ -94,7 +93,7 @@ export default function SistemaNerviosoViewer() {
     <div className="flex flex-col lg:flex-row gap-4 h-[calc(100vh-3.5rem)]">
       <div className="relative flex-1 min-h-[350px]">
         <Canvas camera={{position:[0,0,13],fov:50}} dpr={[1,2]}
-          gl={{toneMapping:THREE.ACESFilmicToneMapping,toneMappingExposure:1.0,antialias:true}}>
+          gl={{toneMapping:THREE.ACESFilmicToneMapping,toneMappingExposure:1.3,antialias:true}}>
           <Suspense fallback={null}>
             <color attach="background" args={["#020617"]}/>
             <fog attach="fog" args={["#020617",15,30]}/>
@@ -103,13 +102,10 @@ export default function SistemaNerviosoViewer() {
             <pointLight position={[3,3,3]} intensity={1.8} color="#a855f7"/>
             <Environment preset="warehouse"/>
             <Neuron selected={selected} onSelect={setSelected}/>
-            <EffectComposer>
-              <Bloom luminanceThreshold={0.12} intensity={2.6} mipmapBlur levels={8}/>
-            </EffectComposer>
             <OrbitControls enablePan={false} minDistance={6} maxDistance={20}/>
           </Suspense>
         </Canvas>
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-slate-500 text-xs">Arrastrá para rotar • Observá el impulso nervioso • Clic en una parte</div>
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-slate-500 text-xs">Observá el impulso eléctrico • Arrastrá para rotar • Clic en una parte</div>
       </div>
       <div className="lg:w-72 flex flex-col gap-3 p-4 overflow-y-auto">
         {active?(
