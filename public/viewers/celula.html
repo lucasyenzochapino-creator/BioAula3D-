@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Célula Animal 3D</title>
+<script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#020617;color:#fff;font-family:system-ui,sans-serif;overflow:hidden;height:100vh;display:flex}
+#wrap{flex:1;position:relative;min-width:0}
+#hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);color:#475569;font-size:11px;pointer-events:none;white-space:nowrap}
+#panel{width:272px;min-width:272px;background:#0f172a;border-left:1px solid #1e293b;display:flex;flex-direction:column;overflow:hidden}
+#ph{padding:16px;border-bottom:1px solid #1e293b}
+#ph h1{font-size:12px;font-weight:700;color:#4ade80;letter-spacing:.08em;text-transform:uppercase}
+#ph p{font-size:11px;color:#64748b;margin-top:2px}
+#pc{padding:16px;border-bottom:1px solid #1e293b;min-height:148px}
+#pc h2{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px}
+#pc .d{font-size:12px;color:#94a3b8;line-height:1.6;margin-bottom:6px}
+#pc .f{font-size:12px;color:#cbd5e1;line-height:1.65}
+#pc .x{margin-top:10px;font-size:11px;color:#64748b;background:none;border:none;cursor:pointer;padding:0}
+#pc .x:hover{color:#94a3b8}
+#pl{overflow-y:auto;padding:8px;flex:1}
+.ob{width:100%;text-align:left;padding:8px 10px;border-radius:8px;border:1px solid #1e293b;background:transparent;color:#94a3b8;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:9px;margin-bottom:3px;transition:.15s}
+.ob:hover{background:#1e293b;color:#e2e8f0;border-color:#334155}
+.ob.sel{background:#172554;border-color:#3b82f6;color:#fff}
+.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+@media(max-width:640px){#panel{display:none}}
+</style>
+</head>
+<body>
+<div id="wrap"><span id="hint">Arrastrá · Scroll · Clic en orgánulos</span></div>
+<div id="panel">
+  <div id="ph"><h1>🔬 Célula Animal</h1><p>Visualización 3D interactiva</p></div>
+  <div id="pc">
+    <div id="wmsg"><p class="d">Hacé clic en cualquier orgánulo para explorar su función.</p><p class="f" style="margin-top:6px">🖱 Rotá · Scroll para zoom</p></div>
+    <div id="det" style="display:none">
+      <h2 id="dn"></h2><p class="d" id="dd"></p><p class="f" id="df"></p>
+      <button class="x" onclick="clearSel()">✕ Cerrar</button>
+    </div>
+  </div>
+  <div id="pl"></div>
+</div>
+<script>
+const DATA=[
+  {id:'membrana',name:'Membrana Plasmática',color:'#22c55e',d:'Bicapa lipídica semipermeable.',f:'Controla el paso de sustancias. Sede de receptores y canales iónicos.'},
+  {id:'nucleo',name:'Núcleo',color:'#3b82f6',d:'Centro de control genético.',f:'Almacena el ADN. Dirige síntesis de proteínas y reproducción celular.'},
+  {id:'nucleolo',name:'Nucléolo',color:'#1d4ed8',d:'Estructura interna del núcleo.',f:'Sintetiza ARN ribosomal y ensambla subunidades ribosómicas.'},
+  {id:'mitocondria',name:'Mitocondria',color:'#f97316',d:'Central energética celular.',f:'Produce ATP por respiración aeróbica. Posee ADN propio circular.'},
+  {id:'golgi',name:'Aparato de Golgi',color:'#eab308',d:'Centro de distribución proteica.',f:'Modifica, empaqueta y envía proteínas y lípidos a sus destinos.'},
+  {id:'er_rugoso',name:'RE Rugoso',color:'#a855f7',d:'Membranas con ribosomas.',f:'Síntesis y procesamiento de proteínas de secreción.'},
+  {id:'er_liso',name:'RE Liso',color:'#ec4899',d:'Red membranosa sin ribosomas.',f:'Síntesis de lípidos, esteroides y detoxificación.'},
+  {id:'lisosoma',name:'Lisosoma',color:'#e879f9',d:'Vesícula digestiva.',f:'Degrada moléculas con enzimas hidrolíticas. Autofagia y apoptosis.'},
+  {id:'vacuola',name:'Vacuola',color:'#06b6d4',d:'Vesícula de almacenamiento.',f:'Almacena nutrientes, agua y productos de desecho.'},
+  {id:'ribosoma',name:'Ribosoma',color:'#10b981',d:'Nanomáquina proteica.',f:'Traduce ARNm en proteínas. Libre en citoplasma o unido al RE.'},
+  {id:'centrosoma',name:'Centrosoma',color:'#f43f5e',d:'Organizador de microtúbulos.',f:'Forma el huso mitótico en la división celular. Dos centríolos.'}
+];
+let sel=null;
+const pl=document.getElementById('pl');
+DATA.forEach(d=>{
+  const b=document.createElement('button');
+  b.className='ob';b.id='btn-'+d.id;
+  b.innerHTML=`<span class="dot" style="background:${d.color}"></span>${d.name}`;
+  b.onclick=()=>selectOrg(d.id);pl.appendChild(b);
+});
+function selectOrg(id){
+  sel=id;const d=DATA.find(x=>x.id===id);if(!d)return;
+  document.getElementById('wmsg').style.display='none';
+  document.getElementById('det').style.display='';
+  document.getElementById('dn').textContent=d.name;
+  document.getElementById('dd').textContent=d.d;
+  document.getElementById('df').textContent=d.f;
+  document.querySelectorAll('.ob').forEach(b=>b.classList.remove('sel'));
+  document.getElementById('btn-'+id)?.classList.add('sel');
+}
+function clearSel(){
+  sel=null;
+  document.getElementById('det').style.display='none';
+  document.getElementById('wmsg').style.display='';
+  document.querySelectorAll('.ob').forEach(b=>b.classList.remove('sel'));
+}
+// --- THREE.JS ---
+const W=document.getElementById('wrap');
+const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(W.offsetWidth,W.offsetHeight);
+renderer.outputEncoding=THREE.sRGBEncoding;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=0.85;
+W.appendChild(renderer.domElement);
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x020617);
+const camera=new THREE.PerspectiveCamera(50,W.offsetWidth/W.offsetHeight,0.1,100);
+camera.position.set(0,2,11);
+const controls=new THREE.OrbitControls(camera,renderer.domElement);
+controls.enableDamping=true;controls.dampingFactor=0.06;
+controls.enablePan=false;controls.minDistance=4.5;controls.maxDistance=18;
+scene.add(new THREE.AmbientLight(0xffffff,0.07));
+const pl1=new THREE.PointLight(0x22c55e,1.4,22);pl1.position.set(0,0,0);scene.add(pl1);
+const pl2=new THREE.PointLight(0x3b82f6,0.7,16);pl2.position.set(-4,3,3);scene.add(pl2);
+const pl3=new THREE.PointLight(0xf97316,0.6,14);pl3.position.set(3,-2,2);scene.add(pl3);
+// Background particles
+const bgG=new THREE.BufferGeometry(),bgP=[];
+for(let i=0;i<800;i++){const r=16+Math.random()*20,p=Math.acos(2*Math.random()-1),t=2*Math.PI*Math.random();bgP.push(r*Math.sin(p)*Math.cos(t),r*Math.sin(p)*Math.sin(t),r*Math.cos(p));}
+bgG.setAttribute('position',new THREE.BufferAttribute(new Float32Array(bgP),3));
+scene.add(new THREE.Points(bgG,new THREE.PointsMaterial({color:0x334155,size:0.09,sizeAttenuation:true})));
+// Clickables array
+const click=[];
+function addC(mesh,id){mesh.userData.id=id;scene.add(mesh);if(id)click.push(mesh);return mesh;}
+// Cell membrane
+const memMat=new THREE.MeshPhysicalMaterial({color:0x22c55e,emissive:new THREE.Color(0x22c55e),emissiveIntensity:0.18,transparent:true,opacity:0.16,roughness:0.04,side:THREE.FrontSide,depthWrite:false});
+const mem=addC(new THREE.Mesh(new THREE.SphereGeometry(3.85,64,64),memMat),'membrana');
+const memO=new THREE.Mesh(new THREE.SphereGeometry(3.88,64,64),new THREE.MeshPhysicalMaterial({color:0x22c55e,emissive:new THREE.Color(0x22c55e),emissiveIntensity:0.4,transparent:true,opacity:0.05,side:THREE.BackSide,depthWrite:false}));
+scene.add(memO);
+// Nucleus
+const nuc=addC(new THREE.Mesh(new THREE.SphereGeometry(1.15,48,48),new THREE.MeshPhysicalMaterial({color:0x3b82f6,emissive:new THREE.Color(0x3b82f6),emissiveIntensity:0.75,transparent:true,opacity:0.85,roughness:0.08})),'nucleo');
+const nucEnv=new THREE.Mesh(new THREE.SphereGeometry(1.19,48,48),new THREE.MeshPhysicalMaterial({color:0x60a5fa,emissive:new THREE.Color(0x60a5fa),emissiveIntensity:0.45,transparent:true,opacity:0.12,side:THREE.BackSide,depthWrite:false}));
+scene.add(nucEnv);
+addC(new THREE.Mesh(new THREE.SphereGeometry(0.43,32,32),new THREE.MeshPhysicalMaterial({color:0x1e40af,emissive:new THREE.Color(0x60a5fa),emissiveIntensity:1.3,roughness:0.28})),'nucleolo').position.set(0.1,-0.05,0.15);
+// Mitochondria
+function makeMito(pos,scl){
+  const g=new THREE.Group();g.position.set(...pos);g.rotation.z=Math.random()*Math.PI;
+  const outer=new THREE.Mesh(new THREE.SphereGeometry(1,24,14),new THREE.MeshPhysicalMaterial({color:0xf97316,emissive:new THREE.Color(0xf97316),emissiveIntensity:0.85,roughness:0.2}));
+  outer.scale.set(1,0.56,0.56);outer.userData.id='mitocondria';g.add(outer);click.push(outer);
+  for(let i=0;i<4;i++){const c=new THREE.Mesh(new THREE.TorusGeometry(0.28,0.045,6,18),new THREE.MeshPhysicalMaterial({color:0xfb923c,emissive:new THREE.Color(0xfb923c),emissiveIntensity:1.1,roughness:0.15}));c.position.x=-0.42+i*0.28;c.rotation.y=Math.PI/2;g.add(c);}
+  g.scale.setScalar(scl);scene.add(g);return g;
+}
+const m1=makeMito([2.3,0.3,0.4],1);const m2=makeMito([-2.0,1.0,0.2],0.85);const m3=makeMito([0.8,-2.2,1.0],0.9);
+// Golgi
+function makeGolgi(pos){
+  const g=new THREE.Group();g.position.set(...pos);
+  const cols=[0xfbbf24,0xf59e0b,0xd97706,0xb45309];
+  for(let i=0;i<4;i++){const d=new THREE.Mesh(new THREE.TorusGeometry(0.62-i*0.06,0.072,8,36),new THREE.MeshPhysicalMaterial({color:cols[i],emissive:new THREE.Color(cols[i]),emissiveIntensity:0.9,roughness:0.1,metalness:0.1}));d.position.y=i*0.17-0.25;d.scale.set(1,0.32,1);d.userData.id='golgi';g.add(d);click.push(d);}
+  [[0.65,0.35,0],[-0.6,-0.1,0.2],[0.5,-0.3,-0.15]].forEach(vp=>{const v=new THREE.Mesh(new THREE.SphereGeometry(0.1,8,8),new THREE.MeshPhysicalMaterial({color:0xfbbf24,emissive:new THREE.Color(0xfbbf24),emissiveIntensity:1.3}));v.position.set(...vp);g.add(v);});
+  scene.add(g);return g;
+}
+const golgi=makeGolgi([-1.5,-1.0,0.5]);
+// ER Rugoso
+function makeERR(pos){
+  const g=new THREE.Group();
+  [[new THREE.Vector3(0,0,0),new THREE.Vector3(0.8,0.3,0.1),new THREE.Vector3(1.5,0,0.3),new THREE.Vector3(1.8,0.4,0)],
+   [new THREE.Vector3(0,0,0),new THREE.Vector3(0.3,0.8,0.2),new THREE.Vector3(0.9,1.2,0.1)],
+   [new THREE.Vector3(0,0,0),new THREE.Vector3(-0.5,0.4,0.2),new THREE.Vector3(-1.0,0.7,0)]].forEach(pts=>{
+    const t=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),20,0.05,8,false),new THREE.MeshPhysicalMaterial({color:0xa855f7,emissive:new THREE.Color(0xa855f7),emissiveIntensity:0.85,roughness:0.2}));
+    t.userData.id='er_rugoso';g.add(t);click.push(t);
+  });
+  for(let i=0;i<14;i++){const r=new THREE.Mesh(new THREE.SphereGeometry(0.044,6,6),new THREE.MeshPhysicalMaterial({color:0x10b981,emissive:new THREE.Color(0x10b981),emissiveIntensity:1.6}));r.position.set(Math.random()*2.5-0.4,Math.random()*1.4-0.2,Math.random()*0.5-0.2);g.add(r);}
+  g.position.set(...pos);scene.add(g);return g;
+}
+makeERR([1.1,-1.5,0.2]);
+// ER Liso
+const erL=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([new THREE.Vector3(0,0,0),new THREE.Vector3(-0.6,0.5,0.3),new THREE.Vector3(-1.2,0.2,0.5),new THREE.Vector3(-1.6,0.7,0.2),new THREE.Vector3(-1.1,1.1,0.4)]),30,0.055,8,false),new THREE.MeshPhysicalMaterial({color:0xec4899,emissive:new THREE.Color(0xec4899),emissiveIntensity:0.85,roughness:0.15}));
+erL.position.set(-0.5,1.8,0.8);erL.userData.id='er_liso';scene.add(erL);click.push(erL);
+// Lysosomes
+[[1.8,1.8,-0.5],[-1.0,2.2,-0.8],[2.5,-0.8,-0.3],[-2.5,-0.5,0.8]].forEach(p=>{
+  const m=new THREE.Mesh(new THREE.SphereGeometry(0.22,16,16),new THREE.MeshPhysicalMaterial({color:0xe879f9,emissive:new THREE.Color(0xe879f9),emissiveIntensity:1.3,roughness:0.2}));
+  m.position.set(...p);m.userData.id='lisosoma';scene.add(m);click.push(m);
+});
+// Vacuola
+const vac=addC(new THREE.Mesh(new THREE.SphereGeometry(0.6,32,32),new THREE.MeshPhysicalMaterial({color:0x06b6d4,emissive:new THREE.Color(0x06b6d4),emissiveIntensity:0.75,transparent:true,opacity:0.72,roughness:0.06})),'vacuola');
+vac.position.set(-1.8,0.3,-1.2);
+// Free ribosomes
+[[0.8,0.9,1.8],[-0.5,1.0,1.9],[1.6,-0.4,1.6],[-1.2,-0.6,1.8],[0.2,1.4,-1.8],[-0.8,-1.2,-1.5]].forEach(p=>{
+  const r=new THREE.Mesh(new THREE.SphereGeometry(0.12,10,10),new THREE.MeshPhysicalMaterial({color:0x10b981,emissive:new THREE.Color(0x10b981),emissiveIntensity:1.85,roughness:0.15}));
+  r.position.set(...p);r.userData.id='ribosoma';scene.add(r);click.push(r);
+});
+// Centrosome
+const cg=new THREE.Group();cg.position.set(0.5,2.0,-0.8);
+[0,Math.PI/2].forEach(rx=>{const c=new THREE.Mesh(new THREE.CylinderGeometry(0.06,0.06,0.36,9),new THREE.MeshPhysicalMaterial({color:0xf43f5e,emissive:new THREE.Color(0xf43f5e),emissiveIntensity:1.2,roughness:0.18}));c.rotation.x=rx+Math.PI/2;c.userData.id='centrosoma';cg.add(c);click.push(c);});
+for(let i=0;i<8;i++){const a=(i/8)*Math.PI*2,ln=new THREE.Mesh(new THREE.CylinderGeometry(0.015,0.015,0.38,4),new THREE.MeshPhysicalMaterial({color:0xfb7185,emissive:new THREE.Color(0xfb7185),emissiveIntensity:1.0}));ln.position.set(Math.cos(a)*0.24,Math.sin(a)*0.24,0);ln.rotation.z=a+Math.PI/2;cg.add(ln);}
+scene.add(cg);
+// Cytoplasm particles
+const cytG=new THREE.BufferGeometry(),cytP=[];
+for(let i=0;i<280;i++){let x,y,z,r;do{x=(Math.random()-.5)*7.4;y=(Math.random()-.5)*7.4;z=(Math.random()-.5)*7.4;r=Math.sqrt(x*x+y*y+z*z);}while(r>3.75||r<1.3);cytP.push(x,y,z);}
+cytG.setAttribute('position',new THREE.BufferAttribute(new Float32Array(cytP),3));
+const cytPts=new THREE.Points(cytG,new THREE.PointsMaterial({color:0x22c55e,size:0.062,transparent:true,opacity:0.32,sizeAttenuation:true}));
+scene.add(cytPts);
+// Bloom
+const composer=new THREE.EffectComposer(renderer);
+composer.addPass(new THREE.RenderPass(scene,camera));
+const bloom=new THREE.UnrealBloomPass(new THREE.Vector2(W.offsetWidth,W.offsetHeight),1.85,0.4,0.09);
+composer.addPass(bloom);
+// Raycaster
+const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
+renderer.domElement.addEventListener('click',e=>{
+  const rc=renderer.domElement.getBoundingClientRect();
+  mouse.x=((e.clientX-rc.left)/rc.width)*2-1;
+  mouse.y=-((e.clientY-rc.top)/rc.height)*2+1;
+  ray.setFromCamera(mouse,camera);
+  const hits=ray.intersectObjects(click,true);
+  if(hits.length){let o=hits[0].object;while(o&&!o.userData.id)o=o.parent;if(o&&o.userData.id)selectOrg(o.userData.id);}
+});
+// Animate
+const clock=new THREE.Clock();
+click.forEach(o=>{if(o.material)o.userData.baseEI=o.material.emissiveIntensity;});
+function animate(){
+  requestAnimationFrame(animate);
+  const t=clock.getElapsedTime();
+  controls.update();
+  mem.rotation.y+=0.0007;mem.rotation.x+=0.0003;memO.rotation.y-=0.0004;
+  const np=1+Math.sin(t*.8)*.022;nuc.scale.setScalar(np);nucEnv.scale.setScalar(np);
+  m1.rotation.y+=0.004;m2.rotation.y-=0.003;m3.rotation.z+=0.0025;
+  golgi.position.y=-1.0+Math.sin(t*.5)*.05;
+  click.forEach(o=>{
+    if(!o.material)return;
+    const base=o.userData.baseEI||0.8;
+    o.material.emissiveIntensity=o.userData.id===sel?base*2.8+Math.sin(t*3)*.5:base;
+  });
+  const pa=cytPts.geometry.attributes.position.array;
+  for(let i=0;i<pa.length;i+=3){pa[i]+=Math.sin(t*.3+i)*.0008;pa[i+1]+=Math.cos(t*.25+i)*.0008;}
+  cytPts.geometry.attributes.position.needsUpdate=true;
+  composer.render();
+}
+window.addEventListener('resize',()=>{
+  camera.aspect=W.offsetWidth/W.offsetHeight;camera.updateProjectionMatrix();
+  renderer.setSize(W.offsetWidth,W.offsetHeight);composer.setSize(W.offsetWidth,W.offsetHeight);
+});
+animate();
+</script>
+</body>
+</html>

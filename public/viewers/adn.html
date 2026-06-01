@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ADN 3D</title>
+<script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{background:#020617;color:#fff;font-family:system-ui,sans-serif;overflow:hidden;height:100vh;display:flex}
+#wrap{flex:1;position:relative;min-width:0}#hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);color:#475569;font-size:11px;pointer-events:none;white-space:nowrap}
+#panel{width:272px;min-width:272px;background:#0f172a;border-left:1px solid #1e293b;display:flex;flex-direction:column;overflow:hidden}
+#ph{padding:16px;border-bottom:1px solid #1e293b}#ph h1{font-size:12px;font-weight:700;color:#60a5fa;letter-spacing:.08em;text-transform:uppercase}#ph p{font-size:11px;color:#64748b;margin-top:2px}
+#pc{padding:16px;border-bottom:1px solid #1e293b;min-height:148px}#pc h2{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px}#pc .d{font-size:12px;color:#94a3b8;line-height:1.6;margin-bottom:6px}#pc .f{font-size:12px;color:#cbd5e1;line-height:1.65}
+#pc .x{margin-top:10px;font-size:11px;color:#64748b;background:none;border:none;cursor:pointer;padding:0}#pc .x:hover{color:#94a3b8}
+#pl{overflow-y:auto;padding:8px;flex:1}.ob{width:100%;text-align:left;padding:8px 10px;border-radius:8px;border:1px solid #1e293b;background:transparent;color:#94a3b8;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:9px;margin-bottom:3px;transition:.15s}.ob:hover{background:#1e293b;color:#e2e8f0;border-color:#334155}.ob.sel{background:#172554;border-color:#3b82f6;color:#fff}.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}.base-lbl{font-size:18px;font-weight:900;margin-bottom:4px}
+@media(max-width:640px){#panel{display:none}}
+</style></head>
+<body>
+<div id="wrap"><span id="hint">Arrastrá · Scroll · Clic en una base</span></div>
+<div id="panel">
+  <div id="ph"><h1>🧬 Doble Hélice ADN</h1><p>Ácido desoxirribonucleico</p></div>
+  <div id="pc">
+    <div id="wmsg"><p class="d">Clic en una base nitrogenada para ver su información.</p><p class="f" style="margin-top:6px">La hélice rota automáticamente.</p></div>
+    <div id="det" style="display:none"><div id="blbl" class="base-lbl"></div><h2 id="dn"></h2><p class="d" id="dd"></p><p class="f" id="df"></p><button class="x" onclick="clearSel()">✕ Cerrar</button></div>
+  </div>
+  <div id="pl"></div>
+</div>
+<script>
+const BASES={A:{name:'Adenina',color:'#ef4444',pair:'T',d:'Base púrica (doble anillo).',f:'Se empareja con Timina mediante 2 puentes de hidrógeno. Codifica información genética.'},T:{name:'Timina',color:'#60a5fa',pair:'A',d:'Base pirimidínica (anillo simple).',f:'Se empareja con Adenina. Solo en ADN (no en ARN, donde la reemplaza el Uracilo).'},G:{name:'Guanina',color:'#22c55e',pair:'C',d:'Base púrica más común.',f:'Se empareja con Citosina mediante 3 puentes de hidrógeno. Triple enlace = más estable.'},C:{name:'Citosina',color:'#f59e0b',pair:'G',d:'Base pirimidínica compacta.',f:'Se empareja con Guanina. Puede mutar a Uracilo por deaminación espontánea.'}};
+const COMP={A:'T',T:'A',G:'C',C:'G'};
+const SEQ=['A','T','G','C','A','G','T','C','G','A','T','G','C','A','T','G','C','A','G','T'];
+let sel=null;
+const pl=document.getElementById('pl');
+Object.entries(BASES).forEach(([k,v])=>{
+  const b=document.createElement('button');b.className='ob';b.id='btn-'+k;
+  b.innerHTML=`<span class="dot" style="background:${v.color}"></span>${v.name} (${k})`;
+  b.onclick=()=>selectBase(k);pl.appendChild(b);
+});
+function selectBase(k){
+  sel=k;const b=BASES[k];if(!b)return;
+  document.getElementById('wmsg').style.display='none';
+  document.getElementById('det').style.display='';
+  document.getElementById('blbl').textContent=k;
+  document.getElementById('blbl').style.color=b.color;
+  document.getElementById('dn').textContent=b.name;
+  document.getElementById('dd').textContent=b.d;
+  document.getElementById('df').textContent=b.f+' Par: '+b.pair+' ('+BASES[b.pair].name+')';
+  document.querySelectorAll('.ob').forEach(b=>b.classList.remove('sel'));
+  document.getElementById('btn-'+k)?.classList.add('sel');
+}
+function clearSel(){sel=null;document.getElementById('det').style.display='none';document.getElementById('wmsg').style.display='';document.querySelectorAll('.ob').forEach(b=>b.classList.remove('sel'));}
+const W=document.getElementById('wrap');
+const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(W.offsetWidth,W.offsetHeight);
+renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=0.9;
+W.appendChild(renderer.domElement);
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x020617);
+const camera=new THREE.PerspectiveCamera(50,W.offsetWidth/W.offsetHeight,0.1,100);
+camera.position.set(0,0,11);
+const controls=new THREE.OrbitControls(camera,renderer.domElement);
+controls.enableDamping=true;controls.dampingFactor=0.06;controls.enablePan=false;controls.minDistance=4;controls.maxDistance=18;
+scene.add(new THREE.AmbientLight(0xffffff,0.1));
+const dl=new THREE.DirectionalLight(0x60a5fa,0.8);dl.position.set(5,5,5);scene.add(dl);
+// Stars
+const stG=new THREE.BufferGeometry(),stP=[];
+for(let i=0;i<1800;i++){const r=30+Math.random()*50,p=Math.acos(2*Math.random()-1),t=2*Math.PI*Math.random();stP.push(r*Math.sin(p)*Math.cos(t),r*Math.sin(p)*Math.sin(t),r*Math.cos(p));}
+stG.setAttribute('position',new THREE.BufferAttribute(new Float32Array(stP),3));
+scene.add(new THREE.Points(stG,new THREE.PointsMaterial({color:0x94a3b8,size:0.12,sizeAttenuation:true})));
+const helixG=new THREE.Group();
+const turns=4,H=10,R=1.6,segs=200;
+// Strands
+[0,Math.PI].forEach((off,si)=>{
+  const pts=[];for(let i=0;i<=segs;i++){const t=i/segs,a=t*Math.PI*2*turns+off;pts.push(new THREE.Vector3(Math.cos(a)*R,t*H-H/2,Math.sin(a)*R));}
+  const m=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),200,0.09,8,false),new THREE.MeshPhysicalMaterial({color:si?0x64748b:0x94a3b8,emissive:new THREE.Color(si?0x64748b:0x94a3b8),emissiveIntensity:0.8,roughness:0.1,metalness:0.4}));
+  helixG.add(m);
+});
+// Base pairs
+const click=[];
+const baseMeshes={};
+SEQ.forEach((base,i)=>{
+  const t=i/(SEQ.length-1),angle=t*Math.PI*2*turns,y=t*H-H/2,pair=COMP[base];
+  const x1=Math.cos(angle)*R,z1=Math.sin(angle)*R,x2=Math.cos(angle+Math.PI)*R,z2=Math.sin(angle+Math.PI)*R;
+  [base,pair].forEach((b,bi)=>{
+    const x=bi?x2:x1,z=bi?z2:z1;
+    const m=new THREE.Mesh(new THREE.SphereGeometry(0.22,12,12),new THREE.MeshPhysicalMaterial({color:new THREE.Color(BASES[b].color),emissive:new THREE.Color(BASES[b].color),emissiveIntensity:1.9,roughness:0.08}));
+    m.position.set(x,y,z);m.userData.id=b;helixG.add(m);click.push(m);
+    if(!baseMeshes[b])baseMeshes[b]=[];
+    baseMeshes[b].push(m);
+  });
+  const bridge=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([new THREE.Vector3(x1,y,z1),new THREE.Vector3(0,y,0),new THREE.Vector3(x2,y,z2)]),5,0.038,6,false),new THREE.MeshPhysicalMaterial({color:0x475569,transparent:true,opacity:0.45}));
+  helixG.add(bridge);
+});
+scene.add(helixG);
+const composer=new THREE.EffectComposer(renderer);
+composer.addPass(new THREE.RenderPass(scene,camera));
+const bloom=new THREE.UnrealBloomPass(new THREE.Vector2(W.offsetWidth,W.offsetHeight),2.0,0.45,0.08);
+composer.addPass(bloom);
+const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
+renderer.domElement.addEventListener('click',e=>{
+  const rc=renderer.domElement.getBoundingClientRect();
+  mouse.x=((e.clientX-rc.left)/rc.width)*2-1;mouse.y=-((e.clientY-rc.top)/rc.height)*2+1;
+  ray.setFromCamera(mouse,camera);
+  const hits=ray.intersectObjects(click);
+  if(hits.length)selectBase(hits[0].object.userData.id);
+});
+const clock=new THREE.Clock();
+function animate(){
+  requestAnimationFrame(animate);
+  const t=clock.getElapsedTime();
+  controls.update();
+  helixG.rotation.y+=0.005;
+  click.forEach(m=>{
+    const base=1.9;
+    m.material.emissiveIntensity=m.userData.id===sel?base*2.5+Math.sin(t*4)*.6:base;
+  });
+  composer.render();
+}
+window.addEventListener('resize',()=>{camera.aspect=W.offsetWidth/W.offsetHeight;camera.updateProjectionMatrix();renderer.setSize(W.offsetWidth,W.offsetHeight);composer.setSize(W.offsetWidth,W.offsetHeight);});
+animate();
+</script></body></html>
