@@ -1,7 +1,8 @@
 "use client";
 import { useRef, useMemo, useState, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Html, Environment } from "@react-three/drei";
+import { OrbitControls, Html, Environment, Stars } from "@react-three/drei";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 const BASES = [
@@ -20,7 +21,7 @@ function HelixStrand({angleOffset,color}:{angleOffset:number;color:string}) {
     for(let i=0;i<=300;i++){const t=i/300;const a=t*Math.PI*4+angleOffset;pts.push(new THREE.Vector3(Math.cos(a)*1.4,t*8-4,Math.sin(a)*1.4));}
     return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),200,0.09,8,false);
   },[angleOffset]);
-  return <mesh geometry={geom}><meshPhysicalMaterial color={color} emissive={color} emissiveIntensity={0.3} roughness={0.15} metalness={0.4}/></mesh>;
+  return <mesh geometry={geom}><meshPhysicalMaterial color={color} emissive={color} emissiveIntensity={1.0} roughness={0.12} metalness={0.45}/></mesh>;
 }
 
 function DNAHelix({selected,onSelect}:{selected:string|null;onSelect:(b:string)=>void}) {
@@ -46,16 +47,16 @@ function DNAHelix({selected,onSelect}:{selected:string|null;onSelect:(b:string)=
         return (
           <group key={i}>
             <mesh position={[p.x1,p.y,p.z1]} onClick={(e)=>{e.stopPropagation();onSelect(p.base);}}>
-              <sphereGeometry args={[0.2,16,16]}/>
-              <meshPhysicalMaterial color={BASE_COLORS[p.base]} emissive={BASE_COLORS[p.base]} emissiveIntensity={selected===p.base?1.2:0.45} roughness={0.2} metalness={0.1}/>
+              <sphereGeometry args={[0.21,16,16]}/>
+              <meshPhysicalMaterial color={BASE_COLORS[p.base]} emissive={BASE_COLORS[p.base]} emissiveIntensity={selected===p.base?4.0:1.8} roughness={0.1} metalness={0.1}/>
             </mesh>
             <mesh position={[p.x2,p.y,p.z2]} onClick={(e)=>{e.stopPropagation();onSelect(p.pair);}}>
-              <sphereGeometry args={[0.2,16,16]}/>
-              <meshPhysicalMaterial color={BASE_COLORS[p.pair]} emissive={BASE_COLORS[p.pair]} emissiveIntensity={selected===p.pair?1.2:0.45} roughness={0.2} metalness={0.1}/>
+              <sphereGeometry args={[0.21,16,16]}/>
+              <meshPhysicalMaterial color={BASE_COLORS[p.pair]} emissive={BASE_COLORS[p.pair]} emissiveIntensity={selected===p.pair?4.0:1.8} roughness={0.1} metalness={0.1}/>
             </mesh>
             <mesh position={[mid.x,mid.y,mid.z]} quaternion={[q.x,q.y,q.z,q.w]}>
               <cylinderGeometry args={[0.035,0.035,len,6]}/>
-              <meshStandardMaterial color="#475569" transparent opacity={0.55}/>
+              <meshStandardMaterial color="#475569" transparent opacity={0.5}/>
             </mesh>
           </group>
         );
@@ -70,13 +71,18 @@ export default function ADNViewer() {
   return (
     <div className="flex flex-col lg:flex-row gap-4 h-[calc(100vh-3.5rem)]">
       <div className="relative flex-1 min-h-[350px]">
-        <Canvas camera={{position:[0,0,9],fov:50}} dpr={[1,2]}>
+        <Canvas camera={{position:[0,0,9],fov:50}} dpr={[1,2]}
+          gl={{toneMapping:THREE.ACESFilmicToneMapping,toneMappingExposure:1.0,antialias:true}}>
           <Suspense fallback={null}>
             <color attach="background" args={["#020617"]}/>
             <fog attach="fog" args={["#020617",12,25]}/>
-            <ambientLight intensity={0.2}/>
+            <Stars radius={80} depth={40} count={1500} factor={2.5} fade speed={0.4}/>
+            <ambientLight intensity={0.12}/>
             <Environment preset="warehouse"/>
             <DNAHelix selected={selected} onSelect={setSelected}/>
+            <EffectComposer>
+              <Bloom luminanceThreshold={0.12} intensity={2.8} mipmapBlur levels={9}/>
+            </EffectComposer>
             <OrbitControls enablePan={false} minDistance={4} maxDistance={15}/>
           </Suspense>
         </Canvas>

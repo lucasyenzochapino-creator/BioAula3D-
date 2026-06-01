@@ -1,7 +1,8 @@
 "use client";
 import { useRef, useState, Suspense } from "react";
 import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
-import { OrbitControls, Html, Environment, Float, ContactShadows } from "@react-three/drei";
+import { OrbitControls, Html, Environment, Float, ContactShadows, Sparkles } from "@react-three/drei";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 const parts = [
@@ -17,23 +18,23 @@ const parts = [
 
 function PlantPart({part,selected,onSelect}:{part:typeof parts[0];selected:boolean;onSelect:(id:string)=>void}) {
   const [hov,setHov]=useState(false);
-  const ei=selected?1.0:hov?0.5:0.2;
+  const ei=selected?3.5:hov?2.0:0.9;
   const col=selected?"#fff":part.color;
   const handlers={onClick:(e:ThreeEvent<MouseEvent>)=>{e.stopPropagation();onSelect(part.id);},onPointerOver:()=>setHov(true),onPointerOut:()=>setHov(false)};
   if(part.shape==="wall") {
     return (
       <mesh scale={part.scale} {...handlers}>
         <sphereGeometry args={[3.6,64,64]}/>
-        <meshPhysicalMaterial color={part.color} transmission={part.id==="pared"?0.88:0.75} roughness={0.08} thickness={0.5} ior={1.35} side={THREE.FrontSide} emissive={part.color} emissiveIntensity={0.05}/>
+        <meshPhysicalMaterial color={part.color} transmission={part.id==="pared"?0.88:0.75} roughness={0.06} thickness={0.5} ior={1.35} side={THREE.FrontSide} emissive={part.color} emissiveIntensity={0.15}/>
       </mesh>
     );
   }
   return (
     <Float speed={1.5} rotationIntensity={0.4} floatIntensity={0.3} position={part.pos}>
       <group scale={part.scale} {...handlers}>
-        {part.shape==="capsule"&&<mesh><capsuleGeometry args={[0.28,0.8,10,20]}/><meshPhysicalMaterial color={col} emissive={part.color} emissiveIntensity={ei} roughness={0.25} metalness={0.05}/></mesh>}
-        {part.shape==="vacuola"&&<mesh><sphereGeometry args={[0.6,32,32]}/><meshPhysicalMaterial color={col} emissive={part.color} emissiveIntensity={ei} roughness={0.1} metalness={0} transmission={0.6} thickness={2} ior={1.35}/></mesh>}
-        {part.shape==="sphere"&&<mesh><sphereGeometry args={[0.6,32,32]}/><meshPhysicalMaterial color={col} emissive={part.color} emissiveIntensity={ei} roughness={0.3} metalness={0} transmission={part.id==="nucleo"?0.5:0} thickness={part.id==="nucleo"?1:0} ior={1.4}/></mesh>}
+        {part.shape==="capsule"&&<mesh><capsuleGeometry args={[0.28,0.8,10,20]}/><meshPhysicalMaterial color={col} emissive={part.color} emissiveIntensity={ei} roughness={0.2} metalness={0.05}/></mesh>}
+        {part.shape==="vacuola"&&<mesh><sphereGeometry args={[0.6,32,32]}/><meshPhysicalMaterial color={col} emissive={part.color} emissiveIntensity={ei*0.7} roughness={0.08} metalness={0} transmission={0.6} thickness={2} ior={1.35}/></mesh>}
+        {part.shape==="sphere"&&<mesh><sphereGeometry args={[0.6,32,32]}/><meshPhysicalMaterial color={col} emissive={part.color} emissiveIntensity={ei} roughness={0.25} metalness={0} transmission={part.id==="nucleo"?0.5:0} thickness={part.id==="nucleo"?1:0} ior={1.4}/></mesh>}
         {(hov||selected)&&<Html distanceFactor={8} center><div className="bg-black/80 text-white text-xs px-2 py-1 rounded-lg border border-white/20 whitespace-nowrap pointer-events-none">{part.name}</div></Html>}
       </group>
     </Float>
@@ -46,16 +47,21 @@ export default function PlantaViewer() {
   return (
     <div className="flex flex-col lg:flex-row gap-4 h-[calc(100vh-3.5rem)]">
       <div className="relative flex-1 min-h-[350px]">
-        <Canvas camera={{position:[0,2,10],fov:50}} dpr={[1,2]}>
+        <Canvas camera={{position:[0,2,10],fov:50}} dpr={[1,2]}
+          gl={{toneMapping:THREE.ACESFilmicToneMapping,toneMappingExposure:1.1,antialias:true}}>
           <Suspense fallback={null}>
             <color attach="background" args={["#020617"]}/>
             <fog attach="fog" args={["#020617",18,30]}/>
-            <ambientLight intensity={0.15}/>
-            <pointLight position={[0,0,0]} intensity={0.5} color="#22c55e"/>
+            <ambientLight intensity={0.08}/>
+            <pointLight position={[0,0,0]} intensity={0.8} color="#22c55e"/>
             <Environment preset="warehouse"/>
+            <Sparkles count={120} scale={7} size={2.0} speed={0.35} color="#4ade80" opacity={0.2}/>
             {parts.filter(p=>p.shape==="wall").map(p=><PlantPart key={p.id} part={p} selected={selected===p.id} onSelect={setSelected}/>)}
             {parts.filter(p=>p.shape!=="wall").map(p=><PlantPart key={p.id} part={p} selected={selected===p.id} onSelect={setSelected}/>)}
-            <ContactShadows position={[0,-4.2,0]} opacity={0.15} scale={20} blur={2.5}/>
+            <ContactShadows position={[0,-4.2,0]} opacity={0.12} scale={20} blur={2.5}/>
+            <EffectComposer>
+              <Bloom luminanceThreshold={0.15} intensity={2.2} mipmapBlur levels={8}/>
+            </EffectComposer>
             <OrbitControls enablePan={false} minDistance={5} maxDistance={14}/>
           </Suspense>
         </Canvas>

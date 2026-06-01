@@ -1,7 +1,8 @@
 "use client";
 import { useRef, useState, Suspense } from "react";
 import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
-import { OrbitControls, Html, Environment, Float, ContactShadows } from "@react-three/drei";
+import { OrbitControls, Html, Environment, Float, ContactShadows, Sparkles } from "@react-three/drei";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 interface Org {
@@ -26,15 +27,15 @@ const nucleusInfo = {id:"nucleo",name:"Núcleo",color:"#3b82f6",desc:"Centro de 
 
 function OrgMesh({org,selected,onSelect}:{org:Org;selected:boolean;onSelect:(id:string)=>void}) {
   const [hov,setHov]=useState(false);
-  const ei = selected?1.0:hov?0.5:0.2;
-  const col = selected?"#fff":org.color;
+  const ei=selected?3.5:hov?2.0:0.9;
+  const col=selected?"#fff":org.color;
   const h={onClick:(e:ThreeEvent<MouseEvent>)=>{e.stopPropagation();onSelect(org.id);},onPointerOver:()=>setHov(true),onPointerOut:()=>setHov(false)};
   return (
     <Float speed={1.5} rotationIntensity={0.4} floatIntensity={0.35} position={org.position}>
       <group scale={org.scale} {...h}>
-        {org.shape==="capsule"&&<mesh><capsuleGeometry args={[0.28,0.8,10,20]}/><meshPhysicalMaterial color={col} emissive={org.color} emissiveIntensity={ei} roughness={0.25} metalness={0.05}/></mesh>}
-        {org.shape==="golgi"&&[0,0.18,0.36,0.52].map((y,i)=>(<mesh key={i} position={[0,y-0.27,0]}><torusGeometry args={[0.55-i*0.05,0.07,10,40]}/><meshPhysicalMaterial color={col} emissive={org.color} emissiveIntensity={ei} roughness={0.2} metalness={0.1}/></mesh>))}
-        {org.shape==="sphere"&&<mesh><sphereGeometry args={[0.6,32,32]}/><meshPhysicalMaterial color={col} emissive={org.color} emissiveIntensity={ei} roughness={0.3} metalness={0} transmission={org.id==="vacuola"?0.55:0} thickness={org.id==="vacuola"?1.5:0} ior={1.35}/></mesh>}
+        {org.shape==="capsule"&&<mesh><capsuleGeometry args={[0.28,0.8,10,20]}/><meshPhysicalMaterial color={col} emissive={org.color} emissiveIntensity={ei} roughness={0.15} metalness={0.05}/></mesh>}
+        {org.shape==="golgi"&&[0,0.18,0.36,0.52].map((y,i)=>(<mesh key={i} position={[0,y-0.27,0]}><torusGeometry args={[0.55-i*0.05,0.07,10,40]}/><meshPhysicalMaterial color={col} emissive={org.color} emissiveIntensity={ei} roughness={0.1} metalness={0.15}/></mesh>))}
+        {org.shape==="sphere"&&<mesh><sphereGeometry args={[0.6,32,32]}/><meshPhysicalMaterial color={col} emissive={org.color} emissiveIntensity={ei} roughness={0.2} metalness={0} transmission={org.id==="vacuola"?0.55:0} thickness={org.id==="vacuola"?1.5:0} ior={1.35}/></mesh>}
         {(hov||selected)&&<Html distanceFactor={8} center><div className="bg-black/80 text-white text-xs px-2 py-1 rounded-lg border border-white/20 whitespace-nowrap pointer-events-none">{org.name}</div></Html>}
       </group>
     </Float>
@@ -45,8 +46,8 @@ function NucleusComp({selected,onSelect}:{selected:boolean;onSelect:(id:string)=
   const [hov,setHov]=useState(false);
   return (
     <group onClick={(e:ThreeEvent<MouseEvent>)=>{e.stopPropagation();onSelect("nucleo");}} onPointerOver={()=>setHov(true)} onPointerOut={()=>setHov(false)}>
-      <mesh><sphereGeometry args={[1.08,48,48]}/><meshPhysicalMaterial color="#3b82f6" transmission={0.65} roughness={0.1} thickness={0.6} ior={1.4} emissive="#3b82f6" emissiveIntensity={selected?0.8:0.15}/></mesh>
-      <mesh position={[0.1,-0.05,0.15]}><sphereGeometry args={[0.38,24,24]}/><meshPhysicalMaterial color="#1e40af" roughness={0.4} emissive="#3b82f6" emissiveIntensity={selected?0.6:0.25}/></mesh>
+      <mesh><sphereGeometry args={[1.08,48,48]}/><meshPhysicalMaterial color="#3b82f6" transmission={0.65} roughness={0.08} thickness={0.6} ior={1.4} emissive="#3b82f6" emissiveIntensity={selected?3.0:0.8}/></mesh>
+      <mesh position={[0.1,-0.05,0.15]}><sphereGeometry args={[0.38,24,24]}/><meshPhysicalMaterial color="#1e40af" roughness={0.3} emissive="#60a5fa" emissiveIntensity={selected?2.5:1.2}/></mesh>
       {(hov||selected)&&<Html distanceFactor={8} center><div className="bg-black/80 text-white text-xs px-2 py-1 rounded-lg border border-white/20 whitespace-nowrap pointer-events-none">Núcleo</div></Html>}
     </group>
   );
@@ -55,7 +56,7 @@ function NucleusComp({selected,onSelect}:{selected:boolean;onSelect:(id:string)=
 function Membrane() {
   const ref=useRef<THREE.Mesh>(null);
   useFrame((_,d)=>{if(ref.current)ref.current.rotation.y+=d*0.04;});
-  return <mesh ref={ref}><sphereGeometry args={[3.65,64,64]}/><meshPhysicalMaterial color="#4ade80" transmission={0.93} roughness={0.05} thickness={0.4} ior={1.33} side={THREE.FrontSide} emissive="#22c55e" emissiveIntensity={0.05}/></mesh>;
+  return <mesh ref={ref}><sphereGeometry args={[3.65,64,64]}/><meshPhysicalMaterial color="#4ade80" transmission={0.93} roughness={0.04} thickness={0.4} ior={1.33} side={THREE.FrontSide} emissive="#22c55e" emissiveIntensity={0.2}/></mesh>;
 }
 
 export default function CelulaViewer() {
@@ -65,17 +66,22 @@ export default function CelulaViewer() {
   return (
     <div className="flex flex-col lg:flex-row gap-4 h-[calc(100vh-3.5rem)]">
       <div className="relative flex-1 min-h-[350px]">
-        <Canvas camera={{position:[0,2,10],fov:50}} dpr={[1,2]}>
+        <Canvas camera={{position:[0,2,10],fov:50}} dpr={[1,2]}
+          gl={{toneMapping:THREE.ACESFilmicToneMapping,toneMappingExposure:1.1,antialias:true}}>
           <Suspense fallback={null}>
             <color attach="background" args={["#020617"]}/>
             <fog attach="fog" args={["#020617",18,30]}/>
-            <ambientLight intensity={0.15}/>
-            <pointLight position={[0,0,0]} intensity={0.6} color="#22c55e"/>
+            <ambientLight intensity={0.08}/>
+            <pointLight position={[0,0,0]} intensity={1.0} color="#22c55e"/>
             <Environment preset="warehouse"/>
+            <Sparkles count={140} scale={7} size={2.2} speed={0.4} color="#22c55e" opacity={0.22}/>
             <Membrane/>
             <NucleusComp selected={selected==="nucleo"} onSelect={setSelected}/>
             {organelles.map(org=><OrgMesh key={org.id} org={org} selected={selected===org.id} onSelect={setSelected}/>)}
-            <ContactShadows position={[0,-4.2,0]} opacity={0.15} scale={20} blur={2.5}/>
+            <ContactShadows position={[0,-4.2,0]} opacity={0.12} scale={20} blur={2.5}/>
+            <EffectComposer>
+              <Bloom luminanceThreshold={0.15} intensity={2.4} mipmapBlur levels={8}/>
+            </EffectComposer>
             <OrbitControls enablePan={false} minDistance={5} maxDistance={14}/>
           </Suspense>
         </Canvas>
