@@ -1,319 +1,86 @@
 "use client";
-import { useRef, useState, Suspense } from "react";
-import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
-import { OrbitControls, Html, Sphere, Torus, Text } from "@react-three/drei";
-import * as THREE from "three";
-
-interface Organelle {
-  id: string;
-  name: string;
-  position: [number, number, number];
-  color: string;
-  scale: [number, number, number];
-  shape: "sphere" | "torus" | "elongated";
-  desc: string;
-  func: string;
-}
-
-const organelles: Organelle[] = [
-  {
-    id: "nucleo",
-    name: "Núcleo",
-    position: [0, 0, 0],
-    color: "#3b82f6",
-    scale: [1, 1, 1],
-    shape: "sphere",
-    desc: "Centro de control celular",
-    func: "Contiene el ADN y dirige todas las actividades de la célula.",
-  },
-  {
-    id: "mitocondria1",
-    name: "Mitocondria",
-    position: [2.5, 0.5, 0.5],
-    color: "#f97316",
-    scale: [0.7, 0.45, 0.45],
-    shape: "elongated",
-    desc: "Planta de energía de la célula",
-    func: "Produce ATP mediante la respiración celular aeróbica.",
-  },
-  {
-    id: "mitocondria2",
-    name: "Mitocondria",
-    position: [-2.2, 1.2, 0.3],
-    color: "#f97316",
-    scale: [0.6, 0.4, 0.4],
-    shape: "elongated",
-    desc: "Planta de energía de la célula",
-    func: "Produce ATP mediante la respiración celular aeróbica.",
-  },
-  {
-    id: "reticulo-er",
-    name: "Retículo Endoplasmático",
-    position: [1.2, -1.5, 0.2],
-    color: "#a855f7",
-    scale: [1.2, 0.3, 0.5],
-    shape: "elongated",
-    desc: "Sistema de transporte interno",
-    func: "Transporta proteínas y lípidos dentro de la célula.",
-  },
-  {
-    id: "golgi",
-    name: "Aparato de Golgi",
-    position: [-1.5, -1.2, 0.5],
-    color: "#eab308",
-    scale: [0.9, 0.25, 0.6],
-    shape: "torus",
-    desc: "Centro de procesamiento y distribución",
-    func: "Modifica, empaqueta y distribuye proteínas y lípidos.",
-  },
-  {
-    id: "lisosoma",
-    name: "Lisosoma",
-    position: [1.8, 1.8, -0.5],
-    color: "#ec4899",
-    scale: [0.4, 0.4, 0.4],
-    shape: "sphere",
-    desc: "Sistema digestivo celular",
-    func: "Contiene enzimas digestivas que descomponen moléculas.",
-  },
-  {
-    id: "ribosoma1",
-    name: "Ribosoma",
-    position: [0.8, 0.8, 1.8],
-    color: "#22c55e",
-    scale: [0.2, 0.2, 0.2],
-    shape: "sphere",
-    desc: "Fábrica de proteínas",
-    func: "Sintetiza proteínas leyendo el ARN mensajero.",
-  },
-  {
-    id: "ribosoma2",
-    name: "Ribosoma",
-    position: [-0.5, 0.9, 2.1],
-    color: "#22c55e",
-    scale: [0.2, 0.2, 0.2],
-    shape: "sphere",
-    desc: "Fábrica de proteínas",
-    func: "Sintetiza proteínas leyendo el ARN mensajero.",
-  },
-  {
-    id: "vacuola",
-    name: "Vacuola",
-    position: [-1.8, 0.2, -1.2],
-    color: "#06b6d4",
-    scale: [0.6, 0.6, 0.6],
-    shape: "sphere",
-    desc: "Almacén celular",
-    func: "Almacena nutrientes, agua y productos de desecho.",
-  },
-  {
-    id: "centrosoma",
-    name: "Centrosoma",
-    position: [0.5, 2.0, -0.8],
-    color: "#f43f5e",
-    scale: [0.3, 0.3, 0.3],
-    shape: "sphere",
-    desc: "Centro organizador",
-    func: "Organiza los microtúbulos y participa en la división celular.",
-  },
-];
-
-function OrganelleModel({
-  org,
-  selected,
-  onSelect,
-}: {
-  org: Organelle;
-  selected: boolean;
-  onSelect: (id: string) => void;
-}) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const [hovered, setHovered] = useState(false);
-
-  useFrame((_, delta) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += delta * 0.4;
-    }
-  });
-
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    e.stopPropagation();
-    onSelect(org.id);
-  };
-
-  const color = selected ? "#ffffff" : hovered ? "#e2e8f0" : org.color;
-
-  return (
-    <group position={org.position}>
-      {org.shape === "torus" ? (
-        <Torus
-          ref={meshRef as React.Ref<THREE.Mesh>}
-          args={[0.5, 0.18, 8, 20]}
-          scale={org.scale}
-          onClick={handleClick}
-          onPointerOver={() => setHovered(true)}
-          onPointerOut={() => setHovered(false)}
-        >
-          <meshStandardMaterial
-            color={color}
-            emissive={color}
-            emissiveIntensity={selected ? 0.6 : hovered ? 0.3 : 0.15}
-            roughness={0.3}
-            metalness={0.2}
-          />
-        </Torus>
-      ) : (
-        <Sphere
-          ref={meshRef as React.Ref<THREE.Mesh>}
-          args={[0.6, 32, 32]}
-          scale={org.scale}
-          onClick={handleClick}
-          onPointerOver={() => setHovered(true)}
-          onPointerOut={() => setHovered(false)}
-        >
-          <meshStandardMaterial
-            color={color}
-            emissive={color}
-            emissiveIntensity={selected ? 0.6 : hovered ? 0.3 : 0.15}
-            roughness={0.4}
-            metalness={0.1}
-            transparent
-            opacity={0.92}
-          />
-        </Sphere>
-      )}
-      {(hovered || selected) && (
-        <Html distanceFactor={8} center>
-          <div className="bg-slate-900/90 text-white text-xs px-2 py-1 rounded-lg border border-slate-600 whitespace-nowrap pointer-events-none">
-            {org.name}
-          </div>
-        </Html>
-      )}
-    </group>
-  );
-}
-
-function CellMembrane() {
-  const meshRef = useRef<THREE.Mesh>(null);
-  useFrame((_, delta) => {
-    if (meshRef.current) meshRef.current.rotation.y += delta * 0.05;
-  });
-  return (
-    <Sphere ref={meshRef} args={[3.5, 48, 48]}>
-      <meshStandardMaterial
-        color="#22c55e"
-        transparent
-        opacity={0.07}
-        side={THREE.BackSide}
-        roughness={0.8}
-      />
-    </Sphere>
-  );
-}
-
-function NucleusShell() {
-  return (
-    <Sphere args={[1.05, 32, 32]}>
-      <meshStandardMaterial
-        color="#3b82f6"
-        transparent
-        opacity={0.18}
-        wireframe={false}
-        roughness={0.5}
-      />
-    </Sphere>
-  );
-}
-
-function Scene({ selected, onSelect }: { selected: string | null; onSelect: (id: string) => void }) {
-  return (
-    <>
-      <ambientLight intensity={0.4} />
-      <pointLight position={[5, 5, 5]} intensity={1.2} color="#ffffff" />
-      <pointLight position={[-5, -3, -5]} intensity={0.6} color="#3b82f6" />
-      <pointLight position={[0, 0, 0]} intensity={0.4} color="#22c55e" />
-      <CellMembrane />
-      <NucleusShell />
-      {organelles.map((org) => (
-        <OrganelleModel
-          key={org.id}
-          org={org}
-          selected={selected === org.id}
-          onSelect={onSelect}
-        />
-      ))}
-      <OrbitControls enablePan={false} minDistance={4} maxDistance={12} />
-    </>
-  );
-}
+import SketchfabViewer from "@/components/SketchfabViewer";
 
 export default function CelulaViewer() {
-  const [selected, setSelected] = useState<string | null>(null);
-  const selectedOrg = organelles.find((o) => o.id === selected);
-
   return (
-    <div className="flex flex-col lg:flex-row gap-4 h-[calc(100vh-3.5rem)]">
-      {/* Canvas 3D */}
-      <div className="relative flex-1 min-h-[350px]">
-        <Canvas camera={{ position: [0, 2, 9], fov: 50 }}>
-          <Suspense fallback={null}>
-            <Scene selected={selected} onSelect={setSelected} />
-          </Suspense>
-        </Canvas>
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-slate-500 text-xs">
-          Arrastrá para rotar • Scroll para zoom • Clic en un orgánulo
-        </div>
-      </div>
-
-      {/* Panel lateral */}
-      <div className="lg:w-72 flex flex-col gap-3 p-4 overflow-y-auto">
-        {selectedOrg ? (
-          <div className="bg-bio-card border border-slate-700 rounded-2xl p-5">
-            <div
-              className="w-10 h-10 rounded-xl mb-3 flex items-center justify-center text-lg font-bold"
-              style={{ background: selectedOrg.color + "33", border: `2px solid ${selectedOrg.color}` }}
-            >
-              🔬
-            </div>
-            <h2 className="text-xl font-bold text-white mb-1">{selectedOrg.name}</h2>
-            <p className="text-slate-400 text-sm mb-3 italic">{selectedOrg.desc}</p>
-            <p className="text-slate-300 text-sm leading-relaxed">{selectedOrg.func}</p>
-            <button
-              onClick={() => setSelected(null)}
-              className="mt-4 text-xs text-slate-500 hover:text-slate-300 transition-colors"
-            >
-              ✕ Cerrar
-            </button>
-          </div>
-        ) : (
-          <div className="bg-bio-card border border-slate-700 rounded-2xl p-5">
-            <h2 className="text-lg font-bold text-green-400 mb-2">Célula Animal</h2>
-            <p className="text-slate-400 text-sm mb-4">
-              Hacé clic en cualquier orgánulo para ver su nombre y función.
-            </p>
-          </div>
-        )}
-
-        <div className="space-y-2">
-          {organelles.filter((o, i, arr) => arr.findIndex(x => x.name === o.name) === i).map((org) => (
-            <button
-              key={org.id}
-              onClick={() => setSelected(org.id)}
-              className={`w-full text-left px-4 py-3 rounded-xl border transition-all text-sm flex items-center gap-3 ${
-                selected === org.id
-                  ? "bg-slate-700 border-slate-500 text-white"
-                  : "bg-bio-card border-slate-800 text-slate-400 hover:border-slate-600 hover:text-slate-200"
-              }`}
-            >
-              <span
-                className="w-3 h-3 rounded-full flex-shrink-0"
-                style={{ background: org.color }}
-              />
-              {org.name}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
+    <SketchfabViewer
+      uid="0d9f7f4257224975b2ef83a283709b2f"
+      title="Célula Animal"
+      subtitle="🔬 Biología celular"
+      accent="#4ade80"
+      intro="Explorá un modelo 3D real de una célula eucariota animal. Tocá los puntos ⓘ en el modelo o las estructuras de abajo."
+      structures={[
+        {
+          name: "Núcleo",
+          emoji: "🔵",
+          color: "#3b82f6",
+          simple: "Es el 'cerebro' de la célula — guarda la información genética.",
+          full: "Organela delimitada por la envoltura nuclear (doble membrana con poros). Contiene el ADN organizado en cromosomas y el nucléolo. Dirige la transcripción del ARNm y por ende toda la síntesis proteica.",
+        },
+        {
+          name: "Mitocondria",
+          emoji: "🟠",
+          color: "#f97316",
+          simple: "Produce la energía que necesita la célula para vivir.",
+          full: "Organela de doble membrana con crestas internas. Realiza la fosforilación oxidativa (cadena respiratoria) para sintetizar ATP. Posee su propio ADN circular, evidencia de origen endosimbiótico.",
+        },
+        {
+          name: "Retículo Endoplasmático",
+          emoji: "🟣",
+          color: "#a855f7",
+          simple: "Es como una red de caminos que transporta proteínas por la célula.",
+          full: "Sistema de membranas interconectadas. El RER (rugoso) tiene ribosomas adosados y sintetiza proteínas de secreción; el REL (liso) sintetiza lípidos y detoxifica sustancias.",
+        },
+        {
+          name: "Aparato de Golgi",
+          emoji: "🟡",
+          color: "#eab308",
+          simple: "Empaqueta y envía proteínas a donde se necesitan, como un correo postal.",
+          full: "Conjunto de cisternas membranosas apiladas (cis, medial, trans). Modifica proteínas con azúcares (glicosilación), las clasifica y envía en vesículas hacia la membrana plasmática o lisosomas.",
+        },
+        {
+          name: "Lisosoma",
+          emoji: "🩷",
+          color: "#ec4899",
+          simple: "Digiere y recicla los desechos y partes viejas de la célula.",
+          full: "Vesícula con enzimas hidrolíticas activas a pH ácido (~4,5). Realiza autofagia (recicla orgánulos dañados) y heterofagia (degrada material externo). Su ruptura puede desencadenar apoptosis.",
+        },
+        {
+          name: "Ribosoma",
+          emoji: "🟢",
+          color: "#22c55e",
+          simple: "Fabrica las proteínas que la célula necesita para funcionar.",
+          full: "Complejo ARN-proteínas formado por subunidad mayor (60S) y menor (40S). Lee el ARNm y sintetiza cadenas polipeptídicas mediante la traducción. Puede estar libre en citoplasma o unido al RER.",
+        },
+        {
+          name: "Membrana Plasmática",
+          emoji: "🫧",
+          color: "#14b8a6",
+          simple: "Es la 'piel' de la célula: controla qué entra y qué sale.",
+          full: "Bicapa fosfolipídica con proteínas integrales y periféricas (modelo mosaico fluido). Regula el transporte de iones y moléculas mediante canales, bombas y transporte activo/pasivo.",
+        },
+        {
+          name: "Centrosoma",
+          emoji: "⭐",
+          color: "#f43f5e",
+          simple: "Organiza la división celular y ayuda a mover los cromosomas.",
+          full: "Par de centríolos rodeados de material pericentriolar. Nuclea los microtúbulos del huso mitótico durante la división. Clave en la organización del citoesqueleto y la formación de cilios.",
+        },
+        {
+          name: "Vacuola",
+          emoji: "🔷",
+          color: "#06b6d4",
+          simple: "Almacena agua, nutrientes o desechos como un depósito.",
+          full: "Vesícula membranosa (tonoplasto). En células animales son pequeñas y temporales; participan en endocitosis/exocitosis. Regulan la osmosis y eliminan sustancias de desecho.",
+        },
+        {
+          name: "Citoesqueleto",
+          emoji: "🕸️",
+          color: "#94a3b8",
+          simple: "Es como los huesos de la célula: le da forma y permite que se mueva.",
+          full: "Red de filamentos proteicos: microtúbulos (tubulina), filamentos de actina y filamentos intermedios. Mantiene la forma celular, posiciona orgánulos, permite la migración y la división celular.",
+        },
+      ]}
+    />
   );
 }

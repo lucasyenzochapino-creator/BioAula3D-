@@ -1,116 +1,86 @@
 "use client";
-import { useState, useRef, Suspense } from "react";
-import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
-import { OrbitControls, Sphere, Cylinder, Html } from "@react-three/drei";
-import * as THREE from "three";
-
-const systems = [
-  { id: "circulatorio", name: "Sistema Circulatorio", color: "#ef4444", icon: "🫀",
-    desc: "Transporte de sangre, oxígeno y nutrientes por todo el cuerpo.",
-    parts: ["Corazón", "Arterias", "Venas", "Capilares"] },
-  { id: "respiratorio", name: "Sistema Respiratorio", color: "#3b82f6", icon: "🫁",
-    desc: "Intercambio gaseoso entre el organismo y el ambiente.",
-    parts: ["Pulmones", "Tráquea", "Bronquios", "Alvéolos"] },
-  { id: "digestivo", name: "Sistema Digestivo", color: "#f59e0b", icon: "🍽️",
-    desc: "Procesa los alimentos y absorbe los nutrientes necesarios.",
-    parts: ["Estómago", "Intestino delgado", "Intestino grueso", "Hígado"] },
-  { id: "nervioso", name: "Sistema Nervioso", color: "#a855f7", icon: "🧠",
-    desc: "Coordina las funciones del cuerpo mediante impulsos eléctricos.",
-    parts: ["Cerebro", "Médula espinal", "Nervios periféricos", "Neuronas"] },
-  { id: "oseo", name: "Sistema Óseo", color: "#cbd5e1", icon: "🦴",
-    desc: "Sostén y protección del cuerpo. Produce células sanguíneas.",
-    parts: ["Cráneo", "Columna vertebral", "Costillas", "Fémur"] },
-];
-
-const bodyParts = [
-  { id: "cabeza", systemId: "nervioso", position: [0, 3.2, 0] as [number,number,number], scale: [1, 1, 1] as [number,number,number], shape: "sphere" },
-  { id: "torso", systemId: "circulatorio", position: [0, 1.2, 0] as [number,number,number], scale: [0.9, 1.6, 0.7] as [number,number,number], shape: "sphere" },
-  { id: "pulmones", systemId: "respiratorio", position: [0, 1.5, 0.3] as [number,number,number], scale: [0.6, 0.9, 0.4] as [number,number,number], shape: "sphere" },
-  { id: "abdomen", systemId: "digestivo", position: [0, -0.2, 0] as [number,number,number], scale: [0.75, 1.0, 0.65] as [number,number,number], shape: "sphere" },
-  { id: "brazo-izq", systemId: "oseo", position: [-1.6, 1.2, 0] as [number,number,number], scale: [0.25, 1.5, 0.25] as [number,number,number], shape: "cylinder" },
-  { id: "brazo-der", systemId: "oseo", position: [1.6, 1.2, 0] as [number,number,number], scale: [0.25, 1.5, 0.25] as [number,number,number], shape: "cylinder" },
-  { id: "pierna-izq", systemId: "oseo", position: [-0.55, -2.0, 0] as [number,number,number], scale: [0.3, 1.8, 0.3] as [number,number,number], shape: "cylinder" },
-  { id: "pierna-der", systemId: "oseo", position: [0.55, -2.0, 0] as [number,number,number], scale: [0.3, 1.8, 0.3] as [number,number,number], shape: "cylinder" },
-];
-
-const sysColors: Record<string, string> = {
-  circulatorio: "#ef4444", respiratorio: "#3b82f6", digestivo: "#f59e0b",
-  nervioso: "#a855f7", oseo: "#cbd5e1",
-};
-
-function BodyPart({ part, selected, onSelect }: { part: typeof bodyParts[0]; selected: boolean; onSelect: (id: string) => void }) {
-  const ref = useRef<THREE.Mesh>(null);
-  const [hov, setHov] = useState(false);
-  const color = sysColors[part.systemId];
-  const sys = systems.find(s => s.id === part.systemId);
-  const handleClick = (e: ThreeEvent<MouseEvent>) => { e.stopPropagation(); onSelect(part.systemId); };
-
-  return (
-    <group position={part.position}>
-      {part.shape === "cylinder" ? (
-        <Cylinder ref={ref} args={[1, 1, 1, 16]} scale={part.scale} onClick={handleClick} onPointerOver={() => setHov(true)} onPointerOut={() => setHov(false)}>
-          <meshStandardMaterial color={color} emissive={color} emissiveIntensity={selected ? 0.6 : hov ? 0.3 : 0.1} roughness={0.5} />
-        </Cylinder>
-      ) : (
-        <Sphere ref={ref} args={[0.7, 24, 24]} scale={part.scale} onClick={handleClick} onPointerOver={() => setHov(true)} onPointerOut={() => setHov(false)}>
-          <meshStandardMaterial color={color} emissive={color} emissiveIntensity={selected ? 0.6 : hov ? 0.3 : 0.1} roughness={0.5} transparent opacity={0.9} />
-        </Sphere>
-      )}
-      {(hov || selected) && sys && (
-        <Html distanceFactor={8} center>
-          <div className="bg-slate-900/90 text-white text-xs px-2 py-1 rounded-lg border border-slate-600 whitespace-nowrap pointer-events-none">{sys.name}</div>
-        </Html>
-      )}
-    </group>
-  );
-}
+import SketchfabViewer from "@/components/SketchfabViewer";
 
 export default function CuerpoHumanoViewer() {
-  const [selected, setSelected] = useState<string | null>(null);
-  const active = systems.find(s => s.id === selected);
-
   return (
-    <div className="flex flex-col lg:flex-row gap-4 h-[calc(100vh-3.5rem)]">
-      <div className="relative flex-1 min-h-[350px]">
-        <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
-          <Suspense fallback={null}>
-            <ambientLight intensity={0.5} />
-            <pointLight position={[5, 8, 5]} intensity={1.5} />
-            <pointLight position={[-5, -5, 5]} intensity={0.5} color="#3b82f6" />
-            {bodyParts.map(p => (
-              <BodyPart key={p.id} part={p} selected={selected === p.systemId} onSelect={setSelected} />
-            ))}
-            <OrbitControls enablePan={false} minDistance={5} maxDistance={16} />
-          </Suspense>
-        </Canvas>
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-slate-500 text-xs">Clic en cualquier parte del cuerpo</div>
-      </div>
-      <div className="lg:w-72 flex flex-col gap-3 p-4 overflow-y-auto">
-        {active ? (
-          <div className="bg-bio-card border border-slate-700 rounded-2xl p-5">
-            <div className="text-3xl mb-2">{active.icon}</div>
-            <h2 className="text-xl font-bold text-white mb-2">{active.name}</h2>
-            <p className="text-slate-300 text-sm mb-3 leading-relaxed">{active.desc}</p>
-            <ul className="space-y-1">
-              {active.parts.map(p => <li key={p} className="text-slate-400 text-sm flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-slate-500" />{p}</li>)}
-            </ul>
-            <button onClick={() => setSelected(null)} className="mt-4 text-xs text-slate-500 hover:text-slate-300">✕ Cerrar</button>
-          </div>
-        ) : (
-          <div className="bg-bio-card border border-slate-700 rounded-2xl p-5">
-            <h2 className="text-lg font-bold text-red-400 mb-2">Cuerpo Humano</h2>
-            <p className="text-slate-400 text-sm">Clic en cualquier parte para explorar sus sistemas.</p>
-          </div>
-        )}
-        <div className="space-y-2">
-          {systems.map(s => (
-            <button key={s.id} onClick={() => setSelected(s.id)} className={`w-full text-left px-4 py-3 rounded-xl border transition-all text-sm flex items-center gap-3 ${selected === s.id ? "bg-slate-700 border-slate-500 text-white" : "bg-bio-card border-slate-800 text-slate-400 hover:border-slate-600 hover:text-white"}`}>
-              <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: sysColors[s.id] }} />
-              <span>{s.icon} {s.name}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
+    <SketchfabViewer
+      uid="035316622877438cb62de673b8f19217"
+      title="Cuerpo Humano"
+      subtitle="🫀 Anatomía humana"
+      accent="#f87171"
+      intro="Modelo 3D real del cuerpo humano con órganos internos. Explorá los sistemas que mantienen tu cuerpo funcionando."
+      structures={[
+        {
+          name: "Corazón",
+          emoji: "🫀",
+          color: "#ef4444",
+          simple: "El motor del cuerpo: bombea sangre con oxígeno a todos los órganos.",
+          full: "Músculo cardíaco (miocardio) con cuatro cámaras: 2 aurículas y 2 ventrículos. El ventrículo izquierdo impulsa la circulación sistémica; el derecho, la circulación pulmonar. Latidos regulados por el nódulo sinoauricular (marcapasos natural), ~70 latidos/min en reposo.",
+        },
+        {
+          name: "Pulmones",
+          emoji: "🫁",
+          color: "#3b82f6",
+          simple: "Toman el oxígeno del aire y expulsan el dióxido de carbono que sobra.",
+          full: "Órganos esponjosos con ~300 millones de alvéolos pulmonares. El intercambio gaseoso ocurre por difusión simple en la membrana alvéolo-capilar (grosor ~0,5 µm). La hemoglobina transporta O₂ (oxihemoglobina) y CO₂ en forma de bicarbonato.",
+        },
+        {
+          name: "Cerebro",
+          emoji: "🧠",
+          color: "#a855f7",
+          simple: "El órgano más complejo: controla todo lo que hacés, pensás y sentís.",
+          full: "~86 mil millones de neuronas y cantidad similar de células gliales. Dividido en corteza cerebral (pensamiento, sensaciones), cerebelo (coordinación), tronco encefálico (funciones vitales). Consume ~20% de la energía corporal total aunque pesa solo ~1,4 kg.",
+        },
+        {
+          name: "Hígado",
+          emoji: "🟤",
+          color: "#92400e",
+          simple: "El laboratorio del cuerpo: filtra la sangre y fabrica muchas sustancias útiles.",
+          full: "El órgano interno más grande (~1,5 kg). Realiza más de 500 funciones: metabolismo de carbohidratos, lípidos y proteínas; síntesis de proteínas plasmáticas (albúmina, factores de coagulación); detoxificación; producción de bilis; almacenamiento de glucógeno.",
+        },
+        {
+          name: "Estómago",
+          emoji: "💛",
+          color: "#f59e0b",
+          simple: "Digiere la comida con jugos ácidos y la convierte en una pasta lista para absorber.",
+          full: "Órgano muscular que produce HCl (pH 1,5–3,5) y pepsinógeno (proenzima activada a pepsina). El moco gástrico protege la pared. La quimificación produce el quimo que pasa al intestino delgado. Peristaltismo mezclador cada ~20 segundos.",
+        },
+        {
+          name: "Riñones",
+          emoji: "🩷",
+          color: "#ec4899",
+          simple: "Filtran la sangre y eliminan los desechos en la orina.",
+          full: "Cada riñón contiene ~1 millón de nefronas. Filtran ~180 L de plasma/día; reabsorben el 99% produciendo ~1,5 L de orina. Regulan el equilibrio ácido-base, la presión arterial (RAAS) y la eritropoyesis (EPO).",
+        },
+        {
+          name: "Intestino Delgado",
+          emoji: "🟡",
+          color: "#ca8a04",
+          simple: "Absorbe los nutrientes de la comida digerida hacia la sangre.",
+          full: "~6–7 m de largo con vellosidades y microvellosidades (borde en cepillo) que amplifican la superficie absortiva hasta ~200 m². Divide en duodeno, yeyuno e íleon. Absorbe aminoácidos, monosacáridos, ácidos grasos, vitaminas y minerales.",
+        },
+        {
+          name: "Columna Vertebral",
+          emoji: "🦴",
+          color: "#cbd5e1",
+          simple: "El eje del cuerpo: protege la médula espinal y nos permite estar de pie.",
+          full: "33 vértebras divididas en cervicales (7), torácicas (12), lumbares (5), sacras (5 fusionadas) y coccígeas. Discos intervertebrales de fibrocartílago actúan como amortiguadores. Protege la médula espinal y soporta el peso corporal.",
+        },
+        {
+          name: "Médula Espinal",
+          emoji: "⚡",
+          color: "#6366f1",
+          simple: "El cable principal del sistema nervioso que conecta el cerebro con el cuerpo.",
+          full: "Cordón nervioso de ~45 cm que recorre el canal vertebral. Conduce impulsos aferentes (sensoriales, ascendentes) y eferentes (motores, descendentes). Gestiona reflejos medulares sin intervención cerebral. Contiene 31 pares de nervios espinales.",
+        },
+        {
+          name: "Músculos",
+          emoji: "💪",
+          color: "#f97316",
+          simple: "Permiten todos los movimientos del cuerpo, desde caminar hasta respirar.",
+          full: "Más de 600 músculos esqueléticos (~40% del peso corporal). La contracción muscular se basa en el deslizamiento de filamentos de actina y miosina (ciclo de puentes cruzados). ATP, Ca²⁺ y la troponina-tropomiosina regulan la contracción.",
+        },
+      ]}
+    />
   );
 }

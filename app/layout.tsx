@@ -4,16 +4,30 @@ import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "BioAula3D — Biología Interactiva",
-  description: "Explorá células, ADN, órganos y el cuerpo humano en 3D interactivo. App educativa de biología para estudiantes.",
+  description: "Explorá células, ADN, neuronas y el cuerpo humano en 3D. App educativa de biología para primaria y secundaria.",
   manifest: "/manifest.json",
-  appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "BioAula3D" },
-  icons: { icon: "/icon-192.png", apple: "/icon-192.png" },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "BioAula3D",
+    startupImage: "/icon-512.png",
+  },
+  icons: {
+    icon: [
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/icon-192.png", sizes: "192x192", type: "image/png" }],
+  },
 };
 
 export const viewport: Viewport = {
   themeColor: "#22c55e",
   width: "device-width",
   initialScale: 1,
+  minimumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

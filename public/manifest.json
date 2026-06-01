@@ -1,13 +1,27 @@
 {
-  "name": "BioAula3D",
+  "name": "BioAula3D — Biología Interactiva",
   "short_name": "BioAula3D",
-  "description": "Biología interactiva en 3D para estudiantes",
+  "description": "Explorá células, ADN, neuronas y el cuerpo humano en 3D. App educativa de biología para primaria y secundaria.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "any",
   "background_color": "#0f172a",
   "theme_color": "#22c55e",
+  "lang": "es",
+  "categories": ["education", "science"],
   "icons": [
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
