@@ -14,6 +14,7 @@ const links = [
   { href: "/planta", label: "Planta" },
   { href: "/quiz", label: "Quiz" },
   { href: "/glosario", label: "Glosario" },
+  { href: "/tareas", label: "📋 Tareas" },
 ];
 
 export default function Navbar() {
@@ -21,8 +22,9 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-bio-dark/90 backdrop-blur border-b border-slate-800">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
-        <Link href="/" className="text-green-400 font-bold text-xl tracking-tight flex items-center gap-2">
-          🧬 BioAula3D
+        <Link href="/" className="text-green-400 font-bold text-xl tracking-tight flex items-center gap-2 flex-shrink-0">
+          <img src="/icon.svg" alt="" className="w-8 h-8" />
+          <span className="hidden sm:inline">BioAula3D</span>
         </Link>
         <div className="flex items-center gap-1 overflow-x-auto hide-scrollbar">
           {links.map((l) => (
