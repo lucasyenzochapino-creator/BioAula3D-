@@ -96,10 +96,19 @@ const modules = [
   {
     slug: "glosario",
     title: "Glosario",
-    desc: "Todos los términos biológicos de los 5 módulos. Buscá cualquier concepto con explicación para primaria y secundaria.",
+    desc: "Más de 65 términos biológicos con explicación para primaria y secundaria. Buscá, filtrá y descargá el PDF.",
     icon: "📖",
     color: "from-slate-500 to-slate-600",
     glow: "glow-teal",
+    parts: null,
+  },
+  {
+    slug: "tareas",
+    title: "Banco de Tareas",
+    desc: "Para docentes: 18 tareas listas con actividades y preguntas. Filtrá por primaria o secundaria y descargá el PDF para imprimir.",
+    icon: "📋",
+    color: "from-violet-500 to-purple-600",
+    glow: "glow-purple",
     parts: null,
   },
 ];
