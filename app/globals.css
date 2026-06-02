@@ -40,3 +40,45 @@ html, body {
 .glow-purple {
   box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
 }
+
+/* Viewer layout — mobile-first, responsive */
+.viewer-layout {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 3.5rem);
+  overflow: hidden;
+}
+.viewer-3d {
+  flex: none;
+  height: 52vh;
+  min-height: 52vh;
+  position: relative;
+  background: #000;
+}
+.viewer-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #0f172a;
+  border-top: 1px solid #1e293b;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Landscape phones (projector mode) + tablets */
+@media (orientation: landscape) and (max-height: 600px),
+       screen and (min-width: 768px) {
+  .viewer-layout { flex-direction: row; }
+  .viewer-3d { flex: 1; height: 100%; min-height: 0; }
+  .viewer-panel {
+    flex: none;
+    width: 280px;
+    min-width: 280px;
+    border-top: none;
+    border-left: 1px solid #1e293b;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .viewer-panel { width: 320px; min-width: 320px; }
+}

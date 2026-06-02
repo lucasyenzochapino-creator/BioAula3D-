@@ -1,2 +1,8 @@
-import PlantaViewer from "@/components/PlantaViewer";
-export default function PlantaPage() { return <PlantaViewer />; }
+"use client";
+import dynamic from "next/dynamic";
+
+const PlantaViewer = dynamic(() => import("@/components/PlantaViewer"), { ssr: false });
+
+export default function PlantaPage() {
+  return <PlantaViewer />;
+}
