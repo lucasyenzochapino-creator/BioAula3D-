@@ -17,19 +17,27 @@ interface Question {
 }
 
 const MODULE_STYLE: Record<string, { emoji: string; gradient: string; color: string }> = {
-  "Célula Animal": { emoji: "🔬", gradient: "from-green-600 to-teal-700", color: "#4ade80" },
-  "ADN":           { emoji: "🧬", gradient: "from-blue-600 to-purple-700", color: "#60a5fa" },
-  "Neurona":       { emoji: "🧠", gradient: "from-purple-600 to-pink-700",  color: "#a78bfa" },
-  "Célula Vegetal":{ emoji: "🌿", gradient: "from-emerald-600 to-green-700", color: "#34d399" },
-  "Cuerpo Humano": { emoji: "🫀", gradient: "from-red-600 to-orange-700",   color: "#f87171" },
+  "Célula Animal":       { emoji: "🔬", gradient: "from-green-600 to-teal-700",    color: "#4ade80" },
+  "ADN":                 { emoji: "🧬", gradient: "from-blue-600 to-purple-700",   color: "#60a5fa" },
+  "Neurona":             { emoji: "🧠", gradient: "from-purple-600 to-pink-700",   color: "#a78bfa" },
+  "Célula Vegetal":      { emoji: "🌿", gradient: "from-emerald-600 to-green-700", color: "#34d399" },
+  "Cuerpo Humano":       { emoji: "🫀", gradient: "from-red-600 to-orange-700",    color: "#f87171" },
+  "Corazón":             { emoji: "🫀", gradient: "from-red-600 to-rose-700",      color: "#fb7185" },
+  "Cerebro":             { emoji: "🧠", gradient: "from-purple-600 to-violet-700", color: "#c084fc" },
+  "Sistema Respiratorio":{ emoji: "🫁", gradient: "from-sky-600 to-cyan-700",      color: "#38bdf8" },
+  "Sistema Digestivo":   { emoji: "🍽️", gradient: "from-orange-600 to-amber-700",  color: "#fb923c" },
 };
 
 const MODULE_UID: Record<string, string> = {
-  "Célula Animal":  "0d9f7f4257224975b2ef83a283709b2f",
-  "ADN":            "212e5422645f4432a61dc2f3aac3c8c8",
-  "Neurona":        "03a5173f3d2e46958b6f8be81b1c88be",
-  "Célula Vegetal": "0640c7a14f41400fbdac382c7de1d776",
-  "Cuerpo Humano":  "035316622877438cb62de673b8f19217",
+  "Célula Animal":        "0d9f7f4257224975b2ef83a283709b2f",
+  "ADN":                  "212e5422645f4432a61dc2f3aac3c8c8",
+  "Neurona":              "03a5173f3d2e46958b6f8be81b1c88be",
+  "Célula Vegetal":       "0640c7a14f41400fbdac382c7de1d776",
+  "Cuerpo Humano":        "035316622877438cb62de673b8f19217",
+  "Corazón":              "10472481071e4375b8233289c277d411",
+  "Cerebro":              "28c8971e11334e8b97a2a0d6235992e8",
+  "Sistema Respiratorio": "ce09f4099a68467880f46e61eb9a3531",
+  "Sistema Digestivo":    "2d3771dd6b8940ffa2312bd97aca6fc3",
 };
 
 const questions: Question[] = [
@@ -56,6 +64,26 @@ const questions: Question[] = [
   { id: 18, level: "secundaria", module: "Célula Vegetal", question: "¿Cuál es la función principal de los plasmodesmos?", options: ["Realizar fotosíntesis", "Conectar células vecinas para transporte simplástico", "Almacenar agua", "Sintetizar proteínas"], answer: 1, explanation: "Los plasmodesmos son canales entre células vegetales que permiten el transporte simplástico de agua, nutrientes y señales sin cruzar membranas." },
   { id: 19, level: "secundaria", module: "Cuerpo Humano", question: "¿Qué estructura del riñón realiza la filtración de la sangre?", options: ["Uréter", "Pelvis renal", "Nefrona", "Médula renal"], answer: 2, explanation: "Cada riñón contiene ~1 millón de nefronas. Filtran ~180 L de plasma/día y reabsorben el 99%, produciendo ~1,5 L de orina final." },
   { id: 20, level: "secundaria", module: "Cuerpo Humano", question: "¿Qué proceso genera la contracción muscular?", options: ["Ciclo A-T de bases", "Deslizamiento de filamentos actina-miosina", "Fosforilación oxidativa", "Ciclo de Calvin"], answer: 1, explanation: "Las cabezas de miosina se unen a actina y avanzan usando ATP, acortando el sarcómero. El Ca²⁺ libera el sitio de unión controlado por tropomiosina." },
+
+  // --- PRIMARIA: nuevos módulos ---
+  { id: 21, level: "primaria", module: "Corazón", question: "¿Cuántas cámaras tiene el corazón humano?", options: ["2", "3", "4", "6"], answer: 2, explanation: "El corazón tiene 4 cámaras: 2 aurículas (reciben sangre) y 2 ventrículos (bombean sangre). Las del lado izquierdo manejan sangre con oxígeno y las del derecho sangre sin oxígeno." },
+  { id: 22, level: "primaria", module: "Corazón", question: "¿Qué vaso sanguíneo lleva sangre con oxígeno a todo el cuerpo?", options: ["Vena cava", "Arteria pulmonar", "Aorta", "Vena pulmonar"], answer: 2, explanation: "La aorta es la arteria más grande del cuerpo y lleva la sangre oxigenada desde el ventrículo izquierdo hacia todos los órganos." },
+  { id: 23, level: "primaria", module: "Cerebro", question: "¿Qué parte del cerebro controla el equilibrio y la coordinación?", options: ["Lóbulo frontal", "Tálamo", "Cerebelo", "Hipocampo"], answer: 2, explanation: "El cerebelo coordina los movimientos precisos y el equilibrio. Cuando aprendemos a andar en bici, el cerebelo va 'automatizando' el movimiento." },
+  { id: 24, level: "primaria", module: "Cerebro", question: "¿Qué parte del cerebro guarda los recuerdos nuevos?", options: ["Cerebelo", "Hipocampo", "Tronco encefálico", "Aorta"], answer: 1, explanation: "El hipocampo está en el interior del cerebro y es fundamental para crear nuevos recuerdos. El Alzheimer afecta primero al hipocampo." },
+  { id: 25, level: "primaria", module: "Sistema Respiratorio", question: "¿Qué pequeñas bolsitas en los pulmones intercambian el oxígeno con la sangre?", options: ["Bronquios", "Alvéolos", "Tráquea", "Pleura"], answer: 1, explanation: "Los alvéolos son diminutas bolsitas al final de los bronquios. Están rodeados de capilares y es ahí donde el oxígeno pasa al a sangre y el CO₂ sale." },
+  { id: 26, level: "primaria", module: "Sistema Respiratorio", question: "¿Qué músculo baja para que entre aire a los pulmones?", options: ["Bíceps", "Pectoral", "Diafragma", "Trapecio"], answer: 2, explanation: "El diafragma es el músculo principal de la respiración. Cuando se contrae y baja, aumenta el espacio del pecho y el aire entra solo por la presión." },
+  { id: 27, level: "primaria", module: "Sistema Digestivo", question: "¿Qué órgano produce los jugos ácidos que deshacen los alimentos?", options: ["Intestino delgado", "Hígado", "Estómago", "Páncreas"], answer: 2, explanation: "El estómago produce ácido clorhídrico (muy fuerte) y enzimas que deshacen las proteínas. Es tan ácido que podría disolver un clavo." },
+  { id: 28, level: "primaria", module: "Sistema Digestivo", question: "¿Qué órgano absorbe la mayoría de los nutrientes de los alimentos?", options: ["Estómago", "Intestino delgado", "Intestino grueso", "Hígado"], answer: 1, explanation: "El intestino delgado mide unos 6-7 metros y tiene millones de pequeñas vellosidades que absorben los nutrientes para que pasen a la sangre." },
+
+  // --- SECUNDARIA: nuevos módulos ---
+  { id: 29, level: "secundaria", module: "Corazón", question: "¿Qué estructura del corazón actúa como marcapasos natural?", options: ["Válvula mitral", "Nódulo sinusal", "Haz de His", "Válvula aórtica"], answer: 1, explanation: "El nódulo sinusal (o nódulo SA) en la aurícula derecha genera el impulso eléctrico rítmico que inicia cada latido. Descarga a ~60-100 veces/min en reposo." },
+  { id: 30, level: "secundaria", module: "Corazón", question: "¿Qué válvula separa el ventrículo izquierdo de la aorta?", options: ["Válvula tricúspide", "Válvula mitral", "Válvula pulmonar", "Válvula aórtica"], answer: 3, explanation: "La válvula aórtica (semilunar) tiene 3 valvas y se abre en sístole para dejar pasar sangre a la aorta y se cierra en diástole para evitar el reflujo." },
+  { id: 31, level: "secundaria", module: "Cerebro", question: "¿En qué lóbulo cerebral se encuentra el área de Broca?", options: ["Occipital", "Parietal", "Temporal", "Frontal"], answer: 3, explanation: "El área de Broca (lóbulo frontal izquierdo) controla la producción del lenguaje hablado. Su lesión causa afasia de Broca: el paciente entiende pero no puede hablar fluidamente." },
+  { id: 32, level: "secundaria", module: "Cerebro", question: "¿Qué neurotransmisor es el principal en la vía dopaminérgica de recompensa?", options: ["Serotonina", "Acetilcolina", "Dopamina", "GABA"], answer: 2, explanation: "La dopamina es el principal neurotransmisor del sistema de recompensa (área tegmental ventral → núcleo accumbens). Regula la motivación y el placer. Su déficit causa Parkinson; su exceso se asocia a esquizofrenia." },
+  { id: 33, level: "secundaria", module: "Sistema Respiratorio", question: "¿Qué tipo de células producen el surfactante pulmonar?", options: ["Neumocitos tipo I", "Neumocitos tipo II", "Células caliciformes", "Macrófagos alveolares"], answer: 1, explanation: "Los neumocitos tipo II producen surfactante (mezcla de fosfolípidos y proteínas). Reduce la tensión superficial alveolar y evita el colapso pulmonar. Su déficit en prematuros causa síndrome de distress respiratorio neonatal." },
+  { id: 34, level: "secundaria", module: "Sistema Respiratorio", question: "¿Qué ecuación describe el intercambio gaseoso en los alvéolos?", options: ["O₂ entra a la sangre / CO₂ sale a los alvéolos", "CO₂ entra a la sangre / O₂ sale", "Solo O₂ se intercambia", "N₂ y O₂ se intercambian"], answer: 0, explanation: "La hematosis alveolar: O₂ difunde desde los alvéolos (pO₂ ~100 mmHg) a la sangre capilar (pO₂ ~40 mmHg). El CO₂ difunde en sentido contrario. La diferencia de presiones parciales impulsa la difusión." },
+  { id: 35, level: "secundaria", module: "Sistema Digestivo", question: "¿Qué hormona estimula la contracción de la vesícula biliar?", options: ["Insulina", "Glucagón", "Colecistoquinina (CCK)", "Secretina"], answer: 2, explanation: "La CCK (colecistoquinina) es secretada por las células I del duodeno ante la presencia de grasas y proteínas. Estimula la contracción de la vesícula biliar y la secreción pancreática." },
+  { id: 36, level: "secundaria", module: "Sistema Digestivo", question: "¿En qué parte del intestino delgado se absorben la vitamina B12 y las sales biliares?", options: ["Duodeno", "Yeyuno", "Íleon", "Colon"], answer: 2, explanation: "El íleon (segmento final del intestino delgado) tiene receptores específicos para la absorción de vitamina B12 (factor intrínseco) y sales biliares. Su resección causa malabsorción grave." },
 ];
 
 const emojis: Record<Level, string> = { primaria: "🌱", secundaria: "🔬" };
@@ -160,7 +188,7 @@ export default function QuizPage() {
                   <span className="text-3xl">{emojis[l]}</span>
                   <div>
                     <div className="text-white font-semibold">{levelLabels[l]}</div>
-                    <div className="text-slate-400 text-sm mt-0.5">10 preguntas · conceptos {l === "primaria" ? "básicos" : "avanzados"}</div>
+                    <div className="text-slate-400 text-sm mt-0.5">18 preguntas · conceptos {l === "primaria" ? "básicos" : "avanzados"}</div>
                   </div>
                   <span className="ml-auto text-slate-600 group-hover:text-slate-400 transition-colors">→</span>
                 </div>
@@ -180,8 +208,10 @@ export default function QuizPage() {
   if (finished) {
     const pct = Math.round((score / filtered.length) * 100);
     const moduleLinks: Record<string, string> = {
-      "Célula Animal": "/celula", "ADN": "/adn", "Neurona": "/neurona",
-      "Célula Vegetal": "/planta", "Cuerpo Humano": "/cuerpo",
+      "Célula Animal": "/celula", "ADN": "/adn", "Neurona": "/sistema-nervioso",
+      "Célula Vegetal": "/planta", "Cuerpo Humano": "/cuerpo-humano",
+      "Corazón": "/corazon", "Cerebro": "/cerebro",
+      "Sistema Respiratorio": "/pulmones", "Sistema Digestivo": "/digestivo",
     };
     return (
       <div className="min-h-screen bg-bio-dark flex items-center justify-center p-4">
