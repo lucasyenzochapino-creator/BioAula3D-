@@ -29,7 +29,7 @@ export default function FichaPage({ params }: { params: { slug: string } }) {
       </div>
 
       {/* Contenido de la ficha */}
-      <div className="max-w-3xl mx-auto px-6 py-8 print-content">
+      <div id="ficha-content" className="max-w-3xl mx-auto px-6 py-8 print-content">
         {/* Encabezado */}
         <div className="border-b-2 border-slate-200 pb-6 mb-8">
           <div className="flex items-start justify-between gap-4 flex-wrap">
