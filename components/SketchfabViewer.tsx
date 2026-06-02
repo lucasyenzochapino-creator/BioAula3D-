@@ -23,6 +23,7 @@ interface Props {
 export default function SketchfabViewer({ uid, title, subtitle, accent, intro, structures, slug }: Props) {
   const [open, setOpen] = useState<number | null>(null);
   const [shared, setShared] = useState(false);
+  const [presenting, setPresenting] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleShare = async () => {
@@ -36,8 +37,6 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
     }
   };
 
-  const embed = `https://sketchfab.com/models/${uid}/embed?ui_theme=dark&autospin=0.2&ui_infos=0&ui_controls=1&ui_stop=0&annotations_visible=1&ui_annotations=1`;
-
   const toggleFullscreen = () => {
     const el = containerRef.current;
     if (!el) return;
@@ -47,6 +46,31 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
       document.exitFullscreen?.();
     }
   };
+
+  const embed = `https://sketchfab.com/models/${uid}/embed?ui_theme=dark&autospin=0.2&ui_infos=0&ui_controls=1&ui_stop=0&annotations_visible=1&ui_annotations=1`;
+
+  if (presenting) {
+    return (
+      <div className="fixed inset-0 z-50 bg-black">
+        <iframe
+          src={embed}
+          title={title}
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          allowFullScreen
+          style={{ width: "100%", height: "100%", border: "none" }}
+        />
+        <button
+          onClick={() => setPresenting(false)}
+          className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-2 rounded-lg bg-black/60 hover:bg-black/80 text-white text-sm font-semibold transition-all"
+        >
+          ✕ Salir
+        </button>
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white/50 text-xs pointer-events-none select-none">
+          {title}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="viewer-layout">
@@ -88,9 +112,15 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
               href={`/ficha/${slug}`}
               className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-all"
             >
-              🖨️ Ficha / PDF
+              🖨️ Ficha
             </Link>
           )}
+          <button
+            onClick={() => setPresenting(true)}
+            className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-all"
+          >
+            📽️ Presentar
+          </button>
           <button
             onClick={handleShare}
             className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-all"
