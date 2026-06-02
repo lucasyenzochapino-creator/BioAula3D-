@@ -51,7 +51,7 @@ export default function FichaPage({ params }: { params: { slug: string } }) {
         {/* Estructuras */}
         <div className="space-y-5">
           {mod.structures.map((s, i) => (
-            <div key={i} className="border border-slate-200 rounded-xl overflow-hidden">
+            <div key={i} className="border border-slate-200 rounded-xl overflow-hidden" data-structure="true">
               <div className="flex items-center gap-3 px-4 py-3 bg-slate-50 border-b border-slate-200">
                 <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: s.color }} />
                 {s.emoji && <span className="text-lg leading-none">{s.emoji}</span>}
