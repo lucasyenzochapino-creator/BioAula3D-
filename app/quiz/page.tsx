@@ -1,7 +1,8 @@
 "use client";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 type Level = "primaria" | "secundaria";
 
@@ -21,6 +22,14 @@ const MODULE_STYLE: Record<string, { emoji: string; gradient: string; color: str
   "Neurona":       { emoji: "🧠", gradient: "from-purple-600 to-pink-700",  color: "#a78bfa" },
   "Célula Vegetal":{ emoji: "🌿", gradient: "from-emerald-600 to-green-700", color: "#34d399" },
   "Cuerpo Humano": { emoji: "🫀", gradient: "from-red-600 to-orange-700",   color: "#f87171" },
+};
+
+const MODULE_UID: Record<string, string> = {
+  "Célula Animal":  "0d9f7f4257224975b2ef83a283709b2f",
+  "ADN":            "212e5422645f4432a61dc2f3aac3c8c8",
+  "Neurona":        "03a5173f3d2e46958b6f8be81b1c88be",
+  "Célula Vegetal": "0640c7a14f41400fbdac382c7de1d776",
+  "Cuerpo Humano":  "035316622877438cb62de673b8f19217",
 };
 
 const questions: Question[] = [
@@ -62,6 +71,21 @@ export default function QuizPage() {
   const [finished, setFinished] = useState(false);
   const [answers, setAnswers] = useState<boolean[]>([]);
   const [shared, setShared] = useState(false);
+  const [thumbs, setThumbs] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const modules = Object.keys(MODULE_UID);
+    modules.forEach(async (mod) => {
+      const uid = MODULE_UID[mod];
+      try {
+        const res = await fetch(`/api/thumb?uid=${uid}`);
+        const data = await res.json();
+        if (data.thumbnailUrl) {
+          setThumbs(prev => ({ ...prev, [mod]: data.thumbnailUrl }));
+        }
+      } catch { /* fallback to gradient */ }
+    });
+  }, []);
 
   const filtered = level ? questions.filter(q => q.level === level) : [];
   const q = filtered[current];
@@ -85,20 +109,35 @@ export default function QuizPage() {
     }
   };
 
+  const handleBack = () => {
+    if (current === 0) {
+      setLevel(null);
+      setCurrent(0); setScore(0); setSelected(null);
+      setAnswered(false); setFinished(false); setAnswers([]);
+      return;
+    }
+    const wasCorrect = answers[answers.length - 1];
+    if (wasCorrect) setScore(s => s - 1);
+    setAnswers(a => a.slice(0, -1));
+    setCurrent(c => c - 1);
+    setSelected(null);
+    setAnswered(false);
+  };
+
   const handleRestart = () => {
     setCurrent(0); setScore(0); setSelected(null);
-    setAnswered(false); setFinished(false); setAnswers([]); setShared(false);
+    setAnswered(false); setFinished(false); setAnswers([]);
+    setShared(false);
   };
 
   const handleShare = async () => {
     const pct = Math.round((score / filtered.length) * 100);
-    const text = `🧬 Hice el quiz de BioAula3D (${levelLabels[level!]}) y saqué ${score}/${filtered.length} (${pct}%). ¡Probalo vos también!`;
+    const text = `¡Hice el quiz de BioAula3D y obtuve ${score}/${filtered.length} (${pct}%)! 🧬`;
     if (navigator.share) {
       await navigator.share({ title: "BioAula3D Quiz", text });
     } else {
-      await navigator.clipboard.writeText(text + " → bio-aula3-d.vercel.app/quiz");
+      await navigator.clipboard.writeText(text);
       setShared(true);
-      setTimeout(() => setShared(false), 2500);
     }
   };
 
@@ -106,21 +145,82 @@ export default function QuizPage() {
   if (!level) {
     return (
       <div className="min-h-screen bg-bio-dark flex items-center justify-center p-4">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-sm w-full">
-          <h1 className="text-3xl font-bold text-white text-center mb-2">Quiz Biología</h1>
-          <p className="text-slate-400 text-center text-sm mb-8">Elegí tu nivel para empezar</p>
-          <div className="space-y-4">
-            {(["primaria", "secundaria"] as Level[]).map(lvl => (
-              <button key={lvl} onClick={() => setLevel(lvl)}
-                className="w-full p-5 rounded-2xl border border-slate-700 bg-bio-card hover:border-slate-500 transition-all text-left flex items-center gap-4 group">
-                <div className="text-3xl">{emojis[lvl]}</div>
-                <div>
-                  <div className="font-bold text-white text-lg">{levelLabels[lvl]}</div>
-                  <div className="text-slate-400 text-sm">10 preguntas · {lvl === "primaria" ? "Conceptos básicos" : "Biología molecular"}</div>
+        <div className="max-w-sm w-full">
+          <div className="text-center mb-8">
+            <div className="text-5xl mb-3">🧬</div>
+            <h1 className="text-2xl font-bold text-white mb-2">Quiz de Biología</h1>
+            <p className="text-slate-400 text-sm">Elegí tu nivel para comenzar</p>
+          </div>
+          <div className="space-y-3">
+            {(["primaria", "secundaria"] as Level[]).map(l => (
+              <button key={l} onClick={() => setLevel(l)}
+                className="w-full p-5 bg-bio-card border border-slate-700 hover:border-slate-500 rounded-2xl text-left transition-all group"
+              >
+                <div className="flex items-center gap-4">
+                  <span className="text-3xl">{emojis[l]}</span>
+                  <div>
+                    <div className="text-white font-semibold">{levelLabels[l]}</div>
+                    <div className="text-slate-400 text-sm mt-0.5">10 preguntas · conceptos {l === "primaria" ? "básicos" : "avanzados"}</div>
+                  </div>
+                  <span className="ml-auto text-slate-600 group-hover:text-slate-400 transition-colors">→</span>
                 </div>
-                <span className="ml-auto text-slate-600 group-hover:text-slate-400 text-xl">→</span>
               </button>
             ))}
+          </div>
+          <div className="mt-6 text-center">
+            <Link href="/" className="text-slate-500 hover:text-slate-300 text-sm transition-colors">← Volver al inicio</Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const accent = levelColors[level];
+
+  if (finished) {
+    const pct = Math.round((score / filtered.length) * 100);
+    const moduleLinks: Record<string, string> = {
+      "Célula Animal": "/celula", "ADN": "/adn", "Neurona": "/neurona",
+      "Célula Vegetal": "/planta", "Cuerpo Humano": "/cuerpo",
+    };
+    return (
+      <div className="min-h-screen bg-bio-dark flex items-center justify-center p-4">
+        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+          className="max-w-md w-full bg-bio-card border border-slate-700 rounded-2xl p-8 text-center">
+          <div className="text-6xl mb-4">{pct >= 80 ? "🏆" : pct >= 60 ? "👍" : "📚"}</div>
+          <h2 className="text-3xl font-bold text-white mb-2">{score}/{filtered.length}</h2>
+          <p className="text-slate-400 mb-2 capitalize">{levelLabels[level]}</p>
+          <p className="text-2xl font-bold mb-1" style={{ color: accent }}>{pct}%</p>
+          <p className="text-sm text-slate-400 mb-6">
+            {pct >= 80 ? "¡Excelente! Dominás los conceptos." : pct >= 60 ? "Buen trabajo. Seguí repasando." : "Revisá los módulos 3D para mejorar."}
+          </p>
+          <div className="flex gap-1 mb-6">
+            {answers.map((correct, i) => (
+              <div key={i} className={`flex-1 h-2 rounded-full ${correct ? "bg-green-500" : "bg-red-500"}`} />
+            ))}
+          </div>
+          <div className="space-y-2 mb-6">
+            <button onClick={handleShare} className="w-full py-2.5 border border-slate-600 hover:border-slate-400 text-slate-300 hover:text-white rounded-xl transition-all text-sm">
+              {shared ? "¡Copiado!" : "Compartir resultado 🔗"}
+            </button>
+            <button onClick={handleRestart} className="w-full py-2.5 rounded-xl font-semibold transition-all text-sm text-black"
+              style={{ background: accent }}>
+              Intentar de nuevo
+            </button>
+            <button onClick={() => { setLevel(null); handleRestart(); }} className="w-full py-2.5 border border-slate-700 text-slate-400 hover:text-white rounded-xl transition-all text-sm">
+              Cambiar nivel
+            </button>
+          </div>
+          <div className="border-t border-slate-700 pt-4">
+            <p className="text-slate-500 text-xs mb-3">Repasar módulos 3D</p>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {Object.entries(moduleLinks).map(([name, href]) => (
+                <Link key={name} href={href}
+                  className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-400 hover:text-white text-xs transition-all">
+                  {name}
+                </Link>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
@@ -185,14 +285,18 @@ export default function QuizPage() {
   return (
     <div className="min-h-screen bg-bio-dark flex items-center justify-center p-4">
       <div className="max-w-lg w-full">
+        {/* Header */}
         <div className="flex items-center justify-between mb-3">
-          <button onClick={() => { handleRestart(); setLevel(null); }}
-            className="text-slate-500 hover:text-slate-300 text-sm transition-all">← Cambiar nivel</button>
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-bold uppercase tracking-wider" style={{ color: accent }}>{emojis[level]} {levelLabels[level]}</span>
-            <span className="text-slate-400 text-sm">{current + 1}/{filtered.length}</span>
-          </div>
+          <button onClick={handleBack} className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors text-sm">
+            ← Atrás
+          </button>
+          <span className="text-sm font-medium" style={{ color: accent }}>
+            {emojis[level]} {levelLabels[level]}
+          </span>
+          <span className="text-slate-400 text-sm">{current + 1}/{filtered.length}</span>
         </div>
+
+        {/* Progress bar */}
         <div className="w-full bg-slate-800 rounded-full h-1.5 mb-5">
           <div className="h-1.5 rounded-full transition-all" style={{ width: `${(current / filtered.length) * 100}%`, background: accent }} />
         </div>
@@ -203,68 +307,67 @@ export default function QuizPage() {
             {/* Module visual header */}
             {(() => {
               const style = MODULE_STYLE[q.module] ?? { emoji: "🔬", gradient: "from-slate-600 to-slate-700", color: "#94a3b8" };
+              const thumb = thumbs[q.module];
               return (
-                <div className={`w-full h-28 bg-gradient-to-br ${style.gradient} flex flex-col items-center justify-center gap-1 relative`}>
-                  <span className="text-5xl leading-none select-none">{style.emoji}</span>
-                  <span className="text-white/80 text-xs font-semibold tracking-wide">{q.module}</span>
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent pointer-events-none" />
+                <div className="w-full h-36 relative overflow-hidden">
+                  {thumb ? (
+                    <Image
+                      src={thumb}
+                      alt={q.module}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  ) : (
+                    <div className={`w-full h-full bg-gradient-to-br ${style.gradient} flex flex-col items-center justify-center gap-1`}>
+                      <span className="text-5xl leading-none select-none">{style.emoji}</span>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent pointer-events-none" />
+                  <span className="absolute bottom-2 left-3 text-white/90 text-xs font-semibold tracking-wide drop-shadow">{q.module}</span>
                 </div>
               );
             })()}
+
             <div className="p-6">
-            <h2 className="text-lg font-semibold text-white mb-5">{q.question}</h2>
-            <div className="space-y-2.5">
-              {q.options.map((opt, i) => {
-                let cls = "border-slate-700 bg-slate-800/50 text-slate-300 hover:border-slate-500 hover:text-white";
-                if (answered) {
-                  if (i === q.answer) cls = "border-green-500 bg-green-500/10 text-green-400";
-                  else if (i === selected) cls = "border-red-500 bg-red-500/10 text-red-400";
-                  else cls = "border-slate-800 bg-slate-800/30 text-slate-500";
-                }
-                return (
-                  <button key={i} onClick={() => handleSelect(i)}
-                    className={`w-full text-left px-4 py-3 rounded-xl border transition-all text-sm ${cls}`}
-                    style={{ minHeight: "52px" }}>
-                    <span className="font-bold mr-2 text-slate-500">{["A","B","C","D"][i]}.</span>
-                    {opt}
-                  </button>
-                );
-              })}
-            </div>
-            {answered && (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-4">
-                <div className={`text-sm font-medium mb-2 ${selected === q.answer ? "text-green-400" : "text-red-400"}`}>
-                  {selected === q.answer ? "✓ ¡Correcto!" : `✗ Incorrecto. Era: ${q.options[q.answer]}`}
-                </div>
-                <div className="text-xs text-slate-400 bg-slate-800/60 rounded-xl px-3 py-2.5 mb-4 leading-relaxed border border-slate-700/60">
-                  💡 {q.explanation}
-                </div>
-                <div className="flex gap-2">
-                  {current > 0 && (
-                    <button onClick={() => { setCurrent(c => c - 1); setSelected(null); setAnswered(false); setAnswers(a => a.slice(0, -1)); if (answers[answers.length - 1]) setScore(s => s - 1); }}
-                      className="flex-none px-4 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-slate-300 text-sm transition-all">
-                      ← Atrás
+              <h2 className="text-lg font-semibold text-white mb-5">{q.question}</h2>
+              <div className="space-y-2.5">
+                {q.options.map((opt, i) => {
+                  let cls = "border-slate-700 bg-slate-800/50 text-slate-300 hover:border-slate-500 hover:text-white";
+                  if (answered) {
+                    if (i === q.answer) cls = "border-green-500 bg-green-500/10 text-green-400";
+                    else if (i === selected) cls = "border-red-500 bg-red-500/10 text-red-400";
+                    else cls = "border-slate-800 bg-slate-800/30 text-slate-500";
+                  }
+                  return (
+                    <button key={i} onClick={() => handleSelect(i)}
+                      className={`w-full text-left px-4 py-3 rounded-xl border transition-all text-sm ${cls}`}
+                      style={{ minHeight: "52px" }}>
+                      <span className="font-bold mr-2 text-slate-500">{["A","B","C","D"][i]}.</span>
+                      {opt}
                     </button>
-                  )}
-                  <button onClick={handleNext}
-                    className="flex-1 py-2.5 font-semibold rounded-xl transition-all text-sm text-black"
+                  );
+                })}
+              </div>
+
+              {answered && (
+                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-5">
+                  <div className={`text-sm mb-2 font-medium ${selected === q.answer ? "text-green-400" : "text-red-400"}`}>
+                    {selected === q.answer ? "✓ ¡Correcto!" : `✗ Incorrecto. La respuesta era: ${q.options[q.answer]}`}
+                  </div>
+                  <p className="text-slate-400 text-xs mb-4 leading-relaxed">{q.explanation}</p>
+                  <button onClick={handleNext} className="w-full py-2.5 font-semibold rounded-xl transition-all text-sm text-black"
                     style={{ background: accent }}>
                     {current + 1 >= filtered.length ? "Ver resultado →" : "Siguiente →"}
                   </button>
-                </div>
-              </motion.div>
-            )}
+                </motion.div>
+              )}
             </div>
           </motion.div>
         </AnimatePresence>
 
-        <div className="flex gap-1 mt-4 px-1">
-          {answers.map((correct, i) => (
-            <div key={i} className={`flex-1 h-1 rounded-full ${correct ? "bg-green-500" : "bg-red-500"}`} />
-          ))}
-          {Array.from({ length: filtered.length - answers.length }).map((_, i) => (
-            <div key={"empty-" + i} className="flex-1 h-1 rounded-full bg-slate-800" />
-          ))}
+        <div className="mt-4 text-center">
+          <span className="text-slate-600 text-sm">⭐ {score} correctas de {current} respondidas</span>
         </div>
       </div>
     </div>

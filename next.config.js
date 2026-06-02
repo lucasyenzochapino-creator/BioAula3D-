@@ -8,7 +8,6 @@ const withPWA = require("@ducanh2912/next-pwa").default({
     skipWaiting: true,
     clientsClaim: true,
     disableDevLogs: true,
-    // No cachear URLs externas de Sketchfab
     runtimeCaching: [],
   },
 });
@@ -16,12 +15,17 @@ const withPWA = require("@ducanh2912/next-pwa").default({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: { NEXT_TELEMETRY_DISABLED: "1" },
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "media.sketchfab.com" },
+      { protocol: "https", hostname: "static.sketchfab.com" },
+    ],
+  },
   async headers() {
     return [
       {
         source: "/(.*)",
         headers: [
-          // Permite iframes de Sketchfab
           {
             key: "Content-Security-Policy",
             value: [
