@@ -81,6 +81,24 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
           <p className="text-slate-400 text-xs mt-1 leading-snug">{intro}</p>
         </div>
 
+        {/* Botones de acción — siempre visibles */}
+        <div className="px-3 py-2 border-b border-slate-800 flex-shrink-0 flex items-center gap-2">
+          {slug && (
+            <Link
+              href={`/ficha/${slug}`}
+              className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-all"
+            >
+              🖨️ Ficha / PDF
+            </Link>
+          )}
+          <button
+            onClick={handleShare}
+            className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-all"
+          >
+            {shared ? "✓ Copiado" : "📤 Compartir"}
+          </button>
+        </div>
+
         <div className="flex-1 overflow-y-auto p-3 space-y-1">
           {structures.map((s, i) => (
             <div key={i}>
@@ -119,22 +137,6 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
           ))}
         </div>
 
-        <div className="px-3 py-2.5 border-t border-slate-800 flex-shrink-0 flex items-center gap-2 flex-wrap">
-          {slug && (
-            <Link
-              href={`/ficha/${slug}`}
-              className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold border border-slate-700 text-slate-300 hover:text-white hover:border-slate-500 transition-all"
-            >
-              🖨️ Ficha / PDF
-            </Link>
-          )}
-          <button
-            onClick={handleShare}
-            className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold border border-slate-700 text-slate-300 hover:text-white hover:border-slate-500 transition-all"
-          >
-            {shared ? "✓ Copiado" : "📤 Compartir"}
-          </button>
-        </div>
       </div>
     </div>
   );
