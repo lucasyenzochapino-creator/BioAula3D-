@@ -446,7 +446,7 @@ const moduleColors: Record<string, string> = {
   "Sistema Digestivo": "#fb923c",
 };
 
-const MODULES = [...new Set(tareas.map(t => t.modulo))];
+const MODULES = Array.from(new Set(tareas.map(t => t.modulo)));
 
 async function exportTareaPDF(tarea: Tarea) {
   const { default: jsPDF } = await import("jspdf");
