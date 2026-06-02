@@ -77,7 +77,7 @@ export default function FichaPage({ params }: { params: { slug: string } }) {
         {/* Pie de página */}
         <div className="mt-10 pt-6 border-t border-slate-200 flex items-center justify-between text-xs text-slate-400 flex-wrap gap-2">
           <span>BioAula3D · Recurso educativo de biología 3D</span>
-          <span>Modelo 3D interactivo: <strong className="text-slate-600">bioaula3d.vercel.app/{mod.slug}</strong></span>
+          <span>Modelo 3D interactivo: <strong className="text-slate-600">bio-aula3-d.vercel.app/{mod.slug}</strong></span>
         </div>
       </div>
 
