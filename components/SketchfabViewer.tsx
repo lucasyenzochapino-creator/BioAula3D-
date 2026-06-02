@@ -20,6 +20,7 @@ interface Props {
 
 export default function SketchfabViewer({ uid, title, subtitle, accent, intro, structures }: Props) {
   const [open, setOpen] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const embed = `https://sketchfab.com/models/${uid}/embed?ui_theme=dark&autospin=0.2&ui_infos=0&ui_controls=1&ui_stop=0&annotations_visible=1&ui_annotations=1`;
 
@@ -35,7 +36,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
 
   return (
     <div className="viewer-layout">
-      <div className="viewer-3d">
+      <div className="viewer-3d" ref={containerRef}>
         <iframe
           src={embed}
           title={title}
@@ -43,6 +44,15 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
           allowFullScreen
           style={{ width: "100%", height: "100%", border: "none", display: "block" }}
         />
+        <button
+          onClick={toggleFullscreen}
+          className="absolute top-2 right-2 z-10 w-8 h-8 flex items-center justify-center rounded-lg bg-black/50 hover:bg-black/70 text-white transition-all"
+          title="Pantalla completa"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+          </svg>
+        </button>
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-slate-500 text-[11px] pointer-events-none whitespace-nowrap select-none">
           Tocá y arrastrá · Pellizco para zoom · Puntos ⓘ = info
         </div>

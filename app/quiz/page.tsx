@@ -226,62 +226,6 @@ export default function QuizPage() {
       </div>
     );
   }
-
-  // Results screen
-  if (finished) {
-    const pct = Math.round((score / filtered.length) * 100);
-    const accent = levelColors[level];
-    return (
-      <div className="min-h-screen bg-bio-dark flex items-center justify-center p-4">
-        <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-          className="max-w-md w-full bg-bio-card border border-slate-700 rounded-2xl p-8 text-center">
-          <div className="text-6xl mb-3">{pct >= 80 ? "🏆" : pct >= 60 ? "👍" : "📚"}</div>
-          <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: accent }}>
-            {levelLabels[level]}
-          </div>
-          <h2 className="text-4xl font-bold text-white mb-1">{score}<span className="text-slate-500 text-2xl">/{filtered.length}</span></h2>
-          <p className="text-slate-400 mb-2">{pct}% de aciertos</p>
-          <p className="text-lg font-medium mb-5" style={{ color: pct >= 80 ? "#22c55e" : pct >= 60 ? "#f59e0b" : "#ef4444" }}>
-            {pct >= 80 ? "¡Excelente! Dominás los conceptos." : pct >= 60 ? "Buen trabajo. Seguí repasando." : "Revisá los módulos 3D y volvé a intentarlo."}
-          </p>
-          <div className="flex gap-1.5 mb-6">
-            {answers.map((correct, i) => (
-              <div key={i} className={`flex-1 h-2 rounded-full ${correct ? "bg-green-500" : "bg-red-500"}`} />
-            ))}
-          </div>
-          <div className="space-y-3">
-            <button onClick={handleRestart}
-              className="w-full py-3 rounded-xl font-semibold text-black transition-all"
-              style={{ background: accent }}>
-              Volver a intentar
-            </button>
-            <button onClick={handleShare}
-              className="w-full py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-slate-300 text-sm transition-all">
-              {shared ? "✓ Copiado al portapapeles" : "📤 Compartir resultado"}
-            </button>
-            <button onClick={() => { handleRestart(); setLevel(null); }}
-              className="w-full py-2 text-slate-500 hover:text-slate-300 text-sm transition-all">
-              Cambiar nivel
-            </button>
-          </div>
-          <div className="mt-6 pt-4 border-t border-slate-800">
-            <p className="text-slate-500 text-xs mb-3">Repasá los módulos para mejorar tu puntaje</p>
-            <div className="flex flex-wrap gap-2 justify-center">
-              {["celula","adn","sistema-nervioso","planta","cuerpo-humano"].map(s => (
-                <Link key={s} href={`/${s}`}
-                  className="px-3 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-400 hover:text-white text-xs transition-all capitalize">
-                  {s.replace("-"," ")}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    );
-  }
-
-  // Question screen
-  const accent = levelColors[level];
   return (
     <div className="min-h-screen bg-bio-dark flex items-center justify-center p-4">
       <div className="max-w-lg w-full">
