@@ -8,12 +8,41 @@ const withPWA = require("@ducanh2912/next-pwa").default({
     skipWaiting: true,
     clientsClaim: true,
     disableDevLogs: true,
+    // No cachear URLs externas de Sketchfab
+    runtimeCaching: [],
   },
 });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: { NEXT_TELEMETRY_DISABLED: "1" },
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          // Permite iframes de Sketchfab
+          {
+            key: "Content-Security-Policy",
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://sketchfab.com https://static.sketchfab.com",
+              "style-src 'self' 'unsafe-inline'",
+              "frame-src https://sketchfab.com https://*.sketchfab.com",
+              "img-src 'self' data: blob: https://media.sketchfab.com https://static.sketchfab.com",
+              "connect-src 'self' https://sketchfab.com https://api.sketchfab.com https://media.sketchfab.com wss://*.sketchfab.com",
+              "font-src 'self' data:",
+              "worker-src 'self' blob:",
+            ].join("; "),
+          },
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = withPWA(nextConfig);
