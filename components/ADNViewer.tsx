@@ -4,6 +4,7 @@ import SketchfabViewer from "@/components/SketchfabViewer";
 export default function ADNViewer() {
   return (
     <SketchfabViewer
+      slug="adn"
       uid="212e5422645f4432a61dc2f3aac3c8c8"
       title="ADN — Doble Hélice"
       subtitle="🧬 Genética molecular"

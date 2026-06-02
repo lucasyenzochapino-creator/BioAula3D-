@@ -4,6 +4,7 @@ import SketchfabViewer from "@/components/SketchfabViewer";
 export default function CuerpoHumanoViewer() {
   return (
     <SketchfabViewer
+      slug="cuerpo-humano"
       uid="035316622877438cb62de673b8f19217"
       title="Cuerpo Humano"
       subtitle="🫀 Anatomía humana"

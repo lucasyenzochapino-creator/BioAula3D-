@@ -4,6 +4,7 @@ import SketchfabViewer from "@/components/SketchfabViewer";
 export default function PulmonesViewer() {
   return (
     <SketchfabViewer
+      slug="pulmones"
       uid="ce09f4099a68467880f46e61eb9a3531"
       title="Sistema Respiratorio"
       subtitle="💨 Pulmones y Vías Aéreas"
