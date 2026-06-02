@@ -9,6 +9,7 @@ const links = [
   { href: "/cuerpo-humano", label: "Cuerpo" },
   { href: "/planta", label: "Planta" },
   { href: "/quiz", label: "Quiz" },
+  { href: "/glosario", label: "Glosario" },
 ];
 
 export default function Navbar() {

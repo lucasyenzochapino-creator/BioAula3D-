@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export interface Structure {
   name: string;
@@ -22,6 +22,16 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
   const [open, setOpen] = useState<number | null>(null);
 
   const embed = `https://sketchfab.com/models/${uid}/embed?ui_theme=dark&autospin=0.2&ui_infos=0&ui_controls=1&ui_stop=0&annotations_visible=1&ui_annotations=1`;
+
+  const toggleFullscreen = () => {
+    const el = containerRef.current;
+    if (!el) return;
+    if (!document.fullscreenElement) {
+      el.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
+  };
 
   return (
     <div className="viewer-layout">
