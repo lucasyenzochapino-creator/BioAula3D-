@@ -23,6 +23,21 @@ const nextConfig = {
   },
   async headers() {
     return [
+      // Service worker: nunca cachear para que el browser detecte actualizaciones
+      {
+        source: "/sw.js",
+        headers: [
+          { key: "Cache-Control", value: "no-cache, no-store, must-revalidate" },
+          { key: "Pragma", value: "no-cache" },
+        ],
+      },
+      {
+        source: "/workbox-:hash.js",
+        headers: [
+          { key: "Cache-Control", value: "no-cache, no-store, must-revalidate" },
+          { key: "Pragma", value: "no-cache" },
+        ],
+      },
       {
         source: "/(.*)",
         headers: [
