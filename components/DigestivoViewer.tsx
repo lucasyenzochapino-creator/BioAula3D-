@@ -4,6 +4,7 @@ import SketchfabViewer from "@/components/SketchfabViewer";
 export default function DigestivoViewer() {
   return (
     <SketchfabViewer
+      slug="digestivo"
       uid="2d3771dd6b8940ffa2312bd97aca6fc3"
       title="Sistema Digestivo"
       subtitle="🍽️ Aparato Digestivo"

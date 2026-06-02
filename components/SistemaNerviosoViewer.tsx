@@ -4,6 +4,7 @@ import SketchfabViewer from "@/components/SketchfabViewer";
 export default function SistemaNerviosoViewer() {
   return (
     <SketchfabViewer
+      slug="sistema-nervioso"
       uid="03a5173f3d2e46958b6f8be81b1c88be"
       title="Neurona"
       subtitle="🧠 Sistema nervioso"

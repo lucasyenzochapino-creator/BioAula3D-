@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef } from "react";
+import Link from "next/link";
 
 export interface Structure {
   name: string;
@@ -16,11 +17,24 @@ interface Props {
   accent: string;
   intro: string;
   structures: Structure[];
+  slug?: string;
 }
 
-export default function SketchfabViewer({ uid, title, subtitle, accent, intro, structures }: Props) {
+export default function SketchfabViewer({ uid, title, subtitle, accent, intro, structures, slug }: Props) {
   const [open, setOpen] = useState<number | null>(null);
+  const [shared, setShared] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleShare = async () => {
+    const url = window.location.href;
+    if (navigator.share) {
+      await navigator.share({ title: `BioAula3D — ${title}`, text: `Explorá ${title} en 3D interactivo`, url });
+    } else {
+      await navigator.clipboard.writeText(url);
+      setShared(true);
+      setTimeout(() => setShared(false), 2000);
+    }
+  };
 
   const embed = `https://sketchfab.com/models/${uid}/embed?ui_theme=dark&autospin=0.2&ui_infos=0&ui_controls=1&ui_stop=0&annotations_visible=1&ui_annotations=1`;
 
@@ -105,8 +119,21 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
           ))}
         </div>
 
-        <div className="px-4 py-2 border-t border-slate-800 flex-shrink-0 text-center">
-          <p className="text-slate-600 text-[11px]">Tocá cada estructura para ver info de secundaria</p>
+        <div className="px-3 py-2.5 border-t border-slate-800 flex-shrink-0 flex items-center gap-2 flex-wrap">
+          {slug && (
+            <Link
+              href={`/ficha/${slug}`}
+              className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold border border-slate-700 text-slate-300 hover:text-white hover:border-slate-500 transition-all"
+            >
+              🖨️ Ficha / PDF
+            </Link>
+          )}
+          <button
+            onClick={handleShare}
+            className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold border border-slate-700 text-slate-300 hover:text-white hover:border-slate-500 transition-all"
+          >
+            {shared ? "✓ Copiado" : "📤 Compartir"}
+          </button>
         </div>
       </div>
     </div>

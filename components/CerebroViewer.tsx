@@ -4,6 +4,7 @@ import SketchfabViewer from "@/components/SketchfabViewer";
 export default function CerebroViewer() {
   return (
     <SketchfabViewer
+      slug="cerebro"
       uid="28c8971e11334e8b97a2a0d6235992e8"
       title="Cerebro Humano"
       subtitle="🧠 Sistema Nervioso Central"

@@ -4,6 +4,7 @@ import SketchfabViewer from "@/components/SketchfabViewer";
 export default function CorazonViewer() {
   return (
     <SketchfabViewer
+      slug="corazon"
       uid="10472481071e4375b8233289c277d411"
       title="Corazón Humano"
       subtitle="🫀 Sistema Circulatorio"
