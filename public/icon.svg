@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" fill="none">
+  <rect width="192" height="192" rx="40" fill="#0f172a"/>
+  <!-- DNA helix -->
+  <circle cx="72" cy="40" r="10" fill="#3b82f6"/>
+  <circle cx="120" cy="40" r="10" fill="#ef4444"/>
+  <line x1="72" y1="40" x2="120" y2="40" stroke="#475569" stroke-width="3"/>
+  <circle cx="80" cy="64" r="10" fill="#22c55e"/>
+  <circle cx="112" cy="64" r="10" fill="#f59e0b"/>
+  <line x1="80" y1="64" x2="112" y2="64" stroke="#475569" stroke-width="3"/>
+  <circle cx="72" cy="88" r="10" fill="#ef4444"/>
+  <circle cx="120" cy="88" r="10" fill="#3b82f6"/>
+  <line x1="72" y1="88" x2="120" y2="88" stroke="#475569" stroke-width="3"/>
+  <circle cx="80" cy="112" r="10" fill="#f59e0b"/>
+  <circle cx="112" cy="112" r="10" fill="#22c55e"/>
+  <line x1="80" y1="112" x2="112" y2="112" stroke="#475569" stroke-width="3"/>
+  <circle cx="72" cy="136" r="10" fill="#3b82f6"/>
+  <circle cx="120" cy="136" r="10" fill="#ef4444"/>
+  <line x1="72" y1="136" x2="120" y2="136" stroke="#475569" stroke-width="3"/>
+  <!-- Strands -->
+  <path d="M72 40 Q65 64 80 88 Q65 112 72 136" stroke="#94a3b8" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M120 40 Q127 64 112 88 Q127 112 120 136" stroke="#64748b" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Label -->
+  <text x="96" y="175" font-family="system-ui" font-size="18" font-weight="700" fill="#22c55e" text-anchor="middle">BioAula3D</text>
+</svg>
