@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const links = [
   { href: "/celula", label: "Célula" },
@@ -19,6 +20,26 @@ const links = [
 
 export default function Navbar() {
   const path = usePathname();
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+  const [installed, setInstalled] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+    window.addEventListener("beforeinstallprompt", handler);
+    window.addEventListener("appinstalled", () => { setInstalled(true); setInstallPrompt(null); });
+    return () => window.removeEventListener("beforeinstallprompt", handler);
+  }, []);
+
+  const handleInstall = async () => {
+    if (!installPrompt) return;
+    installPrompt.prompt();
+    const { outcome } = await installPrompt.userChoice;
+    if (outcome === "accepted") { setInstalled(true); setInstallPrompt(null); }
+  };
+
   return (
     <nav className="sticky top-0 z-50 bg-bio-dark/90 backdrop-blur border-b border-slate-800">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
@@ -59,6 +80,14 @@ export default function Navbar() {
           </span>
           <span className="hidden sm:inline">BioAula3D</span>
         </Link>
+        {installPrompt && !installed && (
+          <button
+            onClick={handleInstall}
+            className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-green-500 hover:bg-green-400 text-black text-xs font-bold rounded-lg transition-all shadow-lg shadow-green-500/30 whitespace-nowrap"
+          >
+            ⬇ Instalar
+          </button>
+        )}
         <div className="flex items-center gap-1 overflow-x-auto hide-scrollbar">
           {links.map((l) => (
             <Link
