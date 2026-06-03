@@ -155,7 +155,7 @@ export default function Home() {
       {/* Módulos */}
       <section className="max-w-6xl mx-auto px-4 pb-24">
         <h2 className="text-2xl font-bold text-slate-200 mb-8">Módulos disponibles</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
           {modules.map((m, i) => (
             <motion.div
               key={m.slug}
@@ -164,15 +164,15 @@ export default function Home() {
               transition={{ delay: i * 0.08 }}
             >
               <Link href={`/${m.slug}`}>
-                <div className={`bg-bio-card border border-slate-700 hover:border-slate-500 rounded-2xl p-6 h-full transition-all hover:${m.glow} group cursor-pointer`}>
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${m.color} flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform`}>
+                <div className={`bg-bio-card border border-slate-700 hover:border-slate-500 rounded-2xl p-4 h-full transition-all hover:${m.glow} group cursor-pointer`}>
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${m.color} flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform`}>
                     {m.icon}
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{m.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{m.desc}</p>
+                  <h3 className="text-sm font-semibold text-white mb-1 leading-tight">{m.title}</h3>
+                  <p className="text-slate-400 text-xs leading-relaxed hidden sm:block">{m.desc}</p>
                   {m.parts && (
-                    <div className="mt-4 text-xs text-slate-500">
-                      {m.parts} partes etiquetadas
+                    <div className="mt-2 text-xs text-slate-500">
+                      {m.parts} partes
                     </div>
                   )}
                 </div>
