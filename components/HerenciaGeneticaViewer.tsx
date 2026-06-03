@@ -5,6 +5,7 @@ export default function HerenciaGeneticaViewer() {
   return (
     <SketchfabViewer
       slug="herencia"
+      moduleName="Herencia Genética"
       uid="4d57784b0d4841d0ab3d43d526df1c3f"
       title="Herencia Genética"
       subtitle="🧬 Genética y Transmisión de Caracteres"

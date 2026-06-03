@@ -5,6 +5,7 @@ export default function SistemaExcretorViewer() {
   return (
     <SketchfabViewer
       slug="excretor"
+      moduleName="Sistema Excretor"
       uid="4258252eb7c04e748ab7501eb5f1abb1"
       title="Sistema Excretor"
       subtitle="💧 Riñones y Vías Urinarias"

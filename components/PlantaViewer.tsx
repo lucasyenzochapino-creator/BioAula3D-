@@ -5,6 +5,7 @@ export default function PlantaViewer() {
   return (
     <SketchfabViewer
       slug="planta"
+      moduleName="Célula Vegetal"
       uid="0640c7a14f41400fbdac382c7de1d776"
       title="Célula Vegetal"
       subtitle="🌿 Biología vegetal"

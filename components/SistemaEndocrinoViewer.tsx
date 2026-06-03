@@ -5,6 +5,7 @@ export default function SistemaEndocrinoViewer() {
   return (
     <SketchfabViewer
       slug="endocrino"
+      moduleName="Sistema Endócrino"
       uid="b10f70cacb6946da851e5696291398a5"
       title="Sistema Endócrino"
       subtitle="⚗️ Glándulas y Hormonas"

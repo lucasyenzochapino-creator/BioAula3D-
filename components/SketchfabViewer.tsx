@@ -18,12 +18,14 @@ interface Props {
   intro: string;
   structures: Structure[];
   slug?: string;
+  moduleName?: string;
 }
 
-export default function SketchfabViewer({ uid, title, subtitle, accent, intro, structures, slug }: Props) {
+export default function SketchfabViewer({ uid, title, subtitle, accent, intro, structures, slug, moduleName }: Props) {
   const [open, setOpen] = useState<number | null>(null);
   const [shared, setShared] = useState(false);
   const [presenting, setPresenting] = useState(false);
+  const [level, setLevel] = useState<"primaria" | "secundaria">("primaria");
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleShare = async () => {
@@ -49,9 +51,16 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
 
   const embed = `https://sketchfab.com/models/${uid}/embed?ui_theme=dark&autospin=0.2&ui_infos=0&ui_controls=1&ui_stop=0&annotations_visible=1&ui_annotations=1`;
 
+  const glosarioHref = moduleName
+    ? `/glosario?modulo=${encodeURIComponent(moduleName)}`
+    : "/glosario";
+  const evalHref = moduleName
+    ? `/evaluaciones?modulo=${encodeURIComponent(moduleName)}`
+    : "/evaluaciones";
+
   return (
     <div className="viewer-layout">
-      {/* iframe container: normal o pantalla completa — nunca se desmonta para no recargar el modelo */}
+      {/* iframe — nunca se desmonta para no recargar el modelo */}
       <div
         ref={containerRef}
         className={presenting ? "fixed inset-0 z-50 bg-black" : "viewer-3d"}
@@ -94,6 +103,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
       </div>
 
       <div className="viewer-panel">
+        {/* Encabezado */}
         <div className="px-4 pt-4 pb-3 border-b border-slate-800 flex-shrink-0">
           <div className="text-xs font-semibold tracking-widest uppercase mb-0.5" style={{ color: accent }}>
             {subtitle}
@@ -102,7 +112,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
           <p className="text-slate-400 text-xs mt-1 leading-snug">{intro}</p>
         </div>
 
-        {/* Botones de acción — siempre visibles */}
+        {/* Fila 1 de acciones */}
         <div className="px-3 py-2 border-b border-slate-800 flex-shrink-0 flex items-center gap-2">
           {slug && (
             <Link
@@ -116,7 +126,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
             onClick={() => setPresenting(true)}
             className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-all"
           >
-            📽️ Presentar
+            📽️ Proyector
           </button>
           <button
             onClick={handleShare}
@@ -126,6 +136,47 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
           </button>
         </div>
 
+        {/* Fila 2 de acciones — recursos */}
+        <div className="px-3 py-2 border-b border-slate-800 flex-shrink-0 flex items-center gap-2">
+          <Link
+            href={glosarioHref}
+            className="flex-1 flex items-center justify-center gap-1 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-all"
+          >
+            📖 Glosario
+          </Link>
+          <Link
+            href={evalHref}
+            className="flex-1 flex items-center justify-center gap-1 py-2 rounded-lg text-xs font-semibold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 hover:text-amber-200 transition-all"
+          >
+            📝 Evaluación
+          </Link>
+          <Link
+            href="/quiz"
+            className="flex-1 flex items-center justify-center gap-1 py-2 rounded-lg text-xs font-semibold bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 hover:text-yellow-200 transition-all"
+          >
+            🏆 Quiz
+          </Link>
+        </div>
+
+        {/* Toggle Primaria / Secundaria */}
+        <div className="px-3 pt-2.5 pb-1 flex-shrink-0">
+          <div className="flex rounded-lg overflow-hidden border border-slate-700 text-xs font-semibold">
+            <button
+              onClick={() => setLevel("primaria")}
+              className={`flex-1 py-1.5 transition-all ${level === "primaria" ? "bg-emerald-500 text-black" : "bg-transparent text-slate-400 hover:text-white"}`}
+            >
+              🌱 Primaria
+            </button>
+            <button
+              onClick={() => setLevel("secundaria")}
+              className={`flex-1 py-1.5 transition-all ${level === "secundaria" ? "bg-blue-500 text-white" : "bg-transparent text-slate-400 hover:text-white"}`}
+            >
+              🔬 Secundaria
+            </button>
+          </div>
+        </div>
+
+        {/* Lista de estructuras */}
         <div className="flex-1 overflow-y-auto p-3 space-y-1">
           {structures.map((s, i) => (
             <div key={i}>
@@ -147,17 +198,36 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
                     {s.emoji && <span className="text-base leading-none">{s.emoji}</span>}
                     <span className="text-sm font-bold text-white">{s.name}</span>
                   </div>
-                  <p className="text-slate-400 text-xs mt-0.5 leading-snug">{s.simple}</p>
+                  <p className="text-slate-400 text-xs mt-0.5 leading-snug">
+                    {level === "primaria" ? s.simple : s.full}
+                  </p>
                 </div>
                 <span className="text-slate-600 text-xs mt-1.5 flex-shrink-0">{open === i ? "▲" : "▼"}</span>
               </button>
               {open === i && (
                 <div
-                  className="mx-3 mb-1 px-3 py-3 rounded-b-xl border-x border-b text-xs text-slate-300 leading-relaxed"
+                  className="mx-3 mb-1 px-3 py-3 rounded-b-xl border-x border-b text-xs leading-relaxed space-y-2"
                   style={{ borderColor: accent + "50", background: accent + "0a" }}
                 >
-                  <span className="font-semibold text-white">Secundaria: </span>
-                  {s.full}
+                  {level === "secundaria" ? (
+                    <>
+                      <div>
+                        <span className="font-semibold text-emerald-400">🌱 Primaria: </span>
+                        <span className="text-slate-300">{s.simple}</span>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-blue-400">🔬 Secundaria: </span>
+                        <span className="text-slate-200">{s.full}</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div>
+                        <span className="font-semibold text-blue-400">🔬 Secundaria: </span>
+                        <span className="text-slate-300">{s.full}</span>
+                      </div>
+                    </>
+                  )}
                 </div>
               )}
             </div>

@@ -5,6 +5,7 @@ export default function SistemaReproductorViewer() {
   return (
     <SketchfabViewer
       slug="reproductor"
+      moduleName="Sistema Reproductor"
       uid="2ad78b1785c94bac83dcb623b53748f5"
       title="Sistema Reproductor"
       subtitle="🌸 Reproducción Humana"

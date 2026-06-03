@@ -5,6 +5,7 @@ export default function MitosisViewer() {
   return (
     <SketchfabViewer
       slug="mitosis"
+      moduleName="Mitosis y Meiosis"
       uid="df93411c475c4e4eb450f71437b5ad0d"
       title="Mitosis y Meiosis"
       subtitle="🔬 División Celular"

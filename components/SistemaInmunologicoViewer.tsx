@@ -5,6 +5,7 @@ export default function SistemaInmunologicoViewer() {
   return (
     <SketchfabViewer
       slug="inmunologico"
+      moduleName="Sistema Inmunológico"
       uid="557451d5e6ca496d8c691e14b42edd93"
       title="Sistema Inmunológico"
       subtitle="🛡️ Defensa del Organismo"
