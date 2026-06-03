@@ -93,6 +93,35 @@ const terms: Term[] = [
   { name: "Páncreas", module: "Sistema Digestivo", emoji: "🟩", color: "#65a30d", simple: "Glándula que produce jugos digestivos y regula el azúcar en sangre.", full: "Función exocrina: secreta lipasa, amilasa, proteasas al duodeno para digerir macromoléculas. Función endocrina: los islotes de Langerhans producen insulina y glucagón para regular la glucemia." },
   { name: "Vesícula Biliar", module: "Sistema Digestivo", emoji: "💚", color: "#84cc16", simple: "Almacena la bilis que usa el intestino para digerir las grasas.", full: "Almacena y concentra la bilis producida por el hígado. Se contrae ante el CCK (hormona) liberando bilis al duodeno para emulsionar grasas y facilitar la acción de la lipasa." },
   { name: "Hígado (digestivo)", module: "Sistema Digestivo", emoji: "🟤", color: "#d97706", simple: "Produce la bilis y procesa los nutrientes absorbidos en el intestino.", full: "Produce ~500–1000 mL de bilis/día. Recibe sangre portal rica en nutrientes absorbidos. Metaboliza glucosa, lípidos y aminoácidos. Detoxifica tóxicos y fármacos." },
+  // Ecosistemas
+  { name: "Ecosistema", module: "Ecosistemas", emoji: "🌳", color: "#16a34a", simple: "Conjunto de seres vivos y su ambiente físico que interactúan entre sí.", full: "Unidad ecológica formada por la biocenosis (organismos) y el biotopo (ambiente abiótico: suelo, agua, clima). Los ecosistemas intercambian energía y materia." },
+  { name: "Cadena Alimentaria", module: "Ecosistemas", emoji: "🔗", color: "#22c55e", simple: "Secuencia de quién come a quién en un ecosistema.", full: "Representa el flujo de energía y materia: Productor → Consumidor primario → Consumidor secundario → Consumidor terciario → Descomponedor. La energía se pierde (~90%) en cada nivel trófico." },
+  { name: "Productor", module: "Ecosistemas", emoji: "🌿", color: "#4ade80", simple: "Ser vivo que fabrica su propio alimento (plantas, algas).", full: "Organismos autótrofos que convierten energía solar o química en materia orgánica mediante fotosíntesis o quimiosíntesis. Son la base de todas las cadenas alimentarias." },
+  { name: "Consumidor", module: "Ecosistemas", emoji: "🐰", color: "#86efac", simple: "Ser vivo que come a otros organismos para obtener energía.", full: "Organismos heterótrofos: primarios (herbívoros), secundarios (carnívoros que comen herbívoros), terciarios (superdepredadores). También existen omnívoros en varios niveles." },
+  { name: "Descomponedor", module: "Ecosistemas", emoji: "🍄", color: "#bbf7d0", simple: "Transforma la materia muerta en minerales que vuelven al suelo.", full: "Hongos, bacterias y otros detritívoros descomponen materia orgánica muerta liberando CO₂, agua y minerales al suelo (ciclo de la materia). Sin ellos, la materia orgánica se acumularía." },
+  { name: "Biodiversidad", module: "Ecosistemas", emoji: "🦋", color: "#15803d", simple: "Variedad de seres vivos que existe en un lugar o en el planeta.", full: "Incluye diversidad genética (variación dentro de una especie), específica (número de especies) y ecosistémica (variedad de hábitats). A mayor biodiversidad, mayor estabilidad del ecosistema." },
+  { name: "Bioma", module: "Ecosistemas", emoji: "🗺️", color: "#166534", simple: "Gran región del planeta con clima, suelo y seres vivos característicos.", full: "Grandes unidades ecológicas determinadas principalmente por el clima: selva tropical, sabana, desierto, tundra, bosque templado, pradera. Cada bioma tiene flora y fauna adaptadas." },
+  // Mitosis y Meiosis
+  { name: "Mitosis", module: "Mitosis y Meiosis", emoji: "🔬", color: "#6366f1", simple: "División celular que produce dos células hijas idénticas a la madre.", full: "Proceso de división del núcleo con 4 fases: profase (condensación cromosómica), metafase (alineación en ecuador), anafase (separación de cromátidas), telofase (nuevos núcleos). Seguida de citocinesis." },
+  { name: "Meiosis", module: "Mitosis y Meiosis", emoji: "🧬", color: "#818cf8", simple: "División celular que produce 4 gametos con la mitad de los cromosomas.", full: "Dos divisiones sucesivas (meiosis I y II) en células germinales. Produce 4 células haploides (n). La meiosis I es reduccional (separa homólogos), la II es ecuacional (separa cromátidas). Genera variabilidad genética." },
+  { name: "Cromátida", module: "Mitosis y Meiosis", emoji: "🧵", color: "#a5b4fc", simple: "Cada una de las dos copias unidas de un cromosoma duplicado.", full: "Tras la replicación del ADN, cada cromosoma consiste en 2 cromátidas hermanas unidas por el centrómero. En anafase, las cromátidas se separan para formar cromosomas hijos." },
+  { name: "Crossing-over", module: "Mitosis y Meiosis", emoji: "✂️", color: "#4f46e5", simple: "Intercambio de segmentos entre cromosomas homólogos durante la meiosis.", full: "Ocurre en profase I (etapa de paquiteno). Los cromosomas homólogos forman quiasmas e intercambian segmentos de ADN. Genera nuevas combinaciones alélicas (recombinación genética) aumentando la diversidad." },
+  { name: "Haploide y Diploide", module: "Mitosis y Meiosis", emoji: "🔢", color: "#7c3aed", simple: "Haploide (n): una copia de cada cromosoma. Diploide (2n): dos copias.", full: "Las células somáticas humanas son diploides (2n=46). Los gametos son haploides (n=23). La fecundación une dos gametos haploides restaurando la diploidía. Simbolizado: 2n (diploide), n (haploide)." },
+  { name: "Ciclo Celular", module: "Mitosis y Meiosis", emoji: "🔄", color: "#6d28d9", simple: "Las etapas que sigue una célula desde que nace hasta que se divide.", full: "Interfase (G1: crecimiento, S: replicación de ADN, G2: preparación) + Fase M (mitosis + citocinesis). Los puntos de control (checkpoints) verifican que cada fase se complete correctamente antes de avanzar." },
+  // Sistema Inmunológico
+  { name: "Antígeno", module: "Sistema Inmunológico", emoji: "🦠", color: "#dc2626", simple: "Sustancia extraña que activa las defensas del cuerpo.", full: "Molécula (proteína, polisacárido, lípido) reconocida como extraña por el sistema inmune. Los patógenos tienen antígenos de superficie. Los anticuerpos y linfocitos T reconocen epítopos específicos del antígeno." },
+  { name: "Anticuerpo", module: "Sistema Inmunológico", emoji: "🛡️", color: "#ef4444", simple: "Proteína en forma de Y que neutraliza antígenos específicos.", full: "Inmunoglobulinas (IgG, IgM, IgA, IgE, IgD) producidas por plasmocitos. Se unen a antígenos específicos y los neutralizan, aglutinan o marcan para fagocitosis. La memoria inmunológica permite respuesta rápida al reencuentro." },
+  { name: "Linfocito", module: "Sistema Inmunológico", emoji: "⚪", color: "#fca5a5", simple: "Glóbulo blanco especializado en la defensa específica del cuerpo.", full: "Linfocitos B: producen anticuerpos (inmunidad humoral). Linfocitos T: helper (CD4+, coordinan respuesta), citotóxicos (CD8+, destruyen células infectadas), reguladores. Linfocitos NK: matan células tumorales sin activación previa." },
+  { name: "Fagocitosis", module: "Sistema Inmunológico", emoji: "😤", color: "#b91c1c", simple: "Proceso por el que células del sistema inmune 'comen' a los patógenos.", full: "Mecanismo de defensa inespecífico (inmunidad innata). Neutrófilos y macrófagos engloban patógenos en fagosome que se funde con lisosoma, destruyendo el intruso con enzimas hidrolíticas y radicales libres." },
+  { name: "Vacuna", module: "Sistema Inmunológico", emoji: "💉", color: "#f87171", simple: "Preparado que entrena al sistema inmune para reconocer un patógeno.", full: "Introduce antígenos atenuados, inactivados o fragmentos (subunidades, ARNm) para generar memoria inmunológica sin causar enfermedad. Produce linfocitos B y T de memoria para respuesta secundaria más rápida e intensa." },
+  { name: "Inflamación", module: "Sistema Inmunológico", emoji: "🔥", color: "#fbbf24", simple: "Respuesta de defensa del cuerpo ante lesiones o infecciones.", full: "Respuesta innata caracterizada por rubor (eritema), calor, edema y dolor. Mediada por histamina, prostaglandinas y citoquinas. Facilita el acceso de leucocitos al tejido afectado y elimina patógenos." },
+  // Herencia Genética
+  { name: "Alelo", module: "Herencia Genética", emoji: "🧩", color: "#f59e0b", simple: "Versión alternativa de un gen para una misma característica.", full: "Los diploides tienen 2 alelos de cada gen (uno por cromosoma homólogo). Si son iguales: homocigoto. Si son diferentes: heterocigoto. Los alelos dominantes se expresan sobre los recesivos." },
+  { name: "Genotipo", module: "Herencia Genética", emoji: "🔤", color: "#d97706", simple: "La combinación de alelos que posee un organismo para un carácter.", full: "Composición alélica real de un individuo (p.ej. Aa, AA, aa). Puede no coincidir con el fenotipo si un alelo es recesivo. El genotipo más el ambiente determinan el fenotipo." },
+  { name: "Fenotipo", module: "Herencia Genética", emoji: "👁️", color: "#b45309", simple: "La característica observable que resulta del genotipo.", full: "Expresión visible del genotipo (color de ojos, tipo de sangre, altura). Resultado de la interacción entre genotipo y ambiente. Dos individuos con igual fenotipo pueden tener diferente genotipo." },
+  { name: "Dominante y Recesivo", module: "Herencia Genética", emoji: "⬆️", color: "#92400e", simple: "Dominante: el alelo que se expresa siempre. Recesivo: solo se expresa sin dominante.", full: "Alelo dominante (A) se expresa en genotipo AA y Aa. Alelo recesivo (a) solo se expresa en genotipo aa. La dominancia es relativa al locus y organismo (no hay alelos 'buenos' o 'malos')." },
+  { name: "Cuadro de Punnett", module: "Herencia Genética", emoji: "🔲", color: "#78350f", simple: "Tabla que predice las combinaciones genéticas posibles en la descendencia.", full: "Herramienta creada por Reginald Punnett. Cruza los gametos posibles del padre (columnas) y la madre (filas) para obtener los genotipos y proporciones fenotípicas esperadas en la descendencia." },
+  { name: "Herencia Ligada al Sexo", module: "Herencia Genética", emoji: "🔀", color: "#d97706", simple: "Herencia de caracteres cuyos genes están en los cromosomas sexuales X o Y.", full: "Los genes del cromosoma X se expresan sin contraparte en varones (XY), por eso enfermedades recesivas ligadas al X (daltonismo, hemofilia) son más frecuentes en hombres. Las mujeres (XX) pueden ser portadoras." },
 ];
 
 const MODULE_ORDER = [
@@ -105,6 +134,10 @@ const MODULE_ORDER = [
   "Cerebro Humano",
   "Sistema Respiratorio",
   "Sistema Digestivo",
+  "Ecosistemas",
+  "Mitosis y Meiosis",
+  "Sistema Inmunológico",
+  "Herencia Genética",
 ];
 
 const moduleColors: Record<string, string> = {
@@ -117,6 +150,10 @@ const moduleColors: Record<string, string> = {
   "Cerebro Humano": "#c084fc",
   "Sistema Respiratorio": "#38bdf8",
   "Sistema Digestivo": "#fb923c",
+  "Ecosistemas": "#22c55e",
+  "Mitosis y Meiosis": "#818cf8",
+  "Sistema Inmunológico": "#ef4444",
+  "Herencia Genética": "#f59e0b",
 };
 
 async function exportPDF(filteredTerms: Term[], activeModule: string | null) {
