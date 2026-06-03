@@ -5,6 +5,7 @@ export default function SistemaOseoViewer() {
   return (
     <SketchfabViewer
       slug="oseo"
+      moduleName="Sistema Óseo"
       uid="911b9df7e7834175b69b4840ea15e054"
       title="Sistema Óseo"
       subtitle="🦴 Esqueleto Humano"

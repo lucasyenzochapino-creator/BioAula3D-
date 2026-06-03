@@ -5,6 +5,7 @@ export default function CelulaViewer() {
   return (
     <SketchfabViewer
       slug="celula"
+      moduleName="Célula Animal"
       uid="0d9f7f4257224975b2ef83a283709b2f"
       title="Célula Animal"
       subtitle="🔬 Biología celular"

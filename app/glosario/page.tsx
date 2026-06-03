@@ -1,5 +1,6 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 interface Term {
@@ -304,9 +305,12 @@ async function exportPDF(filteredTerms: Term[], activeModule: string | null) {
   return pdf;
 }
 
-export default function GlosarioPage() {
+function GlosarioContent() {
+  const searchParams = useSearchParams();
   const [search, setSearch] = useState("");
-  const [activeModule, setActiveModule] = useState<string | null>(null);
+  const [activeModule, setActiveModule] = useState<string | null>(
+    searchParams.get("modulo") || null
+  );
   const [expanded, setExpanded] = useState<string | null>(null);
   const [pdfLoading, setPdfLoading] = useState(false);
   const [shared, setShared] = useState(false);
@@ -450,5 +454,13 @@ export default function GlosarioPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function GlosarioPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-bio-dark" />}>
+      <GlosarioContent />
+    </Suspense>
   );
 }

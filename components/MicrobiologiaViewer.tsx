@@ -5,6 +5,7 @@ export default function MicrobiologiaViewer() {
   return (
     <SketchfabViewer
       slug="microbiologia"
+      moduleName="Microbiología"
       uid="4a310db79e834e07a69ee8d4892d46ee"
       title="Microbiología"
       subtitle="🦠 Bacterias y Microorganismos"

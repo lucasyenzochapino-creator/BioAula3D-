@@ -5,6 +5,7 @@ export default function SistemaNerviosoViewer() {
   return (
     <SketchfabViewer
       slug="sistema-nervioso"
+      moduleName="Sistema Nervioso"
       uid="03a5173f3d2e46958b6f8be81b1c88be"
       title="Neurona"
       subtitle="🧠 Sistema nervioso"
