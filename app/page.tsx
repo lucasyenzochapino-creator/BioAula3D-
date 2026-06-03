@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const modules = [
+const modules3D = [
+  // ── Célula y Genética ──
   {
     slug: "celula",
     title: "Célula Animal",
@@ -11,6 +12,15 @@ const modules = [
     color: "from-green-500 to-teal-500",
     glow: "glow-green",
     parts: 12,
+  },
+  {
+    slug: "planta",
+    title: "Célula Vegetal",
+    desc: "Compará la célula vegetal con la animal. Pared celular, cloroplastos y vacuola central.",
+    icon: "🌿",
+    color: "from-emerald-500 to-green-600",
+    glow: "glow-green",
+    parts: 11,
   },
   {
     slug: "adn",
@@ -22,103 +32,51 @@ const modules = [
     parts: 8,
   },
   {
-    slug: "sistema-nervioso",
-    title: "Sistema Nervioso",
-    desc: "Neurona 3D con dendritas, axón, mielina y sinapsis. Entendé cómo funciona el cerebro.",
-    icon: "🧠",
-    color: "from-purple-500 to-pink-500",
-    glow: "glow-purple",
-    parts: 9,
+    slug: "herencia",
+    title: "Herencia Genética",
+    desc: "Leyes de Mendel, cuadro de Punnett, dominancia, herencia ligada al sexo y mutaciones.",
+    icon: "🧬",
+    color: "from-amber-400 to-orange-500",
+    glow: "glow-teal",
+    parts: 8,
   },
+  {
+    slug: "mitosis",
+    title: "Mitosis y Meiosis",
+    desc: "Fases de la división celular: interfase, profase, metafase, anafase, telofase y meiosis.",
+    icon: "🔬",
+    color: "from-indigo-500 to-violet-600",
+    glow: "glow-purple",
+    parts: 8,
+  },
+  // ── Microbiología y Ecología ──
+  {
+    slug: "microbiologia",
+    title: "Microbiología",
+    desc: "Estructura bacteriana 3D: pared celular, nucleoide, flagelo, pili y resistencia antibiótica.",
+    icon: "🦠",
+    color: "from-green-400 to-emerald-500",
+    glow: "glow-green",
+    parts: 8,
+  },
+  {
+    slug: "ecosistemas",
+    title: "Ecosistemas",
+    desc: "Cadenas alimentarias, niveles tróficos, ciclo del carbono y biodiversidad en 3D.",
+    icon: "🌳",
+    color: "from-emerald-400 to-green-600",
+    glow: "glow-green",
+    parts: 8,
+  },
+  // ── Cuerpo Humano ──
   {
     slug: "cuerpo-humano",
     title: "Cuerpo Humano",
-    desc: "Vista completa del cuerpo con sistemas circulatorio, digestivo y respiratorio.",
+    desc: "Vista completa del cuerpo con todos los sistemas en 3D.",
     icon: "🫀",
     color: "from-red-500 to-orange-500",
     glow: "glow-green",
     parts: 15,
-  },
-  {
-    slug: "planta",
-    title: "Célula Vegetal",
-    desc: "Compará la célula vegetal con la animal. Pared celular, cloroplastos y vacuola.",
-    icon: "🌿",
-    color: "from-emerald-500 to-green-600",
-    glow: "glow-green",
-    parts: 11,
-  },
-  {
-    slug: "corazon",
-    title: "Corazón Humano",
-    desc: "Anatomía del corazón en 3D: ventrículos, aurículas, válvulas y arterias coronarias.",
-    icon: "🫀",
-    color: "from-red-500 to-rose-600",
-    glow: "glow-green",
-    parts: 9,
-  },
-  {
-    slug: "cerebro",
-    title: "Cerebro Humano",
-    desc: "Explorá los lóbulos cerebrales, cerebelo, tronco encefálico, hipocampo y más.",
-    icon: "🧠",
-    color: "from-purple-500 to-violet-600",
-    glow: "glow-purple",
-    parts: 8,
-  },
-  {
-    slug: "pulmones",
-    title: "Sistema Respiratorio",
-    desc: "Pulmones, bronquios, alvéolos y diafragma. Cómo respiramos en 3D.",
-    icon: "🫁",
-    color: "from-sky-500 to-cyan-600",
-    glow: "glow-teal",
-    parts: 8,
-  },
-  {
-    slug: "digestivo",
-    title: "Sistema Digestivo",
-    desc: "Recorrido del alimento: boca, estómago, intestinos, hígado y páncreas.",
-    icon: "🍽️",
-    color: "from-orange-500 to-amber-600",
-    glow: "glow-green",
-    parts: 8,
-  },
-  {
-    slug: "quiz",
-    title: "Quiz 3D",
-    desc: "Dos niveles: primaria y secundaria. 10 preguntas con explicación por respuesta y puntaje final.",
-    icon: "🏆",
-    color: "from-yellow-500 to-orange-500",
-    glow: "glow-teal",
-    parts: null,
-  },
-  {
-    slug: "glosario",
-    title: "Glosario",
-    desc: "Más de 65 términos biológicos con explicación para primaria y secundaria. Buscá, filtrá y descargá el PDF.",
-    icon: "📖",
-    color: "from-slate-500 to-slate-600",
-    glow: "glow-teal",
-    parts: null,
-  },
-  {
-    slug: "tareas",
-    title: "Banco de Tareas",
-    desc: "Para docentes: 18 tareas listas con actividades y preguntas. Filtrá por primaria o secundaria y descargá el PDF para imprimir.",
-    icon: "📋",
-    color: "from-violet-500 to-purple-600",
-    glow: "glow-purple",
-    parts: null,
-  },
-  {
-    slug: "evaluaciones",
-    title: "Evaluaciones",
-    desc: "Para docentes: 22 evaluaciones completas con opción múltiple, V/F, completar y desarrollo. PDF alumno y con respuestas.",
-    icon: "📝",
-    color: "from-amber-500 to-orange-600",
-    glow: "glow-teal",
-    parts: null,
   },
   {
     slug: "oseo",
@@ -139,6 +97,33 @@ const modules = [
     parts: 10,
   },
   {
+    slug: "corazon",
+    title: "Corazón Humano",
+    desc: "Anatomía del corazón en 3D: ventrículos, aurículas, válvulas y arterias coronarias.",
+    icon: "🫀",
+    color: "from-red-500 to-rose-600",
+    glow: "glow-green",
+    parts: 9,
+  },
+  {
+    slug: "pulmones",
+    title: "Sistema Respiratorio",
+    desc: "Pulmones, bronquios, alvéolos y diafragma. Cómo respiramos en 3D.",
+    icon: "🫁",
+    color: "from-sky-500 to-cyan-600",
+    glow: "glow-teal",
+    parts: 8,
+  },
+  {
+    slug: "digestivo",
+    title: "Sistema Digestivo",
+    desc: "Recorrido del alimento: boca, estómago, intestinos, hígado y páncreas.",
+    icon: "🍽️",
+    color: "from-orange-500 to-amber-600",
+    glow: "glow-green",
+    parts: 8,
+  },
+  {
     slug: "excretor",
     title: "Sistema Excretor",
     desc: "Riñones, nefrona, uréter, vejiga y uretra. Filtración y formación de orina en 3D.",
@@ -148,38 +133,20 @@ const modules = [
     parts: 8,
   },
   {
-    slug: "mitosis",
-    title: "Mitosis y Meiosis",
-    desc: "Fases de la división celular: interfase, profase, metafase, anafase, telofase y meiosis.",
-    icon: "🔬",
-    color: "from-indigo-500 to-violet-600",
+    slug: "sistema-nervioso",
+    title: "Sistema Nervioso",
+    desc: "Neurona 3D con dendritas, axón, mielina y sinapsis. Entendé cómo funciona el cerebro.",
+    icon: "🧠",
+    color: "from-purple-500 to-pink-500",
     glow: "glow-purple",
-    parts: 8,
-  },
-  {
-    slug: "inmunologico",
-    title: "Sistema Inmunológico",
-    desc: "Linfocitos B y T, macrófagos, anticuerpos, células NK, timo y bazo en 3D.",
-    icon: "🛡️",
-    color: "from-red-500 to-rose-600",
-    glow: "glow-green",
     parts: 9,
   },
   {
-    slug: "endocrino",
-    title: "Sistema Endócrino",
-    desc: "Hipotálamo, hipófisis, tiroides, suprarrenales, páncreas endócrino y gónadas.",
-    icon: "⚗️",
-    color: "from-orange-400 to-amber-500",
-    glow: "glow-teal",
-    parts: 8,
-  },
-  {
-    slug: "reproductor",
-    title: "Sistema Reproductor",
-    desc: "Ovarios, trompas, útero, endometrio, ciclo menstrual y fecundación en 3D.",
-    icon: "🌸",
-    color: "from-pink-400 to-rose-500",
+    slug: "cerebro",
+    title: "Cerebro Humano",
+    desc: "Explorá los lóbulos cerebrales, cerebelo, tronco encefálico, hipocampo y más.",
+    icon: "🧠",
+    color: "from-purple-500 to-violet-600",
     glow: "glow-purple",
     parts: 8,
   },
@@ -193,33 +160,93 @@ const modules = [
     parts: 9,
   },
   {
-    slug: "microbiologia",
-    title: "Microbiología",
-    desc: "Estructura bacteriana 3D: pared celular, nucleoide, flagelo, pili y resistencia antibiótica.",
-    icon: "🦠",
-    color: "from-green-400 to-emerald-500",
-    glow: "glow-green",
-    parts: 8,
-  },
-  {
-    slug: "ecosistemas",
-    title: "Ecosistemas",
-    desc: "Cadenas alimentarias, niveles tróficos, ciclo del carbono y biodiversidad en 3D.",
-    icon: "🌳",
-    color: "from-emerald-400 to-green-600",
-    glow: "glow-green",
-    parts: 8,
-  },
-  {
-    slug: "herencia",
-    title: "Herencia Genética",
-    desc: "Leyes de Mendel, cuadro de Punnett, dominancia, herencia ligada al sexo y mutaciones.",
-    icon: "🧬",
-    color: "from-amber-400 to-orange-500",
+    slug: "endocrino",
+    title: "Sistema Endócrino",
+    desc: "Hipotálamo, hipófisis, tiroides, suprarrenales, páncreas endócrino y gónadas.",
+    icon: "⚗️",
+    color: "from-orange-400 to-amber-500",
     glow: "glow-teal",
     parts: 8,
   },
+  {
+    slug: "inmunologico",
+    title: "Sistema Inmunológico",
+    desc: "Linfocitos B y T, macrófagos, anticuerpos, células NK, timo y bazo en 3D.",
+    icon: "🛡️",
+    color: "from-red-500 to-rose-600",
+    glow: "glow-green",
+    parts: 9,
+  },
+  {
+    slug: "reproductor",
+    title: "Sistema Reproductor",
+    desc: "Anatomía femenina y masculina: ovarios, útero, testículos, próstata, fecundación y ciclo menstrual.",
+    icon: "🌸",
+    color: "from-pink-400 to-rose-500",
+    glow: "glow-purple",
+    parts: 15,
+  },
 ];
+
+const tools = [
+  {
+    slug: "quiz",
+    title: "Quiz 3D",
+    desc: "Primaria y secundaria. 10 preguntas con explicación por respuesta y puntaje final.",
+    icon: "🏆",
+    color: "from-yellow-500 to-orange-500",
+    glow: "glow-teal",
+  },
+  {
+    slug: "glosario",
+    title: "Glosario",
+    desc: "Más de 65 términos biológicos con explicación para primaria y secundaria. PDF descargable.",
+    icon: "📖",
+    color: "from-slate-500 to-slate-600",
+    glow: "glow-teal",
+  },
+  {
+    slug: "tareas",
+    title: "Banco de Tareas",
+    desc: "18 tareas listas con actividades y preguntas. Filtrá por nivel y descargá en PDF.",
+    icon: "📋",
+    color: "from-violet-500 to-purple-600",
+    glow: "glow-purple",
+  },
+  {
+    slug: "evaluaciones",
+    title: "Evaluaciones",
+    desc: "22 evaluaciones completas con opción múltiple, V/F, completar y desarrollo. PDF alumno y con respuestas.",
+    icon: "📝",
+    color: "from-amber-500 to-orange-600",
+    glow: "glow-teal",
+  },
+];
+
+type ModuleItem = { slug: string; title: string; desc: string; icon: string; color: string; glow: string; parts?: number };
+
+function ModuleCard({ m, i }: { m: ModuleItem; i: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: i * 0.05 }}
+    >
+      <Link href={`/${m.slug}`}>
+        <div className={`bg-bio-card border border-slate-700 hover:border-slate-500 rounded-2xl p-4 h-full transition-all hover:${m.glow} group cursor-pointer`}>
+          <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${m.color} flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform`}>
+            {m.icon}
+          </div>
+          <h3 className="text-sm font-semibold text-white mb-1 leading-tight">{m.title}</h3>
+          <p className="text-slate-400 text-xs leading-relaxed hidden sm:block">{m.desc}</p>
+          {m.parts && (
+            <div className="mt-2 text-xs text-slate-500">{m.parts} estructuras</div>
+          )}
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
 
 export default function Home() {
   return (
@@ -260,33 +287,24 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Módulos */}
-      <section id="modulos" className="max-w-6xl mx-auto px-4 pb-24">
-        <h2 className="text-2xl font-bold text-slate-200 mb-8">Módulos disponibles</h2>
+      {/* Módulos 3D */}
+      <section id="modulos" className="max-w-6xl mx-auto px-4 pb-12">
+        <h2 className="text-2xl font-bold text-slate-200 mb-2">Módulos 3D</h2>
+        <p className="text-slate-500 text-sm mb-6">{modules3D.length} modelos interactivos · Nivel primaria y secundaria</p>
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-          {modules.map((m, i) => (
-            <motion.div
-              key={m.slug}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.08 }}
-            >
-              <Link href={`/${m.slug}`}>
-                <div className={`bg-bio-card border border-slate-700 hover:border-slate-500 rounded-2xl p-4 h-full transition-all hover:${m.glow} group cursor-pointer`}>
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${m.color} flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform`}>
-                    {m.icon}
-                  </div>
-                  <h3 className="text-sm font-semibold text-white mb-1 leading-tight">{m.title}</h3>
-                  <p className="text-slate-400 text-xs leading-relaxed hidden sm:block">{m.desc}</p>
-                  {m.parts && (
-                    <div className="mt-2 text-xs text-slate-500">
-                      {m.parts} partes
-                    </div>
-                  )}
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+          {modules3D.map((m, i) => <ModuleCard key={m.slug} m={m} i={i} />)}
+        </div>
+      </section>
+
+      {/* Herramientas */}
+      <section className="max-w-6xl mx-auto px-4 pb-24">
+        <div className="flex items-center gap-3 mb-2">
+          <h2 className="text-2xl font-bold text-slate-200">Herramientas educativas</h2>
+          <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30">Docentes</span>
+        </div>
+        <p className="text-slate-500 text-sm mb-6">Quiz, glosario, tareas y evaluaciones con PDF para imprimir o enviar</p>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {tools.map((m, i) => <ModuleCard key={m.slug} m={m} i={modules3D.length + i} />)}
         </div>
       </section>
     </div>
