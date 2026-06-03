@@ -26,7 +26,12 @@ html, body {
 }
 
 main {
-  animation: pageFadeIn 0.18s ease-out;
+  animation: pageFadeIn 0.2s ease-out both;
+}
+
+/* Previene flash blanco durante navegación */
+html {
+  background: #0f172a;
 }
 
 ::-webkit-scrollbar {

@@ -136,12 +136,12 @@ export default function Home() {
             Explorá células, ADN, órganos y más en modelos 3D interactivos. Hacé clic en cada parte para aprender.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link
-              href="/celula"
+            <button
+              onClick={() => document.getElementById("modulos")?.scrollIntoView({ behavior: "smooth" })}
               className="px-7 py-3 bg-green-500 hover:bg-green-400 text-black font-semibold rounded-xl transition-all shadow-lg shadow-green-500/30 hover:shadow-green-400/40"
             >
-              Explorar Célula Animal →
-            </Link>
+              Explorar módulos →
+            </button>
             <Link
               href="/quiz"
               className="px-7 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl transition-all"
@@ -153,7 +153,7 @@ export default function Home() {
       </section>
 
       {/* Módulos */}
-      <section className="max-w-6xl mx-auto px-4 pb-24">
+      <section id="modulos" className="max-w-6xl mx-auto px-4 pb-24">
         <h2 className="text-2xl font-bold text-slate-200 mb-8">Módulos disponibles</h2>
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
           {modules.map((m, i) => (
