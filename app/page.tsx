@@ -117,7 +117,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-bio-dark">
       {/* Hero */}
-      <section className="relative overflow-hidden py-24 px-4 text-center">
+      <section className="relative overflow-hidden py-10 md:py-20 px-4 text-center">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,197,94,0.12)_0%,transparent_70%)]" />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -125,14 +125,14 @@ export default function Home() {
           transition={{ duration: 0.7 }}
           className="relative z-10 max-w-3xl mx-auto"
         >
-          <div className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-full px-4 py-1.5 text-green-400 text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-full px-4 py-1.5 text-green-400 text-sm font-medium mb-4">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             App educativa de biología 3D
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-5 bg-gradient-to-r from-green-400 via-teal-400 to-blue-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold mb-3 bg-gradient-to-r from-green-400 via-teal-400 to-blue-400 bg-clip-text text-transparent">
             BioAula3D
           </h1>
-          <p className="text-slate-400 text-lg md:text-xl max-w-xl mx-auto mb-10">
+          <p className="text-slate-400 text-base md:text-xl max-w-xl mx-auto mb-6">
             Explorá células, ADN, órganos y más en modelos 3D interactivos. Hacé clic en cada parte para aprender.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
