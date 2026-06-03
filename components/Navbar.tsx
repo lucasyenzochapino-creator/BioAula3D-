@@ -25,21 +25,36 @@ export default function Navbar() {
         <Link href="/" className="text-green-400 font-bold text-xl tracking-tight flex items-center gap-2 flex-shrink-0">
           <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-slate-900 ring-2 ring-green-500/60 flex-shrink-0 overflow-hidden">
             <svg viewBox="0 0 192 192" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="192" height="192" rx="40" fill="#0f172a"/>
-              <circle cx="72" cy="40" r="10" fill="#3b82f6"/>
-              <circle cx="120" cy="40" r="10" fill="#ef4444"/>
-              <line x1="72" y1="40" x2="120" y2="40" stroke="#475569" strokeWidth="3"/>
-              <circle cx="80" cy="72" r="10" fill="#22c55e"/>
-              <circle cx="112" cy="72" r="10" fill="#f59e0b"/>
-              <line x1="80" y1="72" x2="112" y2="72" stroke="#475569" strokeWidth="3"/>
-              <circle cx="72" cy="104" r="10" fill="#ef4444"/>
-              <circle cx="120" cy="104" r="10" fill="#3b82f6"/>
-              <line x1="72" y1="104" x2="120" y2="104" stroke="#475569" strokeWidth="3"/>
-              <circle cx="80" cy="136" r="10" fill="#f59e0b"/>
-              <circle cx="112" cy="136" r="10" fill="#22c55e"/>
-              <line x1="80" y1="136" x2="112" y2="136" stroke="#475569" strokeWidth="3"/>
-              <path d="M72 40 Q62 72 80 104 Q62 136 72 152" stroke="#94a3b8" strokeWidth="4" fill="none" strokeLinecap="round"/>
-              <path d="M120 40 Q130 72 112 104 Q130 136 120 152" stroke="#64748b" strokeWidth="4" fill="none" strokeLinecap="round"/>
+              <defs>
+                <radialGradient id="nb-bg" cx="50%" cy="40%" r="60%"><stop offset="0%" stopColor="#1e3a5f"/><stop offset="100%" stopColor="#0a0f1a"/></radialGradient>
+                <radialGradient id="nb-b" cx="35%" cy="30%" r="65%"><stop offset="0%" stopColor="#93c5fd"/><stop offset="55%" stopColor="#3b82f6"/><stop offset="100%" stopColor="#1d4ed8"/></radialGradient>
+                <radialGradient id="nb-r" cx="35%" cy="30%" r="65%"><stop offset="0%" stopColor="#fca5a5"/><stop offset="55%" stopColor="#ef4444"/><stop offset="100%" stopColor="#b91c1c"/></radialGradient>
+                <radialGradient id="nb-g" cx="35%" cy="30%" r="65%"><stop offset="0%" stopColor="#86efac"/><stop offset="55%" stopColor="#22c55e"/><stop offset="100%" stopColor="#15803d"/></radialGradient>
+                <radialGradient id="nb-y" cx="35%" cy="30%" r="65%"><stop offset="0%" stopColor="#fde68a"/><stop offset="55%" stopColor="#f59e0b"/><stop offset="100%" stopColor="#b45309"/></radialGradient>
+              </defs>
+              <rect width="192" height="192" rx="40" fill="url(#nb-bg)"/>
+              <line x1="70" y1="32" x2="122" y2="32" stroke="#64748b" strokeWidth="2.5"/>
+              <line x1="74" y1="72" x2="118" y2="72" stroke="#64748b" strokeWidth="2.5"/>
+              <line x1="70" y1="112" x2="122" y2="112" stroke="#64748b" strokeWidth="2.5"/>
+              <line x1="74" y1="150" x2="118" y2="150" stroke="#64748b" strokeWidth="2.5"/>
+              <path d="M70 32 C58 52 74 72 70 112 C66 142 70 150 70 150" stroke="#94a3b8" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
+              <path d="M122 32 C134 52 118 72 122 112 C126 142 122 150 122 150" stroke="#64748b" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
+              <circle cx="70" cy="32" r="11" fill="url(#nb-b)"/>
+              <circle cx="70" cy="32" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
+              <circle cx="122" cy="32" r="11" fill="url(#nb-r)"/>
+              <circle cx="122" cy="32" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
+              <circle cx="74" cy="72" r="11" fill="url(#nb-g)"/>
+              <circle cx="74" cy="72" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
+              <circle cx="118" cy="72" r="11" fill="url(#nb-y)"/>
+              <circle cx="118" cy="72" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
+              <circle cx="70" cy="112" r="11" fill="url(#nb-r)"/>
+              <circle cx="70" cy="112" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
+              <circle cx="122" cy="112" r="11" fill="url(#nb-b)"/>
+              <circle cx="122" cy="112" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
+              <circle cx="74" cy="150" r="11" fill="url(#nb-y)"/>
+              <circle cx="74" cy="150" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
+              <circle cx="118" cy="150" r="11" fill="url(#nb-g)"/>
+              <circle cx="118" cy="150" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
             </svg>
           </span>
           <span className="hidden sm:inline">BioAula3D</span>
