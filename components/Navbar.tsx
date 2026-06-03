@@ -23,7 +23,7 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-bio-dark/90 backdrop-blur border-b border-slate-800">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
         <Link href="/" className="text-green-400 font-bold text-xl tracking-tight flex items-center gap-2 flex-shrink-0">
-          <img src="/icon.svg" alt="BioAula3D" className="w-9 h-9 rounded-xl border border-slate-700" />
+          <img src="/icon.svg" alt="BioAula3D" className="w-9 h-9 rounded-xl ring-2 ring-green-500/60" />
           <span className="hidden sm:inline">BioAula3D</span>
         </Link>
         <div className="flex items-center gap-1 overflow-x-auto hide-scrollbar">
