@@ -1,6 +1,5 @@
 "use client";
-import { useState, useMemo, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useMemo, useEffect } from "react";
 
 type Nivel = "Primaria" | "Secundaria";
 type TipoPregunta = "multiple" | "vf" | "completar" | "desarrollo";
@@ -974,12 +973,14 @@ function EvalCard({ ev }: { ev: Evaluacion }) {
   );
 }
 
-function EvaluacionesContent() {
-  const searchParams = useSearchParams();
+export default function EvaluacionesPage() {
   const [nivel, setNivel] = useState<Nivel | "Todas">("Todas");
-  const [modulo, setModulo] = useState<string | null>(
-    searchParams.get("modulo") || null
-  );
+  const [modulo, setModulo] = useState<string | null>(null);
+
+  useEffect(() => {
+    const m = new URLSearchParams(window.location.search).get("modulo");
+    if (m) setModulo(m);
+  }, []);
 
   const filtered = useMemo(() => evaluaciones.filter(e =>
     (nivel === "Todas" || e.nivel === nivel) &&
@@ -1042,10 +1043,3 @@ function EvaluacionesContent() {
   );
 }
 
-export default function EvaluacionesPage() {
-  return (
-    <Suspense fallback={<div className="min-h-screen bg-bio-dark" />}>
-      <EvaluacionesContent />
-    </Suspense>
-  );
-}

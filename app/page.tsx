@@ -179,12 +179,21 @@ const modules3D = [
   },
   {
     slug: "reproductor",
-    title: "Sistema Reproductor",
-    desc: "Anatomía femenina y masculina: ovarios, útero, testículos, próstata, fecundación y ciclo menstrual.",
-    icon: "🌸",
+    title: "Sistema Reproductor Femenino",
+    desc: "Ovarios, trompas de Falopio, útero, endometrio, ciclo menstrual y fecundación en 3D.",
+    icon: "♀️",
     color: "from-pink-400 to-rose-500",
     glow: "glow-purple",
-    parts: 15,
+    parts: 8,
+  },
+  {
+    slug: "reproductor-masculino",
+    title: "Sistema Reproductor Masculino",
+    desc: "Testículos, epidídimo, conducto deferente, próstata, vesícula seminal y espermatozoide en 3D.",
+    icon: "♂️",
+    color: "from-blue-400 to-indigo-500",
+    glow: "glow-purple",
+    parts: 8,
   },
 ];
 
