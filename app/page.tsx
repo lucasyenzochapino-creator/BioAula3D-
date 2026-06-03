@@ -111,6 +111,15 @@ const modules = [
     glow: "glow-purple",
     parts: null,
   },
+  {
+    slug: "evaluaciones",
+    title: "Evaluaciones",
+    desc: "Para docentes: 22 evaluaciones completas con opción múltiple, V/F, completar y desarrollo. PDF alumno y con respuestas.",
+    icon: "📝",
+    color: "from-amber-500 to-orange-600",
+    glow: "glow-teal",
+    parts: null,
+  },
 ];
 
 export default function Home() {

@@ -16,6 +16,7 @@ const links = [
   { href: "/quiz", label: "Quiz" },
   { href: "/glosario", label: "Glosario" },
   { href: "/tareas", label: "📋 Tareas" },
+  { href: "/evaluaciones", label: "📝 Evaluaciones" },
 ];
 
 export default function Navbar() {
