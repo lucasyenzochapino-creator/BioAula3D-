@@ -32,8 +32,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
   const [toolsOpen, setToolsOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [actionOrder, setActionOrder] = useState<string[]>(ACTION_DEFAULTS);
-  const [dragging, setDragging] = useState<string | null>(null);
-  const [dropTarget, setDropTarget] = useState<string | null>(null);
+  const [selecting, setSelecting] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -51,15 +50,19 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
     try { localStorage.setItem("bioaula-actions", JSON.stringify(order)); } catch {}
   };
 
-  const applyDrop = (targetId: string) => {
-    if (!dragging || dragging === targetId) return;
-    const arr = [...actionOrder];
-    const from = arr.indexOf(dragging);
-    const to = arr.indexOf(targetId);
-    if (from < 0 || to < 0) return;
-    arr.splice(from, 1);
-    arr.splice(to, 0, dragging);
-    saveOrder(arr);
+  const handleEditTap = (id: string) => {
+    if (!editMode) return;
+    if (!selecting) {
+      setSelecting(id);
+    } else if (selecting === id) {
+      setSelecting(null);
+    } else {
+      const arr = [...actionOrder];
+      const a = arr.indexOf(selecting);
+      const b = arr.indexOf(id);
+      if (a >= 0 && b >= 0) { [arr[a], arr[b]] = [arr[b], arr[a]]; saveOrder(arr); }
+      setSelecting(null);
+    }
   };
 
   const handleShare = async () => {
@@ -97,66 +100,44 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
   const renderAction = (id: string) => {
     if (id === "ficha" && !slug) return null;
 
-    const isDropping = dropTarget === id && dragging !== id;
-    const wrapCls = `flex-1 min-w-[calc(33%-4px)] flex ${editMode ? "cursor-grab" : ""} ${isDropping ? "ring-2 ring-blue-400 rounded-lg scale-105" : ""}`;
-    const dragHandlers = editMode ? {
-      draggable: true as const,
-      onDragStart: () => setDragging(id),
-      onDragOver: (e: React.DragEvent) => { e.preventDefault(); setDropTarget(id); },
-      onDrop: (e: React.DragEvent) => { e.preventDefault(); applyDrop(id); setDropTarget(null); },
-      onDragEnd: () => { setDragging(null); setDropTarget(null); },
-    } : {};
-    const stopInEdit = (e: React.MouseEvent) => { if (editMode) e.preventDefault(); };
+    const isSelected = selecting === id;
+    const dimmed = selecting !== null && !isSelected;
+    const wrapCls = [
+      "flex-1 min-w-[calc(33%-4px)] rounded-lg transition-all",
+      editMode ? "cursor-pointer select-none" : "",
+      isSelected ? "ring-2 ring-blue-400 scale-105 shadow-blue-400/30 shadow-lg" : "",
+      dimmed ? "opacity-40" : "",
+    ].join(" ");
 
-    if (id === "ficha") return (
-      <div key="ficha" {...dragHandlers} className={wrapCls}>
-        <Link href={`/ficha/${slug}`} onClick={stopInEdit}
-          className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-all">
-          🖨️ Ficha
-        </Link>
-      </div>
-    );
-    if (id === "proyector") return (
-      <div key="proyector" {...dragHandlers} className={wrapCls}>
-        <button onClick={() => !editMode && setPresenting(true)}
-          className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-all">
-          📽️ Proyector
-        </button>
-      </div>
-    );
-    if (id === "compartir") return (
-      <div key="compartir" {...dragHandlers} className={wrapCls}>
-        <button onClick={() => !editMode && handleShare()}
-          className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-all">
-          {shared ? "✓ Copiado" : "📤 Compartir"}
-        </button>
-      </div>
-    );
-    if (id === "glosario") return (
-      <div key="glosario" {...dragHandlers} className={wrapCls}>
-        <Link href={glosarioHref} onClick={stopInEdit}
-          className="flex-1 flex items-center justify-center gap-1 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-all">
-          📖 Glosario
-        </Link>
-      </div>
-    );
-    if (id === "evaluacion") return (
-      <div key="evaluacion" {...dragHandlers} className={wrapCls}>
-        <Link href={evalHref} onClick={stopInEdit}
-          className="flex-1 flex items-center justify-center gap-1 py-2 rounded-lg text-xs font-semibold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 hover:text-amber-200 transition-all">
-          📝 Evaluación
-        </Link>
-      </div>
-    );
-    if (id === "quiz") return (
-      <div key="quiz" {...dragHandlers} className={wrapCls}>
-        <Link href="/quiz" onClick={stopInEdit}
-          className="flex-1 flex items-center justify-center gap-1 py-2 rounded-lg text-xs font-semibold bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 hover:text-yellow-200 transition-all">
-          🏆 Quiz
-        </Link>
-      </div>
-    );
-    return null;
+    const s = "flex-1 flex items-center justify-center gap-1 py-2 rounded-lg text-xs font-semibold transition-all";
+    const c0 = `${s} bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white`;
+    const cAmber = `${s} bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 hover:text-amber-200`;
+    const cYellow = `${s} bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 hover:text-yellow-200`;
+
+    if (editMode) {
+      const label =
+        id === "ficha" ? "🖨️ Ficha" :
+        id === "proyector" ? "📽️ Proyector" :
+        id === "compartir" ? "📤 Compartir" :
+        id === "glosario" ? "📖 Glosario" :
+        id === "evaluacion" ? "📝 Evaluación" : "🏆 Quiz";
+      const cls = id === "evaluacion" ? cAmber : id === "quiz" ? cYellow : c0;
+      return (
+        <div key={id} className={wrapCls} onClick={() => handleEditTap(id)}>
+          <div className={cls}>{label}</div>
+        </div>
+      );
+    }
+
+    const content =
+      id === "ficha"      ? <Link href={`/ficha/${slug!}`} className={c0}>🖨️ Ficha</Link> :
+      id === "proyector"  ? <button onClick={() => setPresenting(true)} className={c0}>📽️ Proyector</button> :
+      id === "compartir"  ? <button onClick={handleShare} className={c0}>{shared ? "✓ Copiado" : "📤 Compartir"}</button> :
+      id === "glosario"   ? <Link href={glosarioHref} className={c0}>📖 Glosario</Link> :
+      id === "evaluacion" ? <Link href={evalHref} className={cAmber}>📝 Evaluación</Link> :
+      id === "quiz"       ? <Link href="/quiz" className={cYellow}>🏆 Quiz</Link> : null;
+
+    return <div key={id} className="flex-1 min-w-[calc(33%-4px)]">{content}</div>;
   };
 
   const actions = actionOrder.flatMap(id => {
@@ -204,7 +185,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
         {/* Herramientas — colapsado por defecto */}
         <div className="px-3 py-2 border-b border-slate-800 flex-shrink-0">
           <button
-            onClick={() => { setToolsOpen(v => !v); if (toolsOpen) setEditMode(false); }}
+            onClick={() => { setToolsOpen(v => !v); if (toolsOpen) { setEditMode(false); setSelecting(null); } }}
             className="w-full flex items-center justify-between px-1 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all"
           >
             <span>🛠️ Herramientas</span>
@@ -216,10 +197,12 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
               <div className="flex flex-wrap gap-1.5">{actions}</div>
               <div className="flex items-center justify-end pt-0.5">
                 {editMode && (
-                  <span className="text-xs text-slate-500 mr-auto">Arrastrá para reorganizar</span>
+                  <span className="text-xs text-slate-500 mr-auto">
+                    {selecting ? "Tocá otro para intercambiar" : "Tocá un ícono para moverlo"}
+                  </span>
                 )}
                 <button
-                  onClick={() => setEditMode(v => !v)}
+                  onClick={() => { setEditMode(v => !v); setSelecting(null); }}
                   className={`text-xs px-2 py-1 rounded-md transition-all ${editMode ? "bg-blue-500/20 text-blue-300 font-semibold" : "text-slate-600 hover:text-slate-400"}`}
                 >
                   {editMode ? "✓ Listo" : "✏️ Organizar"}
