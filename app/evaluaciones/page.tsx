@@ -676,7 +676,7 @@ async function exportEvalPDF(ev: Evaluacion, showAnswers: boolean) {
 
 function EvalCard({ ev }: { ev: Evaluacion }) {
   const [expanded, setExpanded] = useState(false);
-  const [loading, setLoading] = useState<"" | "alumno" | "docente">("");
+  const [loading, setLoading] = useState<"" | "alumno" | "docente" | "share-alumno" | "share-docente">("");
 
   const puntajeTotal = ev.preguntas.reduce((s, p) => s + p.puntos, 0);
 
@@ -685,6 +685,25 @@ function EvalCard({ ev }: { ev: Evaluacion }) {
     try {
       const pdf = await exportEvalPDF(ev, showAnswers);
       pdf.save(`BioAula3D-Eval-${ev.id}${showAnswers ? "-respuestas" : ""}.pdf`);
+    } finally { setLoading(""); }
+  };
+
+  const handleShare = async (showAnswers: boolean) => {
+    setLoading(showAnswers ? "share-docente" : "share-alumno");
+    try {
+      const pdf = await exportEvalPDF(ev, showAnswers);
+      const blob = pdf.output("blob");
+      const fileName = `BioAula3D-Eval-${ev.id}${showAnswers ? "-respuestas" : ""}.pdf`;
+      const file = new File([blob], fileName, { type: "application/pdf" });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: `${ev.titulo}${showAnswers ? " — Respuestas" : ""}`,
+          text: `BioAula3D · ${ev.nivel} · ${ev.modulo}`,
+        });
+      } else {
+        pdf.save(fileName);
+      }
     } finally { setLoading(""); }
   };
 
@@ -743,9 +762,17 @@ function EvalCard({ ev }: { ev: Evaluacion }) {
               className="flex items-center gap-1.5 px-4 py-2 bg-white text-slate-900 rounded-lg text-sm font-semibold hover:bg-slate-100 transition-all disabled:opacity-60">
               {loading === "alumno" ? "⏳ Generando…" : "📄 PDF alumno"}
             </button>
+            <button onClick={() => handleShare(false)} disabled={loading !== ""}
+              className="flex items-center gap-1.5 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm font-semibold transition-all disabled:opacity-60">
+              {loading === "share-alumno" ? "⏳ Generando…" : "📤 Enviar alumno"}
+            </button>
             <button onClick={() => handleExport(true)} disabled={loading !== ""}
               className="flex items-center gap-1.5 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black rounded-lg text-sm font-semibold transition-all disabled:opacity-60">
               {loading === "docente" ? "⏳ Generando…" : "🔑 PDF con respuestas"}
+            </button>
+            <button onClick={() => handleShare(true)} disabled={loading !== ""}
+              className="flex items-center gap-1.5 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm font-semibold transition-all disabled:opacity-60">
+              {loading === "share-docente" ? "⏳ Generando…" : "📤 Enviar respuestas"}
             </button>
           </div>
         </div>
