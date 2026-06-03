@@ -17,6 +17,17 @@ const links = [
   { href: "/glosario", label: "Glosario" },
   { href: "/tareas", label: "📋 Tareas" },
   { href: "/evaluaciones", label: "📝 Evaluaciones" },
+  { href: "/oseo", label: "Óseo" },
+  { href: "/muscular", label: "Muscular" },
+  { href: "/excretor", label: "Excretor" },
+  { href: "/mitosis", label: "Mitosis" },
+  { href: "/inmunologico", label: "Inmune" },
+  { href: "/endocrino", label: "Endócrino" },
+  { href: "/reproductor", label: "Reproductor" },
+  { href: "/sentidos", label: "Sentidos" },
+  { href: "/microbiologia", label: "Microbio" },
+  { href: "/ecosistemas", label: "Ecosistemas" },
+  { href: "/herencia", label: "Herencia" },
 ];
 
 export default function Navbar() {
