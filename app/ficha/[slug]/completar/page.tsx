@@ -111,7 +111,7 @@ export default function FichaCompletarPage({ params }: { params: { slug: string 
           <span>BioAula3D · Recurso educativo de biología 3D</span>
           <span>
             Ver modelo 3D:{" "}
-            <strong className="text-slate-600">bio-aula3-d-git-main-maxwebs.vercel.app/{mod.slug}</strong>
+            <strong className="text-slate-600">bio-aula3-d.vercel.app/{mod.slug}</strong>
           </span>
         </div>
       </div>

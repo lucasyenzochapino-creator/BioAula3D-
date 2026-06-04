@@ -274,6 +274,15 @@ export default function QuizPage() {
     }
   };
 
+  const handleShareQuiz = async () => {
+    const url = typeof window !== "undefined" ? window.location.href : "https://bio-aula3-d.vercel.app/quiz";
+    if (navigator.share) {
+      await navigator.share({ title: "Quiz de Biología · BioAula3D", url });
+    } else {
+      await navigator.clipboard.writeText(url);
+    }
+  };
+
   // Level selector
   if (!level) {
     return (
@@ -412,6 +421,20 @@ export default function QuizPage() {
                 <span className="text-slate-400 text-lg">{q.module} · {current + 1}/{filtered.length}</span>
                 <button onClick={() => setPresenting(false)} className="text-slate-500 hover:text-white text-2xl transition-colors">✕</button>
               </div>
+              {(() => {
+                const style = MODULE_STYLE[q.module] ?? { emoji: "🔬", gradient: "from-slate-600 to-slate-700", color: "#94a3b8" };
+                const thumb = thumbs[q.module];
+                return thumb ? (
+                  <div className="w-full h-48 relative overflow-hidden rounded-2xl">
+                    <Image src={thumb} alt={q.module} fill className="object-cover" unoptimized />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
+                  </div>
+                ) : (
+                  <div className={`w-full h-48 rounded-2xl bg-gradient-to-br ${style.gradient} flex items-center justify-center`}>
+                    <span className="text-7xl">{style.emoji}</span>
+                  </div>
+                );
+              })()}
               <h2 className="text-3xl font-bold text-white leading-tight">{q.question}</h2>
               <div className="grid grid-cols-2 gap-4">
                 {q.options.map((opt, i) => {
@@ -457,6 +480,10 @@ export default function QuizPage() {
             <button onClick={() => setPresenting(true)} title="Modo proyector"
               className="text-slate-600 hover:text-slate-300 text-sm transition-colors px-1.5 py-0.5 rounded border border-slate-800 hover:border-slate-600">
               📽️
+            </button>
+            <button onClick={handleShareQuiz} title="Compartir quiz"
+              className="text-slate-600 hover:text-slate-300 text-sm transition-colors px-1.5 py-0.5 rounded border border-slate-800 hover:border-slate-600">
+              🔗
             </button>
           </div>
           <span className="text-slate-400 text-sm">{current + 1}/{filtered.length}</span>
