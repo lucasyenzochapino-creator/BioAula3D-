@@ -17,15 +17,25 @@ interface Question {
 }
 
 const MODULE_STYLE: Record<string, { emoji: string; gradient: string; color: string }> = {
-  "Célula Animal":       { emoji: "🔬", gradient: "from-green-600 to-teal-700",    color: "#4ade80" },
-  "ADN":                 { emoji: "🧬", gradient: "from-blue-600 to-purple-700",   color: "#60a5fa" },
-  "Neurona":             { emoji: "🧠", gradient: "from-purple-600 to-pink-700",   color: "#a78bfa" },
-  "Célula Vegetal":      { emoji: "🌿", gradient: "from-emerald-600 to-green-700", color: "#34d399" },
-  "Cuerpo Humano":       { emoji: "🫀", gradient: "from-red-600 to-orange-700",    color: "#f87171" },
-  "Corazón":             { emoji: "🫀", gradient: "from-red-600 to-rose-700",      color: "#fb7185" },
-  "Cerebro":             { emoji: "🧠", gradient: "from-purple-600 to-violet-700", color: "#c084fc" },
-  "Sistema Respiratorio":{ emoji: "🫁", gradient: "from-sky-600 to-cyan-700",      color: "#38bdf8" },
-  "Sistema Digestivo":   { emoji: "🍽️", gradient: "from-orange-600 to-amber-700",  color: "#fb923c" },
+  "Célula Animal":        { emoji: "🔬", gradient: "from-green-600 to-teal-700",    color: "#4ade80" },
+  "ADN":                  { emoji: "🧬", gradient: "from-blue-600 to-purple-700",   color: "#60a5fa" },
+  "Neurona":              { emoji: "🧠", gradient: "from-purple-600 to-pink-700",   color: "#a78bfa" },
+  "Célula Vegetal":       { emoji: "🌿", gradient: "from-emerald-600 to-green-700", color: "#34d399" },
+  "Cuerpo Humano":        { emoji: "🫀", gradient: "from-red-600 to-orange-700",    color: "#f87171" },
+  "Corazón":              { emoji: "🫀", gradient: "from-red-600 to-rose-700",      color: "#fb7185" },
+  "Cerebro":              { emoji: "🧠", gradient: "from-purple-600 to-violet-700", color: "#c084fc" },
+  "Sistema Respiratorio": { emoji: "🫁", gradient: "from-sky-600 to-cyan-700",      color: "#38bdf8" },
+  "Sistema Digestivo":    { emoji: "🍽️", gradient: "from-orange-600 to-amber-700",  color: "#fb923c" },
+  "Sistema Óseo":         { emoji: "🦴", gradient: "from-slate-500 to-zinc-600",    color: "#94a3b8" },
+  "Sistema Muscular":     { emoji: "💪", gradient: "from-red-600 to-rose-700",      color: "#f87171" },
+  "Ecosistemas":          { emoji: "🌳", gradient: "from-green-700 to-emerald-800", color: "#22c55e" },
+  "Microbiología":        { emoji: "🦠", gradient: "from-lime-600 to-green-700",    color: "#4ade80" },
+  "Mitosis":              { emoji: "🔬", gradient: "from-indigo-600 to-violet-700", color: "#818cf8" },
+  "Inmunología":          { emoji: "🛡️", gradient: "from-red-700 to-rose-800",      color: "#ef4444" },
+  "Herencia":             { emoji: "🧩", gradient: "from-amber-600 to-orange-700",  color: "#f59e0b" },
+  "Sistema Excretor":     { emoji: "🫘", gradient: "from-yellow-600 to-amber-700",  color: "#facc15" },
+  "Sistema Endócrino":    { emoji: "⚗️", gradient: "from-orange-600 to-red-700",    color: "#fb923c" },
+  "Reproducción":         { emoji: "🌸", gradient: "from-pink-600 to-rose-700",     color: "#f472b6" },
 };
 
 const MODULE_UID: Record<string, string> = {
@@ -38,6 +48,10 @@ const MODULE_UID: Record<string, string> = {
   "Cerebro":              "28c8971e11334e8b97a2a0d6235992e8",
   "Sistema Respiratorio": "ce09f4099a68467880f46e61eb9a3531",
   "Sistema Digestivo":    "2d3771dd6b8940ffa2312bd97aca6fc3",
+  "Sistema Óseo":         "11b57ebfcf6c4e3b88d0cbe618ee70a7",
+  "Sistema Muscular":     "31b40fd809b14665b93773936d67c52c",
+  "Ecosistemas":          "3407138a2ed842079ad5dd5863b72c90",
+  "Microbiología":        "4a310db79e834e07a69ee8d4892d46ee",
 };
 
 const questions: Question[] = [
@@ -84,6 +98,34 @@ const questions: Question[] = [
   { id: 34, level: "secundaria", module: "Sistema Respiratorio", question: "¿Qué ecuación describe el intercambio gaseoso en los alvéolos?", options: ["O₂ entra a la sangre / CO₂ sale a los alvéolos", "CO₂ entra a la sangre / O₂ sale", "Solo O₂ se intercambia", "N₂ y O₂ se intercambian"], answer: 0, explanation: "La hematosis alveolar: O₂ difunde desde los alvéolos (pO₂ ~100 mmHg) a la sangre capilar (pO₂ ~40 mmHg). El CO₂ difunde en sentido contrario. La diferencia de presiones parciales impulsa la difusión." },
   { id: 35, level: "secundaria", module: "Sistema Digestivo", question: "¿Qué hormona estimula la contracción de la vesícula biliar?", options: ["Insulina", "Glucagón", "Colecistoquinina (CCK)", "Secretina"], answer: 2, explanation: "La CCK (colecistoquinina) es secretada por las células I del duodeno ante la presencia de grasas y proteínas. Estimula la contracción de la vesícula biliar y la secreción pancreática." },
   { id: 36, level: "secundaria", module: "Sistema Digestivo", question: "¿En qué parte del intestino delgado se absorben la vitamina B12 y las sales biliares?", options: ["Duodeno", "Yeyuno", "Íleon", "Colon"], answer: 2, explanation: "El íleon (segmento final del intestino delgado) tiene receptores específicos para la absorción de vitamina B12 (factor intrínseco) y sales biliares. Su resección causa malabsorción grave." },
+
+  // ── NUEVAS: PRIMARIA ──
+  { id: 37, level: "primaria", module: "Sistema Óseo", question: "¿Cuántos huesos tiene el cuerpo humano adulto aproximadamente?", options: ["100", "206", "350", "500"], answer: 1, explanation: "El esqueleto adulto tiene 206 huesos. Al nacer tenemos más (~300) porque muchos se van fusionando durante el crecimiento." },
+  { id: 38, level: "primaria", module: "Sistema Óseo", question: "¿Para qué sirven los cartílagos en nuestro cuerpo?", options: ["Producir energía", "Fabricar proteínas", "Cubrir y proteger los extremos de los huesos", "Bombear sangre"], answer: 2, explanation: "El cartílago es un tejido elástico y resistente que cubre los extremos de los huesos en las articulaciones, evitando la fricción y amortiguando los golpes." },
+  { id: 39, level: "primaria", module: "Sistema Muscular", question: "¿Qué necesita el músculo para contraerse?", options: ["Bilis", "ATP (energía)", "Bióxido de carbono", "Agua solamente"], answer: 1, explanation: "Los músculos necesitan ATP (la energía celular) para contraerse. Por eso cuando hacemos ejercicio intenso, respiramos más rápido: necesitamos más oxígeno para producir más ATP." },
+  { id: 40, level: "primaria", module: "Sistema Muscular", question: "¿Cómo se llama la estructura que une el músculo al hueso?", options: ["Ligamento", "Tendón", "Cartílago", "Articulación"], answer: 1, explanation: "El tendón es una banda fuerte de tejido conectivo que une el músculo al hueso. El ligamento, en cambio, une dos huesos entre sí." },
+  { id: 41, level: "primaria", module: "Ecosistemas", question: "¿Cómo se llama la secuencia de quién come a quién en un ecosistema?", options: ["Red alimentaria", "Cadena alimentaria", "Pirámide de energía", "Ciclo del carbono"], answer: 1, explanation: "La cadena alimentaria muestra quién come a quién: plantas (productores) → herbívoros (consumidores primarios) → carnívoros (secundarios) → etc." },
+  { id: 42, level: "primaria", module: "Ecosistemas", question: "¿Qué son los descomponedores en un ecosistema?", options: ["Animales que cazan", "Plantas que producen alimento", "Organismos que reciclan la materia muerta", "Animales herbívoros"], answer: 2, explanation: "Los descomponedores (hongos y bacterias) descomponen la materia muerta y devuelven nutrientes al suelo. Sin ellos, la materia orgánica se acumularía sin reciclarse." },
+  { id: 43, level: "primaria", module: "Microbiología", question: "¿Cuál de estos seres vivos es una bacteria?", options: ["Hongo", "E. coli", "Ameba", "Virus"], answer: 1, explanation: "Escherichia coli (E. coli) es una bacteria que vive en nuestro intestino. La mayoría de las E. coli son inofensivas y nos ayudan a digerir." },
+  { id: 44, level: "primaria", module: "Microbiología", question: "¿Los antibióticos sirven para combatir infecciones por virus?", options: ["Sí, siempre", "Solo a veces", "No, solo funcionan contra bacterias", "Depende del antibiótico"], answer: 2, explanation: "Los antibióticos solo matan bacterias. Los virus tienen una estructura completamente diferente y no son afectados por los antibióticos. Para los virus se usan antivirales o vacunas." },
+  { id: 45, level: "primaria", module: "Mitosis", question: "¿Para qué sirve la mitosis?", options: ["Para producir gametos", "Para dividir una célula en dos idénticas", "Para mezclar genes", "Para producir hormonas"], answer: 1, explanation: "La mitosis produce dos células hijas idénticas a la célula madre. Es la forma en que el cuerpo crece y repara los tejidos dañados." },
+  { id: 46, level: "primaria", module: "Inmunología", question: "¿Qué producen las células del sistema inmune para combatir un virus?", options: ["Hormonas", "Anticuerpos", "Enzimas digestivas", "Adrenalina"], answer: 1, explanation: "Los linfocitos B producen anticuerpos, proteínas especializadas que reconocen y neutralizan a los virus e invasores extraños." },
+  { id: 47, level: "primaria", module: "Herencia", question: "¿Cómo se llama el cuadro que se usa para predecir qué genes hereda un hijo?", options: ["Tabla periódica", "Cuadro de Punnett", "Diagrama de Venn", "Árbol genealógico"], answer: 1, explanation: "El cuadro de Punnett fue creado por el genetista Reginald Punnett. Cruza los genes posibles del padre y la madre para predecir qué combinaciones puede tener el hijo." },
+  { id: 48, level: "primaria", module: "Sistema Excretor", question: "¿Qué órgano produce la orina filtrando la sangre?", options: ["Hígado", "Pulmones", "Riñón", "Páncreas"], answer: 2, explanation: "Los riñones filtran toda la sangre varias veces al día eliminando el exceso de agua, sales y sustancias de desecho (como la urea) en forma de orina." },
+  { id: 49, level: "primaria", module: "Sistema Endócrino", question: "¿Qué hormona produce el páncreas para bajar el azúcar en sangre?", options: ["Adrenalina", "Insulina", "Testosterona", "Cortisol"], answer: 1, explanation: "La insulina es producida por las células beta del páncreas. Cuando comemos y sube la glucosa en sangre, la insulina ayuda a que las células la absorban. En la diabetes esta función falla." },
+  { id: 50, level: "primaria", module: "Reproducción", question: "¿Cómo se llama la unión del óvulo con el espermatozoide?", options: ["Gestación", "Implantación", "Fecundación", "Ovulación"], answer: 2, explanation: "La fecundación es la fusión del óvulo (célula sexual femenina) con el espermatozoide (célula sexual masculina). Ocurre en las trompas de Falopio y da origen a un nuevo ser." },
+
+  // ── NUEVAS: SECUNDARIA ──
+  { id: 51, level: "secundaria", module: "Sistema Óseo", question: "¿Qué tipo de células reabsorben el tejido óseo viejo para permitir la remodelación?", options: ["Osteoblastos", "Osteocitos", "Osteoclastos", "Condrocitos"], answer: 2, explanation: "Los osteoclastos son células multinucleadas que secretan HCl y enzimas para disolver la hidroxiapatita y el colágeno del hueso. Trabajan en equilibrio con los osteoblastos (que forman hueso nuevo)." },
+  { id: 52, level: "secundaria", module: "Sistema Muscular", question: "¿Qué ion desencadena la contracción muscular al liberarse del retículo sarcoplasmático?", options: ["Na⁺", "K⁺", "Ca²⁺", "Mg²⁺"], answer: 2, explanation: "El Ca²⁺ liberado del retículo sarcoplasmático se une a la troponina C, desplazando la tropomiosina de los sitios de unión actina-miosina y permitiendo el ciclo de puentes cruzados." },
+  { id: 53, level: "secundaria", module: "Ecosistemas", question: "¿Qué porcentaje de energía se transfiere de un nivel trófico al siguiente?", options: ["~90%", "~50%", "~10%", "~1%"], answer: 2, explanation: "Solo el ~10% de la energía de un nivel trófico pasa al siguiente (regla del 10%). El 90% restante se pierde como calor en la respiración y metabolismo, lo que limita las cadenas alimentarias a 4-5 eslabones." },
+  { id: 54, level: "secundaria", module: "Microbiología", question: "¿Cuál es la diferencia fundamental entre bacterias Gram positivas y Gram negativas?", options: ["Forma celular", "Presencia o ausencia de membrana interna", "Grosor de la pared de peptidoglucano y presencia de membrana externa", "Tamaño del ADN"], answer: 2, explanation: "Gram positivas: pared gruesa de peptidoglucano sin membrana externa (se tiñen de púrpura). Gram negativas: pared delgada con membrana externa que contiene LPS (lipopolisacárido), más resistentes a antibióticos (se tiñen de rosado)." },
+  { id: 55, level: "secundaria", module: "Mitosis", question: "¿En qué fase de la mitosis los cromosomas se alinean en el ecuador celular?", options: ["Profase", "Metafase", "Anafase", "Telofase"], answer: 1, explanation: "En la metafase, los cromosomas condensados se alinean en el plano ecuatorial de la célula (placa metafásica). Es la fase en que los cromosomas son más visibles y se usan para hacer cariotipo." },
+  { id: 56, level: "secundaria", module: "Inmunología", question: "¿Qué linfocitos reconocen células infectadas y las destruyen directamente?", options: ["Linfocitos B", "Linfocitos T helper (CD4+)", "Linfocitos T citotóxicos (CD8+)", "Células NK"], answer: 2, explanation: "Los linfocitos T citotóxicos (CD8+) reconocen antígenos presentados en el MHC clase I de células infectadas y les inducen apoptosis. Las células NK matan sin reconocimiento específico previo." },
+  { id: 57, level: "secundaria", module: "Herencia", question: "¿Por qué el daltonismo es más frecuente en hombres que en mujeres?", options: ["El gen está en el cromosoma Y", "Los hombres tienen más receptores de color", "El gen está en el cromosoma X y los hombres solo tienen un X", "Es una mutación espontánea más frecuente en hombres"], answer: 2, explanation: "El gen del daltonismo está en el cromosoma X. Los hombres (XY) solo tienen un X: si ese X lleva el alelo recesivo, lo expresan. Las mujeres (XX) necesitan dos alelos recesivos para expresarlo." },
+  { id: 58, level: "secundaria", module: "Sistema Excretor", question: "¿Qué hormona regula la reabsorción de agua en los túbulos colectores del riñón?", options: ["Aldosterona", "ADH (vasopresina)", "Angiotensina II", "Eritropoyetina"], answer: 1, explanation: "La ADH (hormona antidiurética o vasopresina) es liberada por la hipófisis posterior cuando sube la osmolaridad plasmática. Inserta acuaporinas-2 en los túbulos colectores, aumentando la reabsorción de agua y concentrando la orina." },
+  { id: 59, level: "secundaria", module: "Sistema Endócrino", question: "¿Cómo actúan las hormonas esteroideas a diferencia de las peptídicas?", options: ["Actúan en receptores de membrana vía AMPc", "Atraviesan la membrana y actúan en receptores nucleares", "Solo actúan en el sistema nervioso", "Se degradan inmediatamente en sangre"], answer: 1, explanation: "Las hormonas esteroideas (cortisol, estrógenos, testosterona) son liposolubles: atraviesan la membrana plasmática y actúan en receptores intracelulares o nucleares, regulando directamente la transcripción génica." },
+  { id: 60, level: "secundaria", module: "Reproducción", question: "¿Qué hormona producida por el embrión es la que detectan los tests de embarazo?", options: ["Progesterona", "Estrógeno", "hCG (gonadotropina coriónica)", "LH"], answer: 2, explanation: "La hCG (gonadotropina coriónica humana) es producida por el trofoblasto del embrión desde la implantación. Mantiene el cuerpo lúteo y su producción. Los tests de embarazo detectan hCG en orina desde ~10 días después de la fecundación." },
 ];
 
 const emojis: Record<Level, string> = { primaria: "🌱", secundaria: "🔬" };
@@ -100,6 +142,8 @@ export default function QuizPage() {
   const [answers, setAnswers] = useState<boolean[]>([]);
   const [shared, setShared] = useState(false);
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
+  const [presenting, setPresenting] = useState(false);
+  const [pdfLoading, setPdfLoading] = useState(false);
 
   useEffect(() => {
     const modules = Object.keys(MODULE_UID);
@@ -158,6 +202,40 @@ export default function QuizPage() {
     setShared(false);
   };
 
+  const handleExportResultsPDF = async () => {
+    if (!level) return;
+    setPdfLoading(true);
+    try {
+      const { default: jsPDF } = await import("jspdf");
+      const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+      const W = 210; const mx = 15; const cW = W - mx * 2; let y = 15;
+      const pct = Math.round((score / filtered.length) * 100);
+      pdf.setFillColor(15, 23, 42); pdf.rect(0, 0, W, 26, "F");
+      pdf.setFontSize(14); pdf.setFont("helvetica", "bold"); pdf.setTextColor(255, 255, 255);
+      pdf.text("BioAula3D · Quiz de Biología", mx, 11);
+      pdf.setFontSize(8); pdf.setFont("helvetica", "normal"); pdf.setTextColor(180, 180, 180);
+      pdf.text(`${levelLabels[level]} · ${score}/${filtered.length} correctas · ${pct}%`, mx, 19);
+      y = 33;
+      filtered.forEach((q, i) => {
+        const correct = answers[i] ?? false;
+        const qLines = pdf.splitTextToSize(`${i + 1}. ${q.question}`, cW - 8);
+        if (y + qLines.length * 5 + 14 > 282) { pdf.addPage(); y = 15; }
+        pdf.setFontSize(9); pdf.setFont("helvetica", "bold");
+        pdf.setTextColor(correct ? 22 : 185, correct ? 163 : 28, correct ? 74 : 26);
+        pdf.text(correct ? "✓" : "✗", mx, y);
+        pdf.setTextColor(20, 20, 20);
+        pdf.text(qLines, mx + 6, y);
+        y += qLines.length * 5;
+        pdf.setFontSize(7.5); pdf.setFont("helvetica", "normal"); pdf.setTextColor(80, 80, 80);
+        const ansLines = pdf.splitTextToSize(`→ ${q.options[q.answer]}`, cW - 10);
+        pdf.text(ansLines, mx + 8, y);
+        y += ansLines.length * 4 + 3;
+        pdf.setDrawColor(220, 220, 220); pdf.line(mx, y, mx + cW, y); y += 3;
+      });
+      pdf.save(`BioAula3D-Quiz-${levelLabels[level].replace(/\s/g, "")}-${pct}pct.pdf`);
+    } finally { setPdfLoading(false); }
+  };
+
   const handleShare = async () => {
     const pct = Math.round((score / filtered.length) * 100);
     const text = `¡Hice el quiz de BioAula3D y obtuve ${score}/${filtered.length} (${pct}%)! 🧬`;
@@ -188,7 +266,7 @@ export default function QuizPage() {
                   <span className="text-3xl">{emojis[l]}</span>
                   <div>
                     <div className="text-white font-semibold">{levelLabels[l]}</div>
-                    <div className="text-slate-400 text-sm mt-0.5">18 preguntas · conceptos {l === "primaria" ? "básicos" : "avanzados"}</div>
+                    <div className="text-slate-400 text-sm mt-0.5">{questions.filter(q => q.level === l).length} preguntas · conceptos {l === "primaria" ? "básicos" : "avanzados"}</div>
                   </div>
                   <span className="ml-auto text-slate-600 group-hover:text-slate-400 transition-colors">→</span>
                 </div>
@@ -233,6 +311,10 @@ export default function QuizPage() {
             <button onClick={handleShare} className="w-full py-2.5 border border-slate-600 hover:border-slate-400 text-slate-300 hover:text-white rounded-xl transition-all text-sm">
               {shared ? "¡Copiado!" : "Compartir resultado 🔗"}
             </button>
+            <button onClick={handleExportResultsPDF} disabled={pdfLoading}
+              className="w-full py-2.5 border border-slate-600 hover:border-slate-400 text-slate-300 hover:text-white rounded-xl transition-all text-sm disabled:opacity-60">
+              {pdfLoading ? "⏳ Generando…" : "📄 Exportar resultados PDF"}
+            </button>
             <button onClick={handleRestart} className="w-full py-2.5 rounded-xl font-semibold transition-all text-sm text-black"
               style={{ background: accent }}>
               Intentar de nuevo
@@ -259,14 +341,61 @@ export default function QuizPage() {
   return (
     <div className="min-h-screen bg-bio-dark flex items-center justify-center p-4">
       <div className="max-w-lg w-full">
+        {/* Projector overlay */}
+        {presenting && q && (
+          <div className="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-center p-8" onClick={() => setPresenting(false)}>
+            <div className="max-w-3xl w-full space-y-8" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between">
+                <span className="text-slate-400 text-lg">{q.module} · {current + 1}/{filtered.length}</span>
+                <button onClick={() => setPresenting(false)} className="text-slate-500 hover:text-white text-2xl transition-colors">✕</button>
+              </div>
+              <h2 className="text-3xl font-bold text-white leading-tight">{q.question}</h2>
+              <div className="grid grid-cols-2 gap-4">
+                {q.options.map((opt, i) => {
+                  let cls = "border-slate-700 bg-slate-800 text-white";
+                  if (answered) {
+                    if (i === q.answer) cls = "border-green-500 bg-green-500/20 text-green-300";
+                    else if (i === selected) cls = "border-red-500 bg-red-500/20 text-red-300";
+                    else cls = "border-slate-800 bg-slate-900 text-slate-500";
+                  }
+                  return (
+                    <button key={i} onClick={() => handleSelect(i)}
+                      className={`px-6 py-5 rounded-2xl border-2 text-left text-lg font-medium transition-all ${cls}`}>
+                      <span className="font-bold mr-3 opacity-50">{["A","B","C","D"][i]}.</span>{opt}
+                    </button>
+                  );
+                })}
+              </div>
+              {answered && (
+                <div className="space-y-3">
+                  <p className={`text-xl font-semibold ${selected === q.answer ? "text-green-400" : "text-red-400"}`}>
+                    {selected === q.answer ? "✓ ¡Correcto!" : `✗ Respuesta correcta: ${q.options[q.answer]}`}
+                  </p>
+                  <p className="text-slate-300 text-base leading-relaxed">{q.explanation}</p>
+                  <button onClick={() => { handleNext(); }} className="px-8 py-3 rounded-xl font-semibold text-lg text-black transition-all"
+                    style={{ background: accent }}>
+                    {current + 1 >= filtered.length ? "Ver resultado →" : "Siguiente →"}
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Header */}
         <div className="flex items-center justify-between mb-3">
           <button onClick={handleBack} className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors text-sm">
             ← Atrás
           </button>
-          <span className="text-sm font-medium" style={{ color: accent }}>
-            {emojis[level]} {levelLabels[level]}
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-medium" style={{ color: accent }}>
+              {emojis[level]} {levelLabels[level]}
+            </span>
+            <button onClick={() => setPresenting(true)} title="Modo proyector"
+              className="text-slate-600 hover:text-slate-300 text-sm transition-colors px-1.5 py-0.5 rounded border border-slate-800 hover:border-slate-600">
+              📽️
+            </button>
+          </div>
           <span className="text-slate-400 text-sm">{current + 1}/{filtered.length}</span>
         </div>
 
