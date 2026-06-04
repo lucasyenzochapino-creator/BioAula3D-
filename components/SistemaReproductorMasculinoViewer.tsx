@@ -6,7 +6,7 @@ export default function SistemaReproductorMasculinoViewer() {
     <SketchfabViewer
       slug="reproductor-masculino"
       moduleName="Sistema Reproductor Masculino"
-      uid="035316622877438cb62de673b8f19217"
+      uid="b6821261ed5e4c59979bf9a2362e6b58"
       title="Sistema Reproductor Masculino"
       subtitle="♂ Anatomía Masculina"
       accent="#60a5fa"
