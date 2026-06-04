@@ -42,10 +42,14 @@ function safeText(s: string) {
     .replace(/[^\x00-\xFF]/g, "");
 }
 
+function todayFormatted() {
+  const d = new Date();
+  return `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")}/${d.getFullYear()}`;
+}
+
 export default function NotasPage() {
-  const today = new Date().toISOString().split("T")[0];
   const [notas, setNotas] = useState<Nota[]>([]);
-  const [fecha, setFecha] = useState(today);
+  const [fecha, setFecha] = useState(todayFormatted());
   const [tema, setTema] = useState("General");
   const [texto, setTexto] = useState("");
   const [editId, setEditId] = useState<string | null>(null);
@@ -65,7 +69,7 @@ export default function NotasPage() {
       ]);
     }
     setTexto("");
-    setFecha(today);
+    setFecha(todayFormatted());
     setTema("General");
     setShowForm(false);
   }
@@ -87,9 +91,7 @@ export default function NotasPage() {
     }
   }
 
-  function exportarPDF(nota?: Nota) {
-    const items = nota ? [nota] : notas;
-    if (!items.length) return;
+  function buildPDF(items: Nota[]): jsPDF {
     const doc = new jsPDF({ unit: "mm", format: "a4" });
     const lm = 20, rm = 190, tw = rm - lm;
     let y = 20;
@@ -99,7 +101,7 @@ export default function NotasPage() {
     doc.setTextColor(30, 30, 30);
     doc.text("BioAula3D - Notas Docentes", lm, y);
     y += 8;
-    doc.setDrawColor(34, 197, 94);
+    doc.setDrawColor(16, 185, 129);
     doc.setLineWidth(0.5);
     doc.line(lm, y, rm, y);
     y += 8;
@@ -108,7 +110,7 @@ export default function NotasPage() {
       if (y > 260) { doc.addPage(); y = 20; }
       doc.setFontSize(11);
       doc.setFont("helvetica", "bold");
-      doc.setTextColor(34, 197, 94);
+      doc.setTextColor(16, 185, 129);
       doc.text(`Nota ${idx + 1} - ${safeText(n.tema)}`, lm, y);
       y += 5;
       doc.setFont("helvetica", "normal");
@@ -128,17 +130,27 @@ export default function NotasPage() {
       y += 8;
     });
 
-    doc.save(`notas-docentes-${Date.now()}.pdf`);
+    return doc;
   }
 
-  async function compartirNota(nota: Nota) {
-    const text = `Nota BioAula3D\nFecha: ${nota.fecha}\nTema: ${nota.tema}\n\n${nota.texto}`;
-    if (navigator.share) {
-      try { await navigator.share({ title: "Nota BioAula3D", text }); } catch {}
-    } else {
-      await navigator.clipboard.writeText(text);
-      alert("Nota copiada al portapapeles");
+  function exportarPDF(nota?: Nota) {
+    const items = nota ? [nota] : notas;
+    if (!items.length) return;
+    buildPDF(items).save(`notas-docentes-${Date.now()}.pdf`);
+  }
+
+  async function compartirComoPDF(nota: Nota) {
+    const doc = buildPDF([nota]);
+    const filename = `nota-${safeText(nota.tema).replace(/\s+/g, "-").toLowerCase()}.pdf`;
+
+    if (typeof navigator !== "undefined" && navigator.share && navigator.canShare) {
+      const blob = doc.output("blob");
+      const file = new File([blob], filename, { type: "application/pdf" });
+      if (navigator.canShare({ files: [file] })) {
+        try { await navigator.share({ files: [file], title: "Nota BioAula3D" }); return; } catch {}
+      }
     }
+    doc.save(filename);
   }
 
   return (
@@ -175,10 +187,11 @@ export default function NotasPage() {
                 <div>
                   <label className="text-xs text-slate-400 block mb-1">Fecha</label>
                   <input
-                    type="date"
+                    type="text"
                     value={fecha}
                     onChange={(e) => setFecha(e.target.value)}
-                    className="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500"
+                    placeholder="ej: 04/06/2026"
+                    className="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500"
                   />
                 </div>
                 <div>
@@ -263,13 +276,13 @@ export default function NotasPage() {
                     onClick={() => exportarPDF(nota)}
                     className="text-xs px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-300 transition-colors"
                   >
-                    PDF
+                    Descargar PDF
                   </button>
                   <button
-                    onClick={() => compartirNota(nota)}
+                    onClick={() => compartirComoPDF(nota)}
                     className="text-xs px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-300 transition-colors"
                   >
-                    Compartir
+                    Compartir PDF
                   </button>
                 </div>
               </div>
