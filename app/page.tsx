@@ -14,9 +14,11 @@ function BioIcon({ name, className = "w-[18px] h-[18px]" }: { name: string; clas
     ),
     plant: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className={className}>
-        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <rect x="3" y="4" width="18" height="16" rx="2"/>
         <ellipse cx="12" cy="12" rx="4" ry="3"/>
-        <circle cx="12" cy="12" r="1.5"/>
+        <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" opacity=".4"/>
+        <line x1="3" y1="8" x2="21" y2="8" strokeOpacity=".3"/>
+        <line x1="3" y1="16" x2="21" y2="16" strokeOpacity=".3"/>
       </svg>
     ),
     dna: (
@@ -29,15 +31,22 @@ function BioIcon({ name, className = "w-[18px] h-[18px]" }: { name: string; clas
     ),
     genetics: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className={className}>
-        <circle cx="12" cy="5" r="2.5"/><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="19" r="2.5"/>
-        <line x1="12" y1="7.5" x2="12" y2="11"/>
-        <path d="M12 11L6.5 16.5"/><path d="M12 11L17.5 16.5"/>
+        <path d="M5 3c0 5 4 5 4 10s-4 5-4 10"/>
+        <path d="M19 3c0 5-4 5-4 10s4 5 4 10"/>
+        <line x1="5" y1="8" x2="19" y2="8" strokeOpacity=".5"/>
+        <line x1="5" y1="16" x2="19" y2="16" strokeOpacity=".5"/>
+        <line x1="8" y1="12" x2="16" y2="12" strokeOpacity=".5"/>
       </svg>
     ),
     division: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className={className}>
-        <circle cx="7" cy="12" r="4.5"/><circle cx="17" cy="12" r="4.5"/>
-        <path d="M11 12h2" strokeDasharray="2 1"/>
+        <circle cx="6.5" cy="12" r="4"/>
+        <circle cx="17.5" cy="12" r="4"/>
+        <line x1="11.5" y1="8" x2="12.5" y2="8" strokeDasharray="1.5 1"/>
+        <line x1="11.5" y1="12" x2="12.5" y2="12" strokeDasharray="1.5 1"/>
+        <line x1="11.5" y1="16" x2="12.5" y2="16" strokeDasharray="1.5 1"/>
+        <path d="M6.5 9.5l-1 2.5 1 2.5" strokeOpacity=".4"/>
+        <path d="M17.5 9.5l1 2.5-1 2.5" strokeOpacity=".4"/>
       </svg>
     ),
     microbe: (

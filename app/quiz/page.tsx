@@ -274,6 +274,16 @@ export default function QuizPage() {
     }
   };
 
+  const handleShareQuiz = async () => {
+    const text = `¡Estoy haciendo el Quiz de Biología en BioAula3D! 🧬 Pregunta ${current + 1}/${filtered.length}`;
+    const url = typeof window !== "undefined" ? window.location.href : "";
+    if (navigator.share) {
+      try { await navigator.share({ title: "BioAula3D Quiz", text, url }); } catch {}
+    } else {
+      await navigator.clipboard.writeText(`${text}\n${url}`);
+    }
+  };
+
   // Level selector
   if (!level) {
     return (
@@ -406,12 +416,28 @@ export default function QuizPage() {
       <div className="max-w-lg w-full">
         {/* Projector overlay */}
         {presenting && q && (
-          <div className="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-center p-8" onClick={() => setPresenting(false)}>
-            <div className="max-w-3xl w-full space-y-8" onClick={e => e.stopPropagation()}>
+          <div className="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-center p-8 overflow-y-auto" onClick={() => setPresenting(false)}>
+            <div className="max-w-3xl w-full space-y-5" onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between">
                 <span className="text-slate-400 text-lg">{q.module} · {current + 1}/{filtered.length}</span>
                 <button onClick={() => setPresenting(false)} className="text-slate-500 hover:text-white text-2xl transition-colors">✕</button>
               </div>
+              {(() => {
+                const style = MODULE_STYLE[q.module] ?? { emoji: "🔬", gradient: "from-slate-600 to-slate-700", color: "#94a3b8" };
+                const thumb = thumbs[q.module];
+                return (
+                  <div className="w-full h-52 relative overflow-hidden rounded-2xl">
+                    {thumb ? (
+                      <Image src={thumb} alt={q.module} fill className="object-cover" unoptimized />
+                    ) : (
+                      <div className={`w-full h-full bg-gradient-to-br ${style.gradient} flex items-center justify-center`}>
+                        <span className="text-7xl select-none">{style.emoji}</span>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 to-transparent pointer-events-none" />
+                  </div>
+                );
+              })()}
               <h2 className="text-3xl font-bold text-white leading-tight">{q.question}</h2>
               <div className="grid grid-cols-2 gap-4">
                 {q.options.map((opt, i) => {
@@ -457,6 +483,10 @@ export default function QuizPage() {
             <button onClick={() => setPresenting(true)} title="Modo proyector"
               className="text-slate-600 hover:text-slate-300 text-sm transition-colors px-1.5 py-0.5 rounded border border-slate-800 hover:border-slate-600">
               📽️
+            </button>
+            <button onClick={handleShareQuiz} title="Compartir quiz"
+              className="text-slate-600 hover:text-slate-300 text-sm transition-colors px-1.5 py-0.5 rounded border border-slate-800 hover:border-slate-600">
+              🔗
             </button>
           </div>
           <span className="text-slate-400 text-sm">{current + 1}/{filtered.length}</span>
