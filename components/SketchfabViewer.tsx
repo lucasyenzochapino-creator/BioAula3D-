@@ -11,6 +11,14 @@ export interface Structure {
   group?: string;
 }
 
+export interface ModelTab {
+  id: string;
+  name: string;
+  emoji?: string;
+  uid: string;
+  structures: Structure[];
+}
+
 interface Props {
   uid: string;
   title: string;
@@ -20,11 +28,12 @@ interface Props {
   structures: Structure[];
   slug?: string;
   moduleName?: string;
+  models?: ModelTab[];
 }
 
 const ACTION_DEFAULTS = ["ficha", "proyector", "compartir", "glosario", "evaluacion", "quiz"];
 
-export default function SketchfabViewer({ uid, title, subtitle, accent, intro, structures, slug, moduleName }: Props) {
+export default function SketchfabViewer({ uid, title, subtitle, accent, intro, structures, slug, moduleName, models }: Props) {
   const [open, setOpen] = useState<number | null>(null);
   const [shared, setShared] = useState(false);
   const [presenting, setPresenting] = useState(false);
@@ -33,7 +42,11 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
   const [editMode, setEditMode] = useState(false);
   const [actionOrder, setActionOrder] = useState<string[]>(ACTION_DEFAULTS);
   const [selecting, setSelecting] = useState<string | null>(null);
+  const [activeModelIdx, setActiveModelIdx] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const activeUid = models ? models[activeModelIdx].uid : uid;
+  const activeStructures = models ? models[activeModelIdx].structures : structures;
 
   useEffect(() => {
     try {
@@ -83,14 +96,14 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
     else document.exitFullscreen?.();
   };
 
-  const embed = `https://sketchfab.com/models/${uid}/embed?ui_theme=dark&autospin=0.2&ui_infos=0&ui_controls=1&ui_stop=0&annotations_visible=1&ui_annotations=1`;
+  const embed = `https://sketchfab.com/models/${activeUid}/embed?ui_theme=dark&autospin=0.2&ui_infos=0&ui_controls=1&ui_stop=0&annotations_visible=1&ui_annotations=1`;
   const glosarioHref = moduleName ? `/glosario?modulo=${encodeURIComponent(moduleName)}` : "/glosario";
   const evalHref = moduleName ? `/evaluaciones?modulo=${encodeURIComponent(moduleName)}` : "/evaluaciones";
 
   // ── Group structures ──
   const groupOrder: string[] = [];
   const groupMap = new Map<string, { s: Structure; idx: number }[]>();
-  structures.forEach((s, idx) => {
+  activeStructures.forEach((s, idx) => {
     const key = s.group ?? "";
     if (!groupMap.has(key)) { groupMap.set(key, []); groupOrder.push(key); }
     groupMap.get(key)!.push({ s, idx });
@@ -149,7 +162,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
     <div className="viewer-layout">
       {/* Modelo 3D */}
       <div ref={containerRef} className={presenting ? "fixed inset-0 z-50 bg-black" : "viewer-3d"}>
-        <iframe src={embed} title={title} allow="autoplay; fullscreen; xr-spatial-tracking" allowFullScreen
+        <iframe key={activeUid} src={embed} title={title} allow="autoplay; fullscreen; xr-spatial-tracking" allowFullScreen
           style={{ width: "100%", height: "100%", border: "none", display: "block" }} />
         {presenting ? (
           <>
@@ -181,6 +194,29 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
           <h1 className="text-lg font-bold text-white leading-tight">{title}</h1>
           <p className="text-slate-400 text-xs mt-1 leading-snug">{intro}</p>
         </div>
+
+        {/* Selector de modelo — solo cuando hay múltiples */}
+        {models && models.length > 1 && (
+          <div className="px-3 py-2 border-b border-slate-800 flex-shrink-0">
+            <div className="flex gap-1.5 flex-wrap">
+              {models.map((m, i) => (
+                <button
+                  key={m.id}
+                  onClick={() => { setActiveModelIdx(i); setOpen(null); }}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                    i === activeModelIdx
+                      ? "text-black"
+                      : "bg-slate-800 text-slate-400 hover:text-white"
+                  }`}
+                  style={i === activeModelIdx ? { background: accent } : {}}
+                >
+                  {m.emoji && <span>{m.emoji}</span>}
+                  <span>{m.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Herramientas — colapsado por defecto */}
         <div className="px-3 py-2 border-b border-slate-800 flex-shrink-0">

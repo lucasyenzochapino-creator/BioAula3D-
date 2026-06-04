@@ -57,7 +57,7 @@ export const MODULES: ModuleData[] = [
   },
   {
     slug: "sistema-nervioso",
-    uid: "03a5173f3d2e46958b6f8be81b1c88be",
+    uid: "2e6be1399756494b9f185ce8c5900911",
     title: "Sistema Nervioso",
     subtitle: "🧠 Neurociencia",
     accent: "#a78bfa",
@@ -192,7 +192,7 @@ export const MODULES: ModuleData[] = [
   // ── Sistema Óseo ──────────────────────────────────────────
   {
     slug: "oseo",
-    uid: "911b9df7e7834175b69b4840ea15e054",
+    uid: "11b57ebfcf6c4e3b88d0cbe618ee70a7",
     title: "Sistema Óseo",
     subtitle: "🦴 Esqueleto Humano",
     accent: "#94a3b8",
@@ -213,7 +213,7 @@ export const MODULES: ModuleData[] = [
   // ── Sistema Muscular ──────────────────────────────────────
   {
     slug: "muscular",
-    uid: "991eb96938be4d0d8fadee241a1063d3",
+    uid: "31b40fd809b14665b93773936d67c52c",
     title: "Sistema Muscular",
     subtitle: "💪 Músculos del Cuerpo",
     accent: "#f87171",
@@ -349,7 +349,7 @@ export const MODULES: ModuleData[] = [
   // ── Órganos de los Sentidos ───────────────────────────────
   {
     slug: "sentidos",
-    uid: "f80bda64666c4b8aaac8f63b7b82a0a0",
+    uid: "f7745aaff145485fb02cf729c96c5f37",
     title: "Órganos de los Sentidos",
     subtitle: "👁️ Vista, Oído y Más",
     accent: "#22d3ee",
@@ -388,7 +388,7 @@ export const MODULES: ModuleData[] = [
   // ── Ecosistemas ───────────────────────────────────────────
   {
     slug: "ecosistemas",
-    uid: "fd32a91331f048be9b94cf0cb8c312ed",
+    uid: "3407138a2ed842079ad5dd5863b72c90",
     title: "Ecosistemas",
     subtitle: "🌳 Ecología y Biodiversidad",
     accent: "#22c55e",

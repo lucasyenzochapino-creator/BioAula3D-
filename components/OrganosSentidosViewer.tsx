@@ -6,7 +6,7 @@ export default function OrganosSentidosViewer() {
     <SketchfabViewer
       slug="sentidos"
       moduleName="Órganos de los Sentidos"
-      uid="f80bda64666c4b8aaac8f63b7b82a0a0"
+      uid="f7745aaff145485fb02cf729c96c5f37"
       title="Órganos de los Sentidos"
       subtitle="👁️ Vista, Oído y Más"
       accent="#22d3ee"

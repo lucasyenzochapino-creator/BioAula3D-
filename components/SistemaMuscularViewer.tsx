@@ -6,7 +6,7 @@ export default function SistemaMuscularViewer() {
     <SketchfabViewer
       slug="muscular"
       moduleName="Sistema Muscular"
-      uid="991eb96938be4d0d8fadee241a1063d3"
+      uid="31b40fd809b14665b93773936d67c52c"
       title="Sistema Muscular"
       subtitle="💪 Músculos del Cuerpo"
       accent="#f87171"
