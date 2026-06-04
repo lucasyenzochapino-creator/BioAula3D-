@@ -6,7 +6,7 @@ export default function EcosistemasViewer() {
     <SketchfabViewer
       slug="ecosistemas"
       moduleName="Ecosistemas"
-      uid="fd32a91331f048be9b94cf0cb8c312ed"
+      uid="3407138a2ed842079ad5dd5863b72c90"
       title="Ecosistemas"
       subtitle="🌳 Ecología y Biodiversidad"
       accent="#22c55e"
