@@ -304,13 +304,13 @@ async function exportPDF(filteredTerms: Term[], activeModule: string | null, lev
     });
   });
 
-  const pageCount = (pdf as any).internal.getNumberOfPages();
+  const pageCount = pdf.getNumberOfPages();
   for (let i = 1; i <= pageCount; i++) {
     pdf.setPage(i);
     pdf.setFontSize(7);
     pdf.setFont("helvetica", "normal");
     pdf.setTextColor(160, 160, 160);
-    pdf.text("BioAula3D · bio-aula3-d-git-main-maxwebs.vercel.app", marginX, 293);
+    pdf.text("BioAula3D · bio-aula3-d.vercel.app", marginX, 293);
     pdf.text(`Página ${i} de ${pageCount}`, W - marginX, 293, { align: "right" });
   }
   return pdf;

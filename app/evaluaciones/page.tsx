@@ -248,7 +248,7 @@ const evaluaciones: Evaluacion[] = [
     id: "ecosistemas-p",
     titulo: "Seres Vivos y Ecosistemas",
     nivel: "Primaria",
-    modulo: "Cuerpo Humano",
+    modulo: "Ecosistemas",
     emoji: "🌳",
     color: "#22c55e",
     duracion: "40 min",
@@ -899,11 +899,11 @@ async function exportEvalPDF(ev: Evaluacion, showAnswers: boolean) {
   }
 
   // Footer
-  const pageCount = (pdf as any).internal.getNumberOfPages();
+  const pageCount = pdf.getNumberOfPages();
   for (let i = 1; i <= pageCount; i++) {
     pdf.setPage(i);
     pdf.setFontSize(7); pdf.setFont("helvetica", "normal"); pdf.setTextColor(160, 160, 160);
-    pdf.text("BioAula3D · bio-aula3-d-git-main-maxwebs.vercel.app", mx, 293);
+    pdf.text("BioAula3D · bio-aula3-d.vercel.app", mx, 293);
     pdf.text(`Página ${i} de ${pageCount}`, W - mx, 293, { align: "right" });
   }
   return pdf;
