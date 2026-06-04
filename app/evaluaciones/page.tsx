@@ -737,6 +737,8 @@ const moduleColors: Record<string, string> = {
 
 const MODULOS = Array.from(new Set(evaluaciones.map(e => e.modulo)));
 
+const safeText = (s: string) => s.replace(/→/g, ">").replace(/←/g, "<").replace(/↔/g, "<>").replace(/[^\x00-\xFF]/g, "");
+
 async function exportEvalPDF(ev: Evaluacion, showAnswers: boolean) {
   const { default: jsPDF } = await import("jspdf");
   const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
@@ -800,7 +802,7 @@ async function exportEvalPDF(ev: Evaluacion, showAnswers: boolean) {
     const ptsMC = multiples.reduce((s, p) => s + p.puntos, 0);
     renderSection("Sección A — Opción múltiple: marcá con un círculo la letra correcta.", ptsMC);
     multiples.forEach((p, i) => {
-      const qLines = pdf.splitTextToSize(`${i + 1}. ${p.enunciado}`, cW);
+      const qLines = pdf.splitTextToSize(`${i + 1}. ${safeText(p.enunciado)}`, cW);
       checkPage(qLines.length * 4.5 + 30);
       pdf.setFontSize(9); pdf.setFont("helvetica", "normal"); pdf.setTextColor(20, 20, 20);
       pdf.text(qLines, mx, y);
@@ -816,7 +818,7 @@ async function exportEvalPDF(ev: Evaluacion, showAnswers: boolean) {
         } else {
           pdf.setFont("helvetica", "normal"); pdf.setTextColor(50, 50, 50);
         }
-        const opLines = pdf.splitTextToSize(`${letters[oi]}) ${op}`, colW - 6);
+        const opLines = pdf.splitTextToSize(`${letters[oi]}) ${safeText(op)}`, colW - 6);
         pdf.text(opLines, col, row);
       });
       y += Math.ceil(p.opciones.length / 2) * 6 + 4;
@@ -828,7 +830,7 @@ async function exportEvalPDF(ev: Evaluacion, showAnswers: boolean) {
     const ptsVF = vfs.reduce((s, p) => s + p.puntos, 0);
     renderSection("Sección B — Verdadero (V) o Falso (F): circulá la opción correcta.", ptsVF);
     vfs.forEach((p, i) => {
-      const qLines = pdf.splitTextToSize(`${i + 1}. ${p.enunciado}`, cW - 25);
+      const qLines = pdf.splitTextToSize(`${i + 1}. ${safeText(p.enunciado)}`, cW - 25);
       checkPage(qLines.length * 4.5 + 6);
       pdf.setFontSize(9); pdf.setFont("helvetica", "normal"); pdf.setTextColor(20, 20, 20);
       pdf.text(qLines, mx, y);
@@ -848,14 +850,14 @@ async function exportEvalPDF(ev: Evaluacion, showAnswers: boolean) {
     const ptsCo = completar.reduce((s, p) => s + p.puntos, 0);
     renderSection("Sección C — Completá los espacios en blanco.", ptsCo);
     completar.forEach((p, i) => {
-      const qLines = pdf.splitTextToSize(`${i + 1}. ${p.enunciado}`, cW);
+      const qLines = pdf.splitTextToSize(`${i + 1}. ${safeText(p.enunciado)}`, cW);
       checkPage(qLines.length * 4.5 + BLANK_LINES * 5 + 6);
       pdf.setFontSize(9); pdf.setFont("helvetica", "normal"); pdf.setTextColor(20, 20, 20);
       pdf.text(qLines, mx, y);
       y += qLines.length * 4.5 + 2;
       if (showAnswers) {
         pdf.setFont("helvetica", "bold"); pdf.setTextColor(34, 197, 94);
-        pdf.text(`→ ${p.respuesta}`, mx + 4, y);
+        pdf.text(`Resp.: ${safeText(p.respuesta)}`, mx + 4, y);
         y += 6;
       } else {
         pdf.setDrawColor(160, 160, 160);
@@ -871,7 +873,7 @@ async function exportEvalPDF(ev: Evaluacion, showAnswers: boolean) {
     const ptsDe = desarrollo.reduce((s, p) => s + p.puntos, 0);
     renderSection("Sección D — Preguntas de desarrollo.", ptsDe);
     desarrollo.forEach((p, i) => {
-      const qLines = pdf.splitTextToSize(`${i + 1}. ${p.enunciado}`, cW);
+      const qLines = pdf.splitTextToSize(`${i + 1}. ${safeText(p.enunciado)}`, cW);
       checkPage(qLines.length * 4.5 + BLANK_LINES * 6 + 12);
       pdf.setFontSize(9); pdf.setFont("helvetica", "normal"); pdf.setTextColor(20, 20, 20);
       pdf.text(qLines, mx, y);
@@ -880,7 +882,7 @@ async function exportEvalPDF(ev: Evaluacion, showAnswers: boolean) {
       pdf.text(`(${p.puntos} pts)`, mx + 2, y);
       y += 5;
       if (showAnswers) {
-        const guiaLines = pdf.splitTextToSize(`Guía de corrección: ${p.guia}`, cW - 4);
+        const guiaLines = pdf.splitTextToSize(`Guia de corrección: ${safeText(p.guia)}`, cW - 4);
         checkPage(guiaLines.length * 4.5 + 4);
         pdf.setFont("helvetica", "bolditalic"); pdf.setTextColor(34, 197, 94); pdf.setFontSize(8);
         pdf.text(guiaLines, mx + 4, y);

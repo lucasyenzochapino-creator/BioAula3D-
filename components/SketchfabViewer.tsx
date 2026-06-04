@@ -38,7 +38,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
   const [shared, setShared] = useState(false);
   const [presenting, setPresenting] = useState(false);
   const [level, setLevel] = useState<"primaria" | "secundaria">("primaria");
-  const [toolsOpen, setToolsOpen] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(true);
   const [editMode, setEditMode] = useState(false);
   const [actionOrder, setActionOrder] = useState<string[]>(ACTION_DEFAULTS);
   const [selecting, setSelecting] = useState<string | null>(null);
