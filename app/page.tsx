@@ -230,6 +230,14 @@ const tools = [
     color: "from-amber-500 to-orange-600",
     glow: "glow-teal",
   },
+  {
+    slug: "notas",
+    title: "Notas",
+    desc: "Anotaciones docentes con fecha, texto libre y exportación a PDF o compartir.",
+    icon: "🗒️",
+    color: "from-emerald-500 to-green-600",
+    glow: "glow-green",
+  },
 ];
 
 type ModuleItem = { slug: string; title: string; desc: string; icon: string; color: string; glow: string; parts?: number };
@@ -311,8 +319,8 @@ export default function Home() {
           <h2 className="text-2xl font-bold text-slate-200">Herramientas educativas</h2>
           <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30">Docentes</span>
         </div>
-        <p className="text-slate-500 text-sm mb-6">Quiz, glosario, tareas y evaluaciones con PDF para imprimir o enviar</p>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <p className="text-slate-500 text-sm mb-6">Quiz, glosario, tareas, evaluaciones y notas con PDF para imprimir o enviar</p>
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
           {tools.map((m, i) => <ModuleCard key={m.slug} m={m} i={modules3D.length + i} />)}
         </div>
       </section>
