@@ -6,7 +6,7 @@ export default function OrganosSentidosViewer() {
     <SketchfabViewer
       slug="sentidos"
       moduleName="Órganos de los Sentidos"
-      uid="f7745aaff145485fb02cf729c96c5f37"
+      uid="4bf3236c8fe2407ea3f494a93b8f5aa2"
       title="Órganos de los Sentidos"
       subtitle="👁️ Los 5 Sentidos"
       accent="#22d3ee"
@@ -17,7 +17,7 @@ export default function OrganosSentidosViewer() {
           id: "ojo",
           name: "Ojo",
           emoji: "👁️",
-          uid: "f7745aaff145485fb02cf729c96c5f37",
+          uid: "4bf3236c8fe2407ea3f494a93b8f5aa2",
           structures: [
             {
               name: "Córnea",
@@ -124,7 +124,7 @@ export default function OrganosSentidosViewer() {
           id: "nariz",
           name: "Nariz",
           emoji: "👃",
-          uid: "9c91d60115504b8498b0f447da1a50f2",
+          uid: "807e9188097b4b8f958da37614ec85e8",
           structures: [
             {
               name: "Mucosa Olfatoria",
@@ -174,7 +174,7 @@ export default function OrganosSentidosViewer() {
           id: "lengua",
           name: "Lengua",
           emoji: "👅",
-          uid: "d9fb95f4f6d448b3bf4507e229bb6de2",
+          uid: "834e2dc8725d486f9f875a552d67ddd7",
           structures: [
             {
               name: "Papilas Gustativas",
