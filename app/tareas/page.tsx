@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 
 type Nivel = "Primaria" | "Secundaria";
@@ -39,6 +39,9 @@ const tareas: Tarea[] = [
       "¿Qué hace la membrana plasmática?",
       "¿Cómo se llama la 'fábrica de proteínas' de la célula?",
       "Mencioná una diferencia entre la célula animal y un ladrillo de una pared.",
+      "¿Cuál es la diferencia entre la célula animal y una planta?",
+      "¿Por qué los organismos pluricelulares necesitan muchos tipos de células distintas?",
+      "Si una célula pierde su membrana plasmática, ¿qué le pasaría? Justificá.",
     ],
   },
   // CÉLULA ANIMAL — SECUNDARIA
@@ -62,6 +65,9 @@ const tareas: Tarea[] = [
       "Describí el proceso de autofagia. ¿Por qué es importante para la célula?",
       "¿Qué diferencia hay entre transporte activo y pasivo a través de la membrana? Dá un ejemplo de cada uno.",
       "Una célula que tiene muchas más mitocondrias que otra, ¿qué tipo de célula puede ser? Justificá.",
+      "Explicá el mecanismo de endocitosis por receptor. ¿Qué ocurre con el receptor después de la internalización?",
+      "¿Qué evidencias moleculares sustentan la teoría endosimbiótica del origen de mitocondrias y cloroplastos?",
+      "Describí cómo una proteína secretada llega desde su síntesis en el RER hasta su secreción al exterior celular.",
     ],
   },
   // ADN — PRIMARIA
@@ -85,6 +91,9 @@ const tareas: Tarea[] = [
       "¿Por qué decimos que el ADN tiene forma de 'escalera retorcida'?",
       "¿En qué parte de la célula se encuentra el ADN?",
       "Si un lado del ADN dice A-G-T-C, ¿cómo sería el otro lado? Escribilo.",
+      "¿Por qué decimos que el ADN tiene información 'hereditaria'? ¿Qué significa eso?",
+      "Si el ADN de todas las personas es básicamente igual, ¿por qué cada persona es diferente?",
+      "¿Qué pasaría si hubiera un error al copiar el ADN antes de la división celular?",
     ],
   },
   // ADN — SECUNDARIA
@@ -108,6 +117,9 @@ const tareas: Tarea[] = [
       "¿Qué es una mutación silenciosa? ¿Por qué no siempre genera un cambio en la proteína?",
       "Explicá qué son las histonas y cómo regulan la expresión génica (epigenética básica).",
       "¿Por qué el código genético se considera 'universal' y 'degenerado'?",
+      "Explicá el mecanismo de la transcripción: ¿qué enzima participa, qué produce y en qué dirección avanza?",
+      "¿Qué son los intrones y exones? ¿Qué ocurre con ellos durante el procesamiento del ARNm?",
+      "¿Por qué el código genético se dice que es 'degenerado'? Dá dos ejemplos.",
     ],
   },
   // SISTEMA NERVIOSO — PRIMARIA
@@ -131,6 +143,9 @@ const tareas: Tarea[] = [
       "¿Para qué sirve la vaina de mielina?",
       "¿Cómo se llama el espacio entre dos neuronas?",
       "Describí con tus palabras qué pasa cuando tocás algo muy frío.",
+      "¿Qué diferencia hay entre el sistema nervioso central y el periférico?",
+      "Describí con tus palabras qué pasa en tu sistema nervioso cuando escuchás un ruido fuerte.",
+      "¿Por qué la velocidad de conducción es más rápida en los nervios con vaina de mielina?",
     ],
   },
   // SISTEMA NERVIOSO — SECUNDARIA
@@ -154,6 +169,12 @@ const tareas: Tarea[] = [
       "Compará la conducción continua (sin mielina) con la conducción saltatoria. ¿Cuál es más rápida y por qué?",
       "¿Cómo actúa un anestésico local a nivel molecular sobre la membrana neuronal?",
       "¿Qué ocurre con el sistema nervioso en la esclerosis múltiple? Relacionalo con la vaina de mielina.",
+      "¿Cómo se diferencia una sinapsis excitatoria de una inhibitoria? ¿Qué neurotransmisores están involucrados?",
+      "Describí el rol de los astrocitos y la microglía en el sistema nervioso central.",
+      "¿Qué es la plasticidad sináptica y cómo se relaciona con el aprendizaje y la memoria?",
+      "¿Qué diferencias hay entre el sistema nervioso somático y el autónomo? Dá un ejemplo de cada uno.",
+      "Explicá cómo funciona el arco reflejo medular y por qué es más rápido que una respuesta voluntaria.",
+      "¿Qué rol cumple el hipotálamo en la integración del sistema nervioso y el endócrino?",
     ],
   },
   // CÉLULA VEGETAL — PRIMARIA
@@ -177,6 +198,12 @@ const tareas: Tarea[] = [
       "¿Qué hace el cloroplasto?",
       "¿Por qué las plantas son verdes?",
       "¿Qué es la fotosíntesis? Explicá con tus palabras qué necesita la planta para hacerla.",
+      "¿Qué es la vacuola central y por qué es tan grande en las células vegetales?",
+      "Si una planta no recibe luz solar, ¿qué le pasa? ¿Por qué?",
+      "¿Cómo le llega el agua desde las raíces hasta las hojas de un árbol muy alto?",
+      "¿Qué parte de la célula vegetal le da rigidez a la planta para mantenerse de pie?",
+      "¿Podría vivir una célula vegetal sin cloroplastos? ¿Por qué?",
+      "¿Qué tienen en común y en qué se diferencian una célula vegetal y una célula animal?",
     ],
   },
   // CÉLULA VEGETAL — SECUNDARIA
@@ -200,6 +227,12 @@ const tareas: Tarea[] = [
       "¿Qué es la fotolisis del agua? ¿Qué importancia tiene para la vida en la Tierra?",
       "Describí el ciclo de Calvin: ¿qué entra, qué sale y qué enzima es clave?",
       "¿Por qué las hojas cambian de color en otoño? Relacionalo con los pigmentos fotosintéticos.",
+      "¿Qué es la fotorrespiración y en qué condiciones ambientales se produce?",
+      "Compará la eficiencia fotosintética de plantas C3 y C4 en climas cálidos y secos.",
+      "¿Por qué la clorofila absorbe luz roja y azul pero refleja la verde?",
+      "¿Qué rol cumple el NADPH generado en la fase luminosa durante el ciclo de Calvin?",
+      "Explicá cómo la temperatura afecta la tasa fotosintética a nivel enzimático.",
+      "¿Qué ocurriría con la fotosíntesis si se bloqueara el transporte de electrones en el fotosistema II?",
     ],
   },
   // CORAZÓN — PRIMARIA
@@ -223,6 +256,12 @@ const tareas: Tarea[] = [
       "¿Para qué sirven las válvulas cardíacas?",
       "¿Qué diferencia hay entre la sangre arterial y la venosa?",
       "Poné la mano en tu pecho y contá cuántas veces late tu corazón en 15 segundos. Multiplicalo por 4. ¿Cuántas veces late por minuto?",
+      "¿Por qué el corazón late solo, sin que tengamos que pensarlo?",
+      "¿Qué le pasaría al cuerpo si el corazón dejara de latir durante un minuto?",
+      "¿Qué es la presión arterial y qué significa que alguien tenga la presión 'alta'?",
+      "¿Por qué los deportistas tienen el corazón más grande que las personas sedentarias?",
+      "¿Qué diferencia hay entre una arteria y una vena además del color de la sangre?",
+      "Si el corazón tiene cuatro cámaras, ¿por qué la sangre no se mezcla entre el lado derecho e izquierdo?",
     ],
   },
   // CORAZÓN — SECUNDARIA
@@ -246,6 +285,12 @@ const tareas: Tarea[] = [
       "¿Qué es un infarto de miocardio? ¿Qué arteria suele verse afectada y por qué?",
       "Describí la diferencia entre circulación pulmonar (menor) y circulación sistémica (mayor).",
       "¿Por qué el ventrículo izquierdo tiene la pared más gruesa que el derecho?",
+      "¿Qué es la insuficiencia cardíaca congestiva y cómo afecta el gasto cardíaco?",
+      "Describí el mecanismo de Frank-Starling y su importancia en la regulación del volumen sistólico.",
+      "¿Qué rol cumplen el K⁺ y el Ca²⁺ en la contracción del músculo cardíaco?",
+      "Explicá el mecanismo de acción de los betabloqueantes y su efecto sobre la frecuencia cardíaca.",
+      "¿Qué es la aterosclerosis? Describí su desarrollo y consecuencias hemodinámicas.",
+      "¿Por qué un ECG de 12 derivaciones permite detectar un infarto agudo de miocardio?",
     ],
   },
   // CEREBRO — PRIMARIA
@@ -269,6 +314,9 @@ const tareas: Tarea[] = [
       "¿Qué parte del cerebro procesa lo que vemos?",
       "¿Por qué el cerebro es tan importante para el cuerpo?",
       "Si alguien tiene un accidente y se daña el lóbulo frontal, ¿qué problemas puede tener?",
+      "¿Qué diferencia hay entre el hemisferio derecho e izquierdo del cerebro?",
+      "¿Por qué necesitamos dormir? ¿Qué le pasa al cerebro mientras dormimos?",
+      "Describí con tus palabras qué es un recuerdo y cómo crees que lo guarda el cerebro.",
     ],
   },
   // CEREBRO — SECUNDARIA
@@ -292,6 +340,9 @@ const tareas: Tarea[] = [
       "¿Qué función cumple la amígdala en el procesamiento emocional? ¿Cómo se relaciona con el estrés postraumático?",
       "Describí la organización del sistema límbico y su relación con las emociones y la motivación.",
       "¿Por qué el cerebro humano consume un 20% de la energía corporal si representa solo el 2% del peso?",
+      "Explicá el concepto de dominancia hemisférica. ¿Es cierto que las personas son 'del lado derecho' o 'del izquierdo'?",
+      "¿Qué es el sueño REM y qué función cumple en la consolidación de la memoria?",
+      "Describí los cambios estructurales que ocurren en el cerebro durante el aprendizaje a nivel sináptico.",
     ],
   },
   // SISTEMA RESPIRATORIO — PRIMARIA
@@ -315,6 +366,9 @@ const tareas: Tarea[] = [
       "¿Qué pasa con el O₂ que entra a los pulmones?",
       "¿Qué son los alvéolos y para qué sirven?",
       "¿Por qué en el invierno se ve el vapor de la respiración? ¿Qué sale realmente?",
+      "¿Qué le pasa a tu respiración cuando hacés ejercicio fuerte? ¿Por qué respirás más rápido?",
+      "¿Qué es el asma y cómo afecta el paso del aire por las vías respiratorias?",
+      "¿Por qué es peligroso respirar en un ambiente cerrado con mucho dióxido de carbono?",
     ],
   },
   // SISTEMA RESPIRATORIO — SECUNDARIA
@@ -338,6 +392,9 @@ const tareas: Tarea[] = [
       "¿Qué es el surfactante pulmonar y qué ocurre cuando falta (síndrome de distrés respiratorio neonatal)?",
       "Describí la regulación química de la respiración: ¿cómo detectan los quimiorreceptores el CO₂?",
       "¿Por qué un alpinista de alta montaña tiene más glóbulos rojos que una persona a nivel del mar?",
+      "¿Qué es la enfermedad pulmonar obstructiva crónica (EPOC) y cómo altera los volúmenes pulmonares?",
+      "Explicá el efecto Bohr: ¿cómo influye el pH en la afinidad de la hemoglobina por el O₂?",
+      "¿Qué diferencias estructurales entre los alvéolos y los capilares pulmonares favorecen el intercambio gaseoso eficiente?",
     ],
   },
   // SISTEMA DIGESTIVO — PRIMARIA
@@ -361,6 +418,9 @@ const tareas: Tarea[] = [
       "¿Para qué sirve el hígado en la digestión?",
       "¿Dónde se absorben los nutrientes al cuerpo?",
       "¿Qué parte del sistema digestivo absorbe el agua y forma las heces?",
+      "¿Por qué masticar bien la comida ayuda a hacer mejor la digestión?",
+      "¿Qué función cumple el hígado además de ayudar a digerir las grasas?",
+      "¿Qué le pasaría al cuerpo si el intestino delgado dejara de funcionar?",
     ],
   },
   // SISTEMA DIGESTIVO — SECUNDARIA
@@ -384,6 +444,9 @@ const tareas: Tarea[] = [
       "Describí cómo se absorbe la glucosa en el intestino delgado (transporte activo secundario cotransporte Na⁺).",
       "¿Qué son las enfermedades inflamatorias intestinales (Crohn, colitis ulcerosa)? ¿Qué parte del intestino afectan?",
       "¿Por qué la fructosa del azúcar de mesa se metaboliza diferente a la glucosa? ¿Qué órgano está implicado?",
+      "Describí el proceso de gluconeogénesis hepática: ¿cuándo ocurre y qué sustratos utiliza?",
+      "¿Cómo actúan los inhibidores de la bomba de protones en el tratamiento de la gastritis?",
+      "¿Qué relación existe entre la permeabilidad intestinal aumentada ('leaky gut') y las enfermedades autoinmunes?",
     ],
   },
   // CUERPO HUMANO — PRIMARIA
@@ -407,6 +470,9 @@ const tareas: Tarea[] = [
       "¿Qué órgano filtra la sangre y produce orina?",
       "¿Cómo trabajan juntos el sistema digestivo y el circulatorio?",
       "¿Por qué es importante mantener una alimentación saludable para el correcto funcionamiento del cuerpo?",
+      "¿Qué sistema del cuerpo humano se encarga de defendernos de enfermedades? ¿Cómo lo hace?",
+      "¿Por qué cuando tenemos fiebre el cuerpo sube su temperatura? ¿Es algo malo o bueno?",
+      "Elegí dos sistemas del cuerpo y explicá cómo trabajan juntos para realizar una actividad cotidiana.",
     ],
   },
   // CUERPO HUMANO — SECUNDARIA
@@ -430,6 +496,9 @@ const tareas: Tarea[] = [
       "¿Cómo interactúan el sistema nervioso y el endócrino para responder al estrés (eje hipotálamo-hipófisis-suprarrenal)?",
       "Describí el rol del hígado como órgano integrador del metabolismo energético.",
       "¿Por qué una persona con insuficiencia renal retiene líquidos? ¿Qué implicancias tiene para el sistema cardiovascular?",
+      "Explicá cómo el sistema inmune distingue entre células propias y agentes patógenos. ¿Qué ocurre en las enfermedades autoinmunes?",
+      "¿Qué es la retroalimentación positiva? Dá un ejemplo fisiológico y explicá por qué no puede ser sostenida indefinidamente.",
+      "¿Cómo regula el cuerpo la temperatura corporal ante el ejercicio intenso? Describí los mecanismos involucrados.",
     ],
   },
 ];
@@ -576,11 +645,30 @@ function TareaCard({ tarea }: { tarea: Tarea }) {
   const [expanded, setExpanded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [shared, setShared] = useState(false);
+  const [checkedPreguntas, setCheckedPreguntas] = useState<boolean[]>(() => tarea.preguntas.map(() => true));
+  const [checkedActividades, setCheckedActividades] = useState<boolean[]>(() => tarea.actividades.map(() => true));
+
+  const togglePregunta = useCallback((i: number) => {
+    setCheckedPreguntas(c => c.map((v, j) => j === i ? !v : v));
+  }, []);
+
+  const toggleActividad = useCallback((i: number) => {
+    setCheckedActividades(c => c.map((v, j) => j === i ? !v : v));
+  }, []);
+
+  const activePreguntas = checkedPreguntas.filter(Boolean).length;
+  const activeActividades = checkedActividades.filter(Boolean).length;
+
+  const getFilteredTarea = (): Tarea => ({
+    ...tarea,
+    preguntas: tarea.preguntas.filter((_, i) => checkedPreguntas[i]),
+    actividades: tarea.actividades.filter((_, i) => checkedActividades[i]),
+  });
 
   const handleDownload = async () => {
     setLoading(true);
     try {
-      const pdf = await exportTareaPDF(tarea);
+      const pdf = await exportTareaPDF(getFilteredTarea());
       pdf.save(`BioAula3D-Tarea-${tarea.id}.pdf`);
     } finally { setLoading(false); }
   };
@@ -588,7 +676,7 @@ function TareaCard({ tarea }: { tarea: Tarea }) {
   const handleShare = async () => {
     setLoading(true);
     try {
-      const pdf = await exportTareaPDF(tarea);
+      const pdf = await exportTareaPDF(getFilteredTarea());
       const blob = pdf.output("blob");
       const filename = `BioAula3D-Tarea-${tarea.id}.pdf`;
       const file = new File([blob], filename, { type: "application/pdf" });
@@ -634,44 +722,75 @@ function TareaCard({ tarea }: { tarea: Tarea }) {
           </div>
 
           <div>
-            <p className="text-xs font-bold uppercase tracking-wider text-emerald-500 mb-2">Parte 1 · Actividades</p>
+            <div className="flex items-center gap-2 mb-2">
+              <p className="text-xs font-bold uppercase tracking-wider text-emerald-500">Parte 1 · Actividades</p>
+              <span className="text-xs text-slate-500">{activeActividades}/{tarea.actividades.length} incluidas</span>
+            </div>
             <ol className="space-y-2">
               {tarea.actividades.map((act, i) => (
-                <li key={i} className="text-sm text-slate-300 leading-relaxed flex gap-2">
-                  <span className="text-emerald-500 font-bold flex-shrink-0">{i + 1}.</span>
-                  <span>{act}</span>
+                <li key={i} className="text-sm leading-relaxed flex gap-2 items-start">
+                  <button
+                    onClick={() => toggleActividad(i)}
+                    className={`flex-shrink-0 w-5 h-5 rounded flex items-center justify-center text-xs border transition-all mt-0.5 ${
+                      checkedActividades[i] ? "bg-emerald-500 border-emerald-500 text-white" : "border-slate-600 text-slate-600"
+                    }`}
+                  >
+                    {checkedActividades[i] ? "✓" : ""}
+                  </button>
+                  <span className={`flex gap-2 ${checkedActividades[i] ? "text-slate-300" : "text-slate-600 line-through"}`}>
+                    <span className="text-emerald-500 font-bold flex-shrink-0 no-underline" style={{ textDecoration: "none" }}>{i + 1}.</span>
+                    <span>{act}</span>
+                  </span>
                 </li>
               ))}
             </ol>
           </div>
 
           <div>
-            <p className="text-xs font-bold uppercase tracking-wider text-blue-400 mb-2">Parte 2 · Preguntas</p>
+            <div className="flex items-center gap-2 mb-2">
+              <p className="text-xs font-bold uppercase tracking-wider text-blue-400">Parte 2 · Preguntas</p>
+              <span className="text-xs text-slate-500">{activePreguntas}/{tarea.preguntas.length} incluidas</span>
+            </div>
             <ol className="space-y-2">
               {tarea.preguntas.map((q, i) => (
-                <li key={i} className="text-sm text-slate-300 leading-relaxed flex gap-2">
-                  <span className="text-blue-400 font-bold flex-shrink-0">{i + 1}.</span>
-                  <span>{q}</span>
+                <li key={i} className="text-sm leading-relaxed flex gap-2 items-start">
+                  <button
+                    onClick={() => togglePregunta(i)}
+                    className={`flex-shrink-0 w-5 h-5 rounded flex items-center justify-center text-xs border transition-all mt-0.5 ${
+                      checkedPreguntas[i] ? "bg-emerald-500 border-emerald-500 text-white" : "border-slate-600 text-slate-600"
+                    }`}
+                  >
+                    {checkedPreguntas[i] ? "✓" : ""}
+                  </button>
+                  <span className={`flex gap-2 ${checkedPreguntas[i] ? "text-slate-300" : "text-slate-600 line-through"}`}>
+                    <span className="text-blue-400 font-bold flex-shrink-0" style={{ textDecoration: "none" }}>{i + 1}.</span>
+                    <span>{q}</span>
+                  </span>
                 </li>
               ))}
             </ol>
           </div>
 
-          <div className="flex gap-2 pt-2">
-            <button
-              onClick={handleDownload}
-              disabled={loading}
-              className="flex items-center gap-1.5 px-4 py-2 bg-white text-slate-900 rounded-lg text-sm font-semibold hover:bg-slate-100 transition-all disabled:opacity-60"
-            >
-              {loading ? "⏳" : "📥"} {loading ? "Generando…" : "Descargar PDF"}
-            </button>
-            <button
-              onClick={handleShare}
-              disabled={loading}
-              className="flex items-center gap-1.5 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm font-semibold transition-all disabled:opacity-60"
-            >
-              {loading ? "⏳" : shared ? "✓" : "📤"} {shared ? "Copiado" : "Compartir PDF"}
-            </button>
+          <div className="flex flex-col gap-3 pt-2">
+            <p className="text-xs text-slate-500">
+              PDF incluirá: <span className="text-slate-300 font-medium">{activePreguntas}/{tarea.preguntas.length} preguntas · {activeActividades}/{tarea.actividades.length} actividades</span>
+            </p>
+            <div className="flex gap-2">
+              <button
+                onClick={handleDownload}
+                disabled={loading}
+                className="flex items-center gap-1.5 px-4 py-2 bg-white text-slate-900 rounded-lg text-sm font-semibold hover:bg-slate-100 transition-all disabled:opacity-60"
+              >
+                {loading ? "⏳" : "📥"} {loading ? "Generando…" : "Descargar PDF"}
+              </button>
+              <button
+                onClick={handleShare}
+                disabled={loading}
+                className="flex items-center gap-1.5 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm font-semibold transition-all disabled:opacity-60"
+              >
+                {loading ? "⏳" : shared ? "✓" : "📤"} {shared ? "Copiado" : "Compartir PDF"}
+              </button>
+            </div>
           </div>
         </div>
       )}

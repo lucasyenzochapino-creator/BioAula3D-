@@ -230,7 +230,7 @@ const moduleColors: Record<string, string> = {
   "Herencia Genética": "#f59e0b",
 };
 
-async function exportPDF(filteredTerms: Term[], activeModule: string | null) {
+async function exportPDF(filteredTerms: Term[], activeModule: string | null, level: "Primaria" | "Secundaria" | "Ambas" = "Ambas") {
   const { default: jsPDF } = await import("jspdf");
   const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
   const W = 210;
@@ -251,7 +251,8 @@ async function exportPDF(filteredTerms: Term[], activeModule: string | null) {
   pdf.text("BioAula3D · Glosario de Biología", marginX, 10);
   pdf.setFontSize(8);
   pdf.setFont("helvetica", "normal");
-  pdf.text(activeModule ? `Módulo: ${activeModule} · ${filteredTerms.length} términos` : `${filteredTerms.length} términos · Todos los módulos`, marginX, 17);
+  const levelLabel = level === "Ambas" ? "Primaria + Secundaria" : `Nivel ${level}`;
+  pdf.text(activeModule ? `Módulo: ${activeModule} · ${filteredTerms.length} términos · ${levelLabel}` : `${filteredTerms.length} términos · Todos los módulos · ${levelLabel}`, marginX, 17);
   y = 28;
 
   const byModule: Record<string, Term[]> = {};
@@ -273,8 +274,8 @@ async function exportPDF(filteredTerms: Term[], activeModule: string | null) {
     y += 5;
 
     modTerms.forEach(term => {
-      const simpleLines = pdf.splitTextToSize(`Primaria: ${term.simple}`, contentW - 4);
-      const fullLines = pdf.splitTextToSize(`Secundaria: ${term.full}`, contentW - 4);
+      const simpleLines = level !== "Secundaria" ? pdf.splitTextToSize(`🌱 ${term.simple}`, contentW - 4) : [];
+      const fullLines = level !== "Primaria" ? pdf.splitTextToSize(`🔬 ${term.full}`, contentW - 4) : [];
       const blockH = 6 + simpleLines.length * 4.5 + fullLines.length * 4 + 5;
       checkPage(blockH);
 
@@ -286,13 +287,16 @@ async function exportPDF(filteredTerms: Term[], activeModule: string | null) {
 
       pdf.setFontSize(8.5);
       pdf.setFont("helvetica", "normal");
-      pdf.setTextColor(30, 100, 60);
-      pdf.text(simpleLines, marginX + 4, y);
-      y += simpleLines.length * 4.5;
-
-      pdf.setTextColor(30, 60, 140);
-      pdf.text(fullLines, marginX + 4, y);
-      y += fullLines.length * 4 + 3;
+      if (simpleLines.length) {
+        pdf.setTextColor(30, 100, 60);
+        pdf.text(simpleLines, marginX + 4, y);
+        y += simpleLines.length * 4.5;
+      }
+      if (fullLines.length) {
+        pdf.setTextColor(30, 60, 140);
+        pdf.text(fullLines, marginX + 4, y);
+        y += fullLines.length * 4 + 3;
+      }
 
       pdf.setDrawColor(230, 230, 230);
       pdf.line(marginX + 4, y, marginX + contentW - 4, y);
@@ -323,6 +327,7 @@ export default function GlosarioPage() {
   const [expanded, setExpanded] = useState<string | null>(null);
   const [pdfLoading, setPdfLoading] = useState(false);
   const [shared, setShared] = useState(false);
+  const [pdfLevel, setPdfLevel] = useState<"Primaria" | "Secundaria" | "Ambas">("Ambas");
 
   const filtered = useMemo(() => terms.filter(t => {
     const q = search.toLowerCase();
@@ -333,8 +338,9 @@ export default function GlosarioPage() {
   const handleDownload = async () => {
     setPdfLoading(true);
     try {
-      const pdf = await exportPDF(filtered, activeModule);
-      const filename = activeModule ? `BioAula3D-Glosario-${activeModule.replace(/\s+/g, "-")}.pdf` : "BioAula3D-Glosario-Completo.pdf";
+      const pdf = await exportPDF(filtered, activeModule, pdfLevel);
+      const lvlSuffix = pdfLevel !== "Ambas" ? `-${pdfLevel}` : "";
+      const filename = activeModule ? `BioAula3D-Glosario-${activeModule.replace(/\s+/g, "-")}${lvlSuffix}.pdf` : `BioAula3D-Glosario-Completo${lvlSuffix}.pdf`;
       pdf.save(filename);
     } finally { setPdfLoading(false); }
   };
@@ -342,8 +348,9 @@ export default function GlosarioPage() {
   const handleShare = async () => {
     setPdfLoading(true);
     try {
-      const pdf = await exportPDF(filtered, activeModule);
-      const filename = activeModule ? `BioAula3D-Glosario-${activeModule.replace(/\s+/g, "-")}.pdf` : "BioAula3D-Glosario-Completo.pdf";
+      const pdf = await exportPDF(filtered, activeModule, pdfLevel);
+      const lvlSuffix = pdfLevel !== "Ambas" ? `-${pdfLevel}` : "";
+      const filename = activeModule ? `BioAula3D-Glosario-${activeModule.replace(/\s+/g, "-")}${lvlSuffix}.pdf` : `BioAula3D-Glosario-Completo${lvlSuffix}.pdf`;
       const blob = pdf.output("blob");
       const file = new File([blob], filename, { type: "application/pdf" });
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
@@ -394,6 +401,23 @@ export default function GlosarioPage() {
               style={activeModule === m ? { background: moduleColors[m], borderColor: moduleColors[m] } : {}}
             >
               {m}
+            </button>
+          ))}
+        </div>
+
+        {/* Nivel PDF */}
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-xs text-slate-500 flex-shrink-0">PDF para:</span>
+          {(["Ambas", "Primaria", "Secundaria"] as const).map(l => (
+            <button key={l} onClick={() => setPdfLevel(l)}
+              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all border ${
+                pdfLevel === l
+                  ? l === "Primaria" ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-400"
+                    : l === "Secundaria" ? "bg-blue-500/20 border-blue-500/50 text-blue-400"
+                    : "bg-slate-700 border-white/20 text-white"
+                  : "border-slate-800 text-slate-500 hover:text-slate-300"
+              }`}>
+              {l === "Primaria" ? "🌱 Primaria" : l === "Secundaria" ? "🔬 Secundaria" : "📚 Ambas"}
             </button>
           ))}
         </div>

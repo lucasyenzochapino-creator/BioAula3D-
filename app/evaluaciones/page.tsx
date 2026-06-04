@@ -64,6 +64,10 @@ const evaluaciones: Evaluacion[] = [
       { tipo: "completar", enunciado: "La célula está delimitada por una estructura llamada ___.", respuesta: "membrana plasmática", puntos: 1 },
       { tipo: "completar", enunciado: "Los lisosomas digieren sustancias no deseadas mediante ___ digestivas.", respuesta: "enzimas", puntos: 1 },
       { tipo: "desarrollo", enunciado: "Elegí 3 partes de la célula animal, dibujalas y explicá la función de cada una.", guia: "Núcleo (guarda ADN), mitocondria (produce energía ATP), membrana (protege y regula entrada/salida).", puntos: 3 },
+      { tipo: "multiple", enunciado: "¿Qué orgánulo digiere y recicla materiales viejos de la célula?", opciones: ["Ribosoma", "Lisosoma", "Vacuola", "Núcleo"], correcta: 1, puntos: 1 },
+      { tipo: "vf", enunciado: "Los ribosomas se encuentran solo en el núcleo de la célula.", correcta: false, puntos: 1 },
+      { tipo: "completar", enunciado: "El retículo endoplasmático ___ tiene ribosomas adosados y fabrica proteínas.", respuesta: "rugoso (RER)", puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Cuál de estas NO es función de la membrana plasmática?", opciones: ["Proteger la célula", "Controlar qué entra y sale", "Producir energía", "Comunicarse con otras células"], correcta: 2, puntos: 1 },
     ],
   },
   {
@@ -84,6 +88,10 @@ const evaluaciones: Evaluacion[] = [
       { tipo: "completar", enunciado: "La fotosíntesis necesita luz solar, agua y ___ para producir glucosa.", respuesta: "dióxido de carbono (CO₂)", puntos: 1 },
       { tipo: "completar", enunciado: "La vacuola central ocupa gran parte del ___ de la célula vegetal.", respuesta: "volumen", puntos: 1 },
       { tipo: "desarrollo", enunciado: "Hacé un cuadro con al menos 3 diferencias entre la célula animal y la célula vegetal.", guia: "Pared celular (vegetal sí / animal no), cloroplastos (vegetal sí / animal no), vacuola central grande (vegetal sí / animal pequeña o ausente).", puntos: 3 },
+      { tipo: "multiple", enunciado: "¿Qué pigmento le da el color verde a los cloroplastos?", opciones: ["Hemoglobina", "Melanina", "Clorofila", "Caroteno"], correcta: 2, puntos: 1 },
+      { tipo: "vf", enunciado: "Los plasmodesmos conectan células vegetales vecinas para compartir nutrientes.", correcta: true, puntos: 1 },
+      { tipo: "completar", enunciado: "La fotosíntesis convierte energía ___ en energía química (azúcar).", respuesta: "solar (luz)", puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Cuál es la función principal de los estomas en las hojas?", opciones: ["Hacer fotosíntesis", "Permitir el intercambio de gases", "Producir agua", "Guardar el ADN"], correcta: 1, puntos: 1 },
     ],
   },
   {
@@ -104,6 +112,10 @@ const evaluaciones: Evaluacion[] = [
       { tipo: "completar", enunciado: "El recorrido del alimento es: boca → ___ → estómago → intestino delgado → intestino grueso → ano.", respuesta: "esófago", puntos: 1 },
       { tipo: "completar", enunciado: "El intestino grueso absorbe el ___ y forma las heces.", respuesta: "agua", puntos: 1 },
       { tipo: "desarrollo", enunciado: "Describí el 'viaje de un sándwich' desde que lo mordés hasta que los nutrientes llegan a la sangre.", guia: "Boca (masticación y saliva), esófago (transporte), estómago (jugos gástricos), intestino delgado (absorción de nutrientes), intestino grueso (agua), ano (eliminación).", puntos: 3 },
+      { tipo: "multiple", enunciado: "¿Cuál es la función del páncreas en la digestión?", opciones: ["Almacenar bilis", "Producir enzimas digestivas", "Absorber agua", "Triturar alimentos"], correcta: 1, puntos: 1 },
+      { tipo: "vf", enunciado: "La boca es el primer lugar donde comienza la digestión.", correcta: true, puntos: 1 },
+      { tipo: "completar", enunciado: "Las pequeñas protuberancias del intestino delgado que absorben nutrientes se llaman ___.", respuesta: "vellosidades intestinales", puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Qué hace el intestino grueso?", opciones: ["Digiere proteínas", "Absorbe la mayor parte de los nutrientes", "Absorbe el agua restante y forma heces", "Produce bilis"], correcta: 2, puntos: 1 },
     ],
   },
   {
@@ -123,6 +135,10 @@ const evaluaciones: Evaluacion[] = [
       { tipo: "vf", enunciado: "El corazón es un músculo que bombea sangre.", correcta: true, puntos: 1 },
       { tipo: "completar", enunciado: "Las cámaras superiores del corazón se llaman ___ y las inferiores se llaman ___.", respuesta: "aurículas / ventrículos", puntos: 2 },
       { tipo: "desarrollo", enunciado: "Dibujá el recorrido de la sangre: indicá cómo va del corazón a los pulmones, vuelve al corazón y luego va al cuerpo.", guia: "Ventrículo derecho → pulmones (oxigenación) → aurícula izquierda → ventrículo izquierdo → aorta → cuerpo → venas cavas → aurícula derecha.", puntos: 3 },
+      { tipo: "multiple", enunciado: "¿Cómo se llama el vaso sanguíneo más pequeño donde ocurre el intercambio de nutrientes?", opciones: ["Arteria", "Vena", "Capilar", "Aorta"], correcta: 2, puntos: 1 },
+      { tipo: "vf", enunciado: "La sangre que va a los pulmones lleva oxígeno.", correcta: false, puntos: 1 },
+      { tipo: "completar", enunciado: "El corazón tiene ___ cámaras: 2 aurículas y 2 ventrículos.", respuesta: "cuatro (4)", puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Qué son los glóbulos rojos?", opciones: ["Células que defienden el cuerpo", "Células que transportan oxígeno", "Células que forman coágulos", "Células que producen energía"], correcta: 1, puntos: 1 },
     ],
   },
   {
@@ -143,6 +159,10 @@ const evaluaciones: Evaluacion[] = [
       { tipo: "completar", enunciado: "El recorrido del aire es: nariz → ___ → laringe → tráquea → bronquios → alvéolos.", respuesta: "faringe", puntos: 1 },
       { tipo: "completar", enunciado: "En los alvéolos, el ___ pasa al la sangre y el ___ sale hacia los pulmones.", respuesta: "O₂ / CO₂", puntos: 1 },
       { tipo: "desarrollo", enunciado: "Explicá qué pasa en el cuerpo cuando hacés una inspiración profunda. ¿Qué entra, adónde va y para qué sirve?", guia: "El aire entra por nariz, pasa por faringe, laringe, tráquea, bronquios hasta los alvéolos. Allí el O₂ pasa a la sangre (para las células) y el CO₂ sale.", puntos: 3 },
+      { tipo: "multiple", enunciado: "¿Cuántos pulmones tiene el ser humano?", opciones: ["Uno", "Dos", "Tres", "Cuatro"], correcta: 1, puntos: 1 },
+      { tipo: "vf", enunciado: "El surfactante pulmonar evita que los alvéolos se colapsen.", correcta: true, puntos: 1 },
+      { tipo: "completar", enunciado: "La laringe contiene las cuerdas ___ que producen el sonido de nuestra voz.", respuesta: "vocales", puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Cuál es el gas que el cuerpo elimina al exhalar?", opciones: ["Oxígeno", "Nitrógeno", "Dióxido de carbono (CO₂)", "Vapor de agua solamente"], correcta: 2, puntos: 1 },
     ],
   },
   {
@@ -890,13 +910,16 @@ async function exportEvalPDF(ev: Evaluacion, showAnswers: boolean) {
 function EvalCard({ ev }: { ev: Evaluacion }) {
   const [expanded, setExpanded] = useState(false);
   const [loading, setLoading] = useState<"" | "alumno" | "docente" | "share-alumno" | "share-docente">("");
+  const [checked, setChecked] = useState<boolean[]>(() => ev.preguntas.map(() => true));
 
   const puntajeTotal = ev.preguntas.reduce((s, p) => s + p.puntos, 0);
+  const checkedCount = checked.filter(Boolean).length;
 
   const handleExport = async (showAnswers: boolean) => {
     setLoading(showAnswers ? "docente" : "alumno");
     try {
-      const pdf = await exportEvalPDF(ev, showAnswers);
+      const filteredEv = { ...ev, preguntas: ev.preguntas.filter((_, i) => checked[i]) };
+      const pdf = await exportEvalPDF(filteredEv, showAnswers);
       pdf.save(`BioAula3D-Eval-${ev.id}${showAnswers ? "-respuestas" : ""}.pdf`);
     } finally { setLoading(""); }
   };
@@ -904,7 +927,8 @@ function EvalCard({ ev }: { ev: Evaluacion }) {
   const handleShare = async (showAnswers: boolean) => {
     setLoading(showAnswers ? "share-docente" : "share-alumno");
     try {
-      const pdf = await exportEvalPDF(ev, showAnswers);
+      const filteredEv = { ...ev, preguntas: ev.preguntas.filter((_, i) => checked[i]) };
+      const pdf = await exportEvalPDF(filteredEv, showAnswers);
       const blob = pdf.output("blob");
       const fileName = `BioAula3D-Eval-${ev.id}${showAnswers ? "-respuestas" : ""}.pdf`;
       const file = new File([blob], fileName, { type: "application/pdf" });
@@ -952,11 +976,22 @@ function EvalCard({ ev }: { ev: Evaluacion }) {
 
       {expanded && (
         <div className="border-t border-slate-800 px-5 py-4 bg-slate-900/30 space-y-4">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-xs text-slate-400">Seleccioná las preguntas a incluir en el PDF:</span>
+            <span className="text-xs font-semibold text-emerald-400">{checkedCount}/{ev.preguntas.length} preguntas</span>
+          </div>
           <div className="grid grid-cols-1 gap-2">
             {ev.preguntas.map((p, i) => (
-              <div key={i} className="flex gap-3 text-sm">
+              <div key={i} className="flex gap-3 text-sm items-start">
+                <button
+                  onClick={() => setChecked(c => c.map((v, j) => j === i ? !v : v))}
+                  className={`flex-shrink-0 w-5 h-5 rounded flex items-center justify-center text-xs border transition-all mt-0.5 ${
+                    checked[i] ? "bg-emerald-500 border-emerald-500 text-white" : "border-slate-600 text-slate-600"
+                  }`}>
+                  {checked[i] ? "✓" : ""}
+                </button>
                 <span className="text-slate-600 flex-shrink-0 w-5">{i + 1}.</span>
-                <div className="flex-1">
+                <div className={`flex-1 transition-opacity ${checked[i] ? "opacity-100" : "opacity-40"}`}>
                   <span className={`text-[10px] mr-2 px-1.5 py-0.5 rounded font-medium ${
                     p.tipo === "multiple" ? "bg-blue-500/20 text-blue-400" :
                     p.tipo === "vf" ? "bg-yellow-500/20 text-yellow-400" :
@@ -970,20 +1005,20 @@ function EvalCard({ ev }: { ev: Evaluacion }) {
             ))}
           </div>
 
-          <div className="flex gap-2 pt-2 flex-wrap">
-            <button onClick={() => handleExport(false)} disabled={loading !== ""}
+          <div className="flex gap-2 pt-2 flex-wrap items-center">
+            <button onClick={() => handleExport(false)} disabled={loading !== "" || checkedCount === 0}
               className="flex items-center gap-1.5 px-4 py-2 bg-white text-slate-900 rounded-lg text-sm font-semibold hover:bg-slate-100 transition-all disabled:opacity-60">
               {loading === "alumno" ? "⏳ Generando…" : "📄 PDF alumno"}
             </button>
-            <button onClick={() => handleShare(false)} disabled={loading !== ""}
+            <button onClick={() => handleShare(false)} disabled={loading !== "" || checkedCount === 0}
               className="flex items-center gap-1.5 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm font-semibold transition-all disabled:opacity-60">
               {loading === "share-alumno" ? "⏳ Generando…" : "📤 Enviar alumno"}
             </button>
-            <button onClick={() => handleExport(true)} disabled={loading !== ""}
+            <button onClick={() => handleExport(true)} disabled={loading !== "" || checkedCount === 0}
               className="flex items-center gap-1.5 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black rounded-lg text-sm font-semibold transition-all disabled:opacity-60">
               {loading === "docente" ? "⏳ Generando…" : "🔑 PDF con respuestas"}
             </button>
-            <button onClick={() => handleShare(true)} disabled={loading !== ""}
+            <button onClick={() => handleShare(true)} disabled={loading !== "" || checkedCount === 0}
               className="flex items-center gap-1.5 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm font-semibold transition-all disabled:opacity-60">
               {loading === "share-docente" ? "⏳ Generando…" : "📤 Enviar respuestas"}
             </button>
