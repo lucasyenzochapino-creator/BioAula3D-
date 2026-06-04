@@ -149,17 +149,34 @@ export default function QuizPage() {
   const [notasText, setNotasText] = useState("");
 
   useEffect(() => {
-    const modules = Object.keys(MODULE_UID);
-    modules.forEach(async (mod) => {
-      const uid = MODULE_UID[mod];
-      try {
-        const res = await fetch(`/api/thumb?uid=${uid}`);
-        const data = await res.json();
-        if (data.thumbnailUrl) {
-          setThumbs(prev => ({ ...prev, [mod]: data.thumbnailUrl }));
+    const CACHE_KEY = "bioaula3d_thumbs_v1";
+    const CACHE_TTL = 86400 * 1000; // 24h
+
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      if (raw) {
+        const { ts, data } = JSON.parse(raw);
+        if (Date.now() - ts < CACHE_TTL) {
+          setThumbs(data);
+          return;
         }
-      } catch { /* fallback to gradient */ }
-    });
+      }
+    } catch { /* ignore */ }
+
+    const uids = Object.values(MODULE_UID).join(",");
+    fetch(`/api/thumbs?uids=${uids}`)
+      .then(r => r.json())
+      .then(({ thumbs: uidMap }: { thumbs: Record<string, string> }) => {
+        const modMap: Record<string, string> = {};
+        for (const [mod, uid] of Object.entries(MODULE_UID)) {
+          if (uidMap[uid]) modMap[mod] = uidMap[uid];
+        }
+        setThumbs(modMap);
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: modMap }));
+        } catch { /* ignore quota errors */ }
+      })
+      .catch(() => { /* fallback to gradient */ });
   }, []);
 
   const filtered = level ? questions.filter(q => q.level === level) : [];
