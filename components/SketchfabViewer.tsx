@@ -43,10 +43,16 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
   const [actionOrder, setActionOrder] = useState<string[]>(ACTION_DEFAULTS);
   const [selecting, setSelecting] = useState<string | null>(null);
   const [activeModelIdx, setActiveModelIdx] = useState(0);
+  const [resetKey, setResetKey] = useState(0);
+  const [loaded, setLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const activeUid = models ? models[activeModelIdx].uid : uid;
   const activeStructures = models ? models[activeModelIdx].structures : structures;
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [activeUid, resetKey]);
 
   useEffect(() => {
     try {
@@ -96,7 +102,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
     else document.exitFullscreen?.();
   };
 
-  const embed = `https://sketchfab.com/models/${activeUid}/embed?ui_theme=dark&autospin=0.2&ui_infos=0&ui_controls=1&ui_stop=0&annotations_visible=1&ui_annotations=1`;
+  const embed = `https://sketchfab.com/models/${activeUid}/embed?ui_theme=dark&autospin=0&ui_infos=0&ui_controls=1&ui_stop=0&annotations_visible=1&ui_annotations=1&dnt=1`;
   const glosarioHref = moduleName ? `/glosario?modulo=${encodeURIComponent(moduleName)}` : "/glosario";
   const evalHref = moduleName ? `/evaluaciones?modulo=${encodeURIComponent(moduleName)}` : "/evaluaciones";
 
@@ -162,8 +168,23 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
     <div className="viewer-layout">
       {/* Modelo 3D */}
       <div ref={containerRef} className={presenting ? "fixed inset-0 z-50 bg-black" : "viewer-3d"}>
-        <iframe key={activeUid} src={embed} title={title} allow="autoplay; fullscreen; xr-spatial-tracking" allowFullScreen
-          style={{ width: "100%", height: "100%", border: "none", display: "block" }} />
+        <iframe
+          key={`${activeUid}-${resetKey}`}
+          src={embed}
+          title={title}
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          allowFullScreen
+          onLoad={() => setLoaded(true)}
+          style={{ width: "100%", height: "100%", border: "none", display: "block" }}
+        />
+        {/* Loading overlay */}
+        {!loaded && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 z-20 gap-3">
+            <div className="w-9 h-9 rounded-full border-2 border-slate-700 animate-spin"
+              style={{ borderTopColor: accent }} />
+            <span className="text-slate-400 text-xs">Cargando modelo 3D…</span>
+          </div>
+        )}
         {presenting ? (
           <>
             <button onClick={() => setPresenting(false)}
@@ -174,6 +195,12 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
           </>
         ) : (
           <>
+            {/* Reset camera */}
+            <button onClick={() => setResetKey(k => k + 1)} title="Reiniciar vista"
+              className="absolute top-2 right-11 z-10 w-8 h-8 flex items-center justify-center rounded-lg bg-black/50 hover:bg-black/70 text-white text-base transition-all select-none">
+              ⟲
+            </button>
+            {/* Fullscreen */}
             <button onClick={toggleFullscreen} title="Pantalla completa"
               className="absolute top-2 right-2 z-10 w-8 h-8 flex items-center justify-center rounded-lg bg-black/50 hover:bg-black/70 text-white transition-all">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -181,7 +208,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
               </svg>
             </button>
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-slate-500 text-[11px] pointer-events-none whitespace-nowrap select-none">
-              Tocá y arrastrá · Pellizco para zoom · Puntos ⓘ = info
+              Tocá y arrastrá · Pellizco para zoom · ⟲ reinicia vista
             </div>
           </>
         )}
