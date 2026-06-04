@@ -124,7 +124,7 @@ export default function OrganosSentidosViewer() {
           id: "nariz",
           name: "Nariz",
           emoji: "👃",
-          uid: "eb6218d9a535490eafe279203a7fa128",
+          uid: "1f0a6a13466941018f777e0370173c6c",
           structures: [
             {
               name: "Mucosa Olfatoria",

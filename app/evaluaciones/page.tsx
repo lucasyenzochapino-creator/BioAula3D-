@@ -1048,6 +1048,32 @@ export default function EvaluacionesPage() {
   const primCount = evaluaciones.filter(e => e.nivel === "Primaria").length;
   const secCount = evaluaciones.filter(e => e.nivel === "Secundaria").length;
 
+  const [notasOpen, setNotasOpen] = useState(false);
+  const [notasDate, setNotasDate] = useState(() => new Date().toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric" }));
+  const [notasText, setNotasText] = useState("");
+
+  const handleExportNotas = async () => {
+    const { default: jsPDF } = await import("jspdf");
+    const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+    const W = 210; const mx = 15; const cW = W - mx * 2; let y = 15;
+    pdf.setFillColor(15, 23, 42); pdf.rect(0, 0, W, 22, "F");
+    pdf.setFontSize(13); pdf.setFont("helvetica", "bold"); pdf.setTextColor(255, 255, 255);
+    pdf.text("Notas · Banco de Evaluaciones", mx, 11);
+    pdf.setFontSize(8); pdf.setFont("helvetica", "normal"); pdf.setTextColor(180, 180, 180);
+    pdf.text(`BioAula3D · ${notasDate}`, mx, 18);
+    y = 30;
+    pdf.setFontSize(10); pdf.setFont("helvetica", "normal"); pdf.setTextColor(20, 20, 20);
+    const lines = pdf.splitTextToSize(notasText || "(Sin contenido)", cW);
+    pdf.text(lines, mx, y);
+    pdf.save(`BioAula3D-Notas-Evaluaciones-${notasDate.replace(/\//g, "-")}.pdf`);
+  };
+
+  const handleShareNotas = async () => {
+    const text = `Notas Banco de Evaluaciones - ${notasDate}\n\n${notasText}`;
+    if (navigator.share) await navigator.share({ title: "Notas · Evaluaciones", text });
+    else await navigator.clipboard.writeText(text);
+  };
+
   return (
     <div className="min-h-screen bg-bio-dark">
       <div className="max-w-3xl mx-auto px-4 py-8">
@@ -1060,6 +1086,9 @@ export default function EvaluacionesPage() {
             {evaluaciones.length} evaluaciones listas · {primCount} Primaria · {secCount} Secundaria<br />
             Cada una incluye opción múltiple, V/F, completar y desarrollo. Descargá el PDF para el alumno o con clave de respuestas.
           </p>
+          <button onClick={() => setNotasOpen(true)} className="mt-4 flex items-center gap-2 px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-sm font-semibold transition-all">
+            📝 Notas docente
+          </button>
         </div>
 
         <div className="flex gap-2 mb-4 flex-wrap">
@@ -1097,6 +1126,23 @@ export default function EvaluacionesPage() {
           {filtered.map(e => <EvalCard key={e.id} ev={e} />)}
         </div>
       </div>
+
+      {notasOpen && (
+        <div className="fixed inset-0 bg-black/70 z-50 flex items-end justify-center p-0" onClick={() => setNotasOpen(false)}>
+          <div className="bg-slate-900 border-t border-slate-700 rounded-t-2xl w-full max-w-lg p-5 pb-8 space-y-3" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between">
+              <div><span className="text-base font-bold text-white">📝 Notas</span><span className="text-slate-500 text-xs ml-2">Banco de Evaluaciones</span></div>
+              <button onClick={() => setNotasOpen(false)} className="text-slate-500 hover:text-white text-lg leading-none transition-colors">✕</button>
+            </div>
+            <input type="text" value={notasDate} onChange={e => setNotasDate(e.target.value)} placeholder="Fecha (ej. 04/06/2026)" className="w-full bg-slate-800 text-white rounded-lg px-3 py-2 text-sm border border-slate-700 focus:outline-none focus:border-slate-500 transition-colors" />
+            <textarea value={notasText} onChange={e => setNotasText(e.target.value)} placeholder="Anotá lo que necesités sobre evaluaciones..." rows={8} className="w-full bg-slate-800 text-white rounded-lg px-3 py-2 text-sm border border-slate-700 focus:outline-none focus:border-slate-500 resize-none transition-colors leading-relaxed" />
+            <div className="flex gap-2 pt-1">
+              <button onClick={handleShareNotas} className="flex-1 py-2.5 bg-slate-700 hover:bg-slate-600 text-white rounded-xl text-sm font-semibold transition-all">📤 Compartir</button>
+              <button onClick={handleExportNotas} className="flex-1 py-2.5 bg-amber-500 hover:bg-amber-400 text-black rounded-xl text-sm font-semibold transition-all">📄 Guardar PDF</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
