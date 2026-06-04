@@ -9,12 +9,14 @@ const config: Config = {
     extend: {
       colors: {
         bio: {
-          green: "#22c55e",
-          teal: "#14b8a6",
-          blue: "#3b82f6",
-          purple: "#a855f7",
-          dark: "#0f172a",
-          card: "#1e293b",
+          green:   "#16a34a",
+          teal:    "#0d9488",
+          blue:    "#2563eb",
+          purple:  "#7c3aed",
+          dark:    "#0b1120",
+          card:    "#111827",
+          surface: "#1a2235",
+          border:  "#1e293b",
         },
       },
       fontFamily: {

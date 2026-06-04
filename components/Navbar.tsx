@@ -3,44 +3,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const links = [
-  { href: "/celula", label: "Célula" },
-  { href: "/adn", label: "ADN" },
-  { href: "/sistema-nervioso", label: "Neurona" },
-  { href: "/corazon", label: "Corazón" },
-  { href: "/cerebro", label: "Cerebro" },
-  { href: "/pulmones", label: "Pulmones" },
-  { href: "/digestivo", label: "Digestivo" },
-  { href: "/cuerpo-humano", label: "Cuerpo" },
-  { href: "/planta", label: "Planta" },
-  { href: "/quiz", label: "Quiz" },
-  { href: "/glosario", label: "Glosario" },
-  { href: "/tareas", label: "📋 Tareas" },
-  { href: "/evaluaciones", label: "📝 Evaluaciones" },
-  { href: "/oseo", label: "Óseo" },
-  { href: "/muscular", label: "Muscular" },
-  { href: "/excretor", label: "Excretor" },
-  { href: "/mitosis", label: "Mitosis" },
-  { href: "/inmunologico", label: "Inmune" },
-  { href: "/endocrino", label: "Endócrino" },
-  { href: "/reproductor", label: "Reprod. ♀" },
-  { href: "/reproductor-masculino", label: "Reprod. ♂" },
-  { href: "/sentidos", label: "Sentidos" },
-  { href: "/microbiologia", label: "Microbio" },
-  { href: "/ecosistemas", label: "Ecosistemas" },
-  { href: "/herencia", label: "Herencia" },
-];
-
 export default function Navbar() {
   const path = usePathname();
   const [installPrompt, setInstallPrompt] = useState<any>(null);
   const [installed, setInstalled] = useState(false);
+  const isHome = path === "/";
 
   useEffect(() => {
-    const handler = (e: Event) => {
-      e.preventDefault();
-      setInstallPrompt(e);
-    };
+    const handler = (e: Event) => { e.preventDefault(); setInstallPrompt(e); };
     window.addEventListener("beforeinstallprompt", handler);
     window.addEventListener("appinstalled", () => { setInstalled(true); setInstallPrompt(null); });
     return () => window.removeEventListener("beforeinstallprompt", handler);
@@ -54,67 +24,64 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-bio-dark/90 backdrop-blur border-b border-slate-800">
+    <nav className="sticky top-0 z-50 bg-[#0b1120]/95 backdrop-blur border-b border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
-        <Link href="/" className="text-green-400 font-bold text-xl tracking-tight flex items-center gap-2 flex-shrink-0">
-          <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-slate-900 ring-2 ring-green-500/60 flex-shrink-0 overflow-hidden">
-            <svg viewBox="0 0 192 192" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <radialGradient id="nb-bg" cx="50%" cy="40%" r="60%"><stop offset="0%" stopColor="#1e3a5f"/><stop offset="100%" stopColor="#0a0f1a"/></radialGradient>
-                <radialGradient id="nb-b" cx="35%" cy="30%" r="65%"><stop offset="0%" stopColor="#93c5fd"/><stop offset="55%" stopColor="#3b82f6"/><stop offset="100%" stopColor="#1d4ed8"/></radialGradient>
-                <radialGradient id="nb-r" cx="35%" cy="30%" r="65%"><stop offset="0%" stopColor="#fca5a5"/><stop offset="55%" stopColor="#ef4444"/><stop offset="100%" stopColor="#b91c1c"/></radialGradient>
-                <radialGradient id="nb-g" cx="35%" cy="30%" r="65%"><stop offset="0%" stopColor="#86efac"/><stop offset="55%" stopColor="#22c55e"/><stop offset="100%" stopColor="#15803d"/></radialGradient>
-                <radialGradient id="nb-y" cx="35%" cy="30%" r="65%"><stop offset="0%" stopColor="#fde68a"/><stop offset="55%" stopColor="#f59e0b"/><stop offset="100%" stopColor="#b45309"/></radialGradient>
-              </defs>
-              <rect width="192" height="192" rx="40" fill="url(#nb-bg)"/>
-              <line x1="70" y1="32" x2="122" y2="32" stroke="#64748b" strokeWidth="2.5"/>
-              <line x1="74" y1="72" x2="118" y2="72" stroke="#64748b" strokeWidth="2.5"/>
-              <line x1="70" y1="112" x2="122" y2="112" stroke="#64748b" strokeWidth="2.5"/>
-              <line x1="74" y1="150" x2="118" y2="150" stroke="#64748b" strokeWidth="2.5"/>
-              <path d="M70 32 C58 52 74 72 70 112 C66 142 70 150 70 150" stroke="#94a3b8" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-              <path d="M122 32 C134 52 118 72 122 112 C126 142 122 150 122 150" stroke="#64748b" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-              <circle cx="70" cy="32" r="11" fill="url(#nb-b)"/>
-              <circle cx="70" cy="32" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
-              <circle cx="122" cy="32" r="11" fill="url(#nb-r)"/>
-              <circle cx="122" cy="32" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
-              <circle cx="74" cy="72" r="11" fill="url(#nb-g)"/>
-              <circle cx="74" cy="72" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
-              <circle cx="118" cy="72" r="11" fill="url(#nb-y)"/>
-              <circle cx="118" cy="72" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
-              <circle cx="70" cy="112" r="11" fill="url(#nb-r)"/>
-              <circle cx="70" cy="112" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
-              <circle cx="122" cy="112" r="11" fill="url(#nb-b)"/>
-              <circle cx="122" cy="112" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
-              <circle cx="74" cy="150" r="11" fill="url(#nb-y)"/>
-              <circle cx="74" cy="150" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
-              <circle cx="118" cy="150" r="11" fill="url(#nb-g)"/>
-              <circle cx="118" cy="150" r="4" fill="white" fillOpacity="0.3" transform="translate(-3,-3)"/>
+
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
+          <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/15 border border-blue-500/25 flex-shrink-0 overflow-hidden transition-colors group-hover:border-blue-400/40">
+            <svg viewBox="0 0 32 32" width="18" height="18" fill="none">
+              <path d="M8 5c5 7 11 7 16 0" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M8 27c5-7 11-7 16 0" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round"/>
+              <line x1="8" y1="16" x2="24" y2="16" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M9 10c4 4 10 4 14 0" stroke="#93c5fd" strokeWidth="1.5" strokeLinecap="round" opacity=".55"/>
+              <path d="M9 22c4-4 10-4 14 0" stroke="#93c5fd" strokeWidth="1.5" strokeLinecap="round" opacity=".55"/>
             </svg>
           </span>
-          <span className="hidden sm:inline">BioAula3D</span>
+          <span className="text-[15px] font-semibold text-slate-100 tracking-tight">
+            BioAula<span className="text-blue-400">3D</span>
+          </span>
         </Link>
-        {installPrompt && !installed && (
-          <button
-            onClick={handleInstall}
-            className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-green-500 hover:bg-green-400 text-black text-xs font-bold rounded-lg transition-all shadow-lg shadow-green-500/30 whitespace-nowrap"
-          >
-            ⬇ Instalar
-          </button>
+
+        {/* Center — home nav shortcuts */}
+        {isHome && (
+          <div className="hidden md:flex items-center gap-0.5 text-sm">
+            <a href="#celular" className="px-3 py-1.5 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all">
+              Célula &amp; ADN
+            </a>
+            <a href="#cuerpo" className="px-3 py-1.5 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all">
+              Cuerpo Humano
+            </a>
+            <a href="#herramientas" className="px-3 py-1.5 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all">
+              Herramientas
+            </a>
+          </div>
         )}
-        <div className="flex items-center gap-1 overflow-x-auto hide-scrollbar">
-          {links.map((l) => (
+
+        {/* Right */}
+        <div className="flex items-center gap-2">
+          {!isHome && (
             <Link
-              key={l.href}
-              href={l.href}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
-                path === l.href
-                  ? "bg-green-500/20 text-green-400"
-                  : "text-slate-400 hover:text-white hover:bg-slate-800"
-              }`}
+              href="/"
+              className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-200 transition-colors px-3 py-1.5 rounded-lg hover:bg-white/5"
             >
-              {l.label}
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                <path d="M10 12L6 8l4-4"/>
+              </svg>
+              Inicio
             </Link>
-          ))}
+          )}
+          {installPrompt && !installed && (
+            <button
+              onClick={handleInstall}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium rounded-lg transition-colors"
+            >
+              <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
+                <path d="M8 2v8M5 7l3 3 3-3M2 12h12"/>
+              </svg>
+              Instalar
+            </button>
+          )}
         </div>
       </div>
     </nav>
