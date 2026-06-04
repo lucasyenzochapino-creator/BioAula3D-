@@ -15,8 +15,8 @@
 html, body {
   max-width: 100vw;
   overflow-x: hidden;
-  background: #0f172a;
-  color: #f1f5f9;
+  background: #0b1120;
+  color: #e2e8f0;
   font-family: var(--font-inter);
 }
 
@@ -29,31 +29,28 @@ main {
   animation: pageFadeIn 0.2s ease-out both;
 }
 
-/* Previene flash blanco durante navegación */
 html {
-  background: #0f172a;
+  background: #0b1120;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* Card hover elevation — replaces neon glows */
+.card-hover {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
-::-webkit-scrollbar-track {
-  background: #1e293b;
-}
-::-webkit-scrollbar-thumb {
-  background: #22c55e;
-  border-radius: 3px;
+.card-hover:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
 }
 
-.glow-green {
-  box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
-}
-.glow-teal {
-  box-shadow: 0 0 20px rgba(20, 184, 166, 0.3);
-}
-.glow-purple {
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
-}
+/* Legacy glow classes — toned down */
+.glow-green  { box-shadow: 0 4px 16px rgba(22, 163, 74, 0.15); }
+.glow-teal   { box-shadow: 0 4px 16px rgba(13, 148, 136, 0.15); }
+.glow-purple { box-shadow: 0 4px 16px rgba(124, 58, 237, 0.15); }
 
 /* Viewer layout — mobile-first, responsive */
 .viewer-layout {
@@ -73,13 +70,12 @@ html {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: #0f172a;
+  background: #0b1120;
   border-top: 1px solid #1e293b;
   overflow: hidden;
   min-height: 0;
 }
 
-/* Landscape phones + tablets + desktop: side-by-side */
 @media (orientation: landscape), screen and (min-width: 768px) {
   .viewer-layout { flex-direction: row; }
   .viewer-3d { flex: 1; height: 100%; min-height: 0; }
