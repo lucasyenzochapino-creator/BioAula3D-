@@ -274,8 +274,8 @@ async function exportPDF(filteredTerms: Term[], activeModule: string | null, lev
     y += 5;
 
     modTerms.forEach(term => {
-      const simpleLines = level !== "Secundaria" ? pdf.splitTextToSize(`🌱 ${term.simple}`, contentW - 4) : [];
-      const fullLines = level !== "Primaria" ? pdf.splitTextToSize(`🔬 ${term.full}`, contentW - 4) : [];
+      const simpleLines = level !== "Secundaria" ? pdf.splitTextToSize(term.simple, contentW - 4) : [];
+      const fullLines = level !== "Primaria" ? pdf.splitTextToSize(term.full, contentW - 4) : [];
       const blockH = 6 + simpleLines.length * 4.5 + fullLines.length * 4 + 5;
       checkPage(blockH);
 

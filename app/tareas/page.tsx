@@ -517,6 +517,8 @@ const moduleColors: Record<string, string> = {
 
 const MODULES = Array.from(new Set(tareas.map(t => t.modulo)));
 
+const safeText = (s: string) => s.replace(/→/g, ">").replace(/←/g, "<").replace(/↔/g, "<>").replace(/[^\x00-\xFF]/g, "");
+
 async function exportTareaPDF(tarea: Tarea) {
   const { default: jsPDF } = await import("jspdf");
   const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
@@ -562,14 +564,14 @@ async function exportTareaPDF(tarea: Tarea) {
   pdf.text("Objetivo:", marginX, y);
   pdf.setFont("helvetica", "normal");
   pdf.setTextColor(50, 50, 50);
-  const objLines = pdf.splitTextToSize(tarea.objetivo, contentW - 20);
+  const objLines = pdf.splitTextToSize(safeText(tarea.objetivo), contentW - 20);
   pdf.text(objLines, marginX + 20, y);
   y += objLines.length * 4.5 + 4;
 
   // Consigna
   pdf.setFont("helvetica", "italic");
   pdf.setTextColor(60, 60, 100);
-  const consLines = pdf.splitTextToSize(tarea.consigna, contentW);
+  const consLines = pdf.splitTextToSize(safeText(tarea.consigna), contentW);
   pdf.text(consLines, marginX, y);
   y += consLines.length * 4.5 + 5;
   pdf.line(marginX, y, marginX + contentW, y);
@@ -584,7 +586,7 @@ async function exportTareaPDF(tarea: Tarea) {
   y += 7;
 
   tarea.actividades.forEach((act, i) => {
-    const actLines = pdf.splitTextToSize(`${i + 1}. ${act}`, contentW - 6);
+    const actLines = pdf.splitTextToSize(`${i + 1}. ${safeText(act)}`, contentW - 6);
     checkPage(actLines.length * 4.5 + BLANK_LINES * 6 + 10);
     pdf.setFontSize(9);
     pdf.setFont("helvetica", "normal");
@@ -612,7 +614,7 @@ async function exportTareaPDF(tarea: Tarea) {
   y += 7;
 
   tarea.preguntas.forEach((q, i) => {
-    const qLines = pdf.splitTextToSize(`${i + 1}. ${q}`, contentW - 6);
+    const qLines = pdf.splitTextToSize(`${i + 1}. ${safeText(q)}`, contentW - 6);
     checkPage(qLines.length * 4.5 + BLANK_LINES * 6 + 8);
     pdf.setFontSize(9);
     pdf.setFont("helvetica", "normal");

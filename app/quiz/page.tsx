@@ -202,6 +202,8 @@ export default function QuizPage() {
     setShared(false);
   };
 
+  const safeText = (s: string) => s.replace(/→/g, ">").replace(/←/g, "<").replace(/[^\x00-\xFF]/g, "");
+
   const handleExportResultsPDF = async () => {
     if (!level) return;
     setPdfLoading(true);
@@ -218,16 +220,16 @@ export default function QuizPage() {
       y = 33;
       filtered.forEach((q, i) => {
         const correct = answers[i] ?? false;
-        const qLines = pdf.splitTextToSize(`${i + 1}. ${q.question}`, cW - 8);
+        const qLines = pdf.splitTextToSize(`${i + 1}. ${safeText(q.question)}`, cW - 8);
         if (y + qLines.length * 5 + 14 > 282) { pdf.addPage(); y = 15; }
         pdf.setFontSize(9); pdf.setFont("helvetica", "bold");
         pdf.setTextColor(correct ? 22 : 185, correct ? 163 : 28, correct ? 74 : 26);
-        pdf.text(correct ? "✓" : "✗", mx, y);
+        pdf.text(correct ? "OK" : "X", mx, y);
         pdf.setTextColor(20, 20, 20);
         pdf.text(qLines, mx + 6, y);
         y += qLines.length * 5;
         pdf.setFontSize(7.5); pdf.setFont("helvetica", "normal"); pdf.setTextColor(80, 80, 80);
-        const ansLines = pdf.splitTextToSize(`→ ${q.options[q.answer]}`, cW - 10);
+        const ansLines = pdf.splitTextToSize(`R: ${safeText(q.options[q.answer])}`, cW - 10);
         pdf.text(ansLines, mx + 8, y);
         y += ansLines.length * 4 + 3;
         pdf.setDrawColor(220, 220, 220); pdf.line(mx, y, mx + cW, y); y += 3;
