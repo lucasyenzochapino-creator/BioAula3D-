@@ -205,6 +205,70 @@ export default function EvolucionViewer() {
             },
           ],
         },
+        {
+          id: "hominidos",
+          name: "Evolución Humana",
+          emoji: "🧠",
+          uid: "7a5cab32c6b446b1b918f337daae120a",
+          structures: [
+            {
+              name: "Sahelanthropus (7 Ma)",
+              emoji: "🌍",
+              color: "#92400e",
+              simple: "El homínido más antiguo conocido. Vivió hace ~7 millones de años en África central. Era bípedo incipiente con cerebro pequeño.",
+              full: "Sahelanthropus tchadensis ('Toumaï') es el homínido más antiguo conocido. Hallado en Chad en 2001. Tenía cara plana y cresta nucal baja (indicios de bipedismo), pero caja craneal pequeña (~350 cc, similar a un chimpancé). Marca la separación del linaje humano del de los chimpancés hace 6-7 millones de años.",
+            },
+            {
+              name: "Australopithecus (4–2 Ma)",
+              emoji: "🦶",
+              color: "#a16207",
+              simple: "Caminaban erguidos en dos piernas pero tenían cerebros pequeños. El más famoso es 'Lucy', hallada en Etiopía en 1974.",
+              full: "El género Australopithecus (4-2 Ma) presentaba bipedismo completo pero volumen craneal pequeño (430-530 cc). A. afarensis ('Lucy', 3.2 Ma) tenía cara prognata y brazos largos. A. africanus, A. robustus y A. boisei muestran diversidad adaptativa. Usaban herramientas de piedra simples. Se consideran ancestros directos del género Homo.",
+            },
+            {
+              name: "Homo habilis (2.5 Ma)",
+              emoji: "🪨",
+              color: "#b45309",
+              simple: "El primer miembro del género Homo. Fabricaba herramientas de piedra y tenía el cerebro más grande que los Australopithecus.",
+              full: "Homo habilis ('hombre hábil', 2.5-1.5 Ma) tenía un volumen craneal de 510-600 cc. Fabricó las primeras herramientas de piedra documentadas (industria olduvayense/modo 1): lascas y núcleos para cortar carne. Coexistió con Australopithecus robustus en África oriental. Representa la transición entre Australopithecus y Homo erectus.",
+            },
+            {
+              name: "Homo erectus (1.8 Ma)",
+              emoji: "🔥",
+              color: "#d97706",
+              simple: "Primer homínido que salió de África. Dominó el fuego, fabricó herramientas más sofisticadas y llegó hasta Asia y Europa.",
+              full: "Homo erectus ('hombre erguido', 1.8 Ma - 0.1 Ma) tenía volumen craneal de 900-1100 cc, cuerpo moderno con piernas largas para el trote. Fue el primer homínido en salir de África (hasta China e Indonesia). Dominó el fuego (~1 Ma), fabricó bifaces achelenses (modo 2) y vivió en grupos sociales organizados. Persiste como H. georgicus, H. antecessor, etc.",
+            },
+            {
+              name: "Homo heidelbergensis (0.5 Ma)",
+              emoji: "🧊",
+              color: "#f59e0b",
+              simple: "Ancestro común de los Neandertales y los Homo sapiens. Vivía en Europa y África y fabricaba herramientas avanzadas.",
+              full: "Homo heidelbergensis (0.5-0.2 Ma) tenía volumen craneal de 1100-1400 cc, casi como el Homo sapiens. Es el ancestro común de Neandertales (Europa) y Homo sapiens (África). Fabricaba lanzas de madera (las de Schöningen, 400.000 a.p., son las más antiguas del mundo) y herramientas musterienses. Cazaba grandes presas en grupo.",
+            },
+            {
+              name: "Homo neanderthalensis (0.4–0.04 Ma)",
+              emoji: "❄️",
+              color: "#78350f",
+              simple: "Especie humana extinta. Vivió en Europa y Asia hasta hace 40.000 años. Tenía cerebros grandes, enterraba a sus muertos y usaba arte.",
+              full: "Homo neanderthalensis (400.000-40.000 a.p.) tenía un volumen craneal promedio de 1.600 cc (mayor que el Homo sapiens). Cuerpo robusto adaptado al frío glacial. Fabricaba herramientas musterienses (modo 3), enterraba a sus muertos con flores y ocre, usaba pigmentos corporales. Se hibridó con Homo sapiens: el 1-4% del ADN de las personas no africanas actuales es de origen neandertal.",
+            },
+            {
+              name: "Homo sapiens (0.3 Ma – hoy)",
+              emoji: "🧠",
+              color: "#b45309",
+              simple: "Nuestra especie. Evolucionó en África hace 300.000 años y colonizó todos los continentes. Se distingue por el lenguaje, el arte y la cultura.",
+              full: "Homo sapiens ('hombre sabio') evolucionó en África hace ~300.000 años. Volumen craneal promedio ~1.350 cc con forma redondeada (globular). Desarrolló lenguaje articulado complejo, pensamiento abstracto, arte rupestre, música e instrumentos musicales. Salió de África en varias oleadas; la principal hace ~70.000 años pobló Europa, Asia, Oceanía y América. Es la única especie del género Homo que sobrevive.",
+            },
+            {
+              name: "Evolución del Cerebro",
+              emoji: "📈",
+              color: "#92400e",
+              simple: "A lo largo de la evolución humana, el cerebro fue creciendo progresivamente: de 350 cc en Sahelanthropus a 1.350 cc en Homo sapiens.",
+              full: "La encefalización es la tendencia evolutiva al aumento del tamaño cerebral relativo al cuerpo. Sahelanthropus: ~350 cc → Australopithecus: ~450 cc → H. habilis: ~600 cc → H. erectus: ~1000 cc → H. sapiens: ~1350 cc. El cerebro humano tiene un córtex prefrontal muy desarrollado (planificación, lenguaje, empatía). El parto humano es difícil por el tamaño craneal del bebé (compromiso obstétrico).",
+            },
+          ],
+        },
       ]}
     />
   );
