@@ -101,7 +101,3 @@ html {
 .notas-sheet {
   animation: slideUp 0.28s cubic-bezier(0.32, 0.72, 0, 1) both;
 }
-
-@media screen and (orientation: landscape) and (max-height: 600px) {
-  .portrait-prompt { display: flex !important; }
-}
