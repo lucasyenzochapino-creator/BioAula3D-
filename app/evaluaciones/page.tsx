@@ -502,7 +502,7 @@ const evaluaciones: Evaluacion[] = [
       { tipo: "multiple", enunciado: "Un individuo con genotipo Aa se llama:", opciones: ["Homocigoto dominante", "Homocigoto recesivo", "Heterocigoto", "Hemicigoto"], correcta: 2, puntos: 1 },
       { tipo: "vf", enunciado: "En la codominancia, ambos alelos se expresan simultáneamente en el fenotipo.", correcta: true, puntos: 1 },
       { tipo: "vf", enunciado: "La herencia ligada al sexo ocurre en genes del cromosoma X o Y.", correcta: true, puntos: 1 },
-      { tipo: "vf", enunciado: "Si un carácter es recesivo, nunca puede expresarse en presencia de un alelo dominante.", correcta: true, puntos: 1 },
+      { tipo: "vf", enunciado: "Si un carácter es recesivo, nunca puede expresarse en presencia de un alelo dominante.", correcta: false, puntos: 1 },
       { tipo: "completar", enunciado: "En un cruce AaBb × AaBb, la proporción fenotípica esperada es ___ : ___ : ___ : ___ (AABB:AABb:AaBb:aabb).", respuesta: "9:3:3:1", puntos: 2 },
       { tipo: "completar", enunciado: "La hemofilia es un ejemplo de herencia ___ al sexo (cromosoma X).", respuesta: "ligada", puntos: 1 },
       { tipo: "desarrollo", enunciado: "Resolvé: si un hombre daltónico (XᵈY) se cruza con una mujer portadora (X^Xᵈ), ¿cuál es la probabilidad de tener una hija daltónica? ¿Y un hijo daltónico? Mostrá el cuadro de Punnett.", guia: "Gametos: Xᵈ, Y (padre) × X, Xᵈ (madre). Hijas: XX (normal) y XᵈX (portadora) y XX (normal) y XᵈXᵈ (daltónica). 50% hijas daltónicas. Hijos: XY (normal) y XᵈY (daltónico). 50% hijos daltónicos.", puntos: 4 },
