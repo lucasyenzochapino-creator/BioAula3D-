@@ -334,55 +334,39 @@ function SectionHeader({ id, label, count, accent }: { id: string; label: string
 
 // ── Page ─────────────────────────────────────────────────────────────────────
 export default function Home() {
-  const totalModules = cellular.length + ecology.length + body.length;
-
   return (
     <div className="min-h-screen bg-bio-dark">
 
       {/* Hero */}
-      <section className="py-12 md:py-20 px-4 text-center border-b border-white/[0.04]">
+      <section className="pt-10 pb-9 md:pt-16 md:pb-12 px-4 border-b border-white/[0.06]">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
-          className="max-w-2xl mx-auto"
+          transition={{ duration: 0.45 }}
+          className="max-w-6xl mx-auto"
         >
-          <div className="inline-flex items-center gap-2 bg-blue-500/8 border border-blue-500/20 rounded-full px-4 py-1.5 text-blue-400 text-[12.5px] font-medium mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-            Biología interactiva · Primaria y Secundaria
-          </div>
-
-          <h1 className="text-[42px] md:text-[60px] font-bold text-white leading-[1.1] tracking-tight mb-4">
+          <h1 className="text-[34px] md:text-[46px] font-bold text-white leading-[1.05] tracking-tight mb-3">
             Bio<span className="text-blue-400">Aula</span>3D
           </h1>
 
-          <p className="text-slate-400 text-[15px] md:text-[17px] max-w-lg mx-auto leading-relaxed mb-7">
-            Explorá modelos 3D interactivos de células, órganos, ADN y sistemas del cuerpo humano.
-            Tocá cada estructura para conocer su función de forma clara y visual.
+          <p className="text-slate-400 text-[15px] md:text-[16px] max-w-xl leading-relaxed mb-6">
+            Modelos 3D interactivos de células, órganos, ADN y sistemas del cuerpo humano.
+            Tocá cada estructura para conocer su función. Para primaria y secundaria.
           </p>
 
-          <div className="flex flex-wrap gap-3 justify-center mb-8">
+          <div className="flex flex-wrap gap-3">
             <button
               onClick={() => document.getElementById("celular")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-[14px] font-semibold rounded-lg transition-colors shadow-lg shadow-blue-600/20"
+              className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-[14px] font-semibold rounded-lg transition-colors"
             >
               Explorar modelos
             </button>
             <Link
               href="/quiz"
-              className="px-6 py-2.5 bg-transparent hover:bg-white/5 border border-white/15 hover:border-white/25 text-slate-300 text-[14px] font-medium rounded-lg transition-all"
+              className="px-5 py-2.5 bg-transparent hover:bg-white/5 border border-white/15 hover:border-white/25 text-slate-300 text-[14px] font-medium rounded-lg transition-all"
             >
               Comenzar quiz
             </Link>
-          </div>
-
-          {/* Stats row */}
-          <div className="flex items-center justify-center gap-6 text-[12px] text-slate-600">
-            <span>{totalModules} módulos 3D</span>
-            <span className="w-px h-3 bg-slate-700" />
-            <span>{tools.length} herramientas</span>
-            <span className="w-px h-3 bg-slate-700" />
-            <span>Primaria y Secundaria</span>
           </div>
         </motion.div>
       </section>
