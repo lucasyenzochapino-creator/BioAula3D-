@@ -76,7 +76,7 @@ html {
   min-height: 0;
 }
 
-@media (orientation: landscape), screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .viewer-layout { flex-direction: row; }
   .viewer-3d { flex: 1; height: 100%; min-height: 0; }
   .viewer-panel {
