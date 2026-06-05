@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import jsPDF from "jspdf";
 
@@ -48,12 +48,22 @@ function todayFormatted() {
 }
 
 export default function NotasPage() {
-  const [notas, setNotas] = useState<Nota[]>([]);
+  const [notas, setNotas] = useState<Nota[]>(() => {
+    try {
+      const raw = localStorage.getItem("bioaula-notas");
+      return raw ? JSON.parse(raw) : [];
+    } catch { return []; }
+  });
   const [fecha, setFecha] = useState(todayFormatted());
   const [tema, setTema] = useState("General");
   const [texto, setTexto] = useState("");
   const [editId, setEditId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(true);
+
+  // Persist notes on every change
+  useEffect(() => {
+    try { localStorage.setItem("bioaula-notas", JSON.stringify(notas)); } catch {}
+  }, [notas]);
 
   function handleGuardar() {
     if (!texto.trim()) return;

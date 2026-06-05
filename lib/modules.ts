@@ -423,6 +423,57 @@ export const MODULES: ModuleData[] = [
       { name: "Cromosoma y Cariotipo", emoji: "🧵", color: "#fbbf24", simple: "Los cromosomas son los 'paquetes' donde está guardado el ADN. Los humanos tenemos 46 (23 pares).", full: "Los humanos tienen 2n=46 cromosomas: 22 pares de autosomas + 1 par sexual (XX femenino, XY masculino). La trisomía 21 (síndrome de Down) surge por no disyunción en la meiosis." },
     ],
   },
+  // ── Evolución ─────────────────────────────────────────────
+  {
+    slug: "evolucion",
+    uid: "",
+    title: "Evolución y Selección Natural",
+    subtitle: "🌿 Adaptación y Vida",
+    accent: "#f59e0b",
+    intro: "Explorá la evolución humana, la historia de los vertebrados, el caballo como ejemplo clásico y los mecanismos de la selección natural.",
+    structures: [
+      { name: "Selección Natural", emoji: "🌍", color: "#d97706", simple: "Los individuos con características más ventajosas sobreviven más y dejan más descendencia.", full: "Mecanismo central de la evolución formulado por Darwin (1859). Requiere variación heredable y selección diferencial. A lo largo de generaciones, las características favorables se vuelven más comunes en la población." },
+      { name: "Adaptación", emoji: "🦎", color: "#b45309", simple: "Característica que ayuda a un organismo a sobrevivir en su ambiente.", full: "Las adaptaciones son rasgos morfológicos, fisiológicos o conductuales que aumentan la aptitud (fitness) de un organismo en su ambiente. Surgen gradualmente por selección natural a lo largo de generaciones." },
+      { name: "Especiación", emoji: "🐦", color: "#92400e", simple: "Proceso por el que una especie se divide en dos o más especies nuevas.", full: "La especiación alopátrica ocurre cuando poblaciones quedan aisladas geográficamente. La simpátrica ocurre sin barrera física. Los pinzones de Darwin en las Galápagos son el ejemplo clásico de radiación adaptativa." },
+      { name: "Registro Fósil", emoji: "🦴", color: "#a16207", simple: "Los fósiles son los restos de organismos del pasado que nos cuentan la historia de la vida.", full: "Los fósiles se forman cuando los restos orgánicos quedan enterrados y son reemplazados por minerales. La datación radiométrica (carbono-14, uranio-plomo) permite determinar la antigüedad. El registro fósil muestra la secuencia temporal de la evolución." },
+      { name: "Deriva Genética", emoji: "🎲", color: "#d97706", simple: "Cambios en la frecuencia de los genes por azar, especialmente en poblaciones pequeñas.", full: "La deriva genética es un cambio aleatorio en las frecuencias alélicas de una población. Es más importante en poblaciones pequeñas (efecto fundador, cuello de botella). Puede fijar o eliminar alelos independientemente de su valor adaptativo." },
+      { name: "Coevolución", emoji: "🌸", color: "#f59e0b", simple: "Cuando dos especies evolucionan juntas en respuesta mutua, como flores y polinizadores.", full: "La coevolución es la evolución recíproca de dos o más especies en respuesta a su interacción. Ejemplos: carrera armamentista depredador-presa, mutualismo planta-polinizador, parásito-hospedador. La flor de Madagascar y la polilla de trompa de 30 cm es el ejemplo clásico predicho por Darwin." },
+    ],
+  },
+  // ── Clasificación de Seres Vivos ──────────────────────────
+  {
+    slug: "clasificacion",
+    uid: "b7d84e5f2d5e411fbb195ab2742f2256",
+    title: "Clasificación de Seres Vivos",
+    subtitle: "🔬 Células y Reinos",
+    accent: "#14b8a6",
+    intro: "Explorá la diversidad de la vida: los 5 reinos, la taxonomía linneana y el árbol filogenético desde bacterias hasta animales.",
+    structures: [
+      { name: "Reino Monera (Bacteria)", emoji: "🦠", color: "#2dd4bf", simple: "El reino de las bacterias: organismos unicelulares sin núcleo. Son los seres vivos más pequeños y abundantes.", full: "El reino Monera incluye todos los procariontes: organismos sin núcleo delimitado por membrana. Son unicelulares con ADN circular en el nucleoide. Incluyen Eubacterias y Arqueobacterias. Presentan la mayor diversidad metabólica: fotosíntesis, quimiosíntesis, fermentación." },
+      { name: "Reino Protista", emoji: "🔬", color: "#0d9488", simple: "Organismos eucariontes que no son plantas, animales ni hongos. Incluye amebas, algas unicelulares y protozoos.", full: "Los Protista son eucariontes (con núcleo verdadero) mayormente unicelulares o coloniales. Algunos son autótrofos (algas verdes, diatomeas) y otros heterótrofos (amebas, ciliados). Son los ancestros evolutivos de los otros tres reinos eucariontes." },
+      { name: "Reino Fungi", emoji: "🍄", color: "#a16207", simple: "El reino de los hongos: digieren los nutrientes fuera de su cuerpo y los absorben.", full: "Los Fungi son eucariontes heterótrofos por absorción, con pared de quitina. Son los principales descomponedores de materia orgánica. Incluyen levaduras, mohos y setas. Forman micorrizas con raíces de plantas — asociación mutualista fundamental para los ecosistemas." },
+      { name: "Reino Plantae", emoji: "🌱", color: "#16a34a", simple: "El reino de las plantas: organismos multicelulares que hacen fotosíntesis. Son los productores de los ecosistemas terrestres.", full: "El reino Plantae comprende eucariontes multicelulares, autótrofos fotosintetizadores con clorofila a y b, pared de celulosa y alternancia de generaciones. Incluye briófitas, pteridófitas, gimnospermas y angiospermas." },
+      { name: "Reino Animalia", emoji: "🐾", color: "#ef4444", simple: "El reino de los animales: organismos multicelulares, heterótrofos, que se mueven.", full: "El reino Animalia incluye eucariontes multicelulares, heterótrofos por ingestión, sin pared celular. Se dividen en invertebrados (más del 97% de las especies) y vertebrados (peces, anfibios, reptiles, aves, mamíferos)." },
+      { name: "Taxonomía de Linneo", emoji: "📋", color: "#0e7490", simple: "Sistema de clasificación y nombres científicos creado por Carlos Linneo en 1758. Usamos dos nombres: género + especie.", full: "La nomenclatura binomial de Linneo asigna a cada especie un nombre de dos palabras en latín: género (mayúscula) + especie (minúscula). La jerarquía taxonómica es: dominio, reino, filo, clase, orden, familia, género, especie. El ser humano es Homo sapiens." },
+    ],
+  },
+  // ── Tejidos ───────────────────────────────────────────────
+  {
+    slug: "tejidos",
+    uid: "ddc40bb0900544959f02d3ff83c32615",
+    title: "Tejidos",
+    subtitle: "🔬 Histología Básica",
+    accent: "#a78bfa",
+    intro: "Explorá los tipos de tejidos animales y vegetales: estructura, función y ejemplos en 3D.",
+    structures: [
+      { name: "Tejido Epitelial", emoji: "🫧", color: "#a78bfa", simple: "Tejido que cubre la superficie del cuerpo (piel) y el interior de los órganos.", full: "Formado por células muy juntas con poca matriz extracelular, unidas por desmosomas y uniones estrechas. Puede ser simple o estratificado, y según la forma: plano, cúbico o cilíndrico. Funciones: protección, absorción, secreción e intercambio gaseoso." },
+      { name: "Tejido Conectivo", emoji: "🕸️", color: "#7c3aed", simple: "Tejido que une, sostiene y rellena los espacios entre otros tejidos. Incluye el hueso, el cartílago y la sangre.", full: "Tiene abundante matriz extracelular (fibras de colágeno, elastina y sustancia fundamental). Subtipos: laxo, denso regular (tendones), denso irregular (dermis), adiposo, cartílago, hueso y sangre." },
+      { name: "Tejido Muscular", emoji: "💪", color: "#6d28d9", simple: "Tejido especializado en la contracción. Hay tres tipos: esquelético, cardíaco y liso.", full: "Tejido muscular estriado esquelético: voluntario, fibras largas multinucleadas. Cardíaco: involuntario, cardiomiocitos con discos intercalares. Liso: involuntario, paredes de órganos. Los tres usan el mecanismo actina-miosina para contraerse." },
+      { name: "Tejido Nervioso", emoji: "⚡", color: "#4c1d95", simple: "Forma el cerebro, la médula espinal y los nervios. Transmite señales eléctricas.", full: "Compuesto por neuronas (células excitables que generan y conducen impulsos) y neuroglía (astrocitos, oligodendrocitos, células de Schwann, microglía). Las neuronas tienen soma, dendritas y axón. La mielina permite conducción saltatoria rápida." },
+      { name: "Tejido Adiposo", emoji: "🟡", color: "#8b5cf6", simple: "Almacena grasa como reserva de energía, aislante térmico y protección de órganos.", full: "Tejido conectivo especializado formado por adipocitos. El tejido adiposo blanco almacena energía y produce leptina. El tejido adiposo pardo genera calor por termogénesis (importante en recién nacidos)." },
+      { name: "Tejido Óseo", emoji: "🦴", color: "#5b21b6", simple: "Forma los huesos. Es muy duro por las sales de calcio pero tiene células vivas que lo renuevan.", full: "Tejido conectivo mineralizado con colágeno tipo I (~35%) e hidroxiapatita (~65%). Sus células: osteoblastos (forman hueso), osteocitos (mantenimiento) y osteoclastos (reabsorción). El hueso compacto tiene osteonas y el esponjoso trabéculas." },
+    ],
+  },
 ];
 
 export function getModule(slug: string): ModuleData | undefined {
