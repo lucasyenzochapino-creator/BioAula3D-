@@ -327,7 +327,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
         </div>
 
         {/* Lista de estructuras con soporte de grupos */}
-        <div className="flex-1 overflow-y-auto p-3 space-y-1">
+        <div className="p-3 space-y-1 pb-6">
           {groupOrder.map(key => {
             const items = groupMap.get(key)!;
             const label = key || null;
