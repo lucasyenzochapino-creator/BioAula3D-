@@ -24,59 +24,73 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#070d1a]/96 backdrop-blur border-b border-white/[0.05]">
+    <nav className="sticky top-0 z-50 bg-[#0b1120]/80 backdrop-blur-md border-b border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
-          <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600/15 border border-blue-500/25 flex-shrink-0 overflow-hidden transition-colors group-hover:border-blue-400/40">
-            <svg viewBox="0 0 32 32" width="18" height="18" fill="none">
-              <path d="M8 5c5 7 11 7 16 0" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round"/>
-              <path d="M8 27c5-7 11-7 16 0" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round"/>
-              <line x1="8" y1="16" x2="24" y2="16" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round"/>
-              <path d="M9 10c4 4 10 4 14 0" stroke="#93c5fd" strokeWidth="1.5" strokeLinecap="round" opacity=".55"/>
-              <path d="M9 22c4-4 10-4 14 0" stroke="#93c5fd" strokeWidth="1.5" strokeLinecap="round" opacity=".55"/>
+          {/* DNA icon */}
+          <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-green-500/10 border border-green-500/20 flex-shrink-0 transition-colors group-hover:border-green-400/35">
+            <svg viewBox="0 0 32 32" width="17" height="17" fill="none">
+              <path d="M10 5c4 6 8 6 12 0" stroke="#4ade80" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M10 27c4-6 8-6 12 0" stroke="#4ade80" strokeWidth="2" strokeLinecap="round"/>
+              <line x1="10" y1="16" x2="22" y2="16" stroke="#4ade80" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M10.5 10.5c3.5 3.5 7.5 3.5 11 0" stroke="#86efac" strokeWidth="1.5" strokeLinecap="round" opacity=".5"/>
+              <path d="M10.5 21.5c3.5-3.5 7.5-3.5 11 0" stroke="#86efac" strokeWidth="1.5" strokeLinecap="round" opacity=".5"/>
             </svg>
           </span>
-          <span className="text-[15px] font-semibold text-slate-100 tracking-tight" style={{ fontFamily: "var(--font-display, inherit)", letterSpacing: "-0.02em" }}>
-            Bio<span style={{ color: "#22c55e" }}>Aula</span><span style={{ color: "#14b8a6" }}>3D</span>
+          <span
+            className="text-[15px] font-bold text-white tracking-tight"
+            style={{ fontFamily: "var(--font-display, inherit)", letterSpacing: "-0.025em" }}
+          >
+            Bio<span className="text-green-400">Aula</span><span className="text-sky-400">3D</span>
           </span>
         </Link>
 
-        {/* Center — home nav shortcuts */}
+        {/* Center — section anchors (home only) */}
         {isHome && (
-          <div className="hidden md:flex items-center gap-0.5 text-sm">
-            <a href="#celular" className="px-3 py-1.5 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all">
-              Célula &amp; ADN
-            </a>
-            <a href="#cuerpo" className="px-3 py-1.5 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all">
-              Cuerpo Humano
-            </a>
-            <a href="#herramientas" className="px-3 py-1.5 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all">
-              Herramientas
-            </a>
+          <div className="hidden md:flex items-center gap-0.5 text-[13px]">
+            <a href="#celular"      className="px-3 py-1.5 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/[0.05] transition-all">Célula &amp; ADN</a>
+            <a href="#ecologia"     className="px-3 py-1.5 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/[0.05] transition-all">Ecología</a>
+            <a href="#cuerpo"       className="px-3 py-1.5 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/[0.05] transition-all">Cuerpo Humano</a>
+            <a href="#herramientas" className="px-3 py-1.5 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/[0.05] transition-all">Herramientas</a>
           </div>
         )}
 
-        {/* Right */}
+        {/* Right — Quiz + Glosario always visible */}
         <div className="flex items-center gap-2">
           {!isHome && (
             <Link
               href="/"
-              className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-200 transition-colors px-3 py-1.5 rounded-lg hover:bg-white/5"
+              className="flex items-center gap-1.5 text-[13px] text-slate-400 hover:text-slate-200 transition-colors px-3 py-1.5 rounded-lg hover:bg-white/[0.05]"
             >
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+              <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                 <path d="M10 12L6 8l4-4"/>
               </svg>
               Inicio
             </Link>
           )}
+
+          <Link
+            href="/quiz"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium text-green-400 bg-green-400/[0.08] hover:bg-green-400/[0.14] border border-green-400/20 hover:border-green-400/35 transition-all"
+          >
+            Quiz
+          </Link>
+
+          <Link
+            href="/glosario"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium text-slate-300 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] hover:border-white/[0.15] transition-all"
+          >
+            Glosario
+          </Link>
+
           {installPrompt && !installed && (
             <button
               onClick={handleInstall}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium rounded-lg transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-sky-600 hover:bg-sky-500 text-white text-[12px] font-medium rounded-lg transition-colors"
             >
-              <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
+              <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
                 <path d="M8 2v8M5 7l3 3 3-3M2 12h12"/>
               </svg>
               Instalar
