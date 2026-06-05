@@ -180,6 +180,34 @@ function BioIcon({ name, className = "w-[18px] h-[18px]" }: { name: string; clas
         <line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/>
       </svg>
     ),
+    evolve: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className={className}>
+        <line x1="12" y1="20" x2="12" y2="14"/>
+        <path d="M12 14L6 8"/><path d="M12 14L18 8"/>
+        <path d="M6 8L3 5"/><path d="M6 8L9 5"/>
+        <path d="M18 8L15 5"/><path d="M18 8L21 5"/>
+      </svg>
+    ),
+    taxonomy: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className={className}>
+        <circle cx="12" cy="4" r="2"/>
+        <line x1="12" y1="6" x2="12" y2="9"/>
+        <line x1="7" y1="9" x2="17" y2="9"/>
+        <line x1="7" y1="9" x2="7" y2="12"/><line x1="17" y1="9" x2="17" y2="12"/>
+        <circle cx="7" cy="14" r="2"/><circle cx="17" cy="14" r="2"/>
+        <line x1="4" y1="16" x2="10" y2="16"/><line x1="14" y1="16" x2="20" y2="16"/>
+        <line x1="5" y1="16" x2="5" y2="19"/><line x1="9" y1="16" x2="9" y2="19"/>
+        <line x1="15" y1="16" x2="15" y2="19"/><line x1="19" y1="16" x2="19" y2="19"/>
+      </svg>
+    ),
+    tissue: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className={className}>
+        <rect x="3" y="3" width="8" height="8" rx="1.5"/>
+        <rect x="13" y="3" width="8" height="8" rx="1.5"/>
+        <rect x="3" y="13" width="8" height="8" rx="1.5"/>
+        <rect x="13" y="13" width="8" height="8" rx="1.5"/>
+      </svg>
+    ),
   };
   return p[name] ?? (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
@@ -210,6 +238,9 @@ const cellular: Mod[] = [
 const ecology: Mod[] = [
   { slug: "microbiologia", title: "Microbiología",  icon: "microbe", ib: "bg-emerald-500/12", ic: "text-emerald-400", parts: 8, desc: "Estructura bacteriana 3D: pared celular, nucleoide, flagelo y resistencia antibiótica." },
   { slug: "ecosistemas",   title: "Ecosistemas",    icon: "tree",    ib: "bg-emerald-500/12", ic: "text-emerald-400", parts: 8, desc: "Cuatro biomas en 3D: selva tropical, arrecife, desierto y Ártico." },
+  { slug: "evolucion",     title: "Evolución",                 icon: "evolve",   ib: "bg-amber-500/12",  ic: "text-amber-400",  parts: 8, desc: "Selección natural, adaptación y árbol de la vida. Darwin y la teoría evolutiva." },
+  { slug: "clasificacion", title: "Clasificación de Seres Vivos", icon: "taxonomy", ib: "bg-teal-500/12", ic: "text-teal-400",  parts: 8, desc: "Los 5 reinos, taxonomía linneana y árbol filogenético de la vida." },
+  { slug: "tejidos",       title: "Tejidos",                   icon: "tissue",   ib: "bg-violet-500/12", ic: "text-violet-400", parts: 8, desc: "Tejido epitelial, conectivo, muscular y nervioso. Histología básica en 3D." },
 ];
 
 const body: Mod[] = [
@@ -233,8 +264,8 @@ type Tool = { slug: string; title: string; desc: string; icon: string; ib: strin
 const tools: Tool[] = [
   { slug: "quiz",         title: "Quiz 3D",         icon: "trophy",    ib: "bg-yellow-500/12", ic: "text-yellow-400", label: "Primaria y secundaria",  desc: "10 preguntas con explicación y puntaje final." },
   { slug: "glosario",     title: "Glosario",         icon: "book",      ib: "bg-slate-400/12",  ic: "text-slate-300",  label: "65+ términos",           desc: "Términos biológicos con explicación y PDF descargable." },
-  { slug: "tareas",       title: "Banco de Tareas",  icon: "clipboard", ib: "bg-violet-500/12", ic: "text-violet-400", label: "18 tareas",              desc: "Tareas listas con actividades. Filtrá por nivel." },
-  { slug: "evaluaciones", title: "Evaluaciones",     icon: "exam",      ib: "bg-amber-500/12",  ic: "text-amber-400",  label: "22 evaluaciones",        desc: "Opción múltiple, V/F, completar. PDF alumno y con respuestas." },
+  { slug: "tareas",       title: "Banco de Tareas",  icon: "clipboard", ib: "bg-violet-500/12", ic: "text-violet-400", label: "24 tareas",              desc: "Tareas listas con actividades. Filtrá por nivel." },
+  { slug: "evaluaciones", title: "Evaluaciones",     icon: "exam",      ib: "bg-amber-500/12",  ic: "text-amber-400",  label: "28 evaluaciones",        desc: "Opción múltiple, V/F, completar. PDF alumno y con respuestas." },
   { slug: "notas",        title: "Notas",            icon: "notes",     ib: "bg-emerald-500/12",ic: "text-emerald-400",label: "Herramienta docente",    desc: "Anotaciones con fecha, texto libre y exportación a PDF." },
 ];
 

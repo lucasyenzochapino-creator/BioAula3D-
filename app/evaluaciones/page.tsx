@@ -248,7 +248,7 @@ const evaluaciones: Evaluacion[] = [
     id: "ecosistemas-p",
     titulo: "Seres Vivos y Ecosistemas",
     nivel: "Primaria",
-    modulo: "Cuerpo Humano",
+    modulo: "Ecosistemas",
     emoji: "🌳",
     color: "#22c55e",
     duracion: "40 min",
@@ -689,6 +689,132 @@ const evaluaciones: Evaluacion[] = [
       { tipo: "desarrollo", enunciado: "Describí los mecanismos de resistencia bacteriana a los antibióticos. ¿Por qué es un problema de salud pública global?", guia: "Mecanismos: producción de enzimas que degradan el antibiótico (ej. beta-lactamasas), modificación del sitio diana (mutaciones en PBP → resistencia a penicilina), bombas de eflujo (expulsan el antibiótico), impermeabilidad de membrana. Transferencia horizontal por plásmidos (conjugación) disemina la resistencia. Problema global: infecciones sin tratamiento, mayor mortalidad, costos sanitarios. OMS declara la resistencia bacteriana emergencia global.", puntos: 4 },
     ],
   },
+  // ──────────────────────────────────────────────
+  // EVOLUCIÓN
+  // ──────────────────────────────────────────────
+  {
+    id: "evolucion-p",
+    titulo: "Evolución y Adaptación",
+    nivel: "Primaria",
+    modulo: "Evolución",
+    emoji: "🦕",
+    color: "#f59e0b",
+    duracion: "30 min",
+    preguntas: [
+      { tipo: "multiple", enunciado: "¿Quién propuso la teoría de la selección natural?", opciones: ["Isaac Newton", "Charles Darwin", "Gregor Mendel", "Louis Pasteur"], correcta: 1, puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Qué son las adaptaciones?", opciones: ["Cambios en un día", "Características que ayudan a sobrevivir", "Enfermedades hereditarias", "Partes del ADN"], correcta: 1, puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Qué evidencia prueba que los seres vivos evolucionaron?", opciones: ["El color del cielo", "Los fósiles y la anatomía comparada", "El clima", "Los ríos"], correcta: 1, puntos: 1 },
+      { tipo: "vf", enunciado: "La evolución ocurre en el individuo durante su vida.", correcta: false, puntos: 1 },
+      { tipo: "vf", enunciado: "Los seres mejor adaptados tienen más probabilidad de sobrevivir y reproducirse.", correcta: true, puntos: 1 },
+      { tipo: "completar", enunciado: "Darwin observó diferencias en los ___ de los pinzones de las Islas Galápagos, lo que lo llevó a proponer la selección natural.", respuesta: "picos", puntos: 2 },
+      { tipo: "completar", enunciado: "La teoría de Darwin se llama ___.", respuesta: "selección natural", puntos: 2 },
+      { tipo: "desarrollo", enunciado: "Explicá con tus palabras qué es la selección natural y dá un ejemplo de adaptación.", guia: "Mencioná: variación entre individuos, presión del ambiente, supervivencia del más apto, reproducción diferencial.", puntos: 3 },
+    ],
+  },
+  {
+    id: "evolucion-s",
+    titulo: "Evolución y Mecanismos Evolutivos",
+    nivel: "Secundaria",
+    modulo: "Evolución",
+    emoji: "🦕",
+    color: "#f59e0b",
+    duracion: "45 min",
+    preguntas: [
+      { tipo: "multiple", enunciado: "¿Qué condiciones debe cumplir una población para estar en equilibrio de Hardy-Weinberg?", opciones: ["Tamaño pequeño y aislamiento", "Ausencia de mutación, selección, deriva, flujo génico y apareamiento aleatorio", "Alta tasa de reproducción", "Ambiente estable"], correcta: 1, puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Qué tipo de selección favorece a los individuos con valores fenotípicos extremos?", opciones: ["Selección estabilizadora", "Selección direccional", "Selección disruptiva", "Selección sexual"], correcta: 2, puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Qué es la deriva génica?", opciones: ["Migración de individuos entre poblaciones", "Cambio aleatorio en las frecuencias alélicas en poblaciones pequeñas", "Selección a favor de heterocigotos", "Flujo de ADN entre especies"], correcta: 1, puntos: 1 },
+      { tipo: "vf", enunciado: "La selección natural actúa directamente sobre el genotipo.", correcta: false, puntos: 1 },
+      { tipo: "vf", enunciado: "La especiación alopátrica requiere aislamiento geográfico.", correcta: true, puntos: 1 },
+      { tipo: "completar", enunciado: "El aislamiento ___ impide el intercambio genético entre poblaciones y puede llevar a la especiación.", respuesta: "reproductivo", puntos: 2 },
+      { tipo: "completar", enunciado: "Los órganos análogos son resultado de la ___ convergente.", respuesta: "evolución", puntos: 2 },
+      { tipo: "desarrollo", enunciado: "Comparó la selección estabilizadora, direccional y disruptiva con un ejemplo para cada una.", guia: "Estabilizadora: peso al nacer. Direccional: resistencia a antibióticos. Disruptiva: tamaño de picos en aves.", puntos: 3 },
+    ],
+  },
+  // ──────────────────────────────────────────────
+  // CLASIFICACIÓN
+  // ──────────────────────────────────────────────
+  {
+    id: "clasificacion-p",
+    titulo: "Clasificación de Seres Vivos",
+    nivel: "Primaria",
+    modulo: "Clasificación",
+    emoji: "🌿",
+    color: "#2dd4bf",
+    duracion: "30 min",
+    preguntas: [
+      { tipo: "multiple", enunciado: "¿A qué reino pertenecen los hongos?", opciones: ["Plantae", "Animalia", "Fungi", "Monera"], correcta: 2, puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Cuál es la unidad básica de clasificación de los seres vivos?", opciones: ["Familia", "Especie", "Género", "Orden"], correcta: 1, puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Cómo se escribe correctamente el nombre científico del ser humano?", opciones: ["HOMO SAPIENS", "homo sapiens", "Homo sapiens", "Homo Sapiens"], correcta: 2, puntos: 1 },
+      { tipo: "vf", enunciado: "Las bacterias pertenecen al reino Plantae.", correcta: false, puntos: 1 },
+      { tipo: "vf", enunciado: "Los organismos de una misma especie pueden reproducirse entre sí y tener descendencia fértil.", correcta: true, puntos: 1 },
+      { tipo: "completar", enunciado: "El científico que creó el sistema de clasificación binomial fue Carlos ___.", respuesta: "Linneo", puntos: 2 },
+      { tipo: "completar", enunciado: "Las plantas pertenecen al reino ___.", respuesta: "Plantae", puntos: 2 },
+      { tipo: "desarrollo", enunciado: "Describí las características de 3 reinos diferentes de seres vivos.", guia: "Mencioná si son unicelulares o pluricelulares, autótrofos o heterótrofos, con o sin núcleo, ejemplos.", puntos: 3 },
+    ],
+  },
+  {
+    id: "clasificacion-s",
+    titulo: "Taxonomía y Filogenia",
+    nivel: "Secundaria",
+    modulo: "Clasificación",
+    emoji: "🌿",
+    color: "#2dd4bf",
+    duracion: "45 min",
+    preguntas: [
+      { tipo: "multiple", enunciado: "¿En cuál de los 3 dominios se ubican los organismos con ARN polimerasa similar a la eucariota pero sin núcleo?", opciones: ["Bacteria", "Archaea", "Eukarya", "Protista"], correcta: 1, puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Qué es un clado en sistemática filogenética?", opciones: ["Un grupo de especies similares morfológicamente", "Un ancestro común y todos sus descendientes", "Una población reproductivamente aislada", "Un taxón sin descendientes actuales"], correcta: 1, puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Qué característica comparten Bacteria y Archaea?", opciones: ["Presencia de histonas", "Pared de peptidoglucano", "Ausencia de núcleo delimitado por membrana", "Ribosomas 80S"], correcta: 2, puntos: 1 },
+      { tipo: "vf", enunciado: "Los grupos parafiléticos incluyen al ancestro común y TODOS sus descendientes.", correcta: false, puntos: 1 },
+      { tipo: "vf", enunciado: "El concepto biológico de especie se basa en el aislamiento reproductivo.", correcta: true, puntos: 1 },
+      { tipo: "completar", enunciado: "La clasificación jerárquica de mayor a menor es: Reino, Filo, Clase, ___, Familia, Género, Especie.", respuesta: "Orden", puntos: 2 },
+      { tipo: "completar", enunciado: "Las Archaea se diferencian de las Bacterias en que tienen lípidos de membrana con enlaces ___ en lugar de éster.", respuesta: "éter", puntos: 2 },
+      { tipo: "desarrollo", enunciado: "Explicá las diferencias entre los 3 dominios de la vida según el sistema de Woese.", guia: "Bacteria: procariota, peptidoglucano, ARN pol simple. Archaea: procariota, lípidos éter, ARN pol compleja. Eukarya: eucariota, núcleo, compartimentalización.", puntos: 3 },
+    ],
+  },
+  // ──────────────────────────────────────────────
+  // TEJIDOS
+  // ──────────────────────────────────────────────
+  {
+    id: "tejidos-p",
+    titulo: "Tejidos del Cuerpo Humano",
+    nivel: "Primaria",
+    modulo: "Tejidos",
+    emoji: "🔬",
+    color: "#a78bfa",
+    duracion: "30 min",
+    preguntas: [
+      { tipo: "multiple", enunciado: "¿Qué tejido forma la piel y recubre los órganos?", opciones: ["Tejido muscular", "Tejido nervioso", "Tejido epitelial", "Tejido conectivo"], correcta: 2, puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Cuál es la función del tejido conectivo?", opciones: ["Producir movimiento", "Transmitir señales", "Unir y sostener otros tejidos", "Cubrir superficies"], correcta: 2, puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Qué tipo de tejido forma los músculos del esqueleto?", opciones: ["Tejido liso", "Tejido muscular estriado", "Tejido nervioso", "Tejido epitelial"], correcta: 1, puntos: 1 },
+      { tipo: "vf", enunciado: "El tejido nervioso puede contraerse para producir movimiento.", correcta: false, puntos: 1 },
+      { tipo: "vf", enunciado: "El corazón está formado por tejido muscular cardíaco.", correcta: true, puntos: 1 },
+      { tipo: "completar", enunciado: "La ___ es la célula del tejido nervioso que transmite los impulsos eléctricos.", respuesta: "neurona", puntos: 2 },
+      { tipo: "completar", enunciado: "El hueso y el cartílago son tipos de tejido ___.", respuesta: "conectivo", puntos: 2 },
+      { tipo: "desarrollo", enunciado: "Describí los 4 tipos de tejido animal y dá un ejemplo de dónde se encuentra cada uno.", guia: "Epitelial: piel, mucosas. Conectivo: hueso, sangre, cartílago. Muscular: músculos, corazón. Nervioso: cerebro, médula.", puntos: 3 },
+    ],
+  },
+  {
+    id: "tejidos-s",
+    titulo: "Histología: Tejidos Animal y Vegetal",
+    nivel: "Secundaria",
+    modulo: "Tejidos",
+    emoji: "🔬",
+    color: "#a78bfa",
+    duracion: "45 min",
+    preguntas: [
+      { tipo: "multiple", enunciado: "¿Qué tipo de epitelio recubre los vasos sanguíneos (endotelio)?", opciones: ["Epitelio cilíndrico pseudoestratificado", "Epitelio cúbico simple", "Epitelio plano simple", "Epitelio estratificado queratinizado"], correcta: 2, puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Cuál es la principal proteína estructural del tejido conectivo denso?", opciones: ["Queratina", "Actina", "Colágeno", "Elastina"], correcta: 2, puntos: 1 },
+      { tipo: "multiple", enunciado: "¿Qué tejido vegetal conduce el agua desde las raíces hacia las hojas?", opciones: ["Floema", "Parénquima", "Xilema", "Esclerénquima"], correcta: 2, puntos: 1 },
+      { tipo: "vf", enunciado: "El tejido muscular liso es voluntario y está bajo control consciente.", correcta: false, puntos: 1 },
+      { tipo: "vf", enunciado: "Los meristemas son tejidos vegetales con capacidad de división celular.", correcta: true, puntos: 1 },
+      { tipo: "completar", enunciado: "Las células que producen la mielina en el sistema nervioso periférico son las células de ___.", respuesta: "Schwann", puntos: 2 },
+      { tipo: "completar", enunciado: "El tejido ___ vegetal conduce los azúcares producidos en la fotosíntesis hacia el resto de la planta.", respuesta: "floema", puntos: 2 },
+      { tipo: "desarrollo", enunciado: "Comparó el tejido muscular liso, estriado esquelético y cardíaco en cuanto a control voluntario/involuntario, presencia de estrías y localización.", guia: "Liso: involuntario, sin estrías, vísceras. Esquelético: voluntario, con estrías, músculos. Cardíaco: involuntario, con estrías, corazón.", puntos: 3 },
+    ],
+  },
+  // ──────────────────────────────────────────────
+  // ECOSISTEMAS (original)
+  // ──────────────────────────────────────────────
   {
     id: "ecosistemas-s",
     titulo: "Ecosistemas y Biodiversidad",
@@ -733,6 +859,9 @@ const moduleColors: Record<string, string> = {
   "Mitosis y Meiosis": "#818cf8",
   "Sistema Inmunológico": "#ef4444",
   "Herencia Genética": "#f59e0b",
+  "Evolución": "#f59e0b",
+  "Clasificación": "#2dd4bf",
+  "Tejidos": "#a78bfa",
 };
 
 const MODULOS = Array.from(new Set(evaluaciones.map(e => e.modulo)));
@@ -899,11 +1028,11 @@ async function exportEvalPDF(ev: Evaluacion, showAnswers: boolean) {
   }
 
   // Footer
-  const pageCount = (pdf as any).internal.getNumberOfPages();
+  const pageCount = pdf.getNumberOfPages();
   for (let i = 1; i <= pageCount; i++) {
     pdf.setPage(i);
     pdf.setFontSize(7); pdf.setFont("helvetica", "normal"); pdf.setTextColor(160, 160, 160);
-    pdf.text("BioAula3D · bio-aula3-d-git-main-maxwebs.vercel.app", mx, 293);
+    pdf.text("BioAula3D · bio-aula3-d.vercel.app", mx, 293);
     pdf.text(`Página ${i} de ${pageCount}`, W - mx, 293, { align: "right" });
   }
   return pdf;
@@ -1129,7 +1258,7 @@ export default function EvaluacionesPage() {
 
       {notasOpen && (
         <div className="fixed inset-0 bg-black/70 z-50 flex items-end justify-center p-0" onClick={() => setNotasOpen(false)}>
-          <div className="bg-slate-900 border-t border-slate-700 rounded-t-2xl w-full max-w-lg p-5 pb-8 space-y-3" onClick={e => e.stopPropagation()}>
+          <div className="notas-sheet bg-slate-900 border-t border-slate-700 rounded-t-2xl w-full max-w-lg p-5 pb-8 space-y-3" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <div><span className="text-base font-bold text-white">📝 Notas</span><span className="text-slate-500 text-xs ml-2">Banco de Evaluaciones</span></div>
               <button onClick={() => setNotasOpen(false)} className="text-slate-500 hover:text-white text-lg leading-none transition-colors">✕</button>

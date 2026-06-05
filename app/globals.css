@@ -91,3 +91,12 @@ html {
 @media screen and (min-width: 1024px) {
   .viewer-panel { width: 320px; min-width: 320px; }
 }
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.notas-sheet {
+  animation: slideUp 0.28s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
