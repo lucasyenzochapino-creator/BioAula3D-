@@ -209,7 +209,7 @@ export default function EvolucionViewer() {
           id: "evolucion-humana",
           name: "Evolución Humana",
           emoji: "🧬",
-          imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Homo_evolution02.png/1280px-Homo_evolution02.png",
+          imageUrl: "/human-evolution.svg",
           structures: [
             {
               name: "Sahelanthropus (7 Ma)",
