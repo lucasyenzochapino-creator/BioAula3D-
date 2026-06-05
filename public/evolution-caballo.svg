@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" style="background:#080d1b">
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="380" fill="#080d1b"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" fill="#f59e0b" font-family="Arial,sans-serif" font-size="18" font-weight="bold">Evolución del Caballo</text>
+  <text x="400" y="55" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">55 millones de años de cambios graduales</text>
+
+  <!-- Ground line -->
+  <line x1="40" y1="290" x2="760" y2="290" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Arrow direction -->
+  <polygon points="740,286 756,290 740,294" fill="#334155"/>
+  <text x="762" y="294" fill="#475569" font-family="Arial,sans-serif" font-size="10">Hoy</text>
+
+  <!-- Stage 1: Eohippus (very small, 4 toes) -->
+  <rect x="50" y="255" width="16" height="35" rx="3" fill="#854d0e" opacity="0.9"/>
+  <ellipse cx="58" cy="248" rx="12" ry="10" fill="#a16207"/>
+  <text x="58" y="245" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="11">🐴</text>
+  <rect x="25" y="300" width="66" height="46" rx="4" fill="#451a03" opacity="0.7"/>
+  <text x="58" y="315" text-anchor="middle" fill="#fbbf24" font-family="Arial,sans-serif" font-size="9" font-weight="bold">Eohippus</text>
+  <text x="58" y="327" text-anchor="middle" fill="#92400e" font-family="Arial,sans-serif" font-size="8">55 Ma</text>
+  <text x="58" y="338" text-anchor="middle" fill="#78716c" font-family="Arial,sans-serif" font-size="8">30 cm</text>
+  <text x="58" y="349" text-anchor="middle" fill="#78716c" font-family="Arial,sans-serif" font-size="7">4 dedos</text>
+
+  <!-- Arrow 1 -->
+  <line x1="110" y1="270" x2="160" y2="270" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <polygon points="158,266 168,270 158,274" fill="#334155"/>
+
+  <!-- Stage 2: Mesohippus (small) -->
+  <rect x="170" y="242" width="20" height="48" rx="3" fill="#854d0e" opacity="0.9"/>
+  <ellipse cx="180" cy="233" rx="14" ry="12" fill="#a16207"/>
+  <text x="180" y="230" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="14">🐴</text>
+  <rect x="148" y="300" width="66" height="46" rx="4" fill="#451a03" opacity="0.7"/>
+  <text x="181" y="315" text-anchor="middle" fill="#fbbf24" font-family="Arial,sans-serif" font-size="9" font-weight="bold">Mesohippus</text>
+  <text x="181" y="327" text-anchor="middle" fill="#92400e" font-family="Arial,sans-serif" font-size="8">37 Ma</text>
+  <text x="181" y="338" text-anchor="middle" fill="#78716c" font-family="Arial,sans-serif" font-size="8">60 cm</text>
+  <text x="181" y="349" text-anchor="middle" fill="#78716c" font-family="Arial,sans-serif" font-size="7">3 dedos</text>
+
+  <!-- Arrow 2 -->
+  <line x1="235" y1="270" x2="290" y2="270" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <polygon points="288,266 298,270 288,274" fill="#334155"/>
+
+  <!-- Stage 3: Merychippus (medium) -->
+  <rect x="305" y="225" width="25" height="65" rx="3" fill="#854d0e" opacity="0.9"/>
+  <ellipse cx="317" cy="213" rx="17" ry="14" fill="#a16207"/>
+  <text x="317" y="210" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="17">🐴</text>
+  <rect x="288" y="300" width="70" height="46" rx="4" fill="#451a03" opacity="0.7"/>
+  <text x="323" y="315" text-anchor="middle" fill="#fbbf24" font-family="Arial,sans-serif" font-size="9" font-weight="bold">Merychippus</text>
+  <text x="323" y="327" text-anchor="middle" fill="#92400e" font-family="Arial,sans-serif" font-size="8">17 Ma</text>
+  <text x="323" y="338" text-anchor="middle" fill="#78716c" font-family="Arial,sans-serif" font-size="8">100 cm</text>
+  <text x="323" y="349" text-anchor="middle" fill="#78716c" font-family="Arial,sans-serif" font-size="7">1 dedo central</text>
+
+  <!-- Arrow 3 -->
+  <line x1="370" y1="265" x2="430" y2="265" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <polygon points="428,261 438,265 428,269" fill="#334155"/>
+
+  <!-- Stage 4: Pliohippus (large) -->
+  <rect x="445" y="200" width="30" height="90" rx="3" fill="#854d0e" opacity="0.9"/>
+  <ellipse cx="460" cy="188" rx="20" ry="16" fill="#a16207"/>
+  <text x="460" y="185" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="20">🐴</text>
+  <rect x="432" y="300" width="70" height="46" rx="4" fill="#451a03" opacity="0.7"/>
+  <text x="467" y="315" text-anchor="middle" fill="#fbbf24" font-family="Arial,sans-serif" font-size="9" font-weight="bold">Pliohippus</text>
+  <text x="467" y="327" text-anchor="middle" fill="#92400e" font-family="Arial,sans-serif" font-size="8">5 Ma</text>
+  <text x="467" y="338" text-anchor="middle" fill="#78716c" font-family="Arial,sans-serif" font-size="8">130 cm</text>
+  <text x="467" y="349" text-anchor="middle" fill="#78716c" font-family="Arial,sans-serif" font-size="7">casco completo</text>
+
+  <!-- Arrow 4 -->
+  <line x1="510" y1="260" x2="575" y2="260" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <polygon points="573,256 583,260 573,264" fill="#334155"/>
+
+  <!-- Stage 5: Equus (modern horse) -->
+  <rect x="592" y="173" width="36" height="117" rx="4" fill="#854d0e" opacity="0.9"/>
+  <ellipse cx="610" cy="160" rx="25" ry="20" fill="#a16207"/>
+  <text x="610" y="157" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="26">🐴</text>
+  <rect x="576" y="300" width="72" height="46" rx="4" fill="#451a03" opacity="0.8"/>
+  <text x="612" y="315" text-anchor="middle" fill="#fbbf24" font-family="Arial,sans-serif" font-size="9" font-weight="bold">Equus (hoy)</text>
+  <text x="612" y="327" text-anchor="middle" fill="#92400e" font-family="Arial,sans-serif" font-size="8">0 Ma</text>
+  <text x="612" y="338" text-anchor="middle" fill="#78716c" font-family="Arial,sans-serif" font-size="8">160 cm</text>
+  <text x="612" y="349" text-anchor="middle" fill="#78716c" font-family="Arial,sans-serif" font-size="7">1 casco por pata</text>
+
+  <!-- Size indicator -->
+  <line x1="700" y1="173" x2="700" y2="290" stroke="#334155" stroke-width="1"/>
+  <line x1="695" y1="173" x2="705" y2="173" stroke="#334155" stroke-width="1"/>
+  <line x1="695" y1="290" x2="705" y2="290" stroke="#334155" stroke-width="1"/>
+  <text x="720" y="235" text-anchor="middle" fill="#475569" font-family="Arial,sans-serif" font-size="10">117 cm</text>
+  <text x="720" y="247" text-anchor="middle" fill="#475569" font-family="Arial,sans-serif" font-size="9">altura al</text>
+  <text x="720" y="258" text-anchor="middle" fill="#475569" font-family="Arial,sans-serif" font-size="9">lomo</text>
+</svg>
