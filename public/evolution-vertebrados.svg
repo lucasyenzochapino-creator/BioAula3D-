@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" style="background:#080d1b">
+  <!-- Background grid lines -->
+  <line x1="0" y1="300" x2="800" y2="300" stroke="#1e293b" stroke-width="1"/>
+  <line x1="0" y1="200" x2="800" y2="200" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,8"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" fill="#f59e0b" font-family="Arial,sans-serif" font-size="18" font-weight="bold">Evolución de los Vertebrados</text>
+  <text x="400" y="58" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">530 millones de años de historia</text>
+
+  <!-- Timeline axis -->
+  <line x1="60" y1="300" x2="740" y2="300" stroke="#334155" stroke-width="2"/>
+  <polygon points="740,296 752,300 740,304" fill="#334155"/>
+  <text x="758" y="304" fill="#64748b" font-family="Arial,sans-serif" font-size="10">Hoy</text>
+
+  <!-- Ma labels -->
+  <text x="90" y="320" text-anchor="middle" fill="#475569" font-family="Arial,sans-serif" font-size="10">530 Ma</text>
+  <text x="210" y="320" text-anchor="middle" fill="#475569" font-family="Arial,sans-serif" font-size="10">375 Ma</text>
+  <text x="330" y="320" text-anchor="middle" fill="#475569" font-family="Arial,sans-serif" font-size="10">300 Ma</text>
+  <text x="460" y="320" text-anchor="middle" fill="#475569" font-family="Arial,sans-serif" font-size="10">150 Ma</text>
+  <text x="600" y="320" text-anchor="middle" fill="#475569" font-family="Arial,sans-serif" font-size="10">65 Ma</text>
+
+  <!-- Branch lines -->
+  <path d="M90,300 L90,260 L740,260" fill="none" stroke="#1d4ed8" stroke-width="1.5" opacity="0.4"/>
+  <path d="M210,260 L210,220 L740,220" fill="none" stroke="#047857" stroke-width="1.5" opacity="0.4"/>
+  <path d="M330,260 L330,180 L740,180" fill="none" stroke="#b45309" stroke-width="1.5" opacity="0.4"/>
+  <path d="M460,180 L460,140 L740,140" fill="none" stroke="#7c3aed" stroke-width="1.5" opacity="0.4"/>
+  <path d="M460,180 L460,160 L740,160" fill="none" stroke="#dc2626" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Node 1: Pez -->
+  <circle cx="90" cy="300" r="22" fill="#1e3a8a" stroke="#3b82f6" stroke-width="2"/>
+  <text x="90" y="296" text-anchor="middle" fill="#93c5fd" font-family="Arial,sans-serif" font-size="18">🐟</text>
+  <text x="90" y="310" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="7" font-weight="bold">Pez</text>
+  <rect x="50" y="336" width="80" height="26" rx="4" fill="#1e3a8a" opacity="0.6"/>
+  <text x="90" y="349" text-anchor="middle" fill="#93c5fd" font-family="Arial,sans-serif" font-size="9" font-weight="bold">Agnatos</text>
+  <text x="90" y="360" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="8">sin mandíbula</text>
+
+  <!-- Node 2: Tiktaalik -->
+  <circle cx="210" cy="300" r="22" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+  <text x="210" y="296" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="18">🦎</text>
+  <text x="210" y="310" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="7" font-weight="bold">Tiktaalik</text>
+  <rect x="160" y="336" width="100" height="26" rx="4" fill="#14532d" opacity="0.6"/>
+  <text x="210" y="349" text-anchor="middle" fill="#86efac" font-family="Arial,sans-serif" font-size="9" font-weight="bold">Transición</text>
+  <text x="210" y="360" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="8">aleta → pata</text>
+
+  <!-- Node 3: Anfibio -->
+  <circle cx="330" cy="300" r="22" fill="#164e63" stroke="#22d3ee" stroke-width="2"/>
+  <text x="330" y="296" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="18">🐸</text>
+  <text x="330" y="310" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="7" font-weight="bold">Anfibio</text>
+  <rect x="285" y="336" width="90" height="26" rx="4" fill="#164e63" opacity="0.6"/>
+  <text x="330" y="349" text-anchor="middle" fill="#67e8f9" font-family="Arial,sans-serif" font-size="9" font-weight="bold">Ichthyostega</text>
+  <text x="330" y="360" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="8">agua y tierra</text>
+
+  <!-- Node 4: Reptil -->
+  <circle cx="460" cy="300" r="22" fill="#78350f" stroke="#f59e0b" stroke-width="2"/>
+  <text x="460" y="296" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="18">🦎</text>
+  <text x="460" y="310" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="7" font-weight="bold">Reptil</text>
+  <rect x="415" y="336" width="90" height="26" rx="4" fill="#78350f" opacity="0.6"/>
+  <text x="460" y="349" text-anchor="middle" fill="#fcd34d" font-family="Arial,sans-serif" font-size="9" font-weight="bold">Huevo amniótico</text>
+  <text x="460" y="360" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="8">independencia agua</text>
+
+  <!-- Node 5: Ave -->
+  <circle cx="600" cy="260" r="22" fill="#4c1d95" stroke="#a78bfa" stroke-width="2"/>
+  <text x="600" y="256" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="18">🦅</text>
+  <text x="600" y="270" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="7" font-weight="bold">Ave</text>
+  <rect x="555" y="280" width="90" height="26" rx="4" fill="#4c1d95" opacity="0.6"/>
+  <text x="600" y="293" text-anchor="middle" fill="#c4b5fd" font-family="Arial,sans-serif" font-size="9" font-weight="bold">Archaeopteryx</text>
+  <text x="600" y="304" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="8">reptil + plumas</text>
+
+  <!-- Node 6: Mamífero -->
+  <circle cx="600" cy="220" r="22" fill="#7f1d1d" stroke="#f87171" stroke-width="2"/>
+  <text x="600" y="216" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="18">🦁</text>
+  <text x="600" y="230" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="7" font-weight="bold">Mamífero</text>
+  <rect x="555" y="195" width="90" height="22" rx="4" fill="#7f1d1d" opacity="0.6"/>
+  <text x="600" y="208" text-anchor="middle" fill="#fca5a5" font-family="Arial,sans-serif" font-size="9" font-weight="bold">Sangre caliente</text>
+
+  <!-- Legend -->
+  <rect x="20" y="370" width="760" height="40" rx="6" fill="#0f172a" opacity="0.6"/>
+  <text x="400" y="388" text-anchor="middle" fill="#475569" font-family="Arial,sans-serif" font-size="11">Ma = millones de años · Las flechas muestran el orden de aparición en el registro fósil</text>
+  <text x="400" y="402" text-anchor="middle" fill="#374151" font-family="Arial,sans-serif" font-size="10">Peces (530 Ma) → Tiktaalik (375 Ma) → Anfibios (370 Ma) → Reptiles (310 Ma) → Aves/Mamíferos (200 Ma)</text>
+</svg>
