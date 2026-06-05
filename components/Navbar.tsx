@@ -24,7 +24,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#0b1120]/95 backdrop-blur border-b border-white/[0.06]">
+    <nav className="sticky top-0 z-50 bg-[#070d1a]/96 backdrop-blur border-b border-white/[0.05]">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
 
         {/* Logo */}
@@ -38,8 +38,8 @@ export default function Navbar() {
               <path d="M9 22c4-4 10-4 14 0" stroke="#93c5fd" strokeWidth="1.5" strokeLinecap="round" opacity=".55"/>
             </svg>
           </span>
-          <span className="text-[15px] font-semibold text-slate-100 tracking-tight">
-            BioAula<span className="text-blue-400">3D</span>
+          <span className="text-[15px] font-semibold text-slate-100 tracking-tight" style={{ fontFamily: "var(--font-display, inherit)", letterSpacing: "-0.02em" }}>
+            Bio<span style={{ color: "#22c55e" }}>Aula</span><span style={{ color: "#14b8a6" }}>3D</span>
           </span>
         </Link>
 
