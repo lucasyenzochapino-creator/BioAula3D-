@@ -75,7 +75,7 @@ html {
   min-height: 0;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) and (min-height: 500px) {
   .viewer-layout { flex-direction: row; }
   .viewer-3d { flex: 1; height: 100%; min-height: 0; }
   .viewer-panel {
@@ -88,7 +88,7 @@ html {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) and (min-height: 500px) {
   .viewer-panel { width: 320px; min-width: 320px; }
 }
 
