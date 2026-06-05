@@ -36,6 +36,9 @@ const MODULE_STYLE: Record<string, { emoji: string; gradient: string; color: str
   "Sistema Excretor":     { emoji: "🫘", gradient: "from-yellow-600 to-amber-700",  color: "#facc15" },
   "Sistema Endócrino":    { emoji: "⚗️", gradient: "from-orange-600 to-red-700",    color: "#fb923c" },
   "Reproducción":         { emoji: "🌸", gradient: "from-pink-600 to-rose-700",     color: "#f472b6" },
+  "Evolución":            { emoji: "🦕", gradient: "from-amber-600 to-orange-700",  color: "#f59e0b" },
+  "Clasificación":        { emoji: "🌿", gradient: "from-teal-600 to-cyan-700",     color: "#2dd4bf" },
+  "Tejidos":              { emoji: "🔬", gradient: "from-violet-600 to-purple-700", color: "#a78bfa" },
 };
 
 const MODULE_UID: Record<string, string> = {
@@ -52,6 +55,9 @@ const MODULE_UID: Record<string, string> = {
   "Sistema Muscular":     "31b40fd809b14665b93773936d67c52c",
   "Ecosistemas":          "3407138a2ed842079ad5dd5863b72c90",
   "Microbiología":        "4a310db79e834e07a69ee8d4892d46ee",
+  "Evolución":            "0b6b3144b32d4467969ba6e56670d896",
+  "Clasificación":        "b7d84e5f2d5e411fbb195ab2742f2256",
+  "Tejidos":              "ddc40bb0900544959f02d3ff83c32615",
 };
 
 const questions: Question[] = [
@@ -126,6 +132,30 @@ const questions: Question[] = [
   { id: 58, level: "secundaria", module: "Sistema Excretor", question: "¿Qué hormona regula la reabsorción de agua en los túbulos colectores del riñón?", options: ["Aldosterona", "ADH (vasopresina)", "Angiotensina II", "Eritropoyetina"], answer: 1, explanation: "La ADH (hormona antidiurética o vasopresina) es liberada por la hipófisis posterior cuando sube la osmolaridad plasmática. Inserta acuaporinas-2 en los túbulos colectores, aumentando la reabsorción de agua y concentrando la orina." },
   { id: 59, level: "secundaria", module: "Sistema Endócrino", question: "¿Cómo actúan las hormonas esteroideas a diferencia de las peptídicas?", options: ["Actúan en receptores de membrana vía AMPc", "Atraviesan la membrana y actúan en receptores nucleares", "Solo actúan en el sistema nervioso", "Se degradan inmediatamente en sangre"], answer: 1, explanation: "Las hormonas esteroideas (cortisol, estrógenos, testosterona) son liposolubles: atraviesan la membrana plasmática y actúan en receptores intracelulares o nucleares, regulando directamente la transcripción génica." },
   { id: 60, level: "secundaria", module: "Reproducción", question: "¿Qué hormona producida por el embrión es la que detectan los tests de embarazo?", options: ["Progesterona", "Estrógeno", "hCG (gonadotropina coriónica)", "LH"], answer: 2, explanation: "La hCG (gonadotropina coriónica humana) es producida por el trofoblasto del embrión desde la implantación. Mantiene el cuerpo lúteo y su producción. Los tests de embarazo detectan hCG en orina desde ~10 días después de la fecundación." },
+
+  // PRIMARIA — Evolución
+  { id: 61, level: "primaria", module: "Evolución", question: "¿Quién propuso la teoría de la selección natural?", options: ["Isaac Newton", "Charles Darwin", "Gregor Mendel", "Louis Pasteur"], answer: 1, explanation: "Charles Darwin observó durante su viaje en el Beagle que los seres vivos mejor adaptados a su ambiente sobreviven y se reproducen más. Publicó 'El origen de las especies' en 1859." },
+  { id: 62, level: "primaria", module: "Evolución", question: "¿Qué son las adaptaciones?", options: ["Cambios que ocurren en un día", "Características que ayudan a sobrevivir en el ambiente", "Enfermedades hereditarias", "Partes del ADN"], answer: 1, explanation: "Las adaptaciones son características físicas o de comportamiento que un ser vivo desarrolló a lo largo de muchas generaciones para sobrevivir mejor en su ambiente." },
+
+  // PRIMARIA — Clasificación
+  { id: 63, level: "primaria", module: "Clasificación", question: "¿Cuántos reinos de seres vivos existen en la clasificación clásica?", options: ["2", "3", "5", "8"], answer: 2, explanation: "La clasificación clásica reconoce 5 reinos: Monera (bacterias), Protista (amebas, algas), Fungi (hongos), Plantae (plantas) y Animalia (animales). Hoy se usan sistemas más modernos." },
+  { id: 64, level: "primaria", module: "Clasificación", question: "¿Cómo se llama el sistema que usamos para dar nombre científico a los seres vivos?", options: ["Sistema métrico", "Nomenclatura binomial", "Sistema solar", "Clasificación decimal"], answer: 1, explanation: "El sistema de nomenclatura binomial fue creado por Carlos Linneo. Cada ser vivo tiene dos nombres en latín: el género y la especie. Por ejemplo: Homo sapiens (nosotros)." },
+
+  // PRIMARIA — Tejidos
+  { id: 65, level: "primaria", module: "Tejidos", question: "¿Qué tipo de tejido cubre la superficie del cuerpo y los órganos internos?", options: ["Tejido muscular", "Tejido óseo", "Tejido epitelial", "Tejido nervioso"], answer: 2, explanation: "El tejido epitelial forma la piel y recubre el interior de los órganos como el estómago y los pulmones. Actúa como barrera protectora y puede absorber o secretar sustancias." },
+  { id: 66, level: "primaria", module: "Tejidos", question: "¿Cuál es la función principal del tejido muscular?", options: ["Transmitir señales eléctricas", "Producir movimiento al contraerse", "Filtrar la sangre", "Proteger los órganos"], answer: 1, explanation: "El tejido muscular tiene la capacidad de contraerse y relajarse, lo que produce el movimiento. Hay tres tipos: músculo esquelético (voluntario), liso (en órganos) y cardíaco (corazón)." },
+
+  // SECUNDARIA — Evolución
+  { id: 67, level: "secundaria", module: "Evolución", question: "¿Qué describe el equilibrio de Hardy-Weinberg?", options: ["La velocidad de mutación en una población", "Las frecuencias alélicas permanecen constantes en ausencia de fuerzas evolutivas", "La tasa de especiación en islas", "La deriva génica en poblaciones pequeñas"], answer: 1, explanation: "El equilibrio de Hardy-Weinberg predice que las frecuencias alélicas (p² + 2pq + q² = 1) permanecen constantes generación tras generación si no hay mutación, selección, deriva, flujo génico ni apareamiento no aleatorio." },
+  { id: 68, level: "secundaria", module: "Evolución", question: "¿Qué es la especiación alopátrica?", options: ["Formación de nuevas especies por barrera geográfica", "Mutación espontánea en el ADN mitocondrial", "Hibridación entre dos especies distintas", "Selección sexual en poblaciones pequeñas"], answer: 0, explanation: "La especiación alopátrica ocurre cuando una barrera geográfica (montaña, río, océano) divide una población. Las subpoblaciones evolucionan de forma independiente hasta volverse reproductivamente aisladas." },
+
+  // SECUNDARIA — Clasificación
+  { id: 69, level: "secundaria", module: "Clasificación", question: "¿Cuál es la diferencia fundamental entre Procariontes y Eucariontes?", options: ["El tamaño del citoplasma", "La presencia o ausencia de núcleo delimitado por membrana", "El tipo de pared celular", "La forma de reproducción"], answer: 1, explanation: "Los procariontes (Bacteria y Archaea) carecen de núcleo delimitado por membrana: su ADN está en el nucleoide. Los eucariontes tienen núcleo verdadero con envoltura nuclear, además de organelas membranosas." },
+  { id: 70, level: "secundaria", module: "Clasificación", question: "¿En qué dominio se ubican los extremófilos como las arqueas termoacidófilas?", options: ["Bacteria", "Eukarya", "Archaea", "Protista"], answer: 2, explanation: "Las Archaea (antes llamadas arqueobacterias) conforman un dominio propio. Incluyen extremófilos: termófilas (>80°C), halófilas (alta salinidad) y metanógenas. Comparten algunas características con eucariontes en el proceso de transcripción." },
+
+  // SECUNDARIA — Tejidos
+  { id: 71, level: "secundaria", module: "Tejidos", question: "¿Qué tipo de tejido conectivo forma los tendones y ligamentos?", options: ["Tejido conectivo laxo", "Tejido conectivo denso regular", "Tejido conectivo reticular", "Tejido conectivo adiposo"], answer: 1, explanation: "El tejido conectivo denso regular tiene fibras de colágeno paralelas orientadas en la dirección de la tensión. Esta organización le da gran resistencia a la tracción unidireccional, ideal para tendones (músculo-hueso) y ligamentos (hueso-hueso)." },
+  { id: 72, level: "secundaria", module: "Tejidos", question: "¿Qué células producen la mielina en el sistema nervioso periférico?", options: ["Astrocitos", "Oligodendrocitos", "Células de Schwann", "Microglía"], answer: 2, explanation: "En el SNP, las células de Schwann forman la vaina de mielina alrededor de los axones. Cada célula de Schwann mieliniza un solo segmento de un único axón. En el SNC esta función la cumplen los oligodendrocitos (cada uno mieliniza múltiples axones)." },
 ];
 
 const emojis: Record<Level, string> = { primaria: "🌱", secundaria: "🔬" };
