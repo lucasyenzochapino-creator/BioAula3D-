@@ -17,47 +17,51 @@ interface Question {
 }
 
 const MODULE_STYLE: Record<string, { emoji: string; gradient: string; color: string }> = {
-  "Célula Animal":        { emoji: "🔬", gradient: "from-green-600 to-teal-700",    color: "#4ade80" },
-  "ADN":                  { emoji: "🧬", gradient: "from-blue-600 to-purple-700",   color: "#60a5fa" },
-  "Neurona":              { emoji: "🧠", gradient: "from-purple-600 to-pink-700",   color: "#a78bfa" },
-  "Célula Vegetal":       { emoji: "🌿", gradient: "from-emerald-600 to-green-700", color: "#34d399" },
-  "Cuerpo Humano":        { emoji: "🫀", gradient: "from-red-600 to-orange-700",    color: "#f87171" },
-  "Corazón":              { emoji: "🫀", gradient: "from-red-600 to-rose-700",      color: "#fb7185" },
-  "Cerebro":              { emoji: "🧠", gradient: "from-purple-600 to-violet-700", color: "#c084fc" },
-  "Sistema Respiratorio": { emoji: "🫁", gradient: "from-sky-600 to-cyan-700",      color: "#38bdf8" },
-  "Sistema Digestivo":    { emoji: "🍽️", gradient: "from-orange-600 to-amber-700",  color: "#fb923c" },
-  "Sistema Óseo":         { emoji: "🦴", gradient: "from-slate-500 to-zinc-600",    color: "#94a3b8" },
-  "Sistema Muscular":     { emoji: "💪", gradient: "from-red-600 to-rose-700",      color: "#f87171" },
-  "Ecosistemas":          { emoji: "🌳", gradient: "from-green-700 to-emerald-800", color: "#22c55e" },
-  "Microbiología":        { emoji: "🦠", gradient: "from-lime-600 to-green-700",    color: "#4ade80" },
-  "Mitosis":              { emoji: "🔬", gradient: "from-indigo-600 to-violet-700", color: "#818cf8" },
-  "Inmunología":          { emoji: "🛡️", gradient: "from-red-700 to-rose-800",      color: "#ef4444" },
-  "Herencia":             { emoji: "🧩", gradient: "from-amber-600 to-orange-700",  color: "#f59e0b" },
-  "Sistema Excretor":     { emoji: "🫘", gradient: "from-yellow-600 to-amber-700",  color: "#facc15" },
-  "Sistema Endócrino":    { emoji: "⚗️", gradient: "from-orange-600 to-red-700",    color: "#fb923c" },
-  "Reproducción":         { emoji: "🌸", gradient: "from-pink-600 to-rose-700",     color: "#f472b6" },
-  "Evolución":            { emoji: "🦕", gradient: "from-amber-600 to-orange-700",  color: "#f59e0b" },
-  "Clasificación":        { emoji: "🌿", gradient: "from-teal-600 to-cyan-700",     color: "#2dd4bf" },
-  "Tejidos":              { emoji: "🔬", gradient: "from-violet-600 to-purple-700", color: "#a78bfa" },
+  "Célula Animal":           { emoji: "🔬", gradient: "from-green-600 to-teal-700",    color: "#4ade80" },
+  "ADN":                     { emoji: "🧬", gradient: "from-blue-600 to-purple-700",   color: "#60a5fa" },
+  "Neurona":                 { emoji: "🧠", gradient: "from-purple-600 to-pink-700",   color: "#a78bfa" },
+  "Célula Vegetal":          { emoji: "🌿", gradient: "from-emerald-600 to-green-700", color: "#34d399" },
+  "Cuerpo Humano":           { emoji: "🫀", gradient: "from-red-600 to-orange-700",    color: "#f87171" },
+  "Corazón":                 { emoji: "🫀", gradient: "from-red-600 to-rose-700",      color: "#fb7185" },
+  "Cerebro":                 { emoji: "🧠", gradient: "from-purple-600 to-violet-700", color: "#c084fc" },
+  "Sistema Respiratorio":    { emoji: "🫁", gradient: "from-sky-600 to-cyan-700",      color: "#38bdf8" },
+  "Sistema Digestivo":       { emoji: "🍽️", gradient: "from-orange-600 to-amber-700",  color: "#fb923c" },
+  "Sistema Óseo":            { emoji: "🦴", gradient: "from-slate-500 to-zinc-600",    color: "#94a3b8" },
+  "Sistema Muscular":        { emoji: "💪", gradient: "from-red-600 to-rose-700",      color: "#f87171" },
+  "Ecosistemas":             { emoji: "🌳", gradient: "from-green-700 to-emerald-800", color: "#22c55e" },
+  "Microbiología":           { emoji: "🦠", gradient: "from-lime-600 to-green-700",    color: "#4ade80" },
+  "Mitosis":                 { emoji: "🔬", gradient: "from-indigo-600 to-violet-700", color: "#818cf8" },
+  "Inmunología":             { emoji: "🛡️", gradient: "from-red-700 to-rose-800",      color: "#ef4444" },
+  "Herencia":                { emoji: "🧩", gradient: "from-amber-600 to-orange-700",  color: "#f59e0b" },
+  "Sistema Excretor":        { emoji: "🫘", gradient: "from-yellow-600 to-amber-700",  color: "#facc15" },
+  "Sistema Endócrino":       { emoji: "⚗️", gradient: "from-orange-600 to-red-700",    color: "#fb923c" },
+  "Reproducción":            { emoji: "🌸", gradient: "from-pink-600 to-rose-700",     color: "#f472b6" },
+  "Evolución":               { emoji: "🦕", gradient: "from-amber-600 to-orange-700",  color: "#f59e0b" },
+  "Clasificación":           { emoji: "🌿", gradient: "from-teal-600 to-cyan-700",     color: "#2dd4bf" },
+  "Tejidos":                 { emoji: "🔬", gradient: "from-violet-600 to-purple-700", color: "#a78bfa" },
+  "Órganos de los Sentidos": { emoji: "👁️", gradient: "from-cyan-500 to-teal-600",     color: "#22d3ee" },
+  "Reproducción Masculina":  { emoji: "⚗️", gradient: "from-blue-600 to-indigo-700",   color: "#60a5fa" },
 };
 
 const MODULE_UID: Record<string, string> = {
-  "Célula Animal":        "0d9f7f4257224975b2ef83a283709b2f",
-  "ADN":                  "212e5422645f4432a61dc2f3aac3c8c8",
-  "Neurona":              "03a5173f3d2e46958b6f8be81b1c88be",
-  "Célula Vegetal":       "0640c7a14f41400fbdac382c7de1d776",
-  "Cuerpo Humano":        "035316622877438cb62de673b8f19217",
-  "Corazón":              "10472481071e4375b8233289c277d411",
-  "Cerebro":              "28c8971e11334e8b97a2a0d6235992e8",
-  "Sistema Respiratorio": "ce09f4099a68467880f46e61eb9a3531",
-  "Sistema Digestivo":    "2d3771dd6b8940ffa2312bd97aca6fc3",
-  "Sistema Óseo":         "11b57ebfcf6c4e3b88d0cbe618ee70a7",
-  "Sistema Muscular":     "31b40fd809b14665b93773936d67c52c",
-  "Ecosistemas":          "3407138a2ed842079ad5dd5863b72c90",
-  "Microbiología":        "4a310db79e834e07a69ee8d4892d46ee",
-  "Evolución":            "0b6b3144b32d4467969ba6e56670d896",
-  "Clasificación":        "b7d84e5f2d5e411fbb195ab2742f2256",
-  "Tejidos":              "ddc40bb0900544959f02d3ff83c32615",
+  "Célula Animal":           "0d9f7f4257224975b2ef83a283709b2f",
+  "ADN":                     "212e5422645f4432a61dc2f3aac3c8c8",
+  "Neurona":                 "03a5173f3d2e46958b6f8be81b1c88be",
+  "Célula Vegetal":          "0640c7a14f41400fbdac382c7de1d776",
+  "Cuerpo Humano":           "035316622877438cb62de673b8f19217",
+  "Corazón":                 "10472481071e4375b8233289c277d411",
+  "Cerebro":                 "28c8971e11334e8b97a2a0d6235992e8",
+  "Sistema Respiratorio":    "ce09f4099a68467880f46e61eb9a3531",
+  "Sistema Digestivo":       "2d3771dd6b8940ffa2312bd97aca6fc3",
+  "Sistema Óseo":            "11b57ebfcf6c4e3b88d0cbe618ee70a7",
+  "Sistema Muscular":        "31b40fd809b14665b93773936d67c52c",
+  "Ecosistemas":             "3407138a2ed842079ad5dd5863b72c90",
+  "Microbiología":           "4a310db79e834e07a69ee8d4892d46ee",
+  "Evolución":               "0b6b3144b32d4467969ba6e56670d896",
+  "Clasificación":           "b7d84e5f2d5e411fbb195ab2742f2256",
+  "Tejidos":                 "ddc40bb0900544959f02d3ff83c32615",
+  "Órganos de los Sentidos": "4bf3236c8fe2407ea3f494a93b8f5aa2",
+  "Reproducción Masculina":  "b6821261ed5e4c59979bf9a2362e6b58",
 };
 
 const questions: Question[] = [
@@ -156,6 +160,22 @@ const questions: Question[] = [
   // SECUNDARIA — Tejidos
   { id: 71, level: "secundaria", module: "Tejidos", question: "¿Qué tipo de tejido conectivo forma los tendones y ligamentos?", options: ["Tejido conectivo laxo", "Tejido conectivo denso regular", "Tejido conectivo reticular", "Tejido conectivo adiposo"], answer: 1, explanation: "El tejido conectivo denso regular tiene fibras de colágeno paralelas orientadas en la dirección de la tensión. Esta organización le da gran resistencia a la tracción unidireccional, ideal para tendones (músculo-hueso) y ligamentos (hueso-hueso)." },
   { id: 72, level: "secundaria", module: "Tejidos", question: "¿Qué células producen la mielina en el sistema nervioso periférico?", options: ["Astrocitos", "Oligodendrocitos", "Células de Schwann", "Microglía"], answer: 2, explanation: "En el SNP, las células de Schwann forman la vaina de mielina alrededor de los axones. Cada célula de Schwann mieliniza un solo segmento de un único axón. En el SNC esta función la cumplen los oligodendrocitos (cada uno mieliniza múltiples axones)." },
+
+  // PRIMARIA — Órganos de los Sentidos
+  { id: 73, level: "primaria", module: "Órganos de los Sentidos", question: "¿Qué órgano del cuerpo nos permite detectar la luz y ver?", options: ["Oído", "Ojo", "Nariz", "Lengua"], answer: 1, explanation: "Los ojos captan la luz del entorno. La retina convierte la luz en señales eléctricas que el nervio óptico lleva al cerebro, donde se forma la imagen que vemos." },
+  { id: 74, level: "primaria", module: "Órganos de los Sentidos", question: "¿Qué parte del ojo controla cuánta luz entra?", options: ["Retina", "Cristalino", "Pupila", "Córnea"], answer: 2, explanation: "La pupila es el orificio negro en el centro del ojo. El iris (anillo de color) la dilata en la oscuridad para dejar entrar más luz y la contrae con mucha luz." },
+
+  // PRIMARIA — Reproducción Masculina
+  { id: 75, level: "primaria", module: "Reproducción Masculina", question: "¿Qué órganos producen los espermatozoides?", options: ["Riñones", "Testículos", "Páncreas", "Próstata"], answer: 1, explanation: "Los testículos son las glándulas del sistema reproductor masculino. Producen espermatozoides (células sexuales) y la hormona testosterona." },
+  { id: 76, level: "primaria", module: "Reproducción Masculina", question: "¿Qué hormona produce principalmente el sistema reproductor masculino?", options: ["Estrógeno", "Progesterona", "Testosterona", "Insulina"], answer: 2, explanation: "La testosterona es la hormona sexual masculina principal. La producen los testículos y regula los caracteres sexuales masculinos, la masa muscular y la producción de espermatozoides." },
+
+  // SECUNDARIA — Órganos de los Sentidos
+  { id: 77, level: "secundaria", module: "Órganos de los Sentidos", question: "¿Qué tipo de fotorreceptores permiten la visión en baja luminosidad?", options: ["Conos", "Bastones", "Células ganglionares", "Células bipolares"], answer: 1, explanation: "Los bastones (~120 millones) están distribuidos en toda la retina y son muy sensibles a la luz tenue. Los conos (~6 millones), concentrados en la fóvea, detectan colores pero necesitan mayor intensidad de luz." },
+  { id: 78, level: "secundaria", module: "Órganos de los Sentidos", question: "¿Dónde se transforman las vibraciones sonoras en impulsos nerviosos?", options: ["Tímpano", "Huesecillos", "Cóclea", "Canal semicircular"], answer: 2, explanation: "La cóclea (caracol) contiene el órgano de Corti con células ciliadas. Las vibraciones del líquido endolinfático doblan los cilios generando potenciales de acción que viajan por el nervio auditivo (VIII par craneal) al cerebro." },
+
+  // SECUNDARIA — Reproducción Masculina
+  { id: 79, level: "secundaria", module: "Reproducción Masculina", question: "¿Cuál es la función principal de las células de Sertoli?", options: ["Producir testosterona", "Nutrir los espermatozoides en desarrollo", "Generar el impulso hormonal GnRH", "Transportar espermatozoides al epidídimo"], answer: 1, explanation: "Las células de Sertoli están en los túbulos seminíferos y forman la barrera hematotesticular. Nutren a los espermatozoides en desarrollo, secretan ABP (proteína ligadora de andrógenos) y responden a FSH." },
+  { id: 80, level: "secundaria", module: "Reproducción Masculina", question: "¿Qué hormona hipofisaria estimula a las células de Leydig a producir testosterona?", options: ["FSH", "LH", "GnRH", "TSH"], answer: 1, explanation: "La LH (hormona luteinizante) secretada por la adenohipófisis estimula a las células de Leydig del testículo a sintetizar testosterona. La FSH, en cambio, actúa sobre las células de Sertoli para promover la espermatogénesis." },
 ];
 
 const emojis: Record<Level, string> = { primaria: "🌱", secundaria: "🔬" };
@@ -390,6 +410,14 @@ export default function QuizPage() {
       "Célula Vegetal": "/planta", "Cuerpo Humano": "/cuerpo-humano",
       "Corazón": "/corazon", "Cerebro": "/cerebro",
       "Sistema Respiratorio": "/pulmones", "Sistema Digestivo": "/digestivo",
+      "Sistema Óseo": "/oseo", "Sistema Muscular": "/muscular",
+      "Ecosistemas": "/ecosistemas", "Microbiología": "/microbiologia",
+      "Mitosis": "/mitosis", "Inmunología": "/inmunologico",
+      "Herencia": "/herencia", "Sistema Excretor": "/excretor",
+      "Sistema Endócrino": "/endocrino", "Reproducción": "/reproductor",
+      "Evolución": "/evolucion", "Clasificación": "/clasificacion",
+      "Tejidos": "/tejidos", "Órganos de los Sentidos": "/sentidos",
+      "Reproducción Masculina": "/reproductor-masculino",
     };
     return (
       <div className="min-h-screen bg-bio-dark flex items-center justify-center p-4">
