@@ -46,7 +46,7 @@ const MODULE_STYLE: Record<string, { emoji: string; gradient: string; color: str
 const MODULE_UID: Record<string, string> = {
   "Célula Animal":           "0d9f7f4257224975b2ef83a283709b2f",
   "ADN":                     "212e5422645f4432a61dc2f3aac3c8c8",
-  "Neurona":                 "03a5173f3d2e46958b6f8be81b1c88be",
+  "Neurona":                 "2e6be1399756494b9f185ce8c5900911",
   "Célula Vegetal":          "0640c7a14f41400fbdac382c7de1d776",
   "Cuerpo Humano":           "035316622877438cb62de673b8f19217",
   "Corazón":                 "10472481071e4375b8233289c277d411",
