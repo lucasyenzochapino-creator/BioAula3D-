@@ -15,7 +15,7 @@ export default function EvolucionViewer() {
       models={[
         {
           id: "seleccion-natural",
-          name: "Fósil de Toxodon (Darwin, 1833)",
+          name: "Toxodon platensis",
           emoji: "🦕",
           uid: "0b6b3144b32d4467969ba6e56670d896",
           structures: [
@@ -79,7 +79,7 @@ export default function EvolucionViewer() {
         },
         {
           id: "craneo-neandertal",
-          name: "Cráneo de Neandertal",
+          name: "Neandertal",
           emoji: "🦴",
           uid: "d1c26eba568f4c1098e5434c992b54b7",
           structures: [
@@ -143,7 +143,7 @@ export default function EvolucionViewer() {
         },
         {
           id: "hominidos",
-          name: "Sahelanthropus tchadensis",
+          name: "Sahelanthropus",
           emoji: "🦍",
           uid: "fd44d410a4f94143b3de5ce582d2e600",
           structures: [

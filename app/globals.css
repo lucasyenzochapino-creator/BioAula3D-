@@ -61,18 +61,17 @@ html {
 }
 .viewer-3d {
   flex: none;
-  height: 52vh;
-  min-height: 52vh;
+  height: 45vh;
+  min-height: 200px;
   position: relative;
   background: #000;
 }
 .viewer-panel {
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
   background: #0b1120;
   border-top: 1px solid #1e293b;
-  overflow: hidden;
   min-height: 0;
 }
 
@@ -83,6 +82,7 @@ html {
     flex: none;
     width: 280px;
     min-width: 280px;
+    height: 100%;
     border-top: none;
     border-left: 1px solid #1e293b;
   }
