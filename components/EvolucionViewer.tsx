@@ -269,9 +269,6 @@ export default function EvolucionViewer() {
             },
           ],
         },
-            },
-          ],
-        },
       ]}
     />
   );
