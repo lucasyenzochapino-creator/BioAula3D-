@@ -61,6 +61,17 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
   }, [activeUid, activeImageUrl, resetKey]);
 
   useEffect(() => {
+    if (!slug) return;
+    try {
+      const raw = localStorage.getItem("bioaula-visited");
+      const set: string[] = raw ? JSON.parse(raw) : [];
+      if (!set.includes(slug)) {
+        localStorage.setItem("bioaula-visited", JSON.stringify([...set, slug]));
+      }
+    } catch {}
+  }, [slug]);
+
+  useEffect(() => {
     try {
       const saved = localStorage.getItem("bioaula-actions");
       if (saved) {

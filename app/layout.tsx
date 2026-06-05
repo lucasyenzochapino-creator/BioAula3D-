@@ -1,8 +1,22 @@
 import type { Metadata, Viewport } from "next";
+import { Sora, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import PWAUpdatePrompt from "@/components/PWAUpdatePrompt";
 import OrientationLock from "@/components/OrientationLock";
+
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "BioAula3D — Biología Interactiva",
@@ -34,8 +48,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
-      <body className="bg-bio-dark text-slate-100 min-h-screen">
+    <html lang="es" className={`${sora.variable} ${inter.variable}`}>
+      <body className="text-slate-100 min-h-screen" style={{ background: "#070d1a" }}>
         <Navbar />
         <OrientationLock />
         <main>{children}</main>
