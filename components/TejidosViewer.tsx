@@ -78,10 +78,10 @@ export default function TejidosViewer() {
           ],
         },
         {
-          id: "neuronas-tej",
-          name: "Neuronas",
-          emoji: "🧠",
-          uid: "20e930a5fae5457fa6d1738afa00c7bb",
+          id: "celula-vegetal-tej",
+          name: "Célula Vegetal",
+          emoji: "🌿",
+          uid: "0640c7a14f41400fbdac382c7de1d776",
           structures: [
             {
               name: "Tejido Meristemático",
