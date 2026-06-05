@@ -75,21 +75,22 @@ html {
   min-height: 0;
 }
 
-@media screen and (min-width: 768px) and (min-height: 500px) and (orientation: landscape) {
+/* Side-by-side layout only for tablets and desktops — phones always use stacked layout */
+@media screen and (min-width: 1024px) and (min-height: 600px) and (orientation: landscape) {
   .viewer-layout { flex-direction: row; }
   .viewer-3d { flex: 1; height: 100%; min-height: 0; }
   .viewer-panel {
     flex: none;
-    width: 280px;
-    min-width: 280px;
+    width: 300px;
+    min-width: 300px;
     height: 100%;
     border-top: none;
     border-left: 1px solid #1e293b;
   }
 }
 
-@media screen and (min-width: 1024px) and (min-height: 500px) and (orientation: landscape) {
-  .viewer-panel { width: 320px; min-width: 320px; }
+@media screen and (min-width: 1280px) and (min-height: 600px) and (orientation: landscape) {
+  .viewer-panel { width: 340px; min-width: 340px; }
 }
 
 @keyframes slideUp {

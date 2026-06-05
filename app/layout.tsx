@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import PWAUpdatePrompt from "@/components/PWAUpdatePrompt";
+import OrientationLock from "@/components/OrientationLock";
 
 export const metadata: Metadata = {
   title: "BioAula3D — Biología Interactiva",
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es">
       <body className="bg-bio-dark text-slate-100 min-h-screen">
         <Navbar />
+        <OrientationLock />
         <main>{children}</main>
         <PWAUpdatePrompt />
       </body>
