@@ -15,7 +15,8 @@ export interface ModelTab {
   id: string;
   name: string;
   emoji?: string;
-  uid: string;
+  uid?: string;
+  imageUrl?: string;
   structures: Structure[];
 }
 
@@ -50,12 +51,14 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
   const [notasText, setNotasText] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const activeUid = models ? models[activeModelIdx].uid : uid;
+  const activeModel = models?.[activeModelIdx];
+  const activeUid = activeModel?.uid ?? uid;
+  const activeImageUrl = activeModel?.imageUrl;
   const activeStructures = models ? models[activeModelIdx].structures : structures;
 
   useEffect(() => {
     setLoaded(false);
-  }, [activeUid, resetKey]);
+  }, [activeUid, activeImageUrl, resetKey]);
 
   useEffect(() => {
     try {
@@ -201,17 +204,26 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
     <div className="viewer-layout">
       {/* Modelo 3D */}
       <div ref={containerRef} className={presenting ? "fixed inset-0 z-50 bg-black" : "viewer-3d"}>
-        <iframe
-          key={`${activeUid}-${resetKey}`}
-          src={embed}
-          title={title}
-          allow="autoplay; fullscreen; xr-spatial-tracking"
-          allowFullScreen
-          onLoad={() => setLoaded(true)}
-          style={{ width: "100%", height: "100%", border: "none", display: "block" }}
-        />
-        {/* Loading overlay */}
-        {!loaded && (
+        {activeImageUrl ? (
+          /* Static image mode — no iframe */
+          <img
+            src={activeImageUrl}
+            alt={title}
+            style={{ width: "100%", height: "100%", objectFit: "contain", background: "#0b1120", display: "block" }}
+          />
+        ) : (
+          <iframe
+            key={`${activeUid}-${resetKey}`}
+            src={embed}
+            title={title}
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            allowFullScreen
+            onLoad={() => setLoaded(true)}
+            style={{ width: "100%", height: "100%", border: "none", display: "block" }}
+          />
+        )}
+        {/* Loading overlay — only for iframe */}
+        {!activeImageUrl && !loaded && (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 z-20 gap-3">
             <div className="w-9 h-9 rounded-full border-2 border-slate-700 animate-spin"
               style={{ borderTopColor: accent }} />
@@ -226,7 +238,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
             </button>
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white/50 text-xs pointer-events-none select-none">{title}</div>
           </>
-        ) : (
+        ) : !activeImageUrl ? (
           <>
             {/* Reset camera */}
             <button onClick={() => setResetKey(k => k + 1)} title="Reiniciar vista"
@@ -244,7 +256,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
               Tocá y arrastrá · Pellizco para zoom · ⟲ reinicia vista
             </div>
           </>
-        )}
+        ) : null}
       </div>
 
       <div className="viewer-panel">
