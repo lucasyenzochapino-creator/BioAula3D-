@@ -209,7 +209,7 @@ export default function EvolucionViewer() {
           id: "hominidos",
           name: "Marcha del Progreso",
           emoji: "🚶",
-          uid: "087f11bba4e44645885071b64d5db51b",
+          uid: "7b510388e19d40ee8a703ecd707bdc42",
           structures: [
             {
               name: "Sahelanthropus (7 Ma)",
