@@ -114,14 +114,28 @@ export default function Home() {
               className="text-[44px] md:text-[64px] font-black text-white leading-[0.95] mb-5"
               style={{ letterSpacing: "-0.04em", fontFamily: "var(--font-display, inherit)" }}
             >
-              Explora<br />
+              Explorá<br />
               la vida<br />
               <span style={{ color: "#4ade80" }}>desde adentro</span>
             </h1>
-            <p className="text-slate-400 text-[14px] leading-relaxed mb-8 max-w-sm">
+            <p className="text-slate-400 text-[14px] leading-relaxed mb-6 max-w-sm">
               24 módulos 3D de células, órganos y sistemas del cuerpo humano.
               Para primaria y secundaria.
             </p>
+            {/* Barra de estadísticas */}
+            <div className="flex gap-6 mb-8">
+              {[
+                { n: "24",  label: "Módulos 3D" },
+                { n: "178", label: "Términos" },
+                { n: "80",  label: "Preguntas" },
+                { n: "48",  label: "Evaluaciones" },
+              ].map(({ n, label }) => (
+                <div key={label}>
+                  <div className="text-[22px] font-black text-white" style={{ letterSpacing: "-0.03em" }}>{n}</div>
+                  <div className="text-[10px] font-mono tracking-widest uppercase text-slate-500">{label}</div>
+                </div>
+              ))}
+            </div>
             <div className="flex gap-3 flex-wrap">
               <button
                 onClick={() => document.getElementById("celular")?.scrollIntoView({ behavior: "smooth" })}
