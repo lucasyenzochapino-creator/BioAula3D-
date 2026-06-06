@@ -45,7 +45,6 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
   const [selecting, setSelecting] = useState<string | null>(null);
   const [activeModelIdx, setActiveModelIdx] = useState(0);
   const [resetKey, setResetKey] = useState(0);
-  const [iframeReady, setIframeReady] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [loadError, setLoadError] = useState(false);
   const [notasOpen, setNotasOpen] = useState(false);
@@ -62,18 +61,13 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
   useEffect(() => {
     setLoaded(false);
     setLoadError(false);
-    setIframeReady(false);
     if (loadTimerRef.current) clearTimeout(loadTimerRef.current);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeUid, activeImageUrl]);
-
-  useEffect(() => {
-    if (!iframeReady || activeImageUrl) return;
-    if (loadTimerRef.current) clearTimeout(loadTimerRef.current);
-    loadTimerRef.current = setTimeout(() => setLoadError(true), 20000);
+    if (!activeImageUrl) {
+      loadTimerRef.current = setTimeout(() => setLoadError(true), 20000);
+    }
     return () => { if (loadTimerRef.current) clearTimeout(loadTimerRef.current); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [iframeReady, resetKey]);
+  }, [activeUid, activeImageUrl, resetKey]);
 
   useEffect(() => {
     if (!slug) return;
@@ -237,7 +231,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
             alt={title}
             style={{ width: "100%", height: "100%", objectFit: "contain", background: "#0b1120", display: "block" }}
           />
-        ) : iframeReady ? (
+        ) : (
           <iframe
             key={`${activeUid}-${resetKey}`}
             src={embed}
@@ -247,32 +241,10 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
             onLoad={() => { setLoaded(true); if (loadTimerRef.current) clearTimeout(loadTimerRef.current); }}
             style={{ width: "100%", height: "100%", border: "none", display: "block" }}
           />
-        ) : null}
-
-        {/* Tap-to-load placeholder (before iframe starts) */}
-        {!activeImageUrl && !iframeReady && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-slate-950">
-            <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
-              style={{ background: accent + "20", border: `1.5px solid ${accent}40` }}>
-              🔬
-            </div>
-            <div className="text-center">
-              <p className="text-white text-sm font-semibold">{title}</p>
-              <p className="text-slate-500 text-xs mt-0.5">Modelo 3D interactivo</p>
-            </div>
-            <button
-              onClick={() => setIframeReady(true)}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-black transition-all active:scale-95"
-              style={{ background: accent }}
-            >
-              <span>▶</span> Cargar modelo 3D
-            </button>
-            <p className="text-slate-600 text-[11px]">Requiere conexión a internet</p>
-          </div>
         )}
 
-        {/* Loading / error overlay — only while iframe is loading */}
-        {!activeImageUrl && iframeReady && !loaded && (
+        {/* Loading / error overlay */}
+        {!activeImageUrl && !loaded && (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 z-20 gap-3">
             {loadError ? (
               <>
@@ -280,7 +252,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
                 <span className="text-slate-300 text-sm font-semibold">No se pudo cargar el modelo 3D</span>
                 <span className="text-slate-500 text-xs text-center px-6">Revisá tu conexión a internet</span>
                 <button
-                  onClick={() => { setResetKey(k => k + 1); setIframeReady(true); }}
+                  onClick={() => setResetKey(k => k + 1)}
                   className="mt-2 px-4 py-2 rounded-lg text-xs font-semibold text-white transition-colors"
                   style={{ background: accent }}
                 >
@@ -307,7 +279,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
         ) : !activeImageUrl ? (
           <>
             {/* Reset camera */}
-            <button onClick={() => { setResetKey(k => k + 1); setIframeReady(true); }} title="Reiniciar vista"
+            <button onClick={() => setResetKey(k => k + 1)} title="Reiniciar vista"
               className="absolute top-2 right-11 z-10 w-8 h-8 flex items-center justify-center rounded-lg bg-black/50 hover:bg-black/70 text-white text-base transition-all select-none">
               ⟲
             </button>
