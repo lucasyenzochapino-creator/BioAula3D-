@@ -20,11 +20,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "BioAula3D — Biología Interactiva",
-  description: "Explorá células, ADN, neuronas y el cuerpo humano en 3D. App educativa de biología para primaria y secundaria.",
+  description: "Explorá células, ADN, órganos, evolución y sistemas del cuerpo con modelos 3D y recursos educativos para primaria y secundaria.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
     title: "BioAula3D",
     startupImage: "/icon-512.png",
   },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b1120",
+  themeColor: "#f8faf5",
   width: "device-width",
   initialScale: 1,
   minimumScale: 1,
@@ -49,7 +49,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${sora.variable} ${inter.variable}`}>
-      <body className="text-slate-100 min-h-screen" style={{ background: "#070d1a" }}>
+      <body className="min-h-screen text-slate-800" style={{ background: "#f8faf5" }}>
         <Navbar />
         <OrientationLock />
         <main>{children}</main>
