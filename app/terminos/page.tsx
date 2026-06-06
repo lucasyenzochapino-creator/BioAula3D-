@@ -37,7 +37,16 @@ export default function Terminos() {
           </section>
 
           <section>
-            <h2 className="text-[15px] font-semibold text-white mb-2">2. Descripción del servicio</h2>
+            <h2 className="text-[15px] font-semibold text-white mb-2">2. Titular</h2>
+            <p>
+              BioAula3D es propiedad de <strong className="text-slate-200">Enzo Chapino</strong>, con domicilio en
+              Valle María, Entre Ríos, República Argentina. Para consultas:{" "}
+              <strong className="text-slate-200">bioaula3d@gmail.com</strong>
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-[15px] font-semibold text-white mb-2">3. Descripción del servicio</h2>
             <p>
               BioAula3D es una aplicación web progresiva (PWA) de carácter educativo que ofrece modelos 3D
               interactivos, quizzes, glosario, banco de tareas y evaluaciones sobre biología, orientada a estudiantes
@@ -46,7 +55,20 @@ export default function Terminos() {
           </section>
 
           <section>
-            <h2 className="text-[15px] font-semibold text-white mb-2">3. Uso permitido</h2>
+            <h2 className="text-[15px] font-semibold text-white mb-2">4. Privacidad y datos</h2>
+            <p>
+              BioAula3D <strong className="text-slate-200">no recopila ningún dato personal</strong>. No hay registro
+              de usuarios, no hay cuentas, no hay seguimiento ni analítica. Toda la información generada en la app
+              (notas, preferencias) se almacena únicamente en el dispositivo del usuario. Consultá nuestra{" "}
+              <Link href="/privacidad" className="underline text-green-400/80 hover:text-green-400">
+                Política de Privacidad
+              </Link>{" "}
+              para más detalle.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-[15px] font-semibold text-white mb-2">5. Uso permitido</h2>
             <p className="mb-2">Podés usar BioAula3D para:</p>
             <ul className="space-y-1.5 pl-4 list-disc list-outside marker:text-slate-600">
               <li>Aprendizaje personal y estudio académico.</li>
@@ -56,61 +78,60 @@ export default function Terminos() {
           </section>
 
           <section>
-            <h2 className="text-[15px] font-semibold text-white mb-2">4. Uso no permitido</h2>
+            <h2 className="text-[15px] font-semibold text-white mb-2">6. Uso no permitido</h2>
             <p className="mb-2">Queda <strong className="text-slate-200">expresamente prohibido</strong>:</p>
             <ul className="space-y-1.5 pl-4 list-disc list-outside marker:text-slate-600">
-              <li>Reproducir, redistribuir o comercializar el contenido de la app sin autorización expresa.</li>
+              <li>Reproducir, redistribuir o comercializar el contenido sin autorización expresa del titular.</li>
               <li>Descompilar, realizar ingeniería inversa o modificar el código fuente de la aplicación.</li>
-              <li>Usar la app con fines comerciales, publicitarios o de lucro sin acuerdo previo por escrito.</li>
+              <li>Usar la app con fines comerciales o publicitarios sin acuerdo previo por escrito.</li>
               <li>Hacerse pasar por BioAula3D o utilizar su nombre, logo o contenido de forma engañosa.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-[15px] font-semibold text-white mb-2">5. Propiedad intelectual</h2>
+            <h2 className="text-[15px] font-semibold text-white mb-2">7. Propiedad intelectual</h2>
             <p>
               Todo el contenido de BioAula3D — incluyendo textos, diseños, íconos, evaluaciones, quizzes, glosario y
-              código — es propiedad de sus autores y está protegido por la legislación argentina e internacional sobre
-              propiedad intelectual (Ley N.° 11.723). Los modelos 3D visualizados pertenecen a sus respectivos
-              autores en Sketchfab.
+              código — es propiedad de <strong className="text-slate-200">Enzo Chapino</strong> y está protegido
+              por la Ley N.° 11.723 de Propiedad Intelectual y legislación internacional aplicable. Los modelos 3D
+              visualizados pertenecen a sus respectivos autores en Sketchfab.
             </p>
           </section>
 
           <section>
-            <h2 className="text-[15px] font-semibold text-white mb-2">6. Contenido educativo</h2>
+            <h2 className="text-[15px] font-semibold text-white mb-2">8. Contenido educativo</h2>
             <p>
-              El contenido de BioAula3D tiene fines exclusivamente educativos y didácticos. No reemplaza la
-              orientación de un docente ni constituye asesoramiento científico o médico profesional.
+              El contenido tiene fines exclusivamente educativos y didácticos. No reemplaza la orientación de un
+              docente ni constituye asesoramiento científico o médico profesional.
             </p>
           </section>
 
           <section>
-            <h2 className="text-[15px] font-semibold text-white mb-2">7. Disponibilidad del servicio</h2>
+            <h2 className="text-[15px] font-semibold text-white mb-2">9. Disponibilidad del servicio</h2>
             <p>
-              BioAula3D se ofrece "tal cual" y podemos realizar modificaciones, actualizaciones o discontinuar
-              funciones en cualquier momento sin previo aviso. No garantizamos disponibilidad ininterrumpida del
-              servicio.
+              BioAula3D se ofrece "tal cual". Podemos realizar modificaciones o discontinuar funciones en cualquier
+              momento sin previo aviso. No garantizamos disponibilidad ininterrumpida del servicio.
             </p>
           </section>
 
           <section>
-            <h2 className="text-[15px] font-semibold text-white mb-2">8. Limitación de responsabilidad</h2>
+            <h2 className="text-[15px] font-semibold text-white mb-2">10. Limitación de responsabilidad</h2>
             <p>
-              En ningún caso BioAula3D será responsable por daños directos o indirectos derivados del uso o la
-              imposibilidad de uso de la aplicación, incluyendo pérdida de datos almacenados localmente.
+              En ningún caso el titular será responsable por daños directos o indirectos derivados del uso o la
+              imposibilidad de uso de la aplicación.
             </p>
           </section>
 
           <section>
-            <h2 className="text-[15px] font-semibold text-white mb-2">9. Ley aplicable</h2>
+            <h2 className="text-[15px] font-semibold text-white mb-2">11. Ley aplicable</h2>
             <p>
               Estos términos se rigen por las leyes de la República Argentina. Cualquier conflicto será resuelto ante
-              los tribunales competentes de la Ciudad Autónoma de Buenos Aires.
+              los tribunales competentes de la provincia de Entre Ríos.
             </p>
           </section>
 
           <section>
-            <h2 className="text-[15px] font-semibold text-white mb-2">10. Contacto</h2>
+            <h2 className="text-[15px] font-semibold text-white mb-2">12. Contacto</h2>
             <p>
               Para consultas sobre estos términos escribinos a:{" "}
               <strong className="text-slate-200">bioaula3d@gmail.com</strong>
