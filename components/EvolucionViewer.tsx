@@ -9,7 +9,7 @@ export default function EvolucionViewer() {
       uid=""
       title="Evolución y Selección Natural"
       subtitle="🌿 Adaptación y Vida"
-      accent="#f59e0b"
+      accent="8A7A5C"
       intro="Explorá la evolución humana, la historia de los vertebrados, el caballo como ejemplo clásico de macroevolución y la selección natural de Darwin."
       structures={[]}
       models={[
@@ -108,7 +108,7 @@ export default function EvolucionViewer() {
             {
               name: "Archaeopteryx — origen de las aves",
               emoji: "🦅",
-              color: "#7c3aed",
+              color: "#6A5A8A",
               simple: "Vivió hace 150 Ma. Es la transición entre los dinosaurios terópodos y las aves modernas. Tenía plumas y podía volar, pero también dientes, garras y cola ósea de dinosaurio.",
               full: "Archaeopteryx lithographica fue descubierto en Baviera en 1861. Mide ~50 cm y combina caracteres de reptil (dientes, garras en las alas, cola larga con vértebras) con caracteres de ave (plumas asimétricas para volar, clavículas fusionadas en furcula). Hoy se sabe que las aves son dinosaurios terópodos que sobrevivieron a la extinción del K-Pg hace 66 Ma.",
             },
@@ -224,7 +224,7 @@ export default function EvolucionViewer() {
             {
               name: "Coevolución — evolución en pareja",
               emoji: "🌸",
-              color: "#7c3aed",
+              color: "#6A5A8A",
               simple: "Dos especies pueden evolucionar juntas en respuesta una a la otra. Las flores y sus polinizadores coevolucionaron: flor roja + pico largo de colibrí; flor nocturna blanca + mariposa nocturna.",
               full: "La coevolución ocurre cuando dos especies ejercen presión selectiva mutua a lo largo del tiempo. Ejemplos: (1) Carrera armamentista: la presa evoluciona defensas, el depredador evoluciona contramedidas. La tortuga evoluciona caparazón, el águila aprende a dejar caer la tortuga desde altura. (2) Mutualismo: la flor de Madagascar Angraecum sesquipedale tiene néctar a 30 cm de profundidad — Darwin predijo que debía existir una polilla con trompa de 30 cm. 41 años después se descubrió Xanthopan morganii praedicta.",
             },

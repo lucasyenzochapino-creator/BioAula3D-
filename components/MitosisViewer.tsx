@@ -9,7 +9,7 @@ export default function MitosisViewer() {
       uid="df93411c475c4e4eb450f71437b5ad0d"
       title="Mitosis y Meiosis"
       subtitle="🔬 División Celular"
-      accent="#818cf8"
+      accent="6B7FA8"
       intro="La mitosis crea copias idénticas de células. La meiosis produce gametos para la reproducción. Explorá las fases de la división celular en 3D."
       structures={[
         {
@@ -22,7 +22,7 @@ export default function MitosisViewer() {
         {
           name: "Profase",
           emoji: "🌀",
-          color: "#7c3aed",
+          color: "#6A5A8A",
           simple: "Los cromosomas se hacen visibles y el núcleo empieza a desarmarse.",
           full: "Los cromosomas (duplicados, con 2 cromátidas hermanas unidas por el centrómero) se condensan y se hacen visibles al microscopio. La envoltura nuclear se desintegra. Los centrosomas migran a polos opuestos. Comienza a formarse el huso mitótico de microtúbulos.",
         },
@@ -50,7 +50,7 @@ export default function MitosisViewer() {
         {
           name: "Citocinesis",
           emoji: "✂️",
-          color: "#8b5cf6",
+          color: "#7A6B9A",
           simple: "Es la división del citoplasma que separa las dos células hijas.",
           full: "En células animales: el anillo contráctil de actina-miosina forma una constricción (surco de segmentación) que se estrecha hasta separar las dos células hijas. En células vegetales: se forma la placa celular de vesículas de Golgi que se fusionan para formar una nueva pared.",
         },

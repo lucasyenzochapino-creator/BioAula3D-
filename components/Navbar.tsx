@@ -61,9 +61,9 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
             <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-green-500/10 border border-green-500/20 flex-shrink-0 transition-colors group-hover:border-green-400/35">
               <svg viewBox="0 0 32 32" width="17" height="17" fill="none">
-                <path d="M10 5c4 6 8 6 12 0" stroke="#4ade80" strokeWidth="2" strokeLinecap="round"/>
-                <path d="M10 27c4-6 8-6 12 0" stroke="#4ade80" strokeWidth="2" strokeLinecap="round"/>
-                <line x1="10" y1="16" x2="22" y2="16" stroke="#4ade80" strokeWidth="2" strokeLinecap="round"/>
+                <path d="M10 5c4 6 8 6 12 0" stroke="#6B9A7F" strokeWidth="2" strokeLinecap="round"/>
+                <path d="M10 27c4-6 8-6 12 0" stroke="#6B9A7F" strokeWidth="2" strokeLinecap="round"/>
+                <line x1="10" y1="16" x2="22" y2="16" stroke="#6B9A7F" strokeWidth="2" strokeLinecap="round"/>
                 <path d="M10.5 10.5c3.5 3.5 7.5 3.5 11 0" stroke="#86efac" strokeWidth="1.5" strokeLinecap="round" opacity=".5"/>
                 <path d="M10.5 21.5c3.5-3.5 7.5-3.5 11 0" stroke="#86efac" strokeWidth="1.5" strokeLinecap="round" opacity=".5"/>
               </svg>

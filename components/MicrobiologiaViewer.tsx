@@ -9,7 +9,7 @@ export default function MicrobiologiaViewer() {
       uid="4a310db79e834e07a69ee8d4892d46ee"
       title="Microbiología"
       subtitle="🦠 Microorganismos"
-      accent="#4ade80"
+      accent="6A8A7A"
       intro="Explorá el mundo microscópico en 3D: bacterias, virus, hongos y protozoos. Cambiá entre modelos para ver cada tipo de microorganismo."
       structures={[]}
       models={[
@@ -22,28 +22,28 @@ export default function MicrobiologiaViewer() {
             {
               name: "Membrana Plasmática",
               emoji: "🟢",
-              color: "#4ade80",
+              color: "#6B9A7F",
               simple: "Es la capa que rodea a la bacteria y controla qué entra y qué sale.",
               full: "Bicapa lipídica de fosfolípidos sin colesterol (a diferencia de eucariotas). Contiene proteínas de transporte y enzimas de la cadena respiratoria. La diferencia con la membrana eucariota la convierte en diana de antibióticos.",
             },
             {
               name: "Pared Celular",
               emoji: "🟩",
-              color: "#22c55e",
+              color: "#5B8A6F",
               simple: "Es la capa dura que protege a la bacteria y le da su forma característica.",
               full: "Compuesta de peptidoglucano (murena). Gram positivas: pared gruesa de peptidoglucano. Gram negativas: pared delgada + membrana externa con LPS. La penicilina y lisozima atacan la síntesis de peptidoglucano.",
             },
             {
               name: "Nucleoide",
               emoji: "🔵",
-              color: "#3b82f6",
+              color: "#6B7FA8",
               simple: "Es la zona donde está el ADN de la bacteria: no tiene membrana alrededor.",
               full: "Región nuclear no delimitada por membrana (procariontes). Contiene un único cromosoma circular de ADN (~4,6 Mb en E. coli). Además pueden existir plásmidos (ADN extracromosómico de resistencia).",
             },
             {
               name: "Ribosoma 70S",
               emoji: "🟡",
-              color: "#fbbf24",
+              color: "#9A8A6C",
               simple: "Son las fábricas de proteínas de la bacteria, más pequeñas que las de nuestras células.",
               full: "Los ribosomas bacterianos son 70S (subunidades 30S + 50S). Aminoglucósidos, macrólidos y tetraciclinas bloquean selectivamente su síntesis proteica sin afectar células humanas.",
             },
@@ -128,7 +128,7 @@ export default function MicrobiologiaViewer() {
             {
               name: "Infección y Patogénesis",
               emoji: "🏥",
-              color: "#f43f5e",
+              color: "#9A5C5C",
               simple: "Los virus causan enfermedades al destruir células o alterar su funcionamiento.",
               full: "Los virus son parásitos intracelulares obligados: necesitan células vivas para reproducirse. Pueden causar infecciones agudas (gripe), crónicas (VIH), latentes (herpes) o transformantes (algunos causan cáncer). El sistema inmune los combate con anticuerpos y células T.",
             },
@@ -157,7 +157,7 @@ export default function MicrobiologiaViewer() {
             {
               name: "Núcleo Eucariota",
               emoji: "🔵",
-              color: "#3b82f6",
+              color: "#6B7FA8",
               simple: "Los hongos son eucariotas, tienen un núcleo verdadero con membrana. Esto los diferencia de las bacterias.",
               full: "Los hongos son organismos eucariotas con núcleo delimitado por membrana. Pueden ser uninucleados o multinucleados. Los genomas fúngicos son mucho más complejos que los bacterianos. Algunos hongos son patógenos oportunistas importantes (Candida, Aspergillus).",
             },
@@ -185,7 +185,7 @@ export default function MicrobiologiaViewer() {
             {
               name: "Rol Ecológico: Descomposición",
               emoji: "🌿",
-              color: "#16a34a",
+              color: "#4A7A5F",
               simple: "Los hongos son los principales recicladores de materia muerta: descomponen madera, hojas y restos orgánicos, devolviendo los nutrientes al suelo.",
               full: "Los hongos saprofíticos secretan enzimas extracelulares (celulasas, ligninasas, proteasas) que degradan materia orgánica compleja. Son esenciales en el ciclo del carbono y nitrógeno. Las micorrizas son asociaciones simbióticas entre raíces de plantas y hongos que mejoran la absorción de nutrientes.",
             },

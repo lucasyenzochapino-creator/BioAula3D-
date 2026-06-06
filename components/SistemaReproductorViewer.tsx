@@ -9,20 +9,20 @@ export default function SistemaReproductorViewer() {
       uid="2ad78b1785c94bac83dcb623b53748f5"
       title="Sistema Reproductor Femenino"
       subtitle="♀ Anatomía Femenina"
-      accent="#f472b6"
+      accent="8A7A8A"
       intro="El sistema reproductor femenino produce óvulos y, en caso de fecundación, alberga el desarrollo del embrión. Explorá ovarios, útero, ciclo menstrual y fecundación en 3D."
       structures={[
         {
           name: "Ovarios",
           emoji: "🌸",
-          color: "#f472b6",
+          color: "#9A7B9A",
           simple: "Son dos órganos que producen los óvulos y las hormonas femeninas.",
           full: "Par de glándulas de ~3×2 cm. Contienen folículos ováricos en distintos estadios de maduración. Producen estrógenos y progesterona bajo control hipofisario (FSH/LH). En cada ciclo menstrual un folículo (Graaf) madura y libera un oocito II en la ovulación.",
         },
         {
           name: "Trompa de Falopio",
           emoji: "〰️",
-          color: "#fb7185",
+          color: "#AA6C6C",
           simple: "Es el tubo que lleva el óvulo desde el ovario hasta el útero. Aquí ocurre la fecundación.",
           full: "Conducto muscular de ~10 cm con 4 segmentos: infundíbulo (fimbrias), ampolla (sitio de fecundación), istmo y parte uterina. El epitelio ciliar y el peristaltismo transportan el gameto. El embarazo ectópico ocurre si el embrión se implanta en la trompa.",
         },
@@ -57,14 +57,14 @@ export default function SistemaReproductorViewer() {
         {
           name: "Ciclo Menstrual",
           emoji: "🔄",
-          color: "#ec4899",
+          color: "#8A6B8A",
           simple: "Es el proceso mensual del cuerpo femenino que prepara al útero para un posible embarazo.",
           full: "Dura ~28 días. Fase menstrual (días 1-5): descamación del endometrio. Fase folicular (días 1-13): FSH estimula folículos, estrógenos proliferan el endometrio. Ovulación (día 14): pico de LH. Fase lútea (días 15-28): progesterona prepara el endometrio. Sin fertilización, el ciclo se repite.",
         },
         {
           name: "Fecundación y Cigoto",
           emoji: "✨",
-          color: "#a855f7",
+          color: "#7A6B9A",
           simple: "La fecundación es cuando el espermatozoide se une al óvulo y forman una sola célula nueva.",
           full: "Ocurre en la ampolla de la trompa de Falopio. El espermatozoide atraviesa la zona pelúcida con enzimas acrosomales y se fusiona con la membrana del oocito II. Se completa la meiosis II y se forman 2 pronúcleos. Al fusionarse nace el cigoto (2n = 46 cromosomas), primera célula del nuevo individuo. En ~4 días llega al útero como mórula.",
         },

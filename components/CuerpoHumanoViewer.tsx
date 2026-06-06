@@ -9,7 +9,7 @@ export default function CuerpoHumanoViewer() {
       uid="035316622877438cb62de673b8f19217"
       title="Cuerpo Humano"
       subtitle="🫀 Anatomía humana"
-      accent="#f87171"
+      accent="8A6B8A"
       intro="Modelo 3D real del cuerpo humano con órganos internos. Explorá los sistemas que mantienen tu cuerpo funcionando."
       structures={[
         {
@@ -22,14 +22,14 @@ export default function CuerpoHumanoViewer() {
         {
           name: "Pulmones",
           emoji: "🫁",
-          color: "#3b82f6",
+          color: "#6B7FA8",
           simple: "Toman el oxígeno del aire y expulsan el dióxido de carbono que sobra.",
           full: "Órganos esponjosos con ~300 millones de alvéolos pulmonares. El intercambio gaseoso ocurre por difusión simple en la membrana alvéolo-capilar (grosor ~0,5 µm). La hemoglobina transporta O₂ (oxihemoglobina) y CO₂ en forma de bicarbonato.",
         },
         {
           name: "Cerebro",
           emoji: "🧠",
-          color: "#a855f7",
+          color: "#7A6B9A",
           simple: "El órgano más complejo: controla todo lo que hacés, pensás y sentís.",
           full: "~86 mil millones de neuronas y cantidad similar de células gliales. Dividido en corteza cerebral (pensamiento, sensaciones), cerebelo (coordinación), tronco encefálico (funciones vitales). Consume ~20% de la energía corporal total aunque pesa solo ~1,4 kg.",
         },
@@ -50,7 +50,7 @@ export default function CuerpoHumanoViewer() {
         {
           name: "Riñones",
           emoji: "🩷",
-          color: "#ec4899",
+          color: "#8A6B8A",
           simple: "Filtran la sangre y eliminan los desechos en la orina.",
           full: "Cada riñón contiene ~1 millón de nefronas. Filtran ~180 L de plasma/día; reabsorben el 99% produciendo ~1,5 L de orina. Regulan el equilibrio ácido-base, la presión arterial (RAAS) y la eritropoyesis (EPO).",
         },
@@ -78,7 +78,7 @@ export default function CuerpoHumanoViewer() {
         {
           name: "Músculos",
           emoji: "💪",
-          color: "#f97316",
+          color: "#8A7A5C",
           simple: "Permiten todos los movimientos del cuerpo, desde caminar hasta respirar.",
           full: "Más de 600 músculos esqueléticos (~40% del peso corporal). La contracción muscular se basa en el deslizamiento de filamentos de actina y miosina (ciclo de puentes cruzados). ATP, Ca²⁺ y la troponina-tropomiosina regulan la contracción.",
         },

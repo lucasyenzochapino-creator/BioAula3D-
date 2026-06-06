@@ -9,7 +9,7 @@ export default function SistemaExcretorViewer() {
       uid="4258252eb7c04e748ab7501eb5f1abb1"
       title="Sistema Excretor"
       subtitle="💧 Riñones y Vías Urinarias"
-      accent="#facc15"
+      accent="5C7A8A"
       intro="Los riñones filtran toda la sangre unas 60 veces por día, eliminan desechos y regulan el equilibrio del agua. Explorá el sistema urinario en 3D."
       structures={[
         {
@@ -57,7 +57,7 @@ export default function SistemaExcretorViewer() {
         {
           name: "Uréter",
           emoji: "〰️",
-          color: "#f97316",
+          color: "#8A7A5C",
           simple: "Es el tubo que lleva la orina desde el riñón hasta la vejiga.",
           full: "Conducto muscular (~25-30 cm) con 3 capas: mucosa (urotelio), muscular (peristaltismo) y adventicia. Transporta orina por contracciones peristálticas (~1-5 cm/s). Tiene zonas de estrechez anatómica (unión ureteropélvica, cruce ilíaco, unión ureterovesical).",
         },

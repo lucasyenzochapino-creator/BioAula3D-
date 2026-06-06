@@ -9,7 +9,7 @@ export default function EcosistemasViewer() {
       uid="f9d960844a2d49b7a4b06d843f92eadf"
       title="Ecosistemas y Biomas"
       subtitle="🌳 Ecología y Biodiversidad"
-      accent="#22c55e"
+      accent="7A8F5E"
       intro="Un ecosistema es la red de relaciones entre los seres vivos y su ambiente. Explorá 4 biomas del planeta: selva tropical, arrecife de coral, desierto y ártico."
       structures={[]}
       models={[
@@ -22,7 +22,7 @@ export default function EcosistemasViewer() {
             {
               name: "Productores (Plantas y Algas)",
               emoji: "🌿",
-              color: "#4ade80",
+              color: "#6B9A7F",
               simple: "Son los seres vivos que fabrican su propio alimento con la luz solar.",
               full: "Organismos autótrofos fotosintetizadores que convierten CO₂ + H₂O + energía solar en glucosa y O₂. Son la base de todas las cadenas alimentarias. La selva tropical tiene la mayor densidad de productores del planeta: árboles emergentes, dosel, sotobosque y epífitas forman hasta 5 estratos verticales.",
             },
@@ -36,7 +36,7 @@ export default function EcosistemasViewer() {
             {
               name: "Consumidores Secundarios y Terciarios",
               emoji: "🐆",
-              color: "#22c55e",
+              color: "#5B8A6F",
               simple: "Son los carnívoros que cazan a los herbívoros. El jaguar es el superdepredador de la selva americana.",
               full: "En la selva tropical los depredadores incluyen jaguar (Panthera onca), anaconda, águila harpía y caimán. Regulan las poblaciones de herbívoros. La red trófica es extremadamente compleja: una especie puede alimentarse de decenas de presas distintas.",
             },
@@ -57,7 +57,7 @@ export default function EcosistemasViewer() {
             {
               name: "Deforestación y Cambio Climático",
               emoji: "⚠️",
-              color: "#fbbf24",
+              color: "#9A8A6C",
               simple: "La selva regula el clima global. Su destrucción libera enormes cantidades de CO₂.",
               full: "El Amazonas almacena ~120 mil millones de toneladas de carbono. Su deforestación libera CO₂ y reduce la lluvia regional. El punto de no retorno se estima cuando se pierda el 20-25% de la selva amazónica (hoy ya perdida un ~17%). Las selvas también generan 'ríos aéreos' que llevan lluvia a regiones distantes.",
             },
@@ -72,14 +72,14 @@ export default function EcosistemasViewer() {
             {
               name: "Corales — Constructores del Arrecife",
               emoji: "🪸",
-              color: "#f97316",
+              color: "#8A7A5C",
               simple: "Los corales son animales (pólipos) que viven en simbiosis con algas y construyen el arrecife con sus esqueletos de carbonato de calcio.",
               full: "Los corales son cnidarios coloniales. Sus células contienen zooxantelas (algas simbióticas) que realizan fotosíntesis y aportan hasta el 90% de la energía del coral. El esqueleto de CaCO₃ acumula el arrecife durante miles de años. El blanqueamiento coralino ocurre cuando el estrés térmico expulsa las zooxantelas.",
             },
             {
               name: "Peces de Arrecife — Red Trófica",
               emoji: "🐠",
-              color: "#fb923c",
+              color: "#9A8A6C",
               simple: "El arrecife alberga miles de especies de peces con roles distintos en la cadena alimentaria.",
               full: "Los peces herbívoros (cirujanos, pargos) controlan el algas y permiten que los corales sobrevivan. Los peces carnívoros (meros, barracudas) regulan las poblaciones de peces menores. Los tiburones de arrecife son superdepredadores clave. La sobreexplotación de cualquier nivel trófico colapsa el ecosistema.",
             },
@@ -186,7 +186,7 @@ export default function EcosistemasViewer() {
             {
               name: "Tundra — El Bioma Ártico Terrestre",
               emoji: "🌾",
-              color: "#94a3b8",
+              color: "#5C6472",
               simple: "La tundra es el ecosistema ártico terrestre: sin árboles, con musgos, líquenes y arbustos enanos que soportan el frío extremo.",
               full: "La tundra ártica tiene temperaturas medias de -30°C en invierno y +10°C en verano. La vegetación es baja (musgos, líquenes, gramíneas, arbustos enanos) para evitar el viento. Las migraciones estacionales son fundamentales: caribúes, gansos y otras aves viajan miles de km. La temporada de crecimiento dura apenas 60 días/año.",
             },

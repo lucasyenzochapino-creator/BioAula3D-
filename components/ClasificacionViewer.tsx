@@ -9,7 +9,7 @@ export default function ClasificacionViewer() {
       uid="b7d84e5f2d5e411fbb195ab2742f2256"
       title="Clasificación de Seres Vivos"
       subtitle="🔬 Células y Reinos"
-      accent="#14b8a6"
+      accent="7A8F5E"
       intro="Explorá la diversidad de la vida: los 5 reinos, la taxonomía linneana y el árbol filogenético desde bacterias hasta animales."
       structures={[]}
       models={[
@@ -22,14 +22,14 @@ export default function ClasificacionViewer() {
             {
               name: "Reino Monera (Bacteria)",
               emoji: "🦠",
-              color: "#2dd4bf",
+              color: "#6C8A9A",
               simple: "El reino de las bacterias: organismos unicelulares sin núcleo. Son los seres vivos más pequeños y abundantes del planeta.",
               full: "El reino Monera incluye todos los procariontes: organismos sin núcleo delimitado por membrana. Son unicelulares con ADN circular en el nucleoide. Incluyen Eubacterias y Arqueobacterias. Presentan la mayor diversidad metabólica: fotosíntesis, quimiosíntesis, fermentación. Pueden vivir en ambientes extremos.",
             },
             {
               name: "Reino Protista",
               emoji: "🔬",
-              color: "#0d9488",
+              color: "#4C6A7A",
               simple: "Grupo de organismos eucariontes que no son plantas, animales ni hongos. Incluye amebas, algas unicelulares y protozoos.",
               full: "Los Protista son eucariontes (con núcleo verdadero) mayormente unicelulares o coloniales. Algunos son autótrofos (algas verdes, diatomeas) y otros heterótrofos (amebas, ciliados). Son los ancestros evolutivos de los otros tres reinos eucariontes. Incluyen patógenos importantes como Plasmodium (malaria).",
             },
@@ -43,7 +43,7 @@ export default function ClasificacionViewer() {
             {
               name: "Reino Plantae",
               emoji: "🌱",
-              color: "#16a34a",
+              color: "#4A7A5F",
               simple: "El reino de las plantas: organismos multicelulares que hacen fotosíntesis. Son los productores de los ecosistemas terrestres.",
               full: "El reino Plantae comprende eucariontes multicelulares, autótrofos fotosintetizadores con clorofila a y b, pared de celulosa y alternancia de generaciones. Incluye briófitas (musgos), pteridófitas (helechos), gimnospermas (pinos, cipreses) y angiospermas (plantas con flor y fruto). Son la base de casi todas las cadenas alimentarias terrestres.",
             },
@@ -57,7 +57,7 @@ export default function ClasificacionViewer() {
             {
               name: "Procariontes vs Eucariontes",
               emoji: "🔭",
-              color: "#2dd4bf",
+              color: "#6C8A9A",
               simple: "Los procariontes no tienen núcleo definido (bacterias). Los eucariontes tienen núcleo con membrana (plantas, animales, hongos).",
               full: "Los procariontes (Bacteria y Archaea) carecen de núcleo delimitado por membrana, sus ribosomas son 70S y no tienen organelas membranosas. Los eucariontes (Protista, Fungi, Plantae, Animalia) tienen núcleo verdadero con envoltura nuclear, ribosomas 80S y compartimentalización celular con diversas organelas.",
             },
@@ -86,28 +86,28 @@ export default function ClasificacionViewer() {
             {
               name: "Dominio Bacteria",
               emoji: "🦠",
-              color: "#4ade80",
+              color: "#6B9A7F",
               simple: "Uno de los tres dominios de la vida: organismos unicelulares sin núcleo, los más abundantes del planeta.",
               full: "El dominio Bacteria es el grupo más diverso de procariontes. Tienen pared de peptidoglucano, ribosomas 70S y ADN circular. Se reproducen por fisión binaria. Incluyen patógenos (E. coli, Salmonella, Mycobacterium tuberculosis) y especies beneficiosas (cianobacterias, Lactobacillus, Rhizobium fijador de nitrógeno).",
             },
             {
               name: "Taxonomía Linneana",
               emoji: "📊",
-              color: "#14b8a6",
+              color: "#5C7A8A",
               simple: "Sistema de clasificación creado por Linneo: dominio, reino, filo, clase, orden, familia, género y especie.",
               full: "Carlos Linneo (1707-1778) creó el sistema de nomenclatura binomial y estableció las categorías taxonómicas. Actualmente se usan 8 rangos principales. La clasificación moderna integra criterios morfológicos, genéticos y evolutivos. La filogenia molecular (comparación de ARNr 16S/18S) ha revolucionado la sistemática en las últimas décadas.",
             },
             {
               name: "Procariontes",
               emoji: "🔬",
-              color: "#0d9488",
+              color: "#4C6A7A",
               simple: "Organismos sin núcleo delimitado por membrana: bacterias y arqueas. Son los seres vivos más simples.",
               full: "Los procariontes (Bacteria + Archaea) carecen de núcleo verdadero. Su ADN circular se encuentra en el nucleoide. Sin organelas membranosas. Ribosomas 70S. Se dividen por fisión binaria. Dominan en biomasa total de la Tierra y son esenciales para los ciclos biogeoquímicos (nitrógeno, carbono, azufre).",
             },
             {
               name: "Eucariontes",
               emoji: "🔵",
-              color: "#3b82f6",
+              color: "#6B7FA8",
               simple: "Organismos con núcleo verdadero: protistas, hongos, plantas y animales.",
               full: "Los eucariontes tienen núcleo delimitado por doble membrana, organelas compartimentalizadas (mitocondria, retículo endoplasmático, aparato de Golgi), ribosomas 80S y ADN lineal organizado en cromosomas con histonas. La endosimbiosis explica el origen de mitocondrias (de alfa-proteobacterias) y cloroplastos (de cianobacterias).",
             },
@@ -128,14 +128,14 @@ export default function ClasificacionViewer() {
             {
               name: "Nomenclatura Binomial",
               emoji: "✍️",
-              color: "#2dd4bf",
+              color: "#6C8A9A",
               simple: "Sistema de dos nombres en latín para cada ser vivo. Creado por Linneo para que todos en el mundo usen el mismo nombre.",
               full: "La nomenclatura binomial usa género (mayúscula, cursiva) + epíteto específico (minúscula, cursiva). Ej.: Homo sapiens (sapiens = sabio), Escherichia coli (en honor al Dr. Escherich), Quercus robur (roble común). Es universal e internacionalmente regulada por el Código Internacional de Nomenclatura. Garantiza que cada especie tenga un nombre único.",
             },
             {
               name: "Especie Biológica",
               emoji: "🎯",
-              color: "#7c3aed",
+              color: "#6A5A8A",
               simple: "Una especie es el conjunto de individuos que pueden reproducirse entre sí y tener descendencia fértil.",
               full: "El concepto biológico de especie (Mayr, 1942) la define como poblaciones naturales interfértiles aisladas reproductivamente de otros grupos. Limitaciones: no aplica a organismos asexuales (bacterias) ni a fósiles. Existen ~8,7 millones de especies estimadas en la Tierra; solo ~1,9 millones descritas. Unas 150-200 nuevas especies de animales se describen anualmente.",
             },
@@ -150,28 +150,28 @@ export default function ClasificacionViewer() {
             {
               name: "Reino Plantae",
               emoji: "🌱",
-              color: "#16a34a",
+              color: "#4A7A5F",
               simple: "Las plantas: organismos multicelulares que hacen fotosíntesis gracias a sus cloroplastos.",
               full: "El reino Plantae comprende eucariontes multicelulares autótrofos con clorofila a y b, pared de celulosa y alternancia de generaciones. Se originaron de algas verdes hace ~470 Ma. Se dividen en Briófitas (musgos, sin vasos), Pteridófitas (helechos, con vasos pero sin semilla), Gimnospermas (semilla desnuda) y Angiospermas (semilla en fruto).",
             },
             {
               name: "Célula Vegetal",
               emoji: "🔲",
-              color: "#4ade80",
+              color: "#6B9A7F",
               simple: "La célula vegetal tiene cloroplastos, pared celular de celulosa y una gran vacuola que no tienen las células animales.",
               full: "Características exclusivas de la célula vegetal: pared celular de celulosa (soporte y protección), cloroplastos (fotosíntesis, origen endosimbiótico), vacuola central (hasta 90% del volumen, mantiene turgencia) y plasmodesmos (canales citoplasmáticos entre células para transporte simplástico). Comparte con animales: núcleo, mitocondrias, RER, Golgi y ribosomas.",
             },
             {
               name: "Angiospermas",
               emoji: "🌸",
-              color: "#f472b6",
+              color: "#9A7B9A",
               simple: "Las plantas con flor son el grupo más diverso del reino vegetal. Sus semillas están protegidas dentro de un fruto.",
               full: "Las angiospermas (~300.000 especies) son el grupo vegetal más diverso y exitoso. La flor permite la polinización por animales (biótica) o viento (abiótica). La doble fecundación produce semilla dentro del fruto. Se dividen en monocotiledóneas (gramíneas, palmeras, lirios) y eudicotiledóneas (rosas, leguminosas, árboles de madera dura).",
             },
             {
               name: "Tejidos Vegetales",
               emoji: "🗂️",
-              color: "#22c55e",
+              color: "#5B8A6F",
               simple: "Las plantas tienen tejidos especializados: meristemas para crecer, xilema para agua, floema para azúcares.",
               full: "Los tejidos vegetales incluyen: meristemas (células que se dividen activamente, crecimiento apical y lateral), epidermis (protección, estomas), xilema (transporte ascendente de agua y minerales, células muertas), floema (transporte de fotoasimilados, células vivas: tubos cribosos y células acompañantes) y tejidos fundamentales (parénquima fotosintético, colénquima, esclerénquima).",
             },
@@ -192,7 +192,7 @@ export default function ClasificacionViewer() {
             {
               name: "Clave Dicotómica",
               emoji: "🔑",
-              color: "#0d9488",
+              color: "#4C6A7A",
               simple: "Herramienta para identificar organismos haciendo preguntas de sí/no sobre sus características.",
               full: "La clave dicotómica permite identificar un organismo mediante una serie de preguntas con dos opciones excluyentes. Se basa en caracteres observables (morfología, color, tamaño). En cada paso se elige la opción que corresponde, hasta llegar a la identidad del organismo. Son esenciales en trabajo de campo, botánica y zoología. Las versiones digitales modernas incluyen imágenes e identificación por IA.",
             },
