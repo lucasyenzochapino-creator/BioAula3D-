@@ -9,27 +9,27 @@ export default function DigestivoViewer() {
       uid="2d3771dd6b8940ffa2312bd97aca6fc3"
       title="Sistema Digestivo"
       subtitle="🍽️ Aparato Digestivo"
-      accent="#fb923c"
+      accent="8A7A5C"
       intro="Explorá el sistema digestivo humano en 3D. Tocá los puntos ⓘ en el modelo o las estructuras de abajo."
       structures={[
         {
           name: "Boca y Esófago",
           emoji: "👄",
-          color: "#f97316",
+          color: "#8A7A5C",
           simple: "La boca tritura los alimentos y el esófago los lleva al estómago.",
           full: "Boca: masticación mecánica y digestión química inicial (amilasa salival). Deglución involucra 30+ músculos. Esófago: tubo muscular de ~25 cm con peristalsis para transportar el bolo alimenticio. Esfínter esofágico inferior previene el reflujo.",
         },
         {
           name: "Estómago",
           emoji: "💛",
-          color: "#eab308",
+          color: "#8A7A5C",
           simple: "Mezcla los alimentos con jugos ácidos para descomponerlos.",
           full: "Órgano muscular en forma de J. Produce HCl (pH 1,5-2) y pepsina para la digestión proteica. Las células parietales secretan ácido; las principales, pepsinógeno. La mucosa produce mucus protector. Vacía su contenido (quimo) en 2-4 horas.",
         },
         {
           name: "Intestino Delgado",
           emoji: "🌀",
-          color: "#22c55e",
+          color: "#5B8A6F",
           simple: "Es el tubo más largo: absorbe los nutrientes de los alimentos.",
           full: "Mide ~6-7 m. Dividido en duodeno (digestión con enzimas pancreáticas y bilis), yeyuno (absorción principal) e íleon. Tiene vellosidades y microvellosidades que aumentan la superficie absortiva a ~250 m². Absorbe el 95% de los nutrientes.",
         },
@@ -50,21 +50,21 @@ export default function DigestivoViewer() {
         {
           name: "Vesícula Biliar",
           emoji: "💚",
-          color: "#16a34a",
+          color: "#4A7A5F",
           simple: "Almacena la bilis del hígado y la libera cuando comés grasas.",
           full: "Saco de ~8 cm que concentra y almacena bilis (hasta 50 mL). Al ingerir grasas, la colecistoquinina (CCK) estimula su contracción y libera bilis por el conducto colédoco al duodeno. Los cálculos biliares son frecuentes (10-20% de adultos).",
         },
         {
           name: "Páncreas",
           emoji: "🩶",
-          color: "#64748b",
+          color: "#4A5260",
           simple: "Produce jugos digestivos y la insulina que regula el azúcar en sangre.",
           full: "Glándula mixta: exocrina (jugo pancreático con lipasas, proteasas, amilasa para digestión en duodeno) y endocrina (islotes de Langerhans — células β producen insulina, células α glucagón). La diabetes tipo 1 destruye las células β.",
         },
         {
           name: "Apéndice",
           emoji: "📍",
-          color: "#f43f5e",
+          color: "#9A5C5C",
           simple: "Es una pequeña extensión del intestino grueso. Puede inflamarse (apendicitis).",
           full: "Divertículo ciego de ~8 cm unido al ciego. Tiene tejido linfoide (MALT) que forma parte del sistema inmune intestinal. Puede albergar bacterias beneficiosas. Su inflamación (apendicitis) requiere extirpación quirúrgica urgente.",
         },

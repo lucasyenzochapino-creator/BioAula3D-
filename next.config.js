@@ -23,6 +23,14 @@ const nextConfig = {
   },
   async headers() {
     return [
+      // Manifest: nunca cachear
+      {
+        source: "/manifest.json",
+        headers: [
+          { key: "Cache-Control", value: "no-cache, no-store, must-revalidate" },
+          { key: "Pragma", value: "no-cache" },
+        ],
+      },
       // Service worker: nunca cachear para que el browser detecte actualizaciones
       {
         source: "/sw.js",

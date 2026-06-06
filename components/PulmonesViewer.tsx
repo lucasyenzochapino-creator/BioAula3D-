@@ -9,7 +9,7 @@ export default function PulmonesViewer() {
       uid="ce09f4099a68467880f46e61eb9a3531"
       title="Sistema Respiratorio"
       subtitle="💨 Pulmones y Vías Aéreas"
-      accent="#38bdf8"
+      accent="5C7A8A"
       intro="Explorá los pulmones y las vías respiratorias en 3D. Tocá los puntos ⓘ en el modelo o las estructuras de abajo."
       structures={[
         {
@@ -36,14 +36,14 @@ export default function PulmonesViewer() {
         {
           name: "Bronquios Principales",
           emoji: "🌿",
-          color: "#22d3ee",
+          color: "#6C8A9A",
           simple: "Son las ramas del tubo principal que llevan el aire a cada pulmón.",
           full: "Bronquio derecho es más corto, ancho y vertical (mayor riesgo de aspiración). Cada bronquio se divide en bronquios lobares, segmentarios y luego en bronquiolos. El árbol bronquial tiene ~23 generaciones de ramificación.",
         },
         {
           name: "Alvéolos",
           emoji: "🫧",
-          color: "#06b6d4",
+          color: "#5C7A8A",
           simple: "Son pequeñas bolsitas donde el oxígeno pasa a la sangre y sale el dióxido de carbono.",
           full: "Unidades funcionales del intercambio gaseoso. Paredes formadas por neumocitos tipo I (intercambio) y tipo II (producen surfactante que evita el colapso). La membrana alvéolo-capilar tiene ~0,2 µm de grosor para difusión eficiente de O₂ y CO₂.",
         },

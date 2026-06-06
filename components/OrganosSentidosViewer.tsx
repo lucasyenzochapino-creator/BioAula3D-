@@ -9,7 +9,7 @@ export default function OrganosSentidosViewer() {
       uid="4bf3236c8fe2407ea3f494a93b8f5aa2"
       title="Órganos de los Sentidos"
       subtitle="👁️ Los 5 Sentidos"
-      accent="#22d3ee"
+      accent="7A8A9A"
       intro="Explorá los 5 sentidos en 3D. Seleccioná cada órgano para ver su anatomía y entender cómo capta información del entorno y la envía al cerebro."
       structures={[]}
       models={[
@@ -43,14 +43,14 @@ export default function OrganosSentidosViewer() {
             {
               name: "Retina",
               emoji: "🟡",
-              color: "#fbbf24",
+              color: "#9A8A6C",
               simple: "Es la 'pantalla' del ojo: tiene células sensibles a la luz que convierten la imagen en señales eléctricas.",
               full: "Capa neural de 10 estratos que tapiza el fondo del ojo. ~120 millones de bastones (visión blanco/negro, poca luz) y ~6 millones de conos (visión de color, alta agudeza). La fóvea central tiene densidad máxima de conos. El punto ciego carece de fotorreceptores.",
             },
             {
               name: "Nervio Óptico",
               emoji: "🟣",
-              color: "#a855f7",
+              color: "#7A6B9A",
               simple: "Es el cable que lleva la imagen desde el ojo hasta el cerebro.",
               full: "Par craneal II. ~1,2 millones de axones de células ganglionares de la retina. Los nervios ópticos se cruzan en el quiasma óptico (fibras nasales se decusan). Las señales llegan al cuerpo geniculado lateral del tálamo y luego a la corteza visual occipital.",
             },
@@ -79,14 +79,14 @@ export default function OrganosSentidosViewer() {
             {
               name: "Oído Externo",
               emoji: "👂",
-              color: "#f97316",
+              color: "#8A7A5C",
               simple: "Es la parte visible: el pabellón auricular recoge las ondas de sonido y las guía hacia adentro.",
               full: "Pabellón auricular (cartílago elástico cubierto de piel) + conducto auditivo externo (~2,5 cm). El pabellón canaliza las ondas sonoras. El conducto tiene pelos y glándulas ceruminosas que protegen el oído externo de cuerpos extraños.",
             },
             {
               name: "Tímpano",
               emoji: "🔘",
-              color: "#fb923c",
+              color: "#9A8A6C",
               simple: "Es la membrana que vibra cuando llegan las ondas de sonido, como el parche de un tambor.",
               full: "Membrana fibrosa translúcida de ~10 mm de diámetro con forma cónica. Las ondas sonoras la hacen vibrar. Las vibraciones se transmiten mecánicamente a los huesecillos del oído medio. La perforación timpánica produce hipoacusia de conducción.",
             },
@@ -100,7 +100,7 @@ export default function OrganosSentidosViewer() {
             {
               name: "Cóclea",
               emoji: "🐌",
-              color: "#10b981",
+              color: "#5B8A6F",
               simple: "Es la 'caracola' del oído interno: convierte las vibraciones en señales eléctricas que van al cerebro.",
               full: "Estructura espiral con 2,5 vueltas llena de perilinfa y endolinfa. El órgano de Corti sobre la membrana basilar contiene ~16.000 células ciliadas. Tonotopía: frecuencias agudas en la base, graves en el ápex. Las señales van al nervio coclear (VIII par craneal).",
             },
@@ -129,21 +129,21 @@ export default function OrganosSentidosViewer() {
             {
               name: "Mucosa Olfatoria",
               emoji: "🟡",
-              color: "#fbbf24",
+              color: "#9A8A6C",
               simple: "Es la zona del techo de la nariz donde están las células que detectan los olores.",
               full: "Localizada en el techo de la cavidad nasal (2-5 cm²). Contiene ~5-6 millones de neuronas olfatorias bipolares (células sensoriales primarias). Se regeneran continuamente (plasticidad única). Recubiertas de moco que atrapa las moléculas odoríferas.",
             },
             {
               name: "Neuronas Olfatorias",
               emoji: "🔵",
-              color: "#3b82f6",
+              color: "#6B7FA8",
               simple: "Son las células que 'huelen': tienen cilios con receptores que detectan las moléculas del aire.",
               full: "Neuronas bipolares con ~20 cilios olfatorios en la superficie apical cargados de receptores odorantes (GPCRs). Los humanos tenemos ~400 tipos de receptores olfatorios. Cada neurona expresa un solo tipo de receptor. El axón cruza la lámina cribiforme hacia el bulbo olfatorio.",
             },
             {
               name: "Bulbo Olfatorio",
               emoji: "🟢",
-              color: "#22c55e",
+              color: "#5B8A6F",
               simple: "Es la primera estación del cerebro que procesa los olores: recibe la señal directamente de la nariz.",
               full: "Estructura del prosencéfalo anterior. Los axones de las neuronas olfatorias sinaptan en los glomérulos del bulbo. Es la única vía sensorial que llega a la corteza sin pasar por el tálamo. Conecta directamente con la amígdala y el hipocampo, explicando la fuerte relación entre olfato y memoria/emoción.",
             },
@@ -157,14 +157,14 @@ export default function OrganosSentidosViewer() {
             {
               name: "Los ~400 Receptores Olfatorios",
               emoji: "🧬",
-              color: "#c084fc",
+              color: "#8A7AAA",
               simple: "Tenemos casi 400 tipos de 'detectores' de olores. Combinándolos podemos reconocer más de un billón de olores distintos.",
               full: "La familia de genes olfatorios es la más grande del genoma humano (~800 genes, ~400 funcionales). Cada receptor responde a múltiples odorantes y viceversa. El patrón de activación de los ~400 receptores codifica cada olor de manera única. Las enfermedades como el Parkinson pueden deteriorar el olfato tempranamente.",
             },
             {
               name: "Anosmia y Parosmia",
               emoji: "⚠️",
-              color: "#f43f5e",
+              color: "#9A5C5C",
               simple: "La anosmia es la pérdida del olfato. Puede ocurrir por resfríos, COVID-19 o enfermedades neurológicas.",
               full: "Anosmia: pérdida total del olfato. Hiposmia: disminución. Parosmia: distorsión de los olores. Causas: obstrucción nasal, infecciones virales (el COVID-19 causó anosmia en millones), traumatismo craneoencefálico, enfermedades neurodegenerativas (Parkinson, Alzheimer). El olfato puede regenerarse gracias a la renovación de las neuronas olfatorias.",
             },

@@ -9,20 +9,20 @@ export default function SistemaReproductorMasculinoViewer() {
       uid="b6821261ed5e4c59979bf9a2362e6b58"
       title="Sistema Reproductor Masculino"
       subtitle="♂ Anatomía Masculina"
-      accent="#60a5fa"
+      accent="8A7A8A"
       intro="El sistema reproductor masculino produce espermatozoides y la hormona testosterona. Explorá testículos, epidídimo, próstata y el proceso de fecundación en 3D."
       structures={[
         {
           name: "Testículos",
           emoji: "🔵",
-          color: "#3b82f6",
+          color: "#6B7FA8",
           simple: "Son los órganos que producen los espermatozoides y la testosterona.",
           full: "Par de glándulas ovoides dentro del escroto (~4×3 cm). Los túbulos seminíferos contienen células de Sertoli (nutren espermatozoides) y células de Leydig (producen testosterona). La espermatogénesis produce ~300 millones de espermatozoides/día. El escroto los mantiene 2-3°C más fríos que el cuerpo interior.",
         },
         {
           name: "Epidídimo",
           emoji: "〰️",
-          color: "#60a5fa",
+          color: "#7A8FA8",
           simple: "Es el tubo enroscado donde los espermatozoides maduran y aprenden a moverse.",
           full: "Conducto muy enrollado de ~6 m de longitud adosado al testículo. Los espermatozoides completan su maduración en ~12-21 días, adquiriendo motilidad y capacidad de fertilización. Se almacenan en la cola del epidídimo hasta la eyaculación.",
         },
@@ -36,7 +36,7 @@ export default function SistemaReproductorMasculinoViewer() {
         {
           name: "Vesícula Seminal",
           emoji: "🟣",
-          color: "#7c3aed",
+          color: "#6A5A8A",
           simple: "Son glándulas que producen la mayor parte del líquido del semen, con fructosa como alimento para los espermatozoides.",
           full: "Par de glándulas tubulares detrás de la vejiga. Producen ~65% del volumen del semen: fructosa (energía para los espermatozoides), prostaglandinas (estimulan contracciones del tracto femenino), proteínas de coagulación y vitamina C. Reguladas por testosterona.",
         },

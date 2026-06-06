@@ -2,7 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* ══════════════════════════════════════════════════
+   BIOAULA3D — DESIGN SYSTEM v3
+   Paleta profesional apagada. Sin neones ni flúor.
+   ══════════════════════════════════════════════════ */
+:root {
+  /* Fondos — escala de grises cálidos */
+  --bg-0:    #111214;
+  --bg-1:    #17191C;
+  --bg-2:    #1D2025;
+  --bg-3:    #23272E;
+  --bg-4:    #2A2F38;
+
+  /* Acento único — azul pizarrón apagado */
+  --accent:        #4A7FA5;
+  --accent-dim:    #3A6485;
+  --accent-muted:  rgba(74,127,165,0.12);
+  --accent-border: rgba(74,127,165,0.22);
+
+  /* Acentos por módulo — todos apagados, sin saturación */
+  --c-cell:   #5B8A6F;   /* célula     → verde musgo   */
+  --c-gen:    #6B7FA8;   /* genética   → azul grisáceo  */
+  --c-eco:    #7A8F5E;   /* ecología   → verde oliva    */
+  --c-body:   #8A6B8A;   /* cuerpo     → violeta apagado*/
+  --c-nerve:  #7A6B9A;   /* nervioso   → índigo apagado */
+  --c-heart:  #9A5C5C;   /* corazón    → rojo ladrillo  */
+  --c-resp:   #5C7A8A;   /* resp.      → azul acero     */
+  --c-endo:   #8A7A5C;   /* endócrino  → ámbar tierra   */
+  --c-micro:  #6A8A7A;   /* micro      → verde grisáceo */
+  --c-immu:   #5B7A8A;   /* inmuno     → azul plomo     */
+  --c-repro:  #8A7A8A;   /* repro      → malva apagado  */
+  --c-sense:  #7A8A9A;   /* sentidos   → gris azulado   */
+
+  /* Texto */
+  --t1: #E8EAF0;
+  --t2: #9BA3B2;
+  --t3: #5C6472;
+  --t4: #373E4A;
+
+  /* Bordes */
+  --b1: #2A2F38;
+  --b2: #222830;
+}
+
+*, *::before, *::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -11,75 +54,55 @@
 html, body {
   max-width: 100vw;
   overflow-x: hidden;
-  background: #070d1a;
-  color: #e2e8f0;
+  background: var(--bg-1);
+  color: var(--t1);
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
+/* Scrollbar discreta */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-0); }
+::-webkit-scrollbar-thumb { background: var(--b1); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--bg-4); }
+
+/* Font display */
 .font-display {
   font-family: var(--font-display), var(--font-inter), sans-serif;
   letter-spacing: -0.02em;
 }
 
-
+/* Animación de entrada */
 @keyframes pageFadeIn {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(5px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+main { animation: pageFadeIn 0.2s ease-out both; }
 
-main {
-  animation: pageFadeIn 0.2s ease-out both;
-}
-
-html {
-  background: #070d1a;
-}
-
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #0b1120; }
-::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #2d5282; }
-
-/* Section accent line pulse on scroll-into-view */
-@keyframes accentExpand {
-  from { transform: scaleX(0); opacity: 0; }
-  to   { transform: scaleX(1); opacity: 1; }
-}
-
-/* Hero text gradient animation */
-@keyframes gradientShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Card hover elevation */
+/* Card hover */
 .card-hover {
-  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.2s cubic-bezier(0.22,1,0.36,1);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.18s cubic-bezier(0.22,1,0.36,1);
 }
 .card-hover:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45), 0 24px 48px -20px rgba(0, 0, 0, 0.7);
-  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.5), 0 16px 32px -12px rgba(0,0,0,.6);
+  transform: translateY(-2px);
 }
-.card-hover:active {
-  transform: translateY(-1px) scale(0.995);
-}
+.card-hover:active { transform: translateY(-1px) scale(0.997); }
 
-/* Decorative DNA helix used in hero */
+/* Float animation (célula en hero) */
 @keyframes floatSlow {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%      { transform: translateY(-10px) rotate(2deg); }
+  50%      { transform: translateY(-8px) rotate(1.5deg); }
 }
 .float-slow { animation: floatSlow 9s ease-in-out infinite; }
 
-/* Legacy glow classes — toned down */
-.glow-green  { box-shadow: 0 4px 16px rgba(22, 163, 74, 0.15); }
-.glow-teal   { box-shadow: 0 4px 16px rgba(13, 148, 136, 0.15); }
-.glow-purple { box-shadow: 0 4px 16px rgba(124, 58, 237, 0.15); }
+/* Glow classes — todos apagados */
+.glow-green  { box-shadow: 0 4px 16px rgba(91,138,111,0.12); }
+.glow-teal   { box-shadow: 0 4px 16px rgba(92,122,138,0.12); }
+.glow-purple { box-shadow: 0 4px 16px rgba(122,107,154,0.12); }
 
-/* Viewer layout — mobile-first, responsive */
+/* ── VIEWER LAYOUT ── */
 .viewer-layout {
   display: flex;
   flex-direction: column;
@@ -91,51 +114,42 @@ html {
   height: 45vh;
   min-height: 200px;
   position: relative;
-  background: #000;
+  background: var(--bg-0);
 }
 .viewer-panel {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  background: #0b1120;
-  border-top: 1px solid #1e293b;
+  background: var(--bg-1);
+  border-top: 1px solid var(--b1);
   min-height: 0;
 }
 
-/* Phone in landscape: side-by-side (model left, panel right) */
+/* Landscape en móvil */
 @media (orientation: landscape) and (max-height: 520px) {
   .viewer-layout { flex-direction: row; }
   .viewer-3d { flex: 1; height: 100%; min-height: 0; }
   .viewer-panel {
-    flex: none;
-    width: 260px;
-    min-width: 260px;
-    height: 100%;
-    border-top: none;
-    border-left: 1px solid #1e293b;
+    flex: none; width: 260px; min-width: 260px;
+    height: 100%; border-top: none;
+    border-left: 1px solid var(--b1);
   }
 }
 
-/* Desktop: wider panel */
+/* Desktop */
 @media (min-width: 1280px) {
   .viewer-layout { flex-direction: row; }
   .viewer-3d { flex: 1; height: 100%; min-height: 0; }
   .viewer-panel {
-    flex: none;
-    width: 340px;
-    min-width: 340px;
-    height: 100%;
-    border-top: none;
-    border-left: 1px solid #1e293b;
+    flex: none; width: 340px; min-width: 340px;
+    height: 100%; border-top: none;
+    border-left: 1px solid var(--b1);
   }
 }
 
-
+/* Slide up (notas) */
 @keyframes slideUp {
   from { transform: translateY(100%); }
   to   { transform: translateY(0); }
 }
-
-.notas-sheet {
-  animation: slideUp 0.28s cubic-bezier(0.32, 0.72, 0, 1) both;
-}
+.notas-sheet { animation: slideUp 0.28s cubic-bezier(0.32,0.72,0,1) both; }

@@ -9,7 +9,7 @@ export default function TejidosViewer() {
       uid="ddc40bb0900544959f02d3ff83c32615"
       title="Tejidos"
       subtitle="🔬 Histología Básica"
-      accent="#a78bfa"
+      accent="5B7A8A"
       intro="Explorá los tipos de tejidos animales y vegetales: estructura, función y ejemplos en 3D."
       structures={[]}
       models={[
@@ -29,14 +29,14 @@ export default function TejidosViewer() {
             {
               name: "Tejido Conectivo",
               emoji: "🕸️",
-              color: "#7c3aed",
+              color: "#6A5A8A",
               simple: "Tejido que une, sostiene y rellena los espacios entre otros tejidos. Incluye el hueso, el cartílago y la sangre.",
               full: "El tejido conectivo tiene abundante matriz extracelular (fibras de colágeno, elastina y sustancia fundamental). Sus células incluyen fibroblastos, macrófagos, mastocitos y células adiposas. Subtipos: laxo (relleno), denso regular (tendones), denso irregular (dermis), reticular, adiposo, cartílago, hueso y sangre.",
             },
             {
               name: "Tejido Muscular Liso",
               emoji: "💫",
-              color: "#8b5cf6",
+              color: "#7A6B9A",
               simple: "Forma las paredes de los órganos internos como el estómago, los intestinos y los vasos sanguíneos. Se mueve solo, sin que lo controlemos.",
               full: "El tejido muscular liso está formado por células fusiformes uninucleadas sin estrías transversales. Es involuntario, controlado por el sistema nervioso autónomo y hormonas. Presenta contracción lenta y sostenida. Se encuentra en las paredes del tubo digestivo, vasos sanguíneos, útero y vías respiratorias.",
             },
@@ -64,7 +64,7 @@ export default function TejidosViewer() {
             {
               name: "Tejido Adiposo",
               emoji: "🟡",
-              color: "#7c3aed",
+              color: "#6A5A8A",
               simple: "Tejido que almacena grasa. Sirve como reserva de energía, aislante térmico y protección de órganos.",
               full: "El tejido adiposo es un tejido conectivo especializado formado por adipocitos, células esféricas con una gran vacuola lipídica que desplaza el núcleo a la periferia. El tejido adiposo blanco almacena energía y produce hormonas (leptina, adiponectina). El tejido adiposo pardo genera calor por termogénesis (importante en recién nacidos y mamíferos que hibernan).",
             },
@@ -93,14 +93,14 @@ export default function TejidosViewer() {
             {
               name: "Tejido Parenquimático",
               emoji: "🍃",
-              color: "#7c3aed",
+              color: "#6A5A8A",
               simple: "El tejido más abundante de las plantas. Hace la fotosíntesis en las hojas y almacena nutrientes en raíces y frutos.",
               full: "El parénquima está formado por células vivas, isodiamétricas, con pared celular delgada y gran vacuola central. Subtipos: clorenquima (fotosíntesis, en hojas), parénquima de reserva (almacena almidón, aceites, raíces), parénquima acuífero (almacena agua) y parénquima aerífero (aerénquima, en plantas acuáticas). Es el tejido más plástico y puede desdiferenciarse.",
             },
             {
               name: "Tejido Vascular (Xilema)",
               emoji: "💧",
-              color: "#8b5cf6",
+              color: "#7A6B9A",
               simple: "Tejido que conduce el agua y los minerales desde las raíces hasta las hojas. Es como los 'caños de agua' de la planta.",
               full: "El xilema conduce el agua y los solutos minerales desde la raíz hacia las partes aéreas (flujo ascendente). Está compuesto por traqueidas y elementos de vaso (muertos al madurar, con pared lignificada y perforaciones). La teoría de la cohesión-tensión explica el transporte: la evaporación en hojas crea tensión que 'tira' del agua desde la raíz.",
             },
@@ -128,14 +128,14 @@ export default function TejidosViewer() {
             {
               name: "Tejido de Sostén (Esclerénquima)",
               emoji: "🪨",
-              color: "#7c3aed",
+              color: "#6A5A8A",
               simple: "Tejido de soporte con células de pared muy dura y lignificada. Muere al madurar pero sigue dando estructura a la planta.",
               full: "El esclerénquima tiene células muertas al madurar con pared secundaria gruesa impregnada de lignina. Subtipos: fibras (largas y fusiformes, en tejidos vasculares, corteza) y esclereidas (células pétreas, en cáscara de nueces, pepitas de pera). Proporciona soporte rígido y protección mecánica en partes maduras de la planta.",
             },
             {
               name: "Tejido Secretor",
               emoji: "💧",
-              color: "#8b5cf6",
+              color: "#7A6B9A",
               simple: "Tejido vegetal especializado en producir y liberar sustancias como néctar, aceites esenciales, látex o resina.",
               full: "Los tejidos secretores producen y liberan diversas sustancias. Incluyen tricomas glandulares (pelos secretores de aceites en menta, cannabis), idioblastos (células aisladas con aceites, cristales o taninos), canales secretores (resina en pinos, látex en ficus) y nectarios (producen néctar para atraer polinizadores). Funcionan en defensa, atracción de polinizadores y comunicación química.",
             },

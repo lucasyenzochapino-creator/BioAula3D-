@@ -9,7 +9,7 @@ export default function SistemaOseoViewer() {
       uid="11b57ebfcf6c4e3b88d0cbe618ee70a7"
       title="Sistema Óseo"
       subtitle="🦴 Esqueleto Humano"
-      accent="#94a3b8"
+      accent="8A6B8A"
       intro="Explorá el esqueleto humano en 3D: 206 huesos que sostienen, protegen y permiten el movimiento. Tocá los puntos ⓘ o las estructuras de abajo."
       structures={[
         {
@@ -29,7 +29,7 @@ export default function SistemaOseoViewer() {
         {
           name: "Costillas y Esternón",
           emoji: "🛡️",
-          color: "#94a3b8",
+          color: "#5C6472",
           simple: "Las costillas forman la caja que protege el corazón y los pulmones.",
           full: "12 pares de costillas articuladas con vértebras torácicas. Las 7 primeras son 'verdaderas' (unidas al esternón directamente). El esternón tiene manubrio, cuerpo y apéndice xifoides. La caja torácica permite movimientos respiratorios.",
         },
@@ -50,7 +50,7 @@ export default function SistemaOseoViewer() {
         {
           name: "Fémur",
           emoji: "🦴",
-          color: "#64748b",
+          color: "#4A5260",
           simple: "Es el hueso más largo del cuerpo, está en el muslo.",
           full: "Hueso más largo y resistente del esqueleto (~50 cm). La cabeza femoral forma la articulación de la cadera (coxofemoral). Los cóndilos femorales se articulan con la tibia en la rodilla. Zona de inserción de músculos cuádriceps y glúteos.",
         },

@@ -9,7 +9,7 @@ export default function HerenciaGeneticaViewer() {
       uid="4d57784b0d4841d0ab3d43d526df1c3f"
       title="Herencia Genética"
       subtitle="🧬 Genética y Transmisión de Caracteres"
-      accent="#f59e0b"
+      accent="6B7FA8"
       intro="La herencia genética explica cómo los padres transmiten sus características a los hijos a través de los genes. Explorá el ADN, los cromosomas y las leyes de Mendel."
       structures={[
         {
@@ -64,7 +64,7 @@ export default function HerenciaGeneticaViewer() {
         {
           name: "Cromosoma y Cariotipo",
           emoji: "🧵",
-          color: "#fbbf24",
+          color: "#9A8A6C",
           simple: "Los cromosomas son los 'paquetes' donde está guardado el ADN. Los humanos tenemos 46 (23 pares).",
           full: "Los humanos tienen 2n=46 cromosomas: 22 pares de autosomas + 1 par sexual (XX femenino, XY masculino). El cariotipo es el conjunto de cromosomas ordenados por tamaño y morfología. La trisomía 21 (síndrome de Down) surge por no disyunción en la meiosis. El bandeo G permite identificar cada cromosoma y detectar reordenamientos estructurales.",
         },

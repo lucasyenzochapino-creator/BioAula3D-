@@ -9,27 +9,27 @@ export default function CerebroViewer() {
       uid="28c8971e11334e8b97a2a0d6235992e8"
       title="Cerebro Humano"
       subtitle="🧠 Sistema Nervioso Central"
-      accent="#c084fc"
+      accent="7A6B9A"
       intro="Explorá la anatomía del cerebro humano en 3D con sus partes etiquetadas. Tocá los puntos ⓘ o las estructuras de abajo."
       structures={[
         {
           name: "Corteza Cerebral",
           emoji: "🧠",
-          color: "#a855f7",
+          color: "#7A6B9A",
           simple: "Es la capa exterior del cerebro donde se procesa el pensamiento, la memoria y los sentidos.",
           full: "Capa de sustancia gris (~2-4 mm) con ~16.000 millones de neuronas. Organizada en lóbulos: frontal (razonamiento, movimiento), parietal (sensación), temporal (audición, memoria) y occipital (visión). Tiene circunvoluciones que aumentan la superficie.",
         },
         {
           name: "Lóbulo Frontal",
           emoji: "💭",
-          color: "#8b5cf6",
+          color: "#7A6B9A",
           simple: "Controla el movimiento, las decisiones, el lenguaje y la personalidad.",
           full: "Mayor lóbulo cerebral. Contiene la corteza motora primaria (control voluntario del movimiento), el área de Broca (producción del lenguaje) y la corteza prefrontal (razonamiento, planificación, control de impulsos).",
         },
         {
           name: "Lóbulo Parietal",
           emoji: "👋",
-          color: "#7c3aed",
+          color: "#6A5A8A",
           simple: "Procesa las sensaciones del cuerpo: tacto, temperatura y dolor.",
           full: "Contiene la corteza somatosensorial primaria (procesa tacto, propiocepción, temperatura y dolor). Integra información sensorial para la percepción espacial. El área de Wernicke (comprensión del lenguaje) está en el límite parieto-temporal.",
         },

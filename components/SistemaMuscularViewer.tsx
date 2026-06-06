@@ -9,7 +9,7 @@ export default function SistemaMuscularViewer() {
       uid="31b40fd809b14665b93773936d67c52c"
       title="Sistema Muscular"
       subtitle="💪 Músculos del Cuerpo"
-      accent="#f87171"
+      accent="8A6B8A"
       intro="Más de 600 músculos dan movimiento, postura y calor al cuerpo. Explorá los principales grupos musculares en 3D."
       structures={[
         {
@@ -29,21 +29,21 @@ export default function SistemaMuscularViewer() {
         {
           name: "Músculo Liso",
           emoji: "🌀",
-          color: "#f97316",
+          color: "#8A7A5C",
           simple: "Son los músculos de los órganos internos: trabajan solos sin que los controlemos.",
           full: "Tejido muscular no estriado, involuntario. Presente en paredes de órganos huecos (intestinos, vasos sanguíneos, vejiga). Controlado por el sistema nervioso autónomo y hormonas. La contracción es lenta y sostenida.",
         },
         {
           name: "Sarcómero",
           emoji: "🔬",
-          color: "#fbbf24",
+          color: "#9A8A6C",
           simple: "Es la unidad más pequeña del músculo que produce la contracción.",
           full: "Unidad estructural y funcional del músculo estriado. Delimitado por dos discos Z. Contiene filamentos gruesos de miosina (banda A) y delgados de actina (banda I). Durante la contracción, los filamentos se deslizan entre sí sin cambiar de longitud.",
         },
         {
           name: "Actina y Miosina",
           emoji: "🔗",
-          color: "#fb923c",
+          color: "#9A8A6C",
           simple: "Son las proteínas que se enganchan entre sí para hacer que el músculo se acorte.",
           full: "Actina (filamento delgado): proteína globular que forma doble hélice. Miosina (filamento grueso): tiene 'cabezas' que se unen a actina y usan ATP para generar fuerza. El ciclo de puentes cruzados (unión, giro, liberación) produce la contracción.",
         },

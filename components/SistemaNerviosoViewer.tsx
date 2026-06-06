@@ -9,7 +9,7 @@ export default function SistemaNerviosoViewer() {
       uid="2e6be1399756494b9f185ce8c5900911"
       title="Sistema Nervioso"
       subtitle="🧠 Neurociencia"
-      accent="#a78bfa"
+      accent="7A6B9A"
       intro="Explorá el sistema nervioso completo en 3D: cerebro, médula espinal y nervios distribuidos por todo el cuerpo. Cambiá entre el sistema completo y la neurona individual."
       structures={[]}
       models={[
@@ -22,14 +22,14 @@ export default function SistemaNerviosoViewer() {
             {
               name: "Cerebro",
               emoji: "🧠",
-              color: "#a855f7",
+              color: "#7A6B9A",
               simple: "Es el órgano principal del sistema nervioso central: controla el pensamiento, los sentidos y el movimiento.",
               full: "Masa de ~1,4 kg dividida en dos hemisferios y cuatro lóbulos. La corteza cerebral (sustancia gris) procesa información sensorial y motora. La sustancia blanca conduce señales entre regiones. Alberga ~86.000 millones de neuronas.",
             },
             {
               name: "Cerebelo",
               emoji: "⚖️",
-              color: "#7c3aed",
+              color: "#6A5A8A",
               simple: "Coordina el equilibrio y la precisión de los movimientos.",
               full: "Localizado en la fosa craneal posterior. Tiene más neuronas que el resto del cerebro. Recibe información del córtex motor y la integra con señales propioceptivas y vestibulares para afinar el movimiento.",
             },
@@ -43,7 +43,7 @@ export default function SistemaNerviosoViewer() {
             {
               name: "Médula Espinal",
               emoji: "🔗",
-              color: "#8b5cf6",
+              color: "#7A6B9A",
               simple: "Es el cable central que conecta el cerebro con el resto del cuerpo, transmitiendo señales en ambas direcciones.",
               full: "Cilindro de tejido nervioso de ~45 cm dentro del canal vertebral. Sustancia gris central (neuronas) rodeada de sustancia blanca (axones mielinizados). Transmite señales sensoriales al cerebro y motoras desde él. Media reflejos espinales.",
             },
@@ -86,7 +86,7 @@ export default function SistemaNerviosoViewer() {
             {
               name: "Cuerpo Celular (Soma)",
               emoji: "🟣",
-              color: "#a855f7",
+              color: "#7A6B9A",
               simple: "Es el 'centro' de la neurona, donde vive el núcleo y se produce la energía.",
               full: "El soma contiene el núcleo, el retículo endoplasmático rugoso (cuerpos de Nissl), mitocondrias y el aparato de Golgi. Es el centro metabólico que sostiene toda la actividad de la neurona.",
             },
@@ -100,7 +100,7 @@ export default function SistemaNerviosoViewer() {
             {
               name: "Axón",
               emoji: "🟢",
-              color: "#22c55e",
+              color: "#5B8A6F",
               simple: "Es el 'cable' largo que lleva el mensaje eléctrico desde la neurona hacia otras células.",
               full: "Prolongación única y larga que conduce el potencial de acción desde el cono axónico hasta la terminal. Puede medir desde micrómetros hasta más de un metro. El transporte axónico (kinesinas/dineínas) mueve vesículas y orgánulos a lo largo del axón.",
             },
@@ -135,7 +135,7 @@ export default function SistemaNerviosoViewer() {
             {
               name: "Potencial de Acción",
               emoji: "📡",
-              color: "#fb923c",
+              color: "#9A8A6C",
               simple: "La señal eléctrica que viaja por el axón: cuando supera el umbral, se dispara todo o nada.",
               full: "Cambio rápido del potencial de membrana (~-70 mV a +40 mV). Fase de despolarización: canales de Na⁺ se abren. Repolarización: canales de K⁺. Período refractario: la neurona no puede dispararse de nuevo inmediatamente. Es una señal todo-o-nada.",
             },
@@ -150,7 +150,7 @@ export default function SistemaNerviosoViewer() {
             {
               name: "Cuerpo Celular (Soma)",
               emoji: "🟣",
-              color: "#a855f7",
+              color: "#7A6B9A",
               simple: "Es el 'centro' de la neurona, donde vive el núcleo y se produce la energía.",
               full: "El soma contiene el núcleo, el retículo endoplasmático rugoso (cuerpos de Nissl), mitocondrias y el aparato de Golgi. Es el centro metabólico que sostiene toda la actividad de la neurona.",
             },
@@ -164,7 +164,7 @@ export default function SistemaNerviosoViewer() {
             {
               name: "Axón",
               emoji: "🟢",
-              color: "#22c55e",
+              color: "#5B8A6F",
               simple: "Es el 'cable' largo que lleva el mensaje eléctrico desde la neurona.",
               full: "Prolongación única y larga que conduce el potencial de acción desde el cono axónico hasta la terminal. Su longitud varía de micrómetros a más de un metro. El transporte axónico (kinesinas/dineínas) mueve vesículas y orgánulos.",
             },
@@ -199,7 +199,7 @@ export default function SistemaNerviosoViewer() {
             {
               name: "Potencial de Acción",
               emoji: "📡",
-              color: "#fb923c",
+              color: "#9A8A6C",
               simple: "Es la señal eléctrica que viaja por el axón: cuando el umbral se supera, se dispara todo o nada.",
               full: "Cambio rápido del potencial de membrana (~-70 mV a +40 mV). Fase de despolarización: canales de Na⁺ se abren. Repolarización: canales de K⁺. Período refractario: la neurona no puede dispararse de nuevo inmediatamente. Conduce de forma todo-o-nada.",
             },

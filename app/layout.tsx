@@ -38,7 +38,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b1120",
+  themeColor: "#111214",
+  // Forzar redetección en PWA instaladas
   width: "device-width",
   initialScale: 1,
   minimumScale: 1,
@@ -57,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://media.sketchfab.com" />
         <link rel="dns-prefetch" href="https://static.sketchfab.com" />
       </head>
-      <body className="text-slate-100 min-h-screen" style={{ background: "#070d1a" }}>
+      <body className="text-[#E8EAF0] min-h-screen" style={{ background: "#17191C" }}>
         <Navbar />
         <OrientationLock />
         <main>{children}</main>
