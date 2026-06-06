@@ -97,6 +97,29 @@ main { animation: pageFadeIn 0.15s ease-out both; }
 }
 .float-slow { animation: floatSlow 9s ease-in-out infinite; }
 
+/* Biology character parade */
+@keyframes parade {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.parade-track {
+  display: flex;
+  width: max-content;
+  animation: parade 40s linear infinite;
+  will-change: transform;
+}
+.parade-track:hover { animation-play-state: paused; }
+
+@keyframes charBob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+.parade-char-0 { animation: charBob 2.0s ease-in-out 0.0s infinite; }
+.parade-char-1 { animation: charBob 2.4s ease-in-out 0.4s infinite; }
+.parade-char-2 { animation: charBob 1.8s ease-in-out 0.9s infinite; }
+.parade-char-3 { animation: charBob 2.6s ease-in-out 0.2s infinite; }
+.parade-char-4 { animation: charBob 1.6s ease-in-out 1.2s infinite; }
+
 /* Glow classes — todos apagados */
 .glow-green  { box-shadow: 0 4px 16px rgba(91,138,111,0.12); }
 .glow-teal   { box-shadow: 0 4px 16px rgba(92,122,138,0.12); }
