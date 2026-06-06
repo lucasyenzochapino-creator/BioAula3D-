@@ -75,10 +75,10 @@ html, body {
 
 /* Animación de entrada */
 @keyframes pageFadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { transform: translateY(4px); }
+  to   { transform: translateY(0); }
 }
-main { animation: pageFadeIn 0.2s ease-out both; }
+main { animation: pageFadeIn 0.15s ease-out both; }
 
 /* Card hover */
 .card-hover {

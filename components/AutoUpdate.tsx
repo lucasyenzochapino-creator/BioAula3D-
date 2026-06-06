@@ -3,9 +3,15 @@ import { useEffect } from "react";
 
 export default function AutoUpdate() {
   useEffect(() => {
+    let lastCheck = 0;
+
     const run = async () => {
+      const now = Date.now();
+      if (now - lastCheck < 30_000) return;
+      lastCheck = now;
+
       try {
-        const res = await fetch(`/version.json?t=${Date.now()}`, { cache: "no-store" });
+        const res = await fetch(`/version.json?t=${now}`, { cache: "no-store" });
         if (!res.ok) return;
         const { version } = await res.json();
         const stored = localStorage.getItem("bioaula-version");
@@ -33,7 +39,6 @@ export default function AutoUpdate() {
 
     run();
 
-    // También verificar al volver al foco de la app (desde background)
     const onVisible = () => {
       if (document.visibilityState === "visible") run();
     };
