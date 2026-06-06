@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import PWAUpdatePrompt from "@/components/PWAUpdatePrompt";
 import OrientationLock from "@/components/OrientationLock";
+import AutoUpdate from "@/components/AutoUpdate";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://static.sketchfab.com" />
       </head>
       <body className="text-[#E8EAF0] min-h-screen" style={{ background: "#17191C" }}>
+        <AutoUpdate />
         <Navbar />
         <OrientationLock />
         <main>{children}</main>
