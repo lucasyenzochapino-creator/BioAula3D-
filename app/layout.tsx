@@ -49,6 +49,14 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${sora.variable} ${inter.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://sketchfab.com" />
+        <link rel="preconnect" href="https://media.sketchfab.com" crossOrigin="" />
+        <link rel="preconnect" href="https://static.sketchfab.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://sketchfab.com" />
+        <link rel="dns-prefetch" href="https://media.sketchfab.com" />
+        <link rel="dns-prefetch" href="https://static.sketchfab.com" />
+      </head>
       <body className="text-slate-100 min-h-screen" style={{ background: "#070d1a" }}>
         <Navbar />
         <OrientationLock />
