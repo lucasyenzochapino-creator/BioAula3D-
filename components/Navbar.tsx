@@ -21,6 +21,22 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [path]);
 
+  // Cuando el drawer se abre, empuja una entrada en el historial para que
+  // el botón "atrás" de Android cierre el drawer en lugar de salir de la app.
+  useEffect(() => {
+    if (menuOpen) {
+      window.history.pushState({ drawer: true }, "");
+    }
+  }, [menuOpen]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      if (menuOpen) setMenuOpen(false);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [menuOpen]);
+
   const handleInstall = async () => {
     if (!installPrompt) return;
     installPrompt.prompt();
