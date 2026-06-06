@@ -19,7 +19,7 @@ interface Question {
 const MODULE_STYLE: Record<string, { emoji: string; gradient: string; color: string }> = {
   "Célula Animal":           { emoji: "🔬", gradient: "from-green-600 to-teal-700",    color: "#4ade80" },
   "ADN":                     { emoji: "🧬", gradient: "from-blue-600 to-purple-700",   color: "#60a5fa" },
-  "Neurona":                 { emoji: "🧠", gradient: "from-purple-600 to-pink-700",   color: "#a78bfa" },
+  "Sistema Nervioso":        { emoji: "🧠", gradient: "from-purple-600 to-pink-700",   color: "#a78bfa" },
   "Célula Vegetal":          { emoji: "🌿", gradient: "from-emerald-600 to-green-700", color: "#34d399" },
   "Cuerpo Humano":           { emoji: "🫀", gradient: "from-red-600 to-orange-700",    color: "#f87171" },
   "Corazón":                 { emoji: "🫀", gradient: "from-red-600 to-rose-700",      color: "#fb7185" },
@@ -46,7 +46,7 @@ const MODULE_STYLE: Record<string, { emoji: string; gradient: string; color: str
 const MODULE_UID: Record<string, string> = {
   "Célula Animal":           "0d9f7f4257224975b2ef83a283709b2f",
   "ADN":                     "212e5422645f4432a61dc2f3aac3c8c8",
-  "Neurona":                 "2e6be1399756494b9f185ce8c5900911",
+  "Sistema Nervioso":        "2e6be1399756494b9f185ce8c5900911",
   "Célula Vegetal":          "0640c7a14f41400fbdac382c7de1d776",
   "Cuerpo Humano":           "035316622877438cb62de673b8f19217",
   "Corazón":                 "10472481071e4375b8233289c277d411",
@@ -69,7 +69,7 @@ const questions: Question[] = [
   { id: 1, level: "primaria", module: "Célula Animal", question: "¿Cuál es la función principal de la mitocondria?", options: ["Producir energía (ATP)", "Guardar el ADN", "Fabricar proteínas", "Digerir bacterias"], answer: 0, explanation: "La mitocondria es la 'central energética' — convierte los nutrientes en ATP, que es la energía que usa la célula para todo." },
   { id: 2, level: "primaria", module: "ADN", question: "¿Qué forma tiene la molécula de ADN?", options: ["Esfera", "Doble hélice (escalera retorcida)", "Cubo", "Triángulo"], answer: 1, explanation: "El ADN tiene forma de doble hélice, como una escalera en espiral. Fue descubierta por Watson y Crick en 1953." },
   { id: 3, level: "primaria", module: "Célula Vegetal", question: "¿Qué orgánulo hace la fotosíntesis?", options: ["Mitocondria", "Ribosoma", "Cloroplasto", "Núcleo"], answer: 2, explanation: "El cloroplasto capta la luz del sol y la convierte en azúcar (glucosa). Por eso las plantas no necesitan comer." },
-  { id: 4, level: "primaria", module: "Neurona", question: "¿Cómo se llaman las 'antenas' de la neurona que reciben señales?", options: ["Axón", "Mielina", "Dendritas", "Núcleo"], answer: 2, explanation: "Las dendritas son las ramificaciones cortas de la neurona que reciben mensajes de otras neuronas." },
+  { id: 4, level: "primaria", module: "Sistema Nervioso", question: "¿Cómo se llaman las 'antenas' de la neurona que reciben señales?", options: ["Axón", "Mielina", "Dendritas", "Núcleo"], answer: 2, explanation: "Las dendritas son las ramificaciones cortas de la neurona que reciben mensajes de otras neuronas." },
   { id: 5, level: "primaria", module: "Cuerpo Humano", question: "¿Qué órgano bombea la sangre por todo el cuerpo?", options: ["Pulmón", "Hígado", "Estómago", "Corazón"], answer: 3, explanation: "El corazón late unas 70 veces por minuto y bombea sangre con oxígeno a todos los órganos del cuerpo." },
   { id: 6, level: "primaria", module: "Célula Animal", question: "¿Dónde está guardado el ADN de la célula?", options: ["Mitocondria", "Núcleo", "Membrana", "Lisosoma"], answer: 1, explanation: "El núcleo es como la 'caja fuerte' de la célula — dentro está el ADN con todas las instrucciones de la vida." },
   { id: 7, level: "primaria", module: "ADN", question: "¿Cuántas letras (bases) tiene el código del ADN?", options: ["2", "4", "6", "26"], answer: 1, explanation: "El ADN usa solo 4 'letras': A (Adenina), T (Timina), G (Guanina) y C (Citosina). ¡Con solo 4 letras se escribe toda la vida!" },
@@ -82,8 +82,8 @@ const questions: Question[] = [
   { id: 12, level: "secundaria", module: "ADN", question: "¿Cuántos puentes de hidrógeno unen el par G-C?", options: ["1", "2", "3", "4"], answer: 2, explanation: "G-C tienen 3 puentes de hidrógeno, por eso son más estables que A-T (2 puentes). Mayor proporción G-C = mayor temperatura de fusión del ADN." },
   { id: 13, level: "secundaria", module: "Célula Animal", question: "¿En qué orgánulo ocurre la fosforilación oxidativa?", options: ["Ribosoma", "Aparato de Golgi", "Mitocondria", "Retículo endoplásmico"], answer: 2, explanation: "La fosforilación oxidativa ocurre en la membrana interna de la mitocondria (cadena respiratoria), generando la mayor parte del ATP celular." },
   { id: 14, level: "secundaria", module: "Célula Animal", question: "¿Cuál es la diferencia entre el retículo endoplásmico rugoso y el liso?", options: ["El rugoso produce energía", "El rugoso tiene ribosomas adosados", "El liso contiene ADN", "El liso realiza la fotosíntesis"], answer: 1, explanation: "El RER (rugoso) tiene ribosomas que sintetizan proteínas de secreción. El REL (liso) sintetiza lípidos y detoxifica sustancias." },
-  { id: 15, level: "secundaria", module: "Neurona", question: "¿Qué permite la vaina de mielina en la conducción nerviosa?", options: ["Bloquea el impulso", "Permite conducción saltatoria más rápida", "Produce neurotransmisores", "Recibe señales dendríticas"], answer: 1, explanation: "La mielina permite la conducción saltatoria: el potencial de acción 'salta' entre nódulos de Ranvier, aumentando la velocidad hasta 120 m/s. La esclerosis múltiple destruye la mielina, enlenteciendo o bloqueando la conducción nerviosa." },
-  { id: 16, level: "secundaria", module: "Neurona", question: "¿Qué ion dispara el potencial de acción en la neurona?", options: ["K⁺ saliendo", "Na⁺ entrando", "Ca²⁺ saliendo", "Cl⁻ entrando"], answer: 1, explanation: "La apertura de canales de Na⁺ voltaje-dependientes permite la entrada masiva de sodio, despolarizando la membrana hasta +40 mV y desencadenando el potencial de acción." },
+  { id: 15, level: "secundaria", module: "Sistema Nervioso", question: "¿Qué permite la vaina de mielina en la conducción nerviosa?", options: ["Bloquea el impulso", "Permite conducción saltatoria más rápida", "Produce neurotransmisores", "Recibe señales dendríticas"], answer: 1, explanation: "La mielina permite la conducción saltatoria: el potencial de acción 'salta' entre nódulos de Ranvier, aumentando la velocidad hasta 120 m/s. La esclerosis múltiple destruye la mielina, enlenteciendo o bloqueando la conducción nerviosa." },
+  { id: 16, level: "secundaria", module: "Sistema Nervioso", question: "¿Qué ion dispara el potencial de acción en la neurona?", options: ["K⁺ saliendo", "Na⁺ entrando", "Ca²⁺ saliendo", "Cl⁻ entrando"], answer: 1, explanation: "La apertura de canales de Na⁺ voltaje-dependientes permite la entrada masiva de sodio, despolarizando la membrana hasta +40 mV y desencadenando el potencial de acción." },
   { id: 17, level: "secundaria", module: "Célula Vegetal", question: "¿Qué fase de la fotosíntesis ocurre en el estroma del cloroplasto?", options: ["Fase luminosa", "Fotosistema I", "Ciclo de Calvin (fase oscura)", "Fotosistema II"], answer: 2, explanation: "El ciclo de Calvin (o fase oscura) ocurre en el estroma usando CO₂, ATP y NADPH de la fase luminosa para sintetizar glucosa." },
   { id: 18, level: "secundaria", module: "Célula Vegetal", question: "¿Cuál es la función principal de los plasmodesmos?", options: ["Realizar fotosíntesis", "Conectar células vecinas para transporte simplástico", "Almacenar agua", "Sintetizar proteínas"], answer: 1, explanation: "Los plasmodesmos son canales entre células vegetales que permiten el transporte simplástico de agua, nutrientes y señales sin cruzar membranas." },
   { id: 19, level: "secundaria", module: "Cuerpo Humano", question: "¿Qué estructura del riñón realiza la filtración de la sangre?", options: ["Uréter", "Pelvis renal", "Nefrona", "Médula renal"], answer: 2, explanation: "Cada riñón contiene ~1 millón de nefronas. Filtran ~180 L de plasma/día y reabsorben el 99%, produciendo ~1,5 L de orina final." },
@@ -406,7 +406,7 @@ export default function QuizPage() {
   if (finished) {
     const pct = Math.round((score / filtered.length) * 100);
     const moduleLinks: Record<string, string> = {
-      "Célula Animal": "/celula", "ADN": "/adn", "Neurona": "/sistema-nervioso",
+      "Célula Animal": "/celula", "ADN": "/adn", "Sistema Nervioso": "/sistema-nervioso",
       "Célula Vegetal": "/planta", "Cuerpo Humano": "/cuerpo-humano",
       "Corazón": "/corazon", "Cerebro": "/cerebro",
       "Sistema Respiratorio": "/pulmones", "Sistema Digestivo": "/digestivo",

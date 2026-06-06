@@ -46,7 +46,9 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
   const [activeModelIdx, setActiveModelIdx] = useState(0);
   const [resetKey, setResetKey] = useState(0);
   const [loaded, setLoaded] = useState(false);
+  const [loadError, setLoadError] = useState(false);
   const [notasOpen, setNotasOpen] = useState(false);
+  const loadTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [notasDate, setNotasDate] = useState(() => new Date().toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric" }));
   const [notasText, setNotasText] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
@@ -58,6 +60,13 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
 
   useEffect(() => {
     setLoaded(false);
+    setLoadError(false);
+    if (loadTimerRef.current) clearTimeout(loadTimerRef.current);
+    if (!activeImageUrl) {
+      loadTimerRef.current = setTimeout(() => setLoadError(true), 20000);
+    }
+    return () => { if (loadTimerRef.current) clearTimeout(loadTimerRef.current); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeUid, activeImageUrl, resetKey]);
 
   useEffect(() => {
@@ -229,16 +238,33 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
             title={title}
             allow="autoplay; fullscreen; xr-spatial-tracking"
             allowFullScreen
-            onLoad={() => setLoaded(true)}
+            onLoad={() => { setLoaded(true); if (loadTimerRef.current) clearTimeout(loadTimerRef.current); }}
             style={{ width: "100%", height: "100%", border: "none", display: "block" }}
           />
         )}
-        {/* Loading overlay — only for iframe */}
+        {/* Loading / error overlay — only for iframe */}
         {!activeImageUrl && !loaded && (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 z-20 gap-3">
-            <div className="w-9 h-9 rounded-full border-2 border-slate-700 animate-spin"
-              style={{ borderTopColor: accent }} />
-            <span className="text-slate-400 text-xs">Cargando modelo 3D…</span>
+            {loadError ? (
+              <>
+                <span className="text-3xl">🌐</span>
+                <span className="text-slate-300 text-sm font-semibold">No se pudo cargar el modelo 3D</span>
+                <span className="text-slate-500 text-xs text-center px-6">Revisá tu conexión a internet</span>
+                <button
+                  onClick={() => setResetKey(k => k + 1)}
+                  className="mt-2 px-4 py-2 rounded-lg text-xs font-semibold text-white transition-colors"
+                  style={{ background: accent }}
+                >
+                  Reintentar
+                </button>
+              </>
+            ) : (
+              <>
+                <div className="w-9 h-9 rounded-full border-2 border-slate-700 animate-spin"
+                  style={{ borderTopColor: accent }} />
+                <span className="text-slate-400 text-xs">Cargando modelo 3D…</span>
+              </>
+            )}
           </div>
         )}
         {presenting ? (
