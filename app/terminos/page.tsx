@@ -40,7 +40,7 @@ export default function Terminos() {
             <h2 className="text-[15px] font-semibold text-white mb-2">2. Titular</h2>
             <p>
               BioAula3D es propiedad de <strong className="text-slate-200">Enzo Chapino</strong>, con domicilio en
-              Valle María, Entre Ríos, República Argentina. Para consultas:{" "}
+              Valle María, Argentina. Para consultas:{" "}
               <strong className="text-slate-200">bioaula3d@gmail.com</strong>
             </p>
           </section>
@@ -126,7 +126,7 @@ export default function Terminos() {
             <h2 className="text-[15px] font-semibold text-white mb-2">11. Ley aplicable</h2>
             <p>
               Estos términos se rigen por las leyes de la República Argentina. Cualquier conflicto será resuelto ante
-              los tribunales competentes de la provincia de Entre Ríos.
+              los tribunales competentes de la República Argentina.
             </p>
           </section>
 

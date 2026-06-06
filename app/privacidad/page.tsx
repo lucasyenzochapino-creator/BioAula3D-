@@ -38,8 +38,7 @@ export default function Privacidad() {
             <h2 className="text-[15px] font-semibold text-white mb-2">1. Información general</h2>
             <p>
               BioAula3D es una aplicación educativa de biología para nivel primario y secundario, propiedad de{" "}
-              <strong className="text-slate-200">Enzo Chapino</strong>, con domicilio en Valle María, Entre Ríos,
-              República Argentina. Esta Política describe cómo tratamos la información de los usuarios, en
+              <strong className="text-slate-200">Enzo Chapino</strong>, con domicilio en Valle María, Argentina. Esta Política describe cómo tratamos la información de los usuarios, en
               cumplimiento de la Ley N.° 25.326 de Protección de Datos Personales de la República Argentina.
             </p>
           </section>
