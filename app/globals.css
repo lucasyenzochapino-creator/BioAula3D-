@@ -102,6 +102,34 @@ html {
   min-height: 0;
 }
 
+/* Phone in landscape: side-by-side (model left, panel right) */
+@media (orientation: landscape) and (max-height: 520px) {
+  .viewer-layout { flex-direction: row; }
+  .viewer-3d { flex: 1; height: 100%; min-height: 0; }
+  .viewer-panel {
+    flex: none;
+    width: 260px;
+    min-width: 260px;
+    height: 100%;
+    border-top: none;
+    border-left: 1px solid #1e293b;
+  }
+}
+
+/* Desktop: wider panel */
+@media (min-width: 1280px) {
+  .viewer-layout { flex-direction: row; }
+  .viewer-3d { flex: 1; height: 100%; min-height: 0; }
+  .viewer-panel {
+    flex: none;
+    width: 340px;
+    min-width: 340px;
+    height: 100%;
+    border-top: none;
+    border-left: 1px solid #1e293b;
+  }
+}
+
 
 @keyframes slideUp {
   from { transform: translateY(100%); }
