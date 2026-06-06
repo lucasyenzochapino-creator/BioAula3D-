@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 
-const CURRENT_VERSION = "5.0";
+const CURRENT_VERSION = "6.0";
 
 export default function AutoUpdate() {
   useEffect(() => {
