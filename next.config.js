@@ -1,14 +1,26 @@
 const withPWA = require("@ducanh2912/next-pwa").default({
   dest: "public",
-  cacheOnFrontEndNav: true,
-  aggressiveFrontEndNavCaching: true,
+  cacheOnFrontEndNav: false,
+  aggressiveFrontEndNavCaching: false,
   reloadOnOnline: true,
   disable: process.env.NODE_ENV === "development",
   workboxOptions: {
     skipWaiting: true,
     clientsClaim: true,
+    cleanupOutdatedCaches: true,
     disableDevLogs: true,
-    runtimeCaching: [],
+    runtimeCaching: [
+      {
+        // HTML de navegación — siempre desde la red para que los usuarios
+        // vean siempre la versión más reciente
+        urlPattern: ({ request }: { request: Request }) => request.mode === "navigate",
+        handler: "NetworkFirst" as const,
+        options: {
+          cacheName: "html-cache",
+          networkTimeoutSeconds: 5,
+        },
+      },
+    ],
   },
 });
 
