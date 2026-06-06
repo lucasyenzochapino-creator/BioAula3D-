@@ -23,6 +23,14 @@ const nextConfig = {
   },
   async headers() {
     return [
+      // Version file: nunca cachear
+      {
+        source: "/version.json",
+        headers: [
+          { key: "Cache-Control", value: "no-cache, no-store, must-revalidate" },
+          { key: "Pragma", value: "no-cache" },
+        ],
+      },
       // Manifest: nunca cachear
       {
         source: "/manifest.json",
