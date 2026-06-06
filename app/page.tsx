@@ -120,6 +120,9 @@ export default function Home() {
         </div>
       </div>
 
+      {/* ── PARADE ── */}
+      <BiologyParade />
+
       {/* ── MÓDULOS ── */}
       <div style={{ maxWidth: 1024, margin: "0 auto", padding: "40px 20px 16px", display: "flex", flexDirection: "column", gap: 56 }}>
 
@@ -242,6 +245,32 @@ function CompactCard({ m }: { m: Mod }) {
         <div style={{ fontSize: 10, color: T3, marginTop: 2, lineHeight: 1.4 }}>{m.desc}</div>
       </div>
     </Link>
+  );
+}
+
+/* ── BIOLOGY PARADE ── */
+const PARADE_CHARS = ["🦠","🧬","🦕","🧠","🔬","🦴","💀","🐒","🫀","🧫","🌿","🦎","🐛","🦋","👁️","🦷","🌱","🧪","🐟","🫁"];
+
+function BiologyParade() {
+  const doubled = [...PARADE_CHARS, ...PARADE_CHARS];
+  return (
+    <div style={{ background: BG0, borderBottom: `1px solid ${B1}`, overflow: "hidden", position: "relative", height: 64 }}>
+      {/* left fade */}
+      <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 60, zIndex: 1, background: `linear-gradient(to right, ${BG0}, transparent)`, pointerEvents: "none" }} />
+      {/* right fade */}
+      <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 60, zIndex: 1, background: `linear-gradient(to left, ${BG0}, transparent)`, pointerEvents: "none" }} />
+      <div className="parade-track" style={{ alignItems: "center", height: "100%", gap: 0 }}>
+        {doubled.map((ch, i) => (
+          <span
+            key={i}
+            className={`parade-char-${i % 5}`}
+            style={{ fontSize: 26, display: "inline-block", padding: "0 14px", cursor: "default", userSelect: "none", opacity: 0.72 }}
+          >
+            {ch}
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }
 
