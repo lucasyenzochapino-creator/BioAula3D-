@@ -3,56 +3,45 @@ import { useEffect, useState } from "react";
 
 export default function PWAUpdatePrompt() {
   const [pending, setPending] = useState(false);
-  const [worker, setWorker] = useState<ServiceWorker | null>(null);
 
   useEffect(() => {
     if (!("serviceWorker" in navigator)) return;
 
-    const checkForUpdate = async () => {
+    const register = async () => {
       try {
         const reg = await navigator.serviceWorker.getRegistration();
         if (!reg) return;
 
-        // Forzar chequeo inmediato al montar
+        // Forzar chequeo al montar
         reg.update().catch(() => {});
 
-        // Detectar nuevo worker esperando
-        const handleWaiting = () => {
-          if (reg.waiting) {
-            setWorker(reg.waiting);
-            setPending(true);
-          }
-        };
+        // SW ya esperando al cargar la página
+        if (reg.waiting) {
+          setPending(true);
+          return;
+        }
 
-        if (reg.waiting) handleWaiting();
+        // Nuevo SW encontrado durante la sesión
         reg.addEventListener("updatefound", () => {
-          const installing = reg.installing;
-          if (!installing) return;
-          installing.addEventListener("statechange", () => {
-            if (installing.state === "installed" && navigator.serviceWorker.controller) {
-              setWorker(installing);
+          const sw = reg.installing;
+          if (!sw) return;
+          sw.addEventListener("statechange", () => {
+            if (sw.state === "installed") {
               setPending(true);
             }
           });
         });
+
+        // SW activado en background (skipWaiting automático) → mostrar cartel igual
+        navigator.serviceWorker.addEventListener("controllerchange", () => {
+          setPending(true);
+        });
+
       } catch {}
     };
 
-    checkForUpdate();
+    register();
 
-    // También detectar cuando el controller cambia (activación del nuevo SW)
-    const onControllerChange = () => {
-      // Si hay un cambio de controller es porque ya se activó — recargar silencioso
-      window.location.reload();
-    };
-
-    // Sólo recargar automáticamente si ya había un controller previo
-    const prevController = navigator.serviceWorker.controller;
-    if (prevController) {
-      navigator.serviceWorker.addEventListener("controllerchange", onControllerChange);
-    }
-
-    // Chequear actualizaciones cada 60 segundos mientras la app está abierta
     const interval = setInterval(async () => {
       try {
         const reg = await navigator.serviceWorker.getRegistration();
@@ -60,17 +49,10 @@ export default function PWAUpdatePrompt() {
       } catch {}
     }, 60_000);
 
-    return () => {
-      navigator.serviceWorker.removeEventListener("controllerchange", onControllerChange);
-      clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   const applyUpdate = () => {
-    if (worker) {
-      // Decirle al SW en espera que tome el control ahora
-      worker.postMessage({ type: "SKIP_WAITING" });
-    }
     window.location.reload();
   };
 
