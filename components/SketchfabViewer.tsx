@@ -239,7 +239,7 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
             allow="autoplay; fullscreen; xr-spatial-tracking"
             allowFullScreen
             onLoad={() => { setLoaded(true); if (loadTimerRef.current) clearTimeout(loadTimerRef.current); }}
-            style={{ width: "100%", height: "100%", border: "none", display: "block" }}
+            style={{ width: "100%", height: "100%", border: "none", display: "block", opacity: loaded ? 1 : 0, transition: "opacity 0.4s ease" }}
           />
         )}
 
@@ -260,11 +260,18 @@ export default function SketchfabViewer({ uid, title, subtitle, accent, intro, s
                 </button>
               </>
             ) : (
-              <>
-                <div className="w-9 h-9 rounded-full border-2 border-slate-700 animate-spin"
-                  style={{ borderTopColor: accent }} />
-                <span className="text-slate-400 text-xs">Cargando modelo 3D…</span>
-              </>
+              <div className="w-full h-full relative overflow-hidden">
+                {/* shimmer base */}
+                <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, #0b1120 0%, ${accent}10 50%, #0b1120 100%)` }} />
+                {/* sweep animation */}
+                <div className="absolute inset-0 animate-pulse" style={{ background: `linear-gradient(90deg, transparent 0%, ${accent}08 50%, transparent 100%)` }} />
+                {/* center content */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                  <div className="w-10 h-10 rounded-full border-2 border-slate-800 animate-spin" style={{ borderTopColor: accent }} />
+                  <span className="text-slate-400 text-xs font-medium">Cargando modelo 3D…</span>
+                  <span className="text-slate-600 text-[10px]">Puede tardar unos segundos</span>
+                </div>
+              </div>
             )}
           </div>
         )}
