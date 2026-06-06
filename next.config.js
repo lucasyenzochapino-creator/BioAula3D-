@@ -13,8 +13,8 @@ const withPWA = require("@ducanh2912/next-pwa").default({
       {
         // HTML de navegación — siempre desde la red para que los usuarios
         // vean siempre la versión más reciente
-        urlPattern: ({ request }: { request: Request }) => request.mode === "navigate",
-        handler: "NetworkFirst" as const,
+        urlPattern: ({ request }) => request.mode === "navigate",
+        handler: "NetworkFirst",
         options: {
           cacheName: "html-cache",
           networkTimeoutSeconds: 5,
