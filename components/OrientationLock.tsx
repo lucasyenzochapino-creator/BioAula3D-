@@ -1,11 +1,7 @@
 "use client";
-import { useEffect } from "react";
 
+// No lock applied — the OS and browser handle rotation based on the user's device settings.
+// If the user has rotation locked, the app stays portrait. If enabled, the app adapts.
 export default function OrientationLock() {
-  useEffect(() => {
-    // Lock to portrait in PWA/fullscreen mode (Android Chrome).
-    // In regular browser tabs and iOS this fails silently — the OS handles rotation normally.
-    (screen.orientation as any)?.lock?.("portrait").catch(() => {});
-  }, []);
   return null;
 }
