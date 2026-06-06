@@ -208,12 +208,29 @@ export default function Home() {
       </div>
 
       {/* ── Herramientas — horizontal rows ── */}
-      <section id="herramientas" className="max-w-6xl mx-auto px-4 pt-4 pb-20">
+      <section id="herramientas" className="max-w-6xl mx-auto px-4 pt-4 pb-10">
         <SectionTag label="Herramientas educativas" accent="#a78bfa" />
         <div className="rounded-2xl border border-white/[0.06] overflow-hidden divide-y divide-white/[0.04]">
           {tools.map(t => <ToolRow key={t.slug} t={t} />)}
         </div>
       </section>
+
+      {/* ── Footer ── */}
+      <footer className="max-w-6xl mx-auto px-4 pb-8 pt-6 border-t border-white/[0.05]">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-[12px] text-slate-600">
+            © {new Date().getFullYear()} BioAula3D — Biología Interactiva
+          </p>
+          <div className="flex items-center gap-5 text-[12px] text-slate-600">
+            <Link href="/terminos" className="hover:text-slate-400 transition-colors">
+              Términos de uso
+            </Link>
+            <Link href="/privacidad" className="hover:text-slate-400 transition-colors">
+              Privacidad
+            </Link>
+          </div>
+        </div>
+      </footer>
 
     </div>
   );
