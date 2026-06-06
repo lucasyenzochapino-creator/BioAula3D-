@@ -83,31 +83,31 @@ const tools: Tool[] = [
 /* ─────────────────────────────────── PAGE ─────────────────────────────────── */
 export default function Home() {
   return (
-    <div style={{ background: "#080d1b", minHeight: "100vh" }}>
+    <div style={{ background: "#111214", minHeight: "100vh" }}>
 
       {/* ── Hero ── */}
-      <div className="relative overflow-hidden border-b border-white/[0.05]" style={{ background: "#080d1b" }}>
+      <div className="relative overflow-hidden border-b border-white/[0.05]" style={{ background: "#111214" }}>
 
         {/* Cell cross-section illustration — biology-specific, not generic tech */}
         <div className="absolute right-[-80px] top-1/2 -translate-y-1/2 w-[380px] h-[380px] hidden lg:block pointer-events-none select-none">
-          <div className="absolute inset-0 rounded-full border border-green-500/[0.08]" />
-          <div className="absolute inset-5 rounded-full border border-green-500/[0.06]" style={{ borderStyle: "dashed" }} />
-          <div className="absolute inset-14 rounded-full" style={{ background: "radial-gradient(circle, rgba(34,197,94,0.04) 0%, transparent 70%)" }} />
+          <div className="absolute inset-0 rounded-full border border-[#4A7FA5]/[0.08]" />
+          <div className="absolute inset-5 rounded-full border border-[#4A7FA5]/[0.06]" style={{ borderStyle: "dashed" }} />
+          <div className="absolute inset-14 rounded-full" style={{ background: "radial-gradient(circle, rgba(74,127,165,0.05) 0%, transparent 70%)" }} />
           <div className="absolute inset-[90px] rounded-full border border-sky-400/[0.12]" />
           <div className="absolute inset-[110px] rounded-full" style={{ background: "radial-gradient(circle, rgba(56,189,248,0.06) 0%, transparent 100%)" }} />
           <div className="absolute inset-[148px] rounded-full border border-sky-400/[0.08]" />
           {/* Organelle dots */}
-          <div className="absolute w-4 h-2.5 rounded-full border border-green-500/[0.18]" style={{ top: "22%", left: "12%" }} />
-          <div className="absolute w-5 h-2.5 rounded-full border border-green-500/[0.14]" style={{ top: "62%", left: "16%" }} />
-          <div className="absolute w-4 h-2.5 rounded-full border border-green-500/[0.18]" style={{ top: "28%", right: "22%" }} />
-          <div className="absolute w-5 h-3 rounded-full border border-green-500/[0.14]" style={{ bottom: "22%", right: "14%" }} />
-          <div className="absolute w-2 h-2 rounded-full" style={{ background: "rgba(34,197,94,0.12)", top: "45%", left: "10%" }} />
-          <div className="absolute w-2 h-2 rounded-full" style={{ background: "rgba(34,197,94,0.10)", bottom: "40%", right: "10%" }} />
+          <div className="absolute w-4 h-2.5 rounded-full border border-[#4A7FA5]/[0.12]" style={{ top: "22%", left: "12%" }} />
+          <div className="absolute w-5 h-2.5 rounded-full border border-[#4A7FA5]/[0.08]" style={{ top: "62%", left: "16%" }} />
+          <div className="absolute w-4 h-2.5 rounded-full border border-[#4A7FA5]/[0.12]" style={{ top: "28%", right: "22%" }} />
+          <div className="absolute w-5 h-3 rounded-full border border-[#4A7FA5]/[0.08]" style={{ bottom: "22%", right: "14%" }} />
+          <div className="absolute w-2 h-2 rounded-full" style={{ background: "rgba(74,127,165,0.1)", top: "45%", left: "10%" }} />
+          <div className="absolute w-2 h-2 rounded-full" style={{ background: "rgba(74,127,165,0.08)", bottom: "40%", right: "10%" }} />
         </div>
 
         <div className="relative max-w-6xl mx-auto px-4 pt-14 pb-12">
           <div className="max-w-xl">
-            <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-5" style={{ color: "rgba(34,197,94,0.7)" }}>
+            <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-5" style={{ color: "rgba(74,127,165,0.8)" }}>
               Biología · Modelos 3D · Interactivo
             </p>
             <h1
@@ -116,7 +116,7 @@ export default function Home() {
             >
               Explorá<br />
               la vida<br />
-              <span style={{ color: "#4ade80" }}>desde adentro</span>
+              <span style={{ color: "#4A7FA5" }}>desde adentro</span>
             </h1>
             <p className="text-slate-400 text-[14px] leading-relaxed mb-6 max-w-sm">
               24 módulos 3D de células, órganos y sistemas del cuerpo humano.
@@ -140,7 +140,7 @@ export default function Home() {
               <button
                 onClick={() => document.getElementById("celular")?.scrollIntoView({ behavior: "smooth" })}
                 className="inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-semibold text-white rounded-lg transition-all hover:brightness-110"
-                style={{ background: "#16a34a" }}
+                style={{ background: "#4A7FA5" }}
               >
                 Explorar módulos
                 <ArrowRight size={13} />
@@ -161,34 +161,34 @@ export default function Home() {
 
         {/* Célula y Genética — bento: featured large + 4 small */}
         <section id="celular">
-          <SectionTag label="Célula y Genética" accent="#4ade80" />
-          <BentoGrid mods={cellular} accent="#4ade80" hoverBg="rgba(74,222,128,0.06)" />
+          <SectionTag label="Célula y Genética" accent="#5B8A6F" />
+          <BentoGrid mods={cellular} accent="#5B8A6F" hoverBg="rgba(91,138,111,0.06)" />
         </section>
 
         {/* Microbiología y Ecología — bento: featured large + 4 small */}
         <section id="ecologia">
-          <SectionTag label="Microbiología y Ecología" accent="#34d399" />
-          <BentoGrid mods={ecology} accent="#34d399" hoverBg="rgba(52,211,153,0.06)" />
+          <SectionTag label="Microbiología y Ecología" accent="#7A8F5E" />
+          <BentoGrid mods={ecology} accent="#7A8F5E" hoverBg="rgba(122,143,94,0.06)" />
         </section>
 
         {/* Cuerpo Humano — featured + grouped subsystems */}
         <section id="cuerpo">
-          <SectionTag label="Cuerpo Humano" accent="#60a5fa" />
+          <SectionTag label="Cuerpo Humano" accent="#8A6B8A" />
 
           {/* Featured: Cuerpo Humano card */}
           <Link href={`/${bodyFeatured.slug}`} className="block mb-3 group">
             <div
               className="rounded-2xl p-6 flex items-center gap-5 relative overflow-hidden transition-all"
-              style={{ background: "rgba(96,165,250,0.07)", border: "1px solid rgba(96,165,250,0.14)" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = "rgba(96,165,250,0.11)"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = "rgba(96,165,250,0.07)"; }}
+              style={{ background: "rgba(138,107,138,0.07)", border: "1px solid rgba(138,107,138,0.14)" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = "rgba(138,107,138,0.11)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = "rgba(138,107,138,0.07)"; }}
             >
               {/* Watermark icon */}
               <div className="absolute -right-6 -bottom-6 opacity-[0.04] pointer-events-none">
                 <User size={120} />
               </div>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(96,165,250,0.15)" }}>
-                <User size={22} style={{ color: "#60a5fa" }} />
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(138,107,138,0.15)" }}>
+                <User size={22} style={{ color: "#8A6B8A" }} />
               </div>
               <div>
                 <div className="text-[16px] font-bold text-white mb-0.5">{bodyFeatured.title}</div>
@@ -211,7 +211,7 @@ export default function Home() {
                   "grid-cols-2 sm:grid-cols-4"
                 }`}>
                   {group.mods.map(m => (
-                    <CompactCard key={m.slug} m={m} accent="#60a5fa" hoverBg="rgba(96,165,250,0.06)" />
+                    <CompactCard key={m.slug} m={m} accent="#8A6B8A" hoverBg="rgba(138,107,138,0.06)" />
                   ))}
                 </div>
               </div>
@@ -223,7 +223,7 @@ export default function Home() {
 
       {/* ── Herramientas — horizontal rows ── */}
       <section id="herramientas" className="max-w-6xl mx-auto px-4 pt-4 pb-10">
-        <SectionTag label="Herramientas educativas" accent="#a78bfa" />
+        <SectionTag label="Herramientas educativas" accent="#4A7FA5" />
         <div className="rounded-2xl border border-white/[0.06] overflow-hidden divide-y divide-white/[0.04]">
           {tools.map(t => <ToolRow key={t.slug} t={t} />)}
         </div>
@@ -365,8 +365,8 @@ function ToolRow({ t }: { t: Tool }) {
         onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = "#110d22"; }}
         onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = "#0d1524"; }}
       >
-        <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "#a78bfa18" }}>
-          <Icon size={17} style={{ color: "#a78bfa" }} />
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(74,127,165,0.1)" }}>
+          <Icon size={17} style={{ color: "#4A7FA5" }} />
         </div>
         <div className="flex-1 min-w-0">
           <div className="text-[13px] font-semibold text-slate-100 group-hover:text-white transition-colors">{t.title}</div>

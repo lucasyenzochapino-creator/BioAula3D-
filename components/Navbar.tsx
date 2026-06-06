@@ -54,25 +54,25 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-[#0b1120]/80 backdrop-blur-md border-b border-white/[0.06]">
+      <nav className="sticky top-0 z-50 bg-[#111214]/80 backdrop-blur-md border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
-            <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-green-500/10 border border-green-500/20 flex-shrink-0 transition-colors group-hover:border-green-400/35">
+            <span className="flex items-center justify-center w-8 h-8 rounded-xl flex-shrink-0 transition-colors" style={{ background: "rgba(74,127,165,0.12)", border: "1px solid rgba(74,127,165,0.25)" }}>
               <svg viewBox="0 0 32 32" width="17" height="17" fill="none">
-                <path d="M10 5c4 6 8 6 12 0" stroke="#6B9A7F" strokeWidth="2" strokeLinecap="round"/>
-                <path d="M10 27c4-6 8-6 12 0" stroke="#6B9A7F" strokeWidth="2" strokeLinecap="round"/>
-                <line x1="10" y1="16" x2="22" y2="16" stroke="#6B9A7F" strokeWidth="2" strokeLinecap="round"/>
-                <path d="M10.5 10.5c3.5 3.5 7.5 3.5 11 0" stroke="#86efac" strokeWidth="1.5" strokeLinecap="round" opacity=".5"/>
-                <path d="M10.5 21.5c3.5-3.5 7.5-3.5 11 0" stroke="#86efac" strokeWidth="1.5" strokeLinecap="round" opacity=".5"/>
+                <path d="M10 5c4 6 8 6 12 0" stroke="#4A7FA5" strokeWidth="2" strokeLinecap="round"/>
+                <path d="M10 27c4-6 8-6 12 0" stroke="#4A7FA5" strokeWidth="2" strokeLinecap="round"/>
+                <line x1="10" y1="16" x2="22" y2="16" stroke="#4A7FA5" strokeWidth="2" strokeLinecap="round"/>
+                <path d="M10.5 10.5c3.5 3.5 7.5 3.5 11 0" stroke="#7AADC8" strokeWidth="1.5" strokeLinecap="round" opacity=".5"/>
+                <path d="M10.5 21.5c3.5-3.5 7.5-3.5 11 0" stroke="#7AADC8" strokeWidth="1.5" strokeLinecap="round" opacity=".5"/>
               </svg>
             </span>
             <span
               className="text-[15px] font-bold text-white tracking-tight"
               style={{ fontFamily: "var(--font-display, inherit)", letterSpacing: "-0.025em" }}
             >
-              Bio<span className="text-green-400">Aula</span><span className="text-sky-400">3D</span>
+              Bio<span style={{ color: "#4A7FA5" }}>Aula</span><span style={{ color: "#7A8A9A" }}>3D</span>
             </span>
           </Link>
 
@@ -108,7 +108,7 @@ export default function Navbar() {
                   href={href}
                   className={`inline-flex items-center px-3 py-1.5 rounded-lg text-[12px] font-medium transition-all ${
                     accent
-                      ? "text-green-400 bg-green-400/[0.08] hover:bg-green-400/[0.14] border border-green-400/20 hover:border-green-400/35"
+                      ? "text-[#4A7FA5] bg-[#4A7FA5]/[0.08] hover:bg-[#4A7FA5]/[0.14] border border-[#4A7FA5]/20 hover:border-[#4A7FA5]/35"
                       : "text-slate-300 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] hover:border-white/[0.15]"
                   }`}
                 >
@@ -153,7 +153,7 @@ export default function Navbar() {
       {menuOpen && (
         <div className="sm:hidden fixed inset-0 z-40" onClick={() => setMenuOpen(false)}>
           <div
-            className="absolute top-14 left-0 right-0 bg-[#0b1120]/98 backdrop-blur-lg border-b border-white/[0.08] px-4 py-4 space-y-1"
+            className="absolute top-14 left-0 right-0 bg-[#111214]/98 backdrop-blur-lg border-b border-white/[0.08] px-4 py-4 space-y-1"
             onClick={e => e.stopPropagation()}
           >
             {isHome && (
@@ -185,7 +185,7 @@ export default function Navbar() {
                 href={href}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-[14px] transition-all ${
                   accent
-                    ? "text-green-400 bg-green-400/[0.08] border border-green-400/[0.15]"
+                    ? "text-[#4A7FA5] bg-[#4A7FA5]/[0.08] border border-[#4A7FA5]/[0.15]"
                     : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
                 }`}
               >
